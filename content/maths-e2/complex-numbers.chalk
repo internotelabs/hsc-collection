@@ -1,0 +1,21 @@
+*(
+    title: Complex Numbers
+    description: Complex numbers are numbers that have both a real part and an imaginary part. They can be represented in the form a + bi, where a is the real part, b is the imaginary part, and i is the imaginary unit (the square root of -1).
+    tags: complex numbers, complex analysis
+    lesson
+)
+
+scene{
+    Imagine a number line that extends infinitely in both directions. On this number line, we can represent real numbers, such as 1, -2, and 3. But what if we want to represent numbers that are not on this line? This is where complex numbers come in.
+
+    definiton{
+        A **complex number** is a number of the form $a + bi$, where:
+        - $a$ is the real part
+        - $b$ is the imaginary part
+        - $i$ is the imaginary unit, defined as $i^2 = -1$
+    }(
+        term: Complex Number
+    )
+
+    Complex numbers allow us to extend the concept of numbers beyond the real number line. They can be visualized in a two-dimensional plane, known as the complex plane, where the horizontal axis represents the real part and the vertical axis represents the imaginary part.
+}
