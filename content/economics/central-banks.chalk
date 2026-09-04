@@ -1,0 +1,24 @@
+*(
+    title: Central Banks
+    description: Central banks are financial institutions that manage a country's currency, money supply, and interest rates.
+    tags: central banks, monetary policy, financial institutions
+    lesson
+)
+
+scene{
+    Central banks play a crucial role in a country's economy by implementing monetary policy, regulating the banking system, and ensuring financial stability. They are responsible for issuing currency, controlling inflation, and managing interest rates to promote economic growth.
+
+    definition{
+        A **central bank** is a financial institution that manages a country's currency, money supply, and interest rates. It serves as the primary authority for monetary policy and financial regulation.
+    }(
+        term: Central Bank
+    )
+
+    Central banks can influence the economy through various tools, such as open market operations, reserve requirements, and discount rates. By adjusting these tools, central banks can control the money supply and influence economic activity.
+}
+
+scene{
+    In Australia, the central bank is the Reserve Bank of Australia (RBA). The RBA is responsible for implementing monetary policy, issuing currency, and maintaining financial stability in the country. It operates independently from the government to ensure that its decisions are based on economic considerations rather than political pressures.
+
+    It is important to note that central banks are not profit-driven institutions. Their primary goal is to maintain economic stability and promote sustainable growth, rather than maximizing profits for shareholders.
+}

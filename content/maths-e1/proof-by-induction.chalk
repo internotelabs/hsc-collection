@@ -1,0 +1,32 @@
+*(
+    title: Proof by Induction
+    description: Proof by induction is a mathematical technique used to prove statements about natural numbers.
+    tags: proof by induction, mathematical induction, proofs
+    lesson
+)
+
+scene{
+    Proof by induction is a powerful method for proving statements about natural numbers. It involves two main steps: the base case and the inductive step. In the base case, we show that the statement is true for the smallest value in the domain (usually $n = 1$). In the inductive step, we assume that the statement is true for some arbitrary value k and then prove that it must also be true for $k + 1$.
+
+    definition{
+        **Proof by Induction**: A mathematical technique used to prove statements about natural numbers by establishing a base case and an inductive step.
+    }(
+        term: Proof by Induction
+    )
+}
+
+scene{
+    Imagine you want to prove that the sum of the first n natural numbers is given by the formula $S(n) = \frac{n(n + 1)}{2}$. To do this using proof by induction, we would first establish the base case for $n = 1$, showing that $S(1) = \frac{1(1 + 1)}{2} = 1$, which is true. Next, we would assume that the formula holds for some arbitrary value k, i.e., $S(k) = \frac{k(k + 1)}{2}$. Then, we would show that it must also hold for $k + 1$, i.e., $S(k + 1) = S(k) + (k + 1) = \frac{k(k + 1)}{2} + (k + 1) = \frac{(k + 1)(k + 2)}{2}$, thus completing the inductive step and proving the statement for all natural numbers n.
+
+    definition{
+        **Base Case**: The initial step in a proof by induction where the statement is verified for the smallest value in the domain.
+    }(
+        term: Base Case
+    )
+
+    definition{
+        **Inductive Step**: The step in a proof by induction where we assume the statement is true for some arbitrary value k and then prove it is also true for k + 1.
+    }(
+        term: Inductive Step
+    )
+}

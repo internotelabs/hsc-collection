@@ -1,0 +1,36 @@
+*(
+    title: Newton's First Law
+    description: Newton's First Law states that an object will remain at rest or in uniform motion in a straight line unless acted upon by an external force.
+    tags: Newton's First Law, inertia, motion
+    lesson
+)
+
+scene{
+    Newton's First Law, also known as the law of inertia, describes the behavior of objects in motion. It states that an object will continue to move at a constant velocity or remain at rest unless acted upon by an external force. This means that if no net force is applied to an object, it will maintain its current state of motion.
+
+    definition{
+        **Newton's First Law**: An object will remain at rest or in uniform motion in a straight line unless acted upon by an external force.
+    }(
+        term: Newton's First Law
+    )
+
+    definition{
+        **Inertia**: The property of matter that resists changes in motion.
+    }(
+        term: Inertia
+    )
+
+    The greater the mass of an object, the greater its inertia, and the more force is required to change its state of motion. This law is fundamental to understanding the principles of classical mechanics and has wide-ranging applications in physics and engineering.
+}
+
+scene{
+    In everyday life, we can observe Newton's First Law in action. For example, when a car suddenly stops, the passengers inside continue to move forward due to their inertia. Seat belts are designed to counteract this effect by applying an external force to keep passengers safe.
+
+    definition{
+        **External Force**: A force that acts on an object from outside the system.
+    }(
+        term: External Force
+    )
+
+    It is important to note that while Newton's First Law describes the behavior of objects in the absence of external forces, real-world scenarios often involve friction, air resistance, and other forces that can affect an object's motion.
+}
