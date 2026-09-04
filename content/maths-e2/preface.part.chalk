@@ -1,3 +1,5 @@
-note{
-    The internote is written by the Internote Foundation, a non-profit organisation dedicated to promoting the use of internotes and supporting the internote community. The foundation provides resources, guidelines, and support for users and developers of internotes.
+scene{
+    note{
+        *The internote is written by the Internote Foundation, a non-profit organisation dedicated to promoting the use of internotes and supporting the internote community. The foundation provides resources, guidelines, and support for users and developers of internotes.*
+    }
 }
