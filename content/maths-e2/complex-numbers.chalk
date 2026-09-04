@@ -8,7 +8,7 @@
 scene{
     Imagine a number line that extends infinitely in both directions. On this number line, we can represent real numbers, such as 1, -2, and 3. But what if we want to represent numbers that are not on this line? This is where complex numbers come in.
 
-    definiton{
+    definition{
         A **complex number** is a number of the form $a + bi$, where:
         - $a$ is the real part
         - $b$ is the imaginary part
