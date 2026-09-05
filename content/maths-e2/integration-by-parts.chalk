@@ -1,0 +1,18 @@
+*(
+    title: Integration by Parts
+    description: Reversing the product rule to trade one integral for an easier one.
+    tags: integration, by parts, product rule, calculus, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Substitution handles a function of a function. A product of two unrelated functions needs something else, and the product rule supplies it: rearranged and integrated, it exchanges the integral you have for a different one.
+
+    Written out here: the formula and its derivation, choosing which factor to differentiate and which to integrate, the integrals that need the method applied twice, and the case where the original integral reappears on the right and the equation can be solved for it.
+
+    Applying the method to a family of integrals indexed by an exponent produces not a value but an equation relating one member to a smaller one, which is what *Reduction Formulae* is about.
+
+    internote(ref: reduction-formulae.chalk)
+}

@@ -1,0 +1,22 @@
+*(
+    title: The Nature of Proof
+    description: The vocabulary a proof is written in, and the asymmetry between establishing a statement and refuting one.
+    tags: proof, logic, contrapositive, counterexample, quantifiers, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A mathematical statement is either true or false, and a proof settles which. Before any particular proof can be written the sentences themselves have to be readable: what an implication claims, what its converse claims instead, and why the contrapositive says the same thing as the original while the converse says something else entirely.
+
+    Written out here: implication and equivalence, negation, the universal and existential quantifiers, and the asymmetry that follows from them — a statement about every integer takes a general argument to establish and one counterexample to destroy.
+
+    Three methods are built on that vocabulary. Assuming the negation and driving it to an absurdity is *Proof by Contradiction*. The standard inequalities, and the tactics for proving new ones from them, are *Inequalities and Proof*. And induction, met in Extension 1 for sums and divisibility, is pushed onto inequalities and recursive definitions in *Further Proof by Induction*.
+
+    internote(ref: proof-by-contradiction.chalk)
+
+    internote(ref: inequalities-and-proof.chalk)
+
+    internote(ref: further-proof-by-induction.chalk)
+}

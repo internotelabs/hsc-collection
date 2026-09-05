@@ -1,0 +1,14 @@
+*(
+    title: Projectiles with Resistance
+    description: A projectile meeting air resistance, where the horizontal and vertical motions stop being independent.
+    tags: mechanics, projectiles, air resistance, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Extension 1 treats a projectile as two separate problems: constant velocity across, constant acceleration down. That separation is a consequence of the only force being gravity, which acts vertically and leaves the horizontal motion alone.
+
+    Written out here: why resistance destroys the separation, since it acts along the velocity and therefore has a component in each direction; the horizontal and vertical equations that result; the horizontal limit the body approaches but never reaches; and how the trajectory differs from the parabola of the unresisted case.
+}

@@ -1,0 +1,14 @@
+*(
+    title: Polynomials and Complex Roots
+    description: Why a polynomial with real coefficients keeps its non-real roots in conjugate pairs, and what that forces about its factors.
+    tags: complex numbers, polynomials, conjugate root theorem, factorisation, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Over the complex numbers every polynomial of degree n has exactly n roots, counted with multiplicity, so factorisation always finishes. What is less obvious is that real coefficients constrain where those roots can sit.
+
+    Written out here: the conjugate root theorem and why conjugation leaves a real polynomial alone, the consequence that a real polynomial of odd degree must have a real root, factorising over the reals into linear and irreducible quadratic factors, and solving quadratics whose own coefficients are complex, where the conjugate pairing no longer applies.
+}

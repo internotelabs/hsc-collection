@@ -1,0 +1,109 @@
+*(
+    title: Mathematics Extension 2
+    description: The five areas of the course, what each one adds to Extension 1, and the order they are best taken in.
+    tags: extension 2, course overview, proof, vectors, complex numbers, calculus, mechanics
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Extension 2 is taken alongside Extension 1 and assumes all of it. What it is not is Extension 1 with larger numbers in the questions.
+
+    The difference is in what a question asks for. Extension 1 mostly hands over a statement and a method and asks for the method to be carried out. Extension 2 hands over a statement and asks whether it is true — a different job, which needs tools for establishing that something is false as much as tools for establishing that it is true.
+
+    That is why Proof is an area of study here rather than a technique living inside one. It supplies the vocabulary the other four areas are written in.
+
+    The table sets the five areas against what Extension 1 already gave you. Two of the rows are extensions of familiar work, two are the same subject carried into harder cases, and one is new outright.
+}[
+    table{
+        Area            | In Extension 1                                | What Extension 2 adds
+        Proof           | Induction, applied to sums and divisibility   | The language of proof itself, and the methods that show a statement false
+        Vectors         | Vectors in two dimensions                     | A third dimension, lines in space, and geometric proof
+        Complex numbers | Not in the course                             | The whole area
+        Calculus        | Integration by substitution                   | Parts, partial fractions and reduction formulae
+        Mechanics       | Projectile motion through a vacuum            | Oscillation, and motion against a resisting medium
+    }(
+        title: The five areas, measured against Extension 1
+        header column
+    )
+]
+
+scene{
+    # The five areas of study
+
+    Proof comes first because everything else leans on it. It replaces "show that" with a set of specific obligations: what an implication claims and what its converse claims instead, how a single counterexample disposes of a universal statement, and how assuming the opposite of what you want can establish it.
+
+    internote(ref: the-nature-of-proof.chalk)
+
+    ===
+
+    Vectors and Complex numbers are the same manoeuvre carried out twice, and can be taken in either order. Vectors puts coordinates on three-dimensional space, so that questions about lines and angles become arithmetic. Complex numbers puts coordinates on the plane and then, unlike vectors, supplies a multiplication for them.
+
+    internote(ref: vectors-in-three-dimensions.chalk)
+
+    internote(ref: complex-numbers.chalk)
+
+    ===
+
+    Calculus is a toolkit rather than a theory: substitution generalised, and then parts, partial fractions and reduction formulae for the integrals substitution alone cannot reach.
+
+    Mechanics is the only area with a hard prerequisite inside the course. It is calculus applied to a moving body, and it needs those integration techniques before it can do anything — which is why it belongs last, and why the diagram draws that one arrow solid while the arrows out of Proof are dashed.
+
+    internote(ref: integration-by-substitution.chalk)
+
+    internote(ref: velocity-as-a-function-of-displacement.chalk)
+}[
+    canvas.diagram{
+        box#proof(label: Proof; sub: the language the other four are written in; shape: terminal)
+
+        cue{
+            box#vectors(label: Vectors; sub: coordinates on three-dimensional space)
+            box#complex(label: Complex numbers; sub: coordinates on the plane, with a multiplication)
+            box#calculus(label: Calculus; sub: techniques of integration)
+            arrow(from: #proof; to: #vectors; dashed)
+            arrow(from: #proof; to: #complex; dashed)
+            arrow(from: #proof; to: #calculus; dashed)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#mechanics(label: Mechanics; sub: calculus applied to a moving body)
+            arrow(from: #calculus; to: #mechanics; label: needs the integration first)
+        }(
+            in: 2
+        )
+    }(
+        flow: down
+    )
+]
+
+scene{
+    ## One point, two languages
+
+    The canvas holds a single point, three units along and two up. Extension 2 gives it two names, and the difference between them is the reason both areas exist.
+
+    As a complex number it is $3 + 2i$. As a vector it is $3\mathbf{i} + 2\mathbf{j}$. Nothing about the point distinguishes these; addition is identical in both, and so is the length.
+
+    ===
+
+    They part company over multiplication. There is no product of two plane vectors that is itself a plane vector — the dot product returns a number and throws the direction away. Two complex numbers do have such a product, and it turns out to be a rotation combined with a scaling. That single extra operation is what makes complex numbers the right language for plane geometry, and it is what the Complex numbers area spends its time on.
+
+    Vectors buy something complex numbers cannot. The complex plane is two-dimensional and stays that way, while a vector takes a third component without complaint. So the two areas divide the work: rotation and multiplication in the plane go to complex numbers, and anything needing depth goes to vectors.
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        point(x: 3; y: 2; colour: orange; label: $3 + 2i$)
+
+        cue.draw{
+            vector(x: 0; y: 0; dx: 3; dy: 2; colour: teal; label: $3\mathbf{i} + 2\mathbf{j}$)
+        }(
+            in: 1
+            in duration: 1.2s
+        )
+    }(
+        x axis label: real axis, or $\mathbf{i}$
+        y axis label: imaginary axis, or $\mathbf{j}$
+    )
+]

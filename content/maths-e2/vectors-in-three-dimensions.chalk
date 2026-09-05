@@ -1,0 +1,18 @@
+*(
+    title: Vectors in Three Dimensions
+    description: Adding a third component, and what carries over unchanged from two dimensions.
+    tags: vectors, three dimensions, magnitude, unit vector, components, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Almost everything Extension 1 established about vectors in the plane survives the move to space untouched. Addition is still tip to tail, scalar multiplication still stretches without turning, and the magnitude is still a Pythagoras calculation with one more term under the root.
+
+    Written out here: component and column notation, the basis vectors, magnitude and distance between two points in space, unit vectors, and the arithmetic of addition and scalar multiplication in three components.
+
+    What does not carry over is as important. In the plane, two directions are either parallel or they meet; in space they can do neither. The first tool for telling such cases apart is the one product of two vectors that returns a number, set out in *The Dot Product*.
+
+    internote(ref: the-dot-product.chalk)
+}

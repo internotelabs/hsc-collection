@@ -131,6 +131,10 @@ scene{
     ===
 
     Conjugation now has a picture. Reversing the sign of the imaginary part leaves the horizontal coordinate alone and flips the vertical one, so $\bar{z}$ is the reflection of $z$ in the real axis. A number equal to its own conjugate is a number fixed by that reflection, which is to say a real one.
+
+    Drawing $z$ as an arrow from the origin rather than as a dot costs nothing and gains the rest of plane geometry, since adding complex numbers and adding vectors are the same rule. *Complex Numbers as Vectors* takes that reading up, along with the quarter turn that multiplying by $i$ performs.
+
+    internote(ref: complex-numbers-as-vectors.chalk)
 }[
     canvas.graph{
         point(x: 0; y: 0; colour: grey; label: $O$)

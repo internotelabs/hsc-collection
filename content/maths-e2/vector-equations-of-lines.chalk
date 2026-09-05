@@ -1,0 +1,18 @@
+*(
+    title: Vector Equations of Lines
+    description: Naming a line in space by one point on it and one direction along it.
+    tags: vectors, lines, parametric equations, intersection, skew lines, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A line in the plane is fixed by a gradient and an intercept, but in space there is no single gradient to quote. What does fix a line, in any number of dimensions, is a point it passes through and a direction it runs in.
+
+    Written out here: the form in which a position vector plus a multiple of a direction vector sweeps out a line, the parametric equations that follow from it, and deciding whether two lines are parallel, intersecting, or skew — the case with no two-dimensional analogue, where the lines neither meet nor run parallel.
+
+    Letting the parameter be time rather than an abstract scalar turns the same equation into a description of a moving point, which is where *Vector Functions and Motion* begins.
+
+    internote(ref: vector-functions-and-motion.chalk)
+}

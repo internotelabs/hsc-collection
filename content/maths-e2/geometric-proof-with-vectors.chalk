@@ -1,0 +1,14 @@
+*(
+    title: Geometric Proof with Vectors
+    description: Turning claims about a diagram into claims about vectors, where they can be computed instead of seen.
+    tags: vectors, geometric proof, midpoints, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A classical geometric proof depends on the diagram being drawn correctly and on the reader seeing the relevant configuration. A vector proof depends on neither. Choosing an origin and naming each point by its position vector turns a statement about a figure into an identity to be verified.
+
+    Written out here: setting up a diagram in vectors, the results that come out most cleanly this way — the midpoint of a segment, the diagonals of a parallelogram, the concurrence of medians — and using a dot product of zero to establish a right angle without measuring one.
+}

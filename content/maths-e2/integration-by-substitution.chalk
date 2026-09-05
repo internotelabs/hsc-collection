@@ -1,0 +1,24 @@
+*(
+    title: Integration by Substitution
+    description: Changing the variable to turn an unfamiliar integral into one already known.
+    tags: integration, substitution, calculus, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Differentiation is a procedure and integration is a search: the question is always which function differentiates to the one in front of you. Substitution is the main way of narrowing that search, rewriting the integral in a new variable in which the answer is recognisable.
+
+    Written out here: the chain rule read backwards, changing the limits of a definite integral rather than converting back, and choosing a substitution when none is given — including the trigonometric substitutions that clear a square root of a sum or difference of squares.
+
+    Substitution alone leaves whole classes of integral untouched, and each has its own method. A quadratic under the integral sign is handled in *Integrals with Quadratic Denominators*; a ratio of polynomials in *Partial Fractions*; a product of two unrelated functions in *Integration by Parts*; and powers and products of sine and cosine in *Trigonometric Integrals*.
+
+    internote(ref: quadratic-denominators.chalk)
+
+    internote(ref: partial-fractions.chalk)
+
+    internote(ref: integration-by-parts.chalk)
+
+    internote(ref: trigonometric-integrals.chalk)
+}

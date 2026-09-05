@@ -1,0 +1,14 @@
+*(
+    title: Trigonometric Integrals
+    description: Powers and products of sine and cosine, and the substitution that clears the rest.
+    tags: integration, trigonometric integrals, t-formula, calculus, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A power of sine or cosine cannot be integrated directly, but it can always be rewritten until it can. Which rewriting works depends on whether the powers are odd or even, and that is the whole of the case analysis.
+
+    Written out here: peeling off one factor when a power is odd so the rest becomes a substitution, using the double angle identities when every power is even, products of sines and cosines of different angles, and the half-angle substitution that converts any rational function of sine and cosine into a rational function of a single variable.
+}

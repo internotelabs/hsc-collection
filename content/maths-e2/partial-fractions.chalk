@@ -1,0 +1,14 @@
+*(
+    title: Partial Fractions
+    description: Splitting a rational function into pieces each of which integrates on sight.
+    tags: integration, partial fractions, rational functions, calculus, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A ratio of polynomials has no integration rule of its own, but a sum of simple fractions does, and every proper rational function is such a sum. The work is in recovering the pieces from the whole.
+
+    Written out here: dividing first when the numerator's degree is not smaller, the form of the decomposition for distinct linear factors, repeated factors and irreducible quadratic factors, finding the unknown constants by substitution or by equating coefficients, and integrating the resulting pieces.
+}

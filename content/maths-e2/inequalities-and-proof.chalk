@@ -1,0 +1,14 @@
+*(
+    title: Inequalities and Proof
+    description: Proving that an inequality always holds, rather than solving one for the values that satisfy it.
+    tags: proof, inequalities, arithmetic mean geometric mean, triangle inequality, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Solving an inequality and proving one are opposite tasks. Solving asks which values satisfy it; proving asserts that every value does, and the answer is an argument rather than a set.
+
+    Written out here: the standard results — the arithmetic and geometric mean inequality for two and three numbers, and the triangle inequality — together with the recurring tactics, which are that a square is never negative, that both sides can be manipulated only in ways that preserve the direction, and that a difference shown to be non-negative proves the inequality it came from.
+}

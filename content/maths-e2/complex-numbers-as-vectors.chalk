@@ -1,0 +1,18 @@
+*(
+    title: Complex Numbers as Vectors
+    description: Reading addition as displacement and multiplication by i as a quarter turn.
+    tags: complex numbers, vectors, argand plane, rotation, geometric proof, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A complex number has already been drawn as a point in the Argand plane. Drawing it instead as an arrow from the origin costs nothing and buys the whole of vector geometry, because addition of complex numbers and addition of vectors are the same rule.
+
+    Written out here: sums as tip-to-tail displacement, the difference of two complex numbers as the arrow joining their points, and multiplication by the imaginary unit as a quarter turn anticlockwise — the one operation vectors in the plane have no equivalent of.
+
+    Once a difference is an arrow, its length and direction can be constrained. Conditions of that kind cut out circles, rays and half-planes, which is the subject of *Curves and Regions in the Complex Plane*.
+
+    internote(ref: curves-and-regions.chalk)
+}

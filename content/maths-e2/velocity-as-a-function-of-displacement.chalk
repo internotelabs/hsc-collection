@@ -1,0 +1,20 @@
+*(
+    title: Velocity as a Function of Displacement
+    description: Rewriting acceleration in terms of position, so that motion can be integrated when time is not available.
+    tags: mechanics, velocity, acceleration, displacement, calculus, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    The usual chain runs displacement to velocity to acceleration by differentiating with respect to time. It stalls whenever the force depends on where the body is rather than on when it is there, because then acceleration is known as a function of position and time never appears.
+
+    Written out here: the chain rule rearrangement that writes acceleration as velocity times its own derivative with respect to displacement, the equivalent form as the derivative of half the velocity squared, and choosing between the three expressions for acceleration according to which variable the problem hands you.
+
+    Two standard forces are described that way. A force pulling back towards a fixed point, growing with the distance from it, gives *Simple Harmonic Motion*; a force opposing the motion and growing with the speed gives *Resisted Motion*.
+
+    internote(ref: simple-harmonic-motion.chalk)
+
+    internote(ref: resisted-motion.chalk)
+}

@@ -1,0 +1,14 @@
+*(
+    title: Further Proof by Induction
+    description: Induction carried past sums and divisibility onto inequalities, recursive definitions and results about series.
+    tags: proof, induction, inequalities, recursion, series, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Extension 1 uses induction on statements that are equations: a sum has a closed form, an expression has a factor. The two obligations are the same here, but the inductive step stops being algebraic rearrangement.
+
+    Written out here: induction on inequalities, where the step must produce a bound rather than an identity and usually needs the hypothesis plus something extra; induction on recursively defined sequences; and induction where the base case is not one, or where each case depends on more than the one before it.
+}

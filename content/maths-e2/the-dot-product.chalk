@@ -1,0 +1,20 @@
+*(
+    title: The Dot Product
+    description: The one product of two vectors that returns a number, and the angle it measures.
+    tags: vectors, dot product, angle, projection, perpendicular, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Two vectors can be added, and either can be scaled, but multiplying them is not obvious: the answer could reasonably be a vector, a number, or nothing at all. The dot product takes the second option, and pays for the loss of direction by measuring the angle between them.
+
+    Written out here: the component formula and the geometric one, why they agree, perpendicularity as a dot product of zero, the angle between two vectors, and the projection of one vector onto another.
+
+    With an angle available, geometry becomes computable. Two directions plus a point fix a line in space, which is *Vector Equations of Lines*; and a diagram's claims about midpoints, diagonals and right angles become vector identities in *Geometric Proof with Vectors*.
+
+    internote(ref: vector-equations-of-lines.chalk)
+
+    internote(ref: geometric-proof-with-vectors.chalk)
+}

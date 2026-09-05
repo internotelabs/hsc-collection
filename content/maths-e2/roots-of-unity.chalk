@@ -137,6 +137,10 @@ scene{
 
     The vanishing sum falls out of the same factorisation. Expanding $z^n - 1$ as a product of its linear factors, the coefficient of $z^{n-1}$ is minus the sum of the roots; in $z^n - 1$ that coefficient is $0$ for every $n \ge 2$, so the roots sum to zero.
 
+    Factorising $z^n - 1$ completely is a special case of something general: over the complex numbers every polynomial of degree $n$ splits into $n$ linear factors. *Polynomials and Complex Roots* takes that up, and works out what real coefficients force about where the non-real roots can sit.
+
+    internote(ref: polynomials-and-complex-roots.chalk)
+
     task{
         Solve $z^4 = -16$, giving the solutions in Cartesian form.
     }[

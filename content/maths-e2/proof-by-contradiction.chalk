@@ -1,0 +1,14 @@
+*(
+    title: Proof by Contradiction
+    description: Assuming a statement is false, deriving an absurdity from it, and concluding that it was true.
+    tags: proof, contradiction, irrationality, prime numbers, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Some statements resist a direct attack because they assert an absence: that no fraction squares to two, that no largest prime exists. There is nothing to construct and nothing to compute, so a direct argument has no purchase.
+
+    Contradiction supplies the purchase. Assume the statement false, and the assumption becomes a concrete object to work with — a fraction in lowest terms, a complete list of primes. Written out here: the structure of the method, the irrationality of the square root of two, Euclid's argument on the primes, and the care needed in negating a statement before assuming it.
+}

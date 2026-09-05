@@ -1,0 +1,18 @@
+*(
+    title: Resisted Motion
+    description: What a medium that pushes back in proportion to speed does to a body moving through it.
+    tags: mechanics, resisted motion, terminal velocity, differential equations, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Once resistance enters, the force on a body depends on how fast it is already going, so acceleration is a function of velocity and the equation of motion becomes a differential equation rather than a formula.
+
+    Written out here: resistance proportional to speed and to the square of the speed, motion under gravity with resistance both upwards and downwards, terminal velocity as the speed at which the resistance balances the weight, and choosing between the time and displacement forms of acceleration according to what the question asks for.
+
+    Applying the same resistance to a body launched at an angle couples the horizontal and vertical motions that Extension 1 was able to treat separately, which is *Projectiles with Resistance*.
+
+    internote(ref: projectiles-with-resistance.chalk)
+}

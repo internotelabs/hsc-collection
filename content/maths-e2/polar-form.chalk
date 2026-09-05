@@ -115,6 +115,10 @@ scene{
     Six steps of $30^\circ$ reach $180^\circ$, so $z^6 = \operatorname{cis}\pi = -1$. Reading that backwards is the more useful direction: $-1$ has a sixth root sitting at $30^\circ$, and the same walk run at other starting angles will find the others.
 
     The theorem is what makes powers of complex numbers tractable at all. Expanding $(1 + i\sqrt{3})^{10}$ term by term is a binomial expansion of eleven terms; in polar form it is $2^{10}\operatorname{cis}\frac{10\pi}{3}$, or $1024\operatorname{cis}\left(-\tfrac{2\pi}{3}\right)$ once the angle is brought back into principal range.
+
+    There is a second way to raise $\operatorname{cis}\theta$ to the power $n$, which is to expand the bracket binomially. Both are correct, so their real parts agree and so do their imaginary parts — and each agreement is a trigonometric identity. *de Moivre and Trigonometric Identities* collects them.
+
+    internote(ref: de-moivre-and-trigonometric-identities.chalk)
 }[
     canvas.graph{
         circle(x: 0; y: 0; size: 1; colour: grey; !fill)

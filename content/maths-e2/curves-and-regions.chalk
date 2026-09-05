@@ -1,0 +1,14 @@
+*(
+    title: Curves and Regions in the Complex Plane
+    description: What a condition on the modulus or the argument of a complex number picks out in the Argand plane.
+    tags: complex numbers, loci, curves, regions, argand plane, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    The modulus of a difference is a distance and the argument of a difference is a direction, so an equation in those two quantities is a geometric condition in disguise. Fixing a distance from a point gives a circle; fixing a direction gives a ray.
+
+    Written out here: the circle, the perpendicular bisector, the ray and the vertical and horizontal lines that the standard conditions produce, replacing an equals sign with an inequality to get a region rather than a curve, and combining several conditions to cut out an intersection.
+}

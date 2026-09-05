@@ -1,0 +1,14 @@
+*(
+    title: Vector Functions and Motion
+    description: A position vector that depends on time, and the curve it traces.
+    tags: vectors, parametric curves, motion, velocity, acceleration, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A vector whose components are functions of a parameter names a different point for each value of that parameter. Read the parameter as time and the vector describes a particle; read it as a free variable and the same expression describes a curve.
+
+    Written out here: differentiating a vector function component by component to obtain velocity and then acceleration, the vector equations of a circle and a sphere, and reading a curve's shape back off its vector equation.
+}

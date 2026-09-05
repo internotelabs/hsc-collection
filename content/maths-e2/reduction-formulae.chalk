@@ -1,0 +1,14 @@
+*(
+    title: Reduction Formulae
+    description: An integral defined in terms of a smaller copy of itself, evaluated by descending to a base case.
+    tags: integration, reduction formulae, recurrence, calculus, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Integrating the fourth power of sine by parts does not finish the job; it leaves the second power behind. That looks like a failure until the same calculation is done with a general exponent, at which point the leftover is the point: it relates one integral to its smaller neighbour.
+
+    Written out here: deriving a reduction formula by parts, the base case that terminates the descent, applying the formula repeatedly to evaluate a definite integral, and the definite-integral versions in which the boundary term vanishes and the formula simplifies.
+}

@@ -1,0 +1,14 @@
+*(
+    title: Integrals with Quadratic Denominators
+    description: Completing the square to reach the inverse tangent and inverse sine forms.
+    tags: integration, completing the square, inverse trigonometric functions, calculus, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Two standard integrals produce inverse trigonometric functions, and both need their quadratic in a particular shape: a constant plus or minus a square. Any quadratic can be put into that shape by completing the square, so the work is algebraic rather than integral.
+
+    Written out here: completing the square under and beside a root sign, splitting a numerator into the part that is the derivative of the denominator and the constant left over, and recognising which of the logarithm, inverse tangent and inverse sine forms a given integral resolves into.
+}

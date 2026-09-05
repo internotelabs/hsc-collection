@@ -1,0 +1,14 @@
+*(
+    title: de Moivre and Trigonometric Identities
+    description: Expanding one power in two different ways, and reading an identity off the result.
+    tags: complex numbers, de moivre, trigonometric identities, binomial theorem, extension 2, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    There are two ways to raise a complex number of modulus one to the power n. de Moivre's theorem multiplies the angle; the binomial theorem expands the bracket. Both are correct, so their real parts are equal and so are their imaginary parts, and each equality is a trigonometric identity that would be tedious to reach any other way.
+
+    Written out here: identities for the cosine and sine of a multiple angle, the reverse direction in which powers of cosine and sine are written as sums of multiple angles, and the use of that second form to make a trigonometric integral straightforward.
+}
