@@ -1,0 +1,18 @@
+*(
+    title: Enzymes
+    description: Why the reactions of life need catalysts, and what temperature and pH do to them.
+    tags: enzymes, catalysis, active site, denaturation, module 1, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Most reactions a cell depends on would proceed far too slowly at body temperature to sustain anything. Heating the cell is not an option, so the alternative is to lower the energy the reaction needs to get started, which is what an enzyme does.
+
+    Written out here: activation energy and how a catalyst reduces it, the active site and the specificity that follows from its shape, and the effects of temperature, pH and concentration — including denaturation, where the shape is lost and the enzyme with it.
+
+    The two reaction sequences that matter most are built from enzymes end to end: one captures energy from light, the other releases it again. Both are in *Photosynthesis and Respiration*.
+
+    internote(ref: photosynthesis-and-respiration.chalk)
+}

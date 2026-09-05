@@ -1,0 +1,20 @@
+*(
+    title: Causes of Infectious Disease
+    description: The kinds of pathogen, how each is transmitted, and how a pathogen is shown to cause a disease.
+    tags: pathogens, virus, transmission, Koch's postulates, module 7, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    An infectious disease is one organism making a living inside another. That framing explains a great deal: the pathogen's interests, the routes it must take between hosts, and why interrupting a route works as well as attacking the pathogen.
+
+    Written out here: prions, viruses, bacteria, protozoa, fungi and macroparasites and what distinguishes each as an agent of disease, modes of transmission, diseases of plants and of animals, and Koch's postulates as the standard for establishing that a particular microbe causes a particular illness.
+
+    Hosts are not passive. What a plant or an animal does when invaded is *Responses to Pathogens*. Disease that no pathogen causes at all is *Non-infectious Disease*.
+
+    internote(ref: responses-to-pathogens.chalk)
+
+    internote(ref: non-infectious-disease.chalk)
+}

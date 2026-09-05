@@ -1,0 +1,18 @@
+*(
+    title: Reproduction
+    description: The strategies organisms use to make more of themselves, and what each does to genetic variation.
+    tags: reproduction, asexual, sexual, fertilisation, module 5, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Reproducing without a partner is faster, cheaper and reliably produces offspring that suit the current environment. Reproducing with one is slower and costlier and produces offspring that do not match either parent. Both strategies persist, which means each must be paying for itself.
+
+    Written out here: asexual reproduction and the identical offspring it yields, sexual reproduction in plants and animals, fertilisation internal and external, the hormones that coordinate it in mammals, and the trade between reliability and variation that separates the two.
+
+    The variation sexual reproduction generates is not incidental — it is the point, and where it comes from mechanically is *Genetic Variation*.
+
+    internote(ref: genetic-variation.chalk)
+}

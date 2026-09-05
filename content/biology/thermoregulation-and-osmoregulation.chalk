@@ -1,0 +1,14 @@
+*(
+    title: Thermoregulation and Osmoregulation
+    description: Two worked cases of homeostasis: holding temperature steady, and holding water and salt balance steady.
+    tags: thermoregulation, osmoregulation, kidney, endotherm, module 8, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    The general shape of a homeostatic mechanism is easier to trust once it has been followed through a real one. Temperature and water balance are the two the course works in full, in both animals and plants.
+
+    Written out here: endotherms and ectotherms and the structural, behavioural and physiological means each uses to manage heat; the kidney's role in water and salt balance and the hormones that adjust it; and the corresponding problems for plants, which cannot move into the shade.
+}

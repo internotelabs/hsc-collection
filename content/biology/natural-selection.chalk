@@ -1,0 +1,18 @@
+*(
+    title: Natural Selection
+    description: The mechanism Darwin and Wallace proposed, and the four conditions it requires to operate.
+    tags: natural selection, Darwin, Wallace, speciation, module 3, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Natural selection is not a tendency of organisms to improve. It is an arithmetic consequence of four conditions, and wherever all four hold it follows whether anything is trying or not.
+
+    Written out here: variation, heritability, differential survival and reproduction, and overproduction of offspring; the argument Darwin and Wallace independently arrived at; and speciation, where populations of one species stop interbreeding and become two.
+
+    A mechanism this counterintuitive was not accepted on its plausibility. What convinced people is set out in *Evidence for Evolution*.
+
+    internote(ref: evidence-for-evolution.chalk)
+}

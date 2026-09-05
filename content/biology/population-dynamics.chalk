@@ -1,0 +1,20 @@
+*(
+    title: Population Dynamics
+    description: What one species does to the numbers of another, and how ecologists count populations they cannot count directly.
+    tags: population dynamics, predation, competition, symbiosis, module 4, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Populations do not grow without limit, and what stops them is usually other organisms. The interactions are few enough to name and their effects on numbers are specific enough to predict.
+
+    Written out here: predation, competition, symbiosis and allelopathy and the effect each has on the abundance of both parties, the sampling techniques used to estimate populations that cannot be counted individually, and the sources of error in each.
+
+    The same reasoning runs backwards and forwards in time. Communities that no longer exist are *Past Ecosystems*; the ones being altered now are *Future Ecosystems*.
+
+    internote(ref: past-ecosystems.chalk)
+
+    internote(ref: future-ecosystems.chalk)
+}

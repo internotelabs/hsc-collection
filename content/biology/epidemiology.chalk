@@ -1,0 +1,14 @@
+*(
+    title: Epidemiology
+    description: Studying disease in populations rather than patients, and what such a study can and cannot establish.
+    tags: epidemiology, incidence, prevalence, correlation causation, module 7, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    An individual case tells you very little about a cause, because too many things differ between any two people. Comparing large groups that differ in one respect tells you considerably more — and still stops short of proof.
+
+    Written out here: incidence and prevalence and the difference between them, the design of epidemiological studies, the reasons a correlation between an exposure and a disease need not mean the exposure caused it, and the historical studies that changed public health despite that limitation.
+}

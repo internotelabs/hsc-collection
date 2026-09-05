@@ -1,0 +1,14 @@
+*(
+    title: Technologies and Disorders
+    description: What engineering can do for hearing, sight and kidney function when the biology has failed.
+    tags: hearing loss, visual disorders, kidney dialysis, technology, module 8, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A disorder is a loss of function, and a function lost to biology can sometimes be supplied by a device. Each technology in this section is best understood by first knowing exactly which step of the normal process has stopped.
+
+    Written out here: the causes of hearing loss and the technologies addressing each, visual disorders and their correction, and kidney failure with dialysis as a substitute for filtration — in every case set against the normal physiology it is standing in for.
+}

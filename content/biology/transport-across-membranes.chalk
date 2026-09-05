@@ -1,0 +1,14 @@
+*(
+    title: Transport Across Membranes
+    description: Diffusion, osmosis and active transport, and why they put a ceiling on how large a cell can be.
+    tags: diffusion, osmosis, active transport, surface area volume, module 1, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Some substances cross a membrane without the cell doing anything, simply because there are more of them on one side. Others must be pushed against that gradient, and pushing costs energy. The distinction runs through the whole of cell physiology.
+
+    Written out here: diffusion and facilitated diffusion, osmosis and the effect of concentrated and dilute surroundings on plant and animal cells, active transport and the ATP it consumes, and the surface area to volume ratio that limits cell size because volume grows faster than the surface serving it.
+}

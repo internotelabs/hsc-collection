@@ -1,0 +1,20 @@
+*(
+    title: Cell Replication
+    description: Copying a genome without error, and the two kinds of division that use the copy differently.
+    tags: mitosis, meiosis, DNA replication, cell cycle, module 5, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Growth, repair and reproduction all come down to one cell becoming two. Before that can happen the genome has to be copied exactly, because each daughter needs a complete set and an error made now is inherited by everything descended from this cell.
+
+    Written out here: the structure of DNA that makes accurate copying possible, replication and the enzymes that carry it out, mitosis producing two identical cells, and meiosis producing four cells with half the chromosome number and no two alike.
+
+    The branch divides here. Following the copied genome into the protein it specifies is *DNA and Polypeptide Synthesis*; following it into the next generation of organisms is *Reproduction*.
+
+    internote(ref: reproduction.chalk)
+
+    internote(ref: dna-and-polypeptide-synthesis.chalk)
+}

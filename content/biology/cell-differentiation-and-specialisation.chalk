@@ -1,0 +1,22 @@
+*(
+    title: Cell Differentiation and Specialisation
+    description: How cells with identical genomes become different from one another, and what that buys a multicellular body.
+    tags: differentiation, specialisation, stem cells, tissues, module 2, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Every cell in a multicellular organism carries the same genome, yet a nerve cell and a root hair cell have almost nothing in common. The difference is not in the genes present but in which of them are switched on.
+
+    Written out here: differentiation and the stem cells it starts from, the hierarchy of cells into tissues, organs and systems, and the trade the arrangement makes — a specialised cell does one job far better than a generalist and can no longer survive alone.
+
+    A cell that has given up self-sufficiency must be supplied by the organism. Getting the raw materials in is *Nutrient and Gas Exchange*; moving them to every cell is *Transport in Plants* and *Transport in Animals*.
+
+    internote(ref: nutrient-and-gas-exchange.chalk)
+
+    internote(ref: transport-in-plants.chalk)
+
+    internote(ref: transport-in-animals.chalk)
+}

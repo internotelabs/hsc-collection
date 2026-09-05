@@ -1,0 +1,113 @@
+*(
+    title: Biology
+    description: One subject across two years, arranged by biological scale rather than by which year each module is taught in.
+    tags: biology, course overview, cells, heredity, evolution, disease
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Biology is a single subject studied at six different sizes. A molecule of DNA, a cell, a tissue, an organism, a population and an ecosystem are not six separate topics — they are the same living material examined at six magnifications, and the course moves between them constantly.
+
+    The reason the ladder matters is that the same question recurs at every rung. A cell holds its internal conditions steady against the fluid around it; an organism does the same against its environment; an ecosystem does something comparable across the species in it. Learn the pattern once and it is recognisable four rungs up.
+
+    ===
+
+    What changes as you climb is what counts as an explanation. At the bottom the answers are chemical: this molecule binds that one. At the top they are statistical: this population declines when that one arrives. Neither replaces the other, and a good biological answer usually names the rung it is being given at.
+}[
+    canvas.diagram{
+        box#molecule(label: Molecules; sub: DNA, proteins, lipids)
+        box#cell(label: Cells; sub: the smallest thing that is alive)
+        box#tissue(label: Tissues and organs; sub: specialised cells working together)
+        arrow(from: #molecule; to: #cell)
+        arrow(from: #cell; to: #tissue)
+
+        cue.draw{
+            box#organism(label: Organisms; sub: systems holding an internal environment steady)
+            box#population(label: Populations; sub: one species, interbreeding)
+            box#ecosystem(label: Ecosystems; sub: many species, and the non-living world around them)
+            arrow(from: #tissue; to: #organism)
+            arrow(from: #organism; to: #population)
+            arrow(from: #population; to: #ecosystem)
+        }(
+            in: 1
+        )
+    }(
+        flow: down
+    )
+]
+
+scene{
+    # Year 11 builds, Year 12 perturbs
+
+    The split into a preliminary year and an HSC year is a timetabling fact, not a biological one. Read the two years side by side and the pattern is plain: Year 11 establishes how a living system is put together, and Year 12 asks what happens when that system changes, is interfered with, or fails.
+
+    Each row of the table is one such pair. Year 11 gives you the cell and its membrane; Year 12 asks how a cell copies its genome and what a copying error does. Year 11 gives you organisms as systems of specialised cells; Year 12 asks how those systems hold conditions steady and what happens when they stop.
+
+    That is why these internotes are arranged by biological theme rather than by module number. Cell replication sits with cell structure because both are about cells, even though one is taught a year later. Homeostasis sits with the transport systems it depends on. The module each internote belongs to is recorded in its tags, so syllabus coverage stays checkable.
+}[
+    table{
+        Year 11 establishes                                                   | Year 12 asks what happens when it changes
+        Cell structure, and the membrane deciding what crosses it             | How a cell copies its genome, and what a copying error does
+        Organisms as systems of specialised cells, with transport between them | How those systems hold conditions steady, and what happens when they fail
+        Adaptation, natural selection, and the evidence for evolution          | Where new alleles come from, and what follows when humans direct them
+        Populations and ecosystems, and the interactions inside them           | How a pathogen moves through a population, and how that is measured
+    }(
+        title: The two years, paired
+    )
+]
+
+scene{
+    # The five branches
+
+    Cells is where the subject starts, because nothing above it makes sense first. It runs from the evidence that cells exist at all through to the membrane, the enzymes and the metabolic reactions that keep one running.
+
+    internote(ref: cell-structure.chalk)
+
+    ===
+
+    Organisms takes the single cell and multiplies it. Once cells specialise they stop being self-sufficient, which forces the organism to supply them — hence gas exchange, digestion, transport systems, and the homeostatic control that keeps the fluid around every cell within tolerance.
+
+    Heredity is the molecular branch. It opens on cell division and DNA replication, then splits: one line follows the genome into protein and on to mutation and genetic engineering, the other follows it through reproduction into inheritance and population genetics.
+
+    internote(ref: cell-differentiation-and-specialisation.chalk)
+
+    internote(ref: cell-replication.chalk)
+
+    ===
+
+    Evolution and ecosystems is the branch above the organism. Adaptation is the observation, natural selection the mechanism, and the fossil, anatomical and biochemical records the evidence — after which the same reasoning is applied to whole communities, past and future.
+
+    Disease is where the other four are put to work. A pathogen is an organism exploiting another organism's systems, immunity is those systems responding, and non-infectious disease is what happens when they fail without anything having invaded.
+
+    internote(ref: adaptations.chalk)
+
+    internote(ref: causes-of-infectious-disease.chalk)
+}[
+    canvas.diagram{
+        box#bio(label: Biology; shape: terminal)
+
+        cue{
+            box#cells(label: Cells; sub: modules 1 and 5)
+            box#organisms(label: Organisms; sub: modules 2 and 8)
+            arrow(from: #bio; to: #cells)
+            arrow(from: #bio; to: #organisms)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#heredity(label: Heredity; sub: modules 5 and 6)
+            box#evolution(label: Evolution and ecosystems; sub: modules 3 and 4)
+            box#disease(label: Disease; sub: modules 7 and 8)
+            arrow(from: #bio; to: #heredity)
+            arrow(from: #bio; to: #evolution)
+            arrow(from: #bio; to: #disease)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+    )
+]

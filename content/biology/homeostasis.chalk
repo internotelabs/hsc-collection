@@ -1,0 +1,18 @@
+*(
+    title: Homeostasis
+    description: Holding internal conditions steady while the outside world does not, and the feedback that achieves it.
+    tags: homeostasis, negative feedback, receptor effector, module 8, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Cells work within narrow tolerances of temperature, pH and concentration, and the external environment respects none of them. An organism therefore has to hold its internal conditions steady against whatever the outside is doing, which requires detecting a change and acting to oppose it.
+
+    Written out here: the receptor, control centre and effector that every homeostatic mechanism is built from, negative feedback and why opposing a change stabilises a system while reinforcing one does not, and the endocrine and nervous signalling that carries the instructions.
+
+    Two cases are worked in detail, one thermal and one chemical, in *Thermoregulation and Osmoregulation*.
+
+    internote(ref: thermoregulation-and-osmoregulation.chalk)
+}

@@ -1,0 +1,14 @@
+*(
+    title: Nutrient and Gas Exchange
+    description: What autotrophs and heterotrophs each need from their surroundings, and the surfaces that obtain it.
+    tags: autotroph, heterotroph, gas exchange, digestion, module 2, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    An organism that makes its own food and one that must find food have different problems, and their structures differ accordingly. What they share is the need to exchange gases across a surface, and that surface is under the same geometric pressure a single cell is.
+
+    Written out here: the requirements of autotrophs and heterotrophs set against each other, the structures each uses to obtain them — stomata, root hairs, lungs, gills, digestive tracts — and the features every efficient exchange surface turns out to have.
+}

@@ -1,0 +1,18 @@
+*(
+    title: Genetic Technologies
+    description: Deliberately changing a genome, from selective breeding to cutting and pasting DNA directly.
+    tags: recombinant DNA, transgenic, cloning, gene therapy, module 6, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Humans have been altering genomes since the first domesticated crop, by choosing which organisms breed. What changed recently is the resolution: whole genomes selected blindly, then individual genes moved on purpose.
+
+    Written out here: artificial insemination and artificial pollination, cloning, recombinant DNA and the transgenic organisms it produces, and gene therapy — with the differences in precision and in risk between selecting an organism and editing one.
+
+    What those techniques are actually used for, and what their spread does to biodiversity, is *Biotechnology*.
+
+    internote(ref: biotechnology.chalk)
+}

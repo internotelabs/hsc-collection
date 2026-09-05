@@ -1,0 +1,18 @@
+*(
+    title: Mutation
+    description: Errors in the sequence, what causes them, and which of them are passed on.
+    tags: mutation, point mutation, mutagens, germline somatic, module 6, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Mutation is the only source of alleles that did not exist before, which makes it simultaneously the raw material of evolution and the cause of a great deal of disease. Whether a given mutation matters depends on what it changes and on which cell it happens in.
+
+    Written out here: point mutations and chromosomal mutations and the differing scales of their effects, physical, chemical and biological mutagens, and the distinction between somatic mutations, which die with the individual, and germline mutations, which do not.
+
+    Once mutation is understood as editing of the sequence, doing it deliberately becomes conceivable — which is *Genetic Technologies*.
+
+    internote(ref: genetic-technologies.chalk)
+}

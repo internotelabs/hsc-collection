@@ -1,0 +1,18 @@
+*(
+    title: Responses to Pathogens
+    description: What a plant does when infected, and what an animal's first lines of defence do.
+    tags: pathogen response, plant defence, innate immunity, barriers, module 7, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Most encounters with a pathogen never become an illness, because the first defences are non-specific, already in place, and effective against almost anything. They get less attention than the immune response proper and do most of the work.
+
+    Written out here: physical and chemical barriers, the plant responses that operate without any circulating immune system at all, and the innate animal response — inflammation, phagocytosis and fever — which acts within minutes and treats every intruder the same way.
+
+    When the non-specific defences are not enough, a slower system takes over, one that targets a particular pathogen and remembers it. That is *Immunity*.
+
+    internote(ref: immunity.chalk)
+}

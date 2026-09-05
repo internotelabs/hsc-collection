@@ -1,0 +1,14 @@
+*(
+    title: Biodiversity and Classification
+    description: Sorting organisms by shared ancestry rather than by resemblance, and reading a phylogenetic tree.
+    tags: classification, phylogeny, biodiversity, convergent divergent, module 3, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Grouping organisms by how alike they look is intuitive and frequently wrong, because unrelated species living the same way come to resemble each other. Classification by ancestry gives a different and more useful answer.
+
+    Written out here: the taxonomic hierarchy and the modern criteria for it, phylogenetic trees and how to read relatedness off one, convergent and divergent evolution and why the first misleads the eye, and what biodiversity measures and why it is worth measuring.
+}

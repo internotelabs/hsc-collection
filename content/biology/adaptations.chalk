@@ -1,0 +1,22 @@
+*(
+    title: Adaptations
+    description: Features that suit an organism to where it lives, and the three kinds they come in.
+    tags: adaptations, structural, physiological, behavioural, module 3, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A desert plant and a rainforest plant face different problems and are built differently in response. Calling a feature an adaptation is a claim that it improves survival or reproduction in that particular environment, which is stronger than merely noting that it is there.
+
+    Written out here: structural, physiological and behavioural adaptations with Australian examples of each, how an adaptation is tested rather than assumed, and the care needed in avoiding the assumption that every feature must be adaptive.
+
+    Three lines run from here. The pressures an environment applies are in *Effects of the Environment on Organisms*; the mechanism producing adaptations is *Natural Selection*; and the same reasoning applied to whole communities begins in *Population Dynamics*.
+
+    internote(ref: effects-of-the-environment-on-organisms.chalk)
+
+    internote(ref: natural-selection.chalk)
+
+    internote(ref: population-dynamics.chalk)
+}

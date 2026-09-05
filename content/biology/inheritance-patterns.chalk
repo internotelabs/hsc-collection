@@ -1,0 +1,18 @@
+*(
+    title: Inheritance Patterns
+    description: Predicting offspring from parents, and the crosses where the simple ratios stop working.
+    tags: inheritance, punnett square, pedigree, sex linkage, module 5, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Mendel's ratios come out of a model simple enough to be wrong in interesting ways: two alleles per gene, one dominant, genes inherited independently. Most of the work is recognising which assumption a given cross violates.
+
+    Written out here: monohybrid and dihybrid crosses and the Punnett squares that predict them, reading a pedigree backwards to infer genotypes, sex linkage and why it produces different ratios in males and females, and codominance and incomplete dominance where neither allele is masked.
+
+    Scaling the same reasoning from one family to a whole population, and the technologies that read genomes directly, is *Population Genetics*.
+
+    internote(ref: population-genetics.chalk)
+}

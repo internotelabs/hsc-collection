@@ -1,0 +1,18 @@
+*(
+    title: Genetic Variation
+    description: Where the differences between individuals of a single species come from.
+    tags: genetic variation, crossing over, independent assortment, module 5, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Two siblings share both parents and are still not identical. The variation has specific mechanical sources, all of them in meiosis and fertilisation, and they can be counted rather than merely asserted.
+
+    Written out here: crossing over, independent assortment and the number of combinations it makes available, random fertilisation, and mutation as the only source that introduces genuinely new alleles rather than reshuffling existing ones.
+
+    Once variation exists, it is passed on in patterns regular enough to predict. Those patterns are *Inheritance Patterns*.
+
+    internote(ref: inheritance-patterns.chalk)
+}

@@ -1,0 +1,14 @@
+*(
+    title: Microscopy and Cell Theory
+    description: The instruments that made cells visible, and the three claims that hardened into a theory.
+    tags: microscopy, cell theory, magnification, resolution, module 1, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Cells are not visible to the unaided eye, so cell theory could not be proposed before the glass was good enough to see one. The history and the biology are hard to separate here: each claim of the theory waited on an instrument.
+
+    Written out here: light and electron microscopes and what each can resolve, the difference between magnification and resolution, the technologies that followed, and the three statements of cell theory with the observations that support each.
+}

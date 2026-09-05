@@ -1,0 +1,18 @@
+*(
+    title: Transport in Animals
+    description: A pump, a network of vessels, and a fluid whose composition changes as it goes around.
+    tags: circulatory system, blood, heart, open closed, module 2, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Diffusion is quick over the width of a cell and hopelessly slow over the length of an animal. Anything larger than a few millimetres therefore needs bulk flow: a fluid driven around a circuit, with diffusion doing only the last short step at either end.
+
+    Written out here: open and closed circulatory systems, the structure of arteries, veins and capillaries and how each suits its pressure, the composition of blood, and the way that composition changes between one exchange surface and the next.
+
+    Keeping that fluid within tolerance is a control problem rather than a plumbing one, and it is the problem *Homeostasis* is about.
+
+    internote(ref: homeostasis.chalk)
+}

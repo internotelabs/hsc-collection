@@ -1,0 +1,22 @@
+*(
+    title: Cell Structure
+    description: What every cell has in common, and the two fundamentally different ways of building one.
+    tags: cells, prokaryote, eukaryote, organelles, module 1, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Every living thing is made of cells, and every cell comes from a cell before it. Nothing in the rest of the subject makes sense until that is settled, because every process biology studies is either happening inside a cell or between cells.
+
+    Written out here: the organelles of a eukaryotic cell and the job each one does, the far simpler prokaryotic cell with no nucleus and no membrane-bound compartments, and why that difference is the deepest division in the living world.
+
+    Three things follow immediately. The instruments and the argument that established cells in the first place are in *Microscopy and Cell Theory*; the boundary deciding what a cell admits is *The Cell Membrane*; and the proteins that make its chemistry possible at all are in *Enzymes*.
+
+    internote(ref: microscopy-and-cell-theory.chalk)
+
+    internote(ref: the-cell-membrane.chalk)
+
+    internote(ref: enzymes.chalk)
+}

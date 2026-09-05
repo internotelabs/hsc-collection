@@ -1,0 +1,14 @@
+*(
+    title: Transport in Plants
+    description: Two separate plumbing systems, one pulled upwards by evaporation and one pushed by pressure.
+    tags: xylem, phloem, transpiration, translocation, module 2, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A tall plant must lift water many metres without a pump and must also move sugar from wherever it is made to wherever it is needed. These are different problems, and plants solve them with two different tissues running side by side.
+
+    Written out here: xylem and the transpiration stream that pulls water up a column without expending energy, phloem and the pressure-driven translocation of sugars, the movement of each, and how the composition of the fluid changes along the journey.
+}

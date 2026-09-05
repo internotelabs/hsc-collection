@@ -1,0 +1,18 @@
+*(
+    title: Immunity
+    description: The adaptive response that remembers a pathogen, and why the second exposure differs from the first.
+    tags: immunity, antigen, antibody, lymphocytes, module 7, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    The adaptive immune response is slow the first time and fast every time after, and that asymmetry is the single most consequential fact in the whole of infectious disease. Everything vaccination does depends on it.
+
+    Written out here: antigens and antibodies, the lymphatic system, the cell-mediated and antibody-mediated responses and the division of labour between them, and the memory cells that make a second exposure to the same pathogen a different event from the first.
+
+    Exploiting that memory deliberately, and attacking pathogens directly when it is not available, is *Prevention, Treatment and Control*.
+
+    internote(ref: prevention-treatment-and-control.chalk)
+}

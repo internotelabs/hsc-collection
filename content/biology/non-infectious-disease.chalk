@@ -1,0 +1,18 @@
+*(
+    title: Non-infectious Disease
+    description: Disease that nothing transmits, and why it now accounts for more deaths than infection does.
+    tags: non-infectious disease, genetic, environmental, nutritional, module 8, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Nothing is caught, so nothing can be quarantined and no one can be vaccinated. Non-infectious disease has to be understood through its causes, which are typically several acting together over years rather than one acting in days.
+
+    Written out here: genetic, environmental and nutritional causes and the cases where they interact, the effects on individuals and on the health system, and the epidemiological evidence for the shift that has made these diseases the larger cause of death in countries like Australia.
+
+    Where the underlying biology cannot be repaired, the remaining option is to replace the function by other means, which is *Technologies and Disorders*.
+
+    internote(ref: technologies-and-disorders.chalk)
+}

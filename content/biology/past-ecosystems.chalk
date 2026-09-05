@@ -1,0 +1,14 @@
+*(
+    title: Past Ecosystems
+    description: Reconstructing ecosystems that no longer exist, and what they show about long-term change.
+    tags: past ecosystems, fossils, palaeontology, Aboriginal land management, module 4, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    An ecosystem leaves traces after it is gone, and those traces constrain what it can have been. Reconstruction is inference from incomplete evidence, and the reasoning is as assessable as the conclusions.
+
+    Written out here: how fossils and other palaeontological evidence are used to reconstruct past environments, the changes in Australian ecosystems over geological time, and the long record of Aboriginal and Torres Strait Islander land management, including the use of fire to shape the ecosystems Europeans later found.
+}

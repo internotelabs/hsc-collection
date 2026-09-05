@@ -1,0 +1,14 @@
+*(
+    title: Population Genetics
+    description: Following alleles through a whole population rather than a single family, and the technologies that read them.
+    tags: population genetics, allele frequency, DNA profiling, sequencing, module 5, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A pedigree tracks a handful of individuals. A population carries allele frequencies, which change over generations and can be measured — and it is those frequencies, not any individual, that evolution acts on.
+
+    Written out here: allele and genotype frequencies and how they shift, DNA sequencing and DNA profiling and the difference between them, and the use of both in establishing relatedness, in medicine and in tracing population history.
+}

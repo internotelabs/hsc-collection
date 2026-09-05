@@ -1,0 +1,18 @@
+*(
+    title: DNA and Polypeptide Synthesis
+    description: How a sequence of bases becomes a sequence of amino acids, and why that is what a gene does.
+    tags: DNA, transcription, translation, genetic code, module 5, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A gene does not build an eye or set a height. It specifies one polypeptide, and everything else is downstream consequence. Getting that relationship right removes most of the confusion in genetics.
+
+    Written out here: transcription of DNA into messenger RNA, translation at the ribosome with transfer RNA delivering amino acids, the genetic code and its redundancy, and the route from one polypeptide to a phenotype that is usually long and rarely one to one.
+
+    A code copied and read this many times will occasionally be copied or read wrongly. What follows from that is *Mutation*.
+
+    internote(ref: mutation.chalk)
+}

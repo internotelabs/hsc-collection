@@ -1,0 +1,18 @@
+*(
+    title: The Cell Membrane
+    description: A double layer of lipid with proteins floating in it, and why that structure decides what can cross.
+    tags: cell membrane, phospholipid bilayer, fluid mosaic, module 1, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A cell must be separated from its surroundings or its contents would disperse, but a perfect seal would starve it. The membrane resolves the conflict by being selectively permeable, and it can do that because of what it is made of.
+
+    Written out here: the phospholipid bilayer and why molecules with a water-loving head and a water-fearing tail arrange themselves that way on their own, the fluid mosaic model, and the channel and carrier proteins embedded in it.
+
+    What the structure permits is the next question: which substances cross, in which direction, and at what cost to the cell. That is *Transport Across Membranes*.
+
+    internote(ref: transport-across-membranes.chalk)
+}

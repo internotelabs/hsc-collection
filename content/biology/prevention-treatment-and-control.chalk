@@ -1,0 +1,18 @@
+*(
+    title: Prevention, Treatment and Control
+    description: Vaccination, antibiotics and antivirals, quarantine, and why resistance keeps eroding them.
+    tags: vaccination, antibiotics, antivirals, quarantine, module 7, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Controlling an infectious disease means breaking the chain somewhere, and the chain has several links: the pathogen, the route between hosts, and the susceptibility of the next host. Different measures attack different links.
+
+    Written out here: hygiene and quarantine as interruptions of transmission, vaccination and herd immunity as reduction of susceptibility, antibiotics and antivirals and why the two are not interchangeable, the evolution of resistance as natural selection acting on a pathogen population, and Aboriginal and Torres Strait Islander protocols for managing disease.
+
+    Measuring whether any of it works means studying populations rather than patients, which is *Epidemiology*.
+
+    internote(ref: epidemiology.chalk)
+}

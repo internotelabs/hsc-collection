@@ -1,0 +1,14 @@
+*(
+    title: Photosynthesis and Respiration
+    description: The two linked reactions that bring energy into living systems and release it again.
+    tags: photosynthesis, respiration, ATP, metabolism, module 1, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Almost all the energy in the living world entered it through photosynthesis, and almost all of it is released again by respiration. The products of each are close to the reactants of the other, which is why the two together form a cycle rather than two unrelated processes.
+
+    Written out here: the inputs, outputs and locations of photosynthesis and of aerobic respiration, ATP as the currency both are denominated in, anaerobic respiration and what it costs, and the factors that limit the rate of each.
+}

@@ -1,0 +1,18 @@
+*(
+    title: Evidence for Evolution
+    description: The independent lines of evidence, and why their agreement is what makes the case.
+    tags: evolution, fossils, comparative anatomy, biochemistry, module 3, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    No single observation establishes common descent. What does is that several kinds of evidence, collected by people who were not looking for the same thing, produce the same family tree.
+
+    Written out here: the fossil record and how it is dated, comparative anatomy and embryology, biochemical and DNA comparison, biogeography and the distribution of Australian species in particular, and the strength of an argument built on independent lines agreeing.
+
+    Those lines together produce a tree, and reading one is a skill of its own — *Biodiversity and Classification*.
+
+    internote(ref: biodiversity-and-classification.chalk)
+}

@@ -1,0 +1,14 @@
+*(
+    title: Biotechnology
+    description: What genetic techniques are used for in agriculture and medicine, and what their spread does to biodiversity.
+    tags: biotechnology, agriculture, medicine, biodiversity, module 6, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A technique that alters one organism in a laboratory becomes a different proposition when it is applied to a continent of farmland. The biology of the method and the consequences of deploying it are separate questions, and the course asks both.
+
+    Written out here: past and present applications in agriculture and medicine, the effect of widespread genetically modified crops on genetic diversity, and the social and ethical arguments made on each side, which are assessable and therefore have to be understood rather than merely held.
+}

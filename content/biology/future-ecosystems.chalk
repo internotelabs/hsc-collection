@@ -1,0 +1,14 @@
+*(
+    title: Future Ecosystems
+    description: Human impact on ecosystems, and what restoration can and cannot recover.
+    tags: human impact, restoration, conservation, biodiversity loss, module 4, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Human activity changes ecosystems faster than the processes that formed them, which is why the effects are visible within a single lifetime. Predicting the outcome requires the population reasoning already established, applied to a disturbance of known size.
+
+    Written out here: the impact of human activity on ecosystem dynamics, the modelling used to project what follows, restoration and rehabilitation and the limits on each, and why an ecosystem that has lost species does not simply reassemble when the pressure is removed.
+}

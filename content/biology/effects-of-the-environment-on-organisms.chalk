@@ -1,0 +1,14 @@
+*(
+    title: Effects of the Environment on Organisms
+    description: The pressures a habitat applies, and how they change which organisms are found in it.
+    tags: selection pressure, abiotic, biotic, distribution, module 3, biology, stub
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    An environment does not affect every individual in a species equally, and that unevenness is the whole mechanism. Where conditions differ across a range, the organisms found at each point differ too.
+
+    Written out here: abiotic and biotic selection pressures, their effect on the distribution and abundance of species, and what happens to a population when the environment changes faster than the population can — including the conditions under which extinction rather than adaptation is the outcome.
+}
