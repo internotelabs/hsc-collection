@@ -1,36 +1,181 @@
 *(
     title: Newton's First Law
-    description: Newton's First Law states that an object will remain at rest or in uniform motion in a straight line unless acted upon by an external force.
-    tags: Newton's First Law, inertia, motion
+    description: Why an object's velocity changes only when the forces on it fail to cancel — and why friction makes that look false.
+    tags: Newton's first law, inertia, net force, equilibrium, dynamics
     lesson
 )
 
+// Deceleration a = mu * g with g = 9.8 m/s^2, from a start of 2.00 m/s.
+// Kinetic coefficients are the standard textbook values: wood on wood 0.20,
+// ice on ice 0.03. Stopping time is v0 / a.
+//   wood: a = 1.96 m/s^2,  t = 2 / 1.96  = 1.02 s
+//   ice:  a = 0.294 m/s^2, t = 2 / 0.294 = 6.80 s
+@let(
+    wood stop: 1.02
+    ice stop: 6.80
+)
+
+@include(src: ../preface.part.chalk)
+
 scene{
-    Newton's First Law, also known as the law of inertia, describes the behavior of objects in motion. It states that an object will continue to move at a constant velocity or remain at rest unless acted upon by an external force. This means that if no net force is applied to an object, it will maintain its current state of motion.
+    A hockey puck sliding across the ice does not need anything to keep it going. It slows, eventually, but the slowing is the thing that needs explaining — the sliding does not.
+
+    That is the reversal Newton's First Law asks for. Motion at a steady speed in a straight line is not a state that has to be maintained; it is what a body does when nothing interferes.
 
     definition{
-        **Newton's First Law**: An object will remain at rest or in uniform motion in a straight line unless acted upon by an external force.
+        A law of motion stating that a body remains at rest, or continues to move at constant velocity in a straight line, unless a non-zero net force acts on it.
     }(
-        term: Newton's First Law
+        term: Newton's first law
     )
 
+    ===
+
+    "Nothing interferes" does not mean "no forces". A book lying on a desk has two forces on it: gravity pulling down and the desk pushing up. Both are real, both are large, and the book does not move — because they are equal in size and opposite in direction, so they add to nothing.
+
     definition{
-        **Inertia**: The property of matter that resists changes in motion.
+        The single vector obtained by adding every force acting on a body, taking direction into account. Where the forces cancel in pairs the net force is zero even though each individual force is not.
+    }(
+        term: Net force
+    )
+
+    ===
+
+    Slide that book across the desk at a steady speed and a second pair joins the first: your push forwards, friction backwards. Four forces, two cancelling pairs, net force zero — and the book keeps the velocity it has. The law is about the sum, never about the individual arrows.
+
+    definition{
+        The property of a body by which it resists any change to its velocity. Mass is the measure of it: doubling the mass halves the change in velocity a given push produces.
     }(
         term: Inertia
     )
+}[
+    canvas.graph{
+        rectangle(x: 0; y: 0; size: 1; colour: grey; !fill)
 
-    The greater the mass of an object, the greater its inertia, and the more force is required to change its state of motion. This law is fundamental to understanding the principles of classical mechanics and has wide-ranging applications in physics and engineering.
-}
+        cue.draw{
+            vector(x: 0; y: 0.5; dx: 0; dy: 2; colour: teal; label: support force from the desk)
+            vector(x: 0; y: -0.5; dx: 0; dy: -2; colour: teal; label: weight)
+        }(
+            in: 1
+            in duration: 1.2s
+        )
+
+        cue.draw{
+            vector(x: 0.5; y: 0; dx: 2; dy: 0; colour: teal; label: your push)
+            vector(x: -0.5; y: 0; dx: -2; dy: 0; colour: teal; label: friction)
+        }(
+            in: 2
+            in duration: 1.2s
+        )
+    }(
+        !show background
+    )
+]
 
 scene{
-    In everyday life, we can observe Newton's First Law in action. For example, when a car suddenly stops, the passengers inside continue to move forward due to their inertia. Seat belts are designed to counteract this effect by applying an external force to keep passengers safe.
+    # Why a sliding book stops
+
+    Everyday experience says the opposite of the law. Push something and it moves; stop pushing and it stops. Motion looks like it needs a cause.
+
+    The canvas takes the same block, started at $2.00\text{ m s}^{-1}$, and changes only what it slides on. On wood the kinetic friction coefficient is about $0.20$, giving a deceleration of $\mu g = 1.96\text{ m s}^{-2}$ and a stop after {{wood stop}} seconds. On ice $\mu$ is about $0.03$, the deceleration falls to $0.294\text{ m s}^{-2}$, and the same block runs for {{ice stop}} seconds.
+
+    Nothing about the block changed. Smoothing the surface did not add a push — it removed a force, and the block travelled further.
+
+    ===
+
+    Extend that: each reduction in friction lengthens the run, and there is no value of $\mu$ at which the block stops early. Take the backward force to zero and the line never comes down at all.
+
+    This is the argument for the law rather than a demonstration of it, since a frictionless surface cannot be built. What kills everyday motion is not the absence of a driving force but the presence of a resisting one, and the law describes what is left when the resisting force is taken away.
+
+    note{
+        Galileo reached the same conclusion from balls rolling down one ramp and up another: the smoother the ramps, the closer the ball came to its starting height. A ball on a ramp that levelled out would then roll forever.
+    }
+}[
+    canvas.graph{
+        line(x: 0, 1.02; y: 2, 0; colour: blue)
+        line(x: 0, 6.80; y: 2, 0; colour: blue)
+        axis.label(x: 1.02; label: wood; line)
+        axis.label(x: 6.80; label: ice; line)
+
+        cue.draw{
+            line(x: 0, 9; y: 2, 2; colour: orange; label: no friction at all)
+        }(
+            in: 1
+            in duration: 1.2s
+        )
+    }(
+        x axis label: time since the push ends (s)
+        y axis label: speed (m s$^{-1}$)
+        x domain: [0, 9]
+        y domain: [0, 2.5]
+    )
+]
+
+scene{
+    # The passenger who keeps going
+
+    A car braking hard from $14\text{ m s}^{-1}$ — about $50\text{ km h}^{-1}$ — at $8\text{ m s}^{-2}$ reaches a stop in $1.75$ seconds, having covered $12.25\text{ m}$. The road supplies that deceleration through the tyres, and the tyres are attached to the car.
+
+    They are not attached to the passenger. Nothing in the braking reaches across to the person in the seat, so no net horizontal force acts on them, so their velocity does not change: the third column of the table holds at $14\text{ m s}^{-1}$ the whole way down.
+
+    Read across any row and the difference is the passenger's speed relative to the car interior. At $1.75$ seconds the car is stationary and the passenger is still travelling at $14\text{ m s}^{-1}$ towards the windscreen.
+
+    A seatbelt is the missing force. It is the only thing in the cabin able to apply a backward force to a body that would otherwise obey the first law all the way to the glass.
+
+    note{
+        The common phrase is that the passenger is "thrown forwards", which inverts the physics. The passenger continues in a straight line at constant speed; it is the car that is pulled backwards out from under them.
+    }
+}[
+    table{
+        Time since braking began (s) | Car's speed (m s$^{-1}$) | Unrestrained passenger's speed (m s$^{-1}$)
+        0                            | 14                        | 14
+        0.5                          | 10                        | 14
+        1.0                          | 6                         | 14
+        1.5                          | 2                         | 14
+        1.75                         | 0                         | 14
+    }(
+        title: Braking at $8\text{ m s}^{-2}$ from $14\text{ m s}^{-1}$
+        highlight columns: 3
+        highlight colour: orange
+    )
+]
+
+scene{
+    ## Reading the law in reverse
+
+    Most of the law's working life is spent running backwards. Observing that a velocity is constant is easy; measuring every force on a body is not. So the inference usually goes from the motion to the forces: if the velocity is not changing, the forces must cancel, whatever they turn out to be.
 
     definition{
-        **External Force**: A force that acts on an object from outside the system.
+        The state of a body on which the net force is zero. A body in equilibrium is either at rest or moving in a straight line at constant speed — the first law makes these the same case, not two.
     }(
-        term: External Force
+        term: Equilibrium
     )
 
-    It is important to note that while Newton's First Law describes the behavior of objects in the absence of external forces, real-world scenarios often involve friction, air resistance, and other forces that can affect an object's motion.
-}
+    ===
+
+    Both readings appear in the same problems. A car holding $100\text{ km h}^{-1}$ on a flat road is in equilibrium, so its driving force must exactly equal the drag and rolling resistance opposing it — a conclusion drawn without measuring either. A body at rest gives the same conclusion, which is why a static problem and a constant-velocity problem are solved with identical algebra.
+
+    task{
+        A skydiver descends at a constant $55\text{ m s}^{-1}$. What is the net force on them, and what does that say about the air resistance they meet?
+    }[
+        Constant velocity means zero net force. The air resistance is therefore equal in size to their weight and opposite in direction — the two cancel exactly, which is what holds the speed constant.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.diagram{
+        box#zero(label: Net force is zero; shape: terminal)
+        box#const(label: Velocity stays constant; sub: at rest, or a straight line at steady speed)
+        box#nonzero(label: Net force is not zero; shape: terminal)
+        box#change(label: Velocity changes; sub: speed, direction, or both)
+        arrow(from: #zero; to: #const)
+        arrow(from: #nonzero; to: #change)
+
+        cue.draw{
+            arrow(from: #const; to: #zero; label: and back the other way)
+        }(
+            in: 1
+        )
+    }(
+        flow: down
+    )
+]

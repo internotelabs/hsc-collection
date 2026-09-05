@@ -1,0 +1,171 @@
+*(
+    title: Roots of Unity
+    description: Why $z^n = 1$ has exactly $n$ solutions, why they sit at the corners of a regular polygon, and why they add to nothing.
+    tags: complex numbers, roots of unity, de moivre, polynomial equations, extension 2
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Over the real numbers, $x^3 = 1$ has one solution. Cubing is increasing on the reals, so it passes through $1$ once and never returns.
+
+    internote(ref: complex-numbers.chalk)
+
+    ===
+
+    Over the complex numbers it has three, and the canvas shows where the other two went. All three sit on the unit circle at $120^\circ$ apart: $1$ itself, then $\omega = -\frac{1}{2} + \frac{\sqrt{3}}{2}i$, then $\omega^2 = -\frac{1}{2} - \frac{\sqrt{3}}{2}i$.
+
+    definition{
+        A complex number satisfying $z^n = 1$ for a given positive integer $n$. For each $n$ there are exactly $n$ of them, and every one has modulus $1$.
+    }(
+        term: Root of unity
+    )
+
+    Checking the middle one is a cube in polar form: $\omega = \operatorname{cis}\frac{2\pi}{3}$, so $\omega^3 = \operatorname{cis}2\pi = 1$. The real solution had not hidden the other two so much as failed to have anywhere to put them — one axis has no room for a point at $120^\circ$.
+}[
+    canvas.graph{
+        circle(x: 0; y: 0; size: 1; colour: grey; !fill)
+        point(x: 1; y: 0; colour: orange; label: $1$)
+
+        cue{
+            point(x: -0.5; y: 0.866; colour: teal; label: $\omega$)
+            point(x: -0.5; y: -0.866; colour: teal; label: $\omega^2$)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: real axis
+        y axis label: imaginary axis
+        !show ticks
+    )
+]
+
+scene{
+    # Where the $n$ solutions come from
+
+    Solving $z^n = 1$ is de Moivre's theorem read backwards. Write $z = r\operatorname{cis}\theta$; then $z^n = r^n\operatorname{cis}(n\theta)$, and that has to equal $1 = 1\operatorname{cis}0$.
+
+    internote(ref: polar-form.chalk)
+
+    ===
+
+    Matching moduli gives $r^n = 1$ with $r$ a non-negative real, so $r = 1$ and every solution lies on the unit circle. Matching arguments is the step that generates the multiplicity: two angles name the same direction when they differ by a whole number of revolutions, so the requirement is not $n\theta = 0$ but $n\theta = 2k\pi$ for some integer $k$.
+
+    ===
+
+    Dividing by $n$ gives $\theta = \frac{2k\pi}{n}$. Running $k$ through $0, 1, \ldots, n - 1$ produces $n$ distinct directions; $k = n$ returns to $\theta = 0$ and everything after that repeats. Hence exactly $n$ roots, no more and no fewer.
+
+    equation{
+        z_k = \operatorname{cis}\frac{2k\pi}{n} \qquad k = 0, 1, \ldots, n - 1
+    }
+
+    Writing $\omega = \operatorname{cis}\frac{2\pi}{n}$ for the $k = 1$ case makes the whole set $1, \omega, \omega^2, \ldots, \omega^{n-1}$: each root is the previous one turned through another $\frac{2\pi}{n}$.
+}[
+    #### The equation in polar form
+
+    equation{
+        \left(r\operatorname{cis}\theta\right)^{n} = r^{n}\operatorname{cis}(n\theta) = 1\operatorname{cis}0
+    }
+
+    cue{
+        #### Moduli, then arguments
+
+        equation{
+            r^{n} = 1 \implies r = 1
+        }
+
+        equation{
+            n\theta = 2k\pi, \quad k \in \mathbb{Z}
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### One angle per $k$, and only $n$ of them
+
+        equation{
+            \theta = \frac{2k\pi}{n}, \qquad k = 0, 1, \ldots, n - 1
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # A regular polygon, and a sum of zero
+
+    Equally spaced points on a circle are the vertices of a regular polygon, so the $n$th roots of unity are the corners of a regular $n$-gon inscribed in the unit circle with one vertex at $1$. The canvas draws the case $n = 6$.
+
+    ===
+
+    That symmetry has an arithmetic consequence: for every $n \ge 2$ the roots sum to zero. With $n = 6$ it can be read straight off the hexagon, since the vertices fall into three pairs pointing in opposite directions. For odd $n$ no such pairing exists and the geometry is less obvious, but the sum still vanishes.
+
+    The general reason is the factorisation in the next section rather than the picture. The picture is worth having anyway, because it is what makes an answer checkable: any solution set to $z^n = 1$ that is not $n$ equally spaced points on the unit circle has an error in it.
+
+    note{
+        The same construction solves $z^n = w$ for any non-zero $w$. Its solutions are one $n$th root of $w$ multiplied by each root of unity in turn, so they too are $n$ equally spaced points — on the circle of radius $|w|^{1/n}$, rotated to start at $\frac{\arg w}{n}$.
+    }
+}[
+    canvas.graph{
+        circle(x: 0; y: 0; size: 1; colour: grey; !fill)
+        point(x: 1; y: 0; colour: orange; label: $1$)
+        point(x: 0.5; y: 0.866; colour: teal)
+        point(x: -0.5; y: 0.866; colour: teal)
+        point(x: -1; y: 0; colour: teal)
+        point(x: -0.5; y: -0.866; colour: teal)
+        point(x: 0.5; y: -0.866; colour: teal)
+
+        cue.draw{
+            polygon(x: 1, 0.5, -0.5, -1, -0.5, 0.5; y: 0, 0.866, 0.866, 0, -0.866, -0.866; colour: teal; !fill)
+        }(
+            in: 1
+            in duration: 1.4s
+        )
+    }(
+        x axis label: real axis
+        y axis label: imaginary axis
+        !show ticks
+    )
+]
+
+scene{
+    ## Factorising $z^n - 1$
+
+    Every root of unity is a root of the polynomial $z^n - 1$, and there are $n$ of them for a polynomial of degree $n$, so they are all of its roots and it factorises completely over the complex numbers.
+
+    ===
+
+    Dividing out the obvious root $z = 1$ leaves the sum of the remaining powers, and the roots of that quotient are the roots of unity other than $1$. For $n = 3$ this is $z^3 - 1 = (z - 1)(z^2 + z + 1)$, which is why $\omega$ satisfies $\omega^2 + \omega + 1 = 0$ — a relation that collapses most expressions in $\omega$ on sight.
+
+    The vanishing sum falls out of the same factorisation. Expanding $z^n - 1$ as a product of its linear factors, the coefficient of $z^{n-1}$ is minus the sum of the roots; in $z^n - 1$ that coefficient is $0$ for every $n \ge 2$, so the roots sum to zero.
+
+    task{
+        Solve $z^4 = -16$, giving the solutions in Cartesian form.
+    }[
+        $-16 = 16\operatorname{cis}\pi$, so $r = 16^{1/4} = 2$ and $4\theta = \pi + 2k\pi$, giving $\theta = \frac{\pi}{4}, \frac{3\pi}{4}, -\frac{3\pi}{4}, -\frac{\pi}{4}$. In Cartesian form the four solutions are $\sqrt{2} + i\sqrt{2}$, $-\sqrt{2} + i\sqrt{2}$, $-\sqrt{2} - i\sqrt{2}$ and $\sqrt{2} - i\sqrt{2}$ — a square of side $2\sqrt{2}$ centred on the origin.
+    ](
+        title: Your turn
+    )
+}[
+    #### Complete factorisation
+
+    equation{
+        z^{n} - 1 = \prod_{k=0}^{n-1}\left(z - \operatorname{cis}\frac{2k\pi}{n}\right)
+    }
+
+    cue{
+        #### Dividing out the root $z = 1$
+
+        equation{
+            z^{n} - 1 = (z - 1)\left(z^{n-1} + z^{n-2} + \cdots + z + 1\right)
+        }
+
+        equation{
+            z^{3} - 1 = (z - 1)(z^{2} + z + 1) \implies \omega^{2} + \omega + 1 = 0
+        }
+    }(
+        in: 1
+    )
+]

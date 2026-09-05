@@ -1,24 +1,236 @@
 *(
     title: Central Banks
-    description: Central banks are financial institutions that manage a country's currency, money supply, and interest rates.
-    tags: central banks, monetary policy, financial institutions
+    description: How the Reserve Bank of Australia moves one overnight interest rate, and why that reaches every price in the economy.
+    tags: central banks, monetary policy, reserve bank of australia, cash rate, inflation targeting
     lesson
 )
 
+// Every RBA cash rate target change from June 2019 to the August 2026 meeting.
+// Source: RBA, Cash Rate Target (rba.gov.au/statistics/cash-rate).
+// Dates are decimal years so the axis reads in calendar years; the effective
+// column carries the real date of each decision. The final row is the
+// 12 Aug 2026 meeting, a hold, so the staircase runs to the present.
+@data#cash{
+    year     | target | effective
+    2019.425 | 1.25   | 5 Jun 2019
+    2019.501 | 1.00   | 3 Jul 2019
+    2019.751 | 0.75   | 2 Oct 2019
+    2020.172 | 0.50   | 4 Mar 2020
+    2020.216 | 0.25   | 20 Mar 2020
+    2020.842 | 0.10   | 4 Nov 2020
+    2022.337 | 0.35   | 4 May 2022
+    2022.433 | 0.85   | 8 Jun 2022
+    2022.510 | 1.35   | 6 Jul 2022
+    2022.586 | 1.85   | 3 Aug 2022
+    2022.682 | 2.35   | 7 Sep 2022
+    2022.759 | 2.60   | 5 Oct 2022
+    2022.836 | 2.85   | 2 Nov 2022
+    2022.932 | 3.10   | 7 Dec 2022
+    2023.104 | 3.35   | 8 Feb 2023
+    2023.181 | 3.60   | 8 Mar 2023
+    2023.334 | 3.85   | 3 May 2023
+    2023.430 | 4.10   | 7 Jun 2023
+    2023.852 | 4.35   | 8 Nov 2023
+    2025.134 | 4.10   | 19 Feb 2025
+    2025.384 | 3.85   | 21 May 2025
+    2025.614 | 3.60   | 13 Aug 2025
+    2026.093 | 3.85   | 4 Feb 2026
+    2026.208 | 4.10   | 18 Mar 2026
+    2026.342 | 4.35   | 6 May 2026
+    2026.611 | 4.35   | 12 Aug 2026 (held)
+}
+
+// Annual CPI inflation, all groups, Australia. Source: ABS. Readings to the
+// September 2025 quarter are quarterly; the ABS moved to a complete monthly
+// CPI from November 2025, so later readings are monthly.
+@data#cpi{
+    year    | rate | period
+    2025.00 | 2.4  | Dec 2024 quarter
+    2025.25 | 2.4  | Mar 2025 quarter
+    2025.50 | 2.1  | Jun 2025 quarter
+    2025.75 | 3.2  | Sep 2025 quarter
+    2025.83 | 3.8  | Oct 2025
+    2026.25 | 4.6  | Mar 2026
+    2026.50 | 3.8  | Jun 2026
+    2026.58 | 3.5  | Jul 2026
+}
+
+@include(src: ../preface.part.chalk)
+
 scene{
-    Central banks play a crucial role in a country's economy by implementing monetary policy, regulating the banking system, and ensuring financial stability. They are responsible for issuing currency, controlling inflation, and managing interest rates to promote economic growth.
+    A commercial bank ends each day either short of cash or holding more than it needs, and settles the difference by borrowing from another bank overnight. The interest rate on those loans is the shortest, dullest rate in the economy, and it is the one the Reserve Bank of Australia controls.
 
     definition{
-        A **central bank** is a financial institution that manages a country's currency, money supply, and interest rates. It serves as the primary authority for monetary policy and financial regulation.
+        The public institution responsible for a country's currency, its official interest rate and the stability of its financial system. Australia's is the Reserve Bank of Australia, established under the Reserve Bank Act 1959.
     }(
-        term: Central Bank
+        term: Central bank
     )
 
-    Central banks can influence the economy through various tools, such as open market operations, reserve requirements, and discount rates. By adjusting these tools, central banks can control the money supply and influence economic activity.
-}
+    definition{
+        The interest rate on unsecured overnight loans between banks in the cash market. The Reserve Bank announces a target for it and then operates in that market to keep the rate there.
+    }(
+        term: Cash rate
+    )
+
+    ===
+
+    The staircase on the canvas is every change to that target since mid-2019. Two features of its shape matter more than any single level.
+
+    The first is that it moves in steps and holds flat between them. The Monetary Policy Board meets eight times a year and the target is unchanged until the next decision, so the series is a step function by construction rather than a smooth curve sampled coarsely.
+
+    The second is the size of the range. The target ran from $1.25$ per cent down to $0.10$ during the pandemic, up to $4.35$ across 2022 and 2023, back to $3.60$ through 2025, and up to $4.35$ again by May 2026. One instrument, moved in quarter-point increments, spans the whole of that.
+
+    note{
+        The Board has no way to compel a rate on any loan. It announces the target and then buys or sells short-term securities with the banks until the actual overnight rate sits where it said. The instrument is an announcement backed by market operations, not a decree.
+    }
+}[
+    canvas.graph{
+        cue{
+            line(x: #cash.year; y: #cash.target; colour: blue; interpolate: step)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: year
+        y axis label: cash rate target (per cent)
+        x domain: [2019.3, 2026.8]
+        y domain: [0, 4.75]
+    )
+]
 
 scene{
-    In Australia, the central bank is the Reserve Bank of Australia (RBA). The RBA is responsible for implementing monetary policy, issuing currency, and maintaining financial stability in the country. It operates independently from the government to ensure that its decisions are based on economic considerations rather than political pressures.
+    # From the cash rate to the shops
 
-    It is important to note that central banks are not profit-driven institutions. Their primary goal is to maintain economic stability and promote sustainable growth, rather than maximizing profits for shareholders.
-}
+    An overnight rate between banks is nobody's mortgage. The reason a quarter-point move matters is that it is the first link in a chain, and each link is a price that something else is set against.
+
+    definition{
+        The arm of macroeconomic policy conducted by the central bank, which works by changing the cost of borrowing and the return on saving rather than by taxing or spending.
+    }(
+        term: Monetary policy
+    )
+
+    Banks fund themselves partly in the overnight market, so a higher target raises their funding costs, and they reprice mortgages and business loans accordingly.
+
+    ===
+
+    Three channels open from there. Households with mortgages send more of each pay packet to interest and less to the shops, while savers are paid more to leave money alone. Firms weigh projects against a higher cost of capital and shelve the marginal ones. And higher Australian returns attract foreign capital, which bids the dollar up and makes exports dearer abroad.
+
+    definition{
+        The chain of effects through which a change in the cash rate reaches output, employment and prices, running through borrowing costs, asset prices, the exchange rate and the willingness of households and firms to spend.
+    }(
+        term: Transmission mechanism
+    )
+
+    ===
+
+    All three narrow aggregate demand, and slower demand growth takes the pressure off prices. That is the whole apparatus: one overnight rate, several channels, one target variable at the end.
+
+    note{
+        None of it is quick. The Reserve Bank's own estimate is that a change in the cash rate takes between one and two years to have its maximum effect on activity and inflation, so the Board is always acting on a forecast rather than on the inflation rate it can currently see.
+    }
+}[
+    canvas.diagram{
+        box#lift(label: The Board raises the cash rate target; shape: terminal)
+        box#banks(label: Banks' funding costs rise)
+        box#rates(label: Mortgage and business lending rates rise)
+
+        cue{
+            box#spend(label: Households spend less; sub: more income to interest, more reward for saving)
+            box#invest(label: Firms defer investment; sub: projects must clear a higher hurdle)
+            box#dollar(label: The dollar appreciates; sub: higher returns pull in foreign capital)
+            arrow(from: #rates; to: #spend)
+            arrow(from: #rates; to: #invest)
+            arrow(from: #rates; to: #dollar)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#demand(label: Aggregate demand growth slows)
+            box#inflation(label: Inflation eases; shape: terminal)
+            arrow(from: #spend; to: #demand)
+            arrow(from: #invest; to: #demand)
+            arrow(from: #dollar; to: #demand; label: net exports fall)
+            arrow(from: #demand; to: #inflation)
+        }(
+            in: 2
+        )
+
+        arrow(from: #lift; to: #banks)
+        arrow(from: #banks; to: #rates)
+    }(
+        flow: down
+    )
+]
+
+scene{
+    # The two-to-three per cent target
+
+    A central bank that can move demand needs a rule for when to move it, or the decision collapses into whichever pressure is loudest that month. Australia's rule is a number agreed between the Reserve Bank and the Treasurer in the Statement on the Conduct of Monetary Policy, most recently in July 2025.
+
+    definition{
+        A framework for monetary policy in which the central bank publishes a numerical goal for consumer price inflation and sets its instrument to meet that goal. Australia's is consumer price inflation between $2$ and $3$ per cent, on average, over time, with the Board aiming for the midpoint.
+    }(
+        term: Inflation targeting
+    )
+
+    The words "on average, over time" carry real weight. A quarter outside the band is not a breach, because the lags make quarter-by-quarter control impossible; a run of quarters outside it is.
+
+    ===
+
+    Read the two canvases together and the framework becomes visible as behaviour. Inflation was inside the band through the first half of 2025 — $2.4$ per cent to the March quarter, $2.1$ to June — and the Board cut three times, from $4.35$ down to $3.60$.
+
+    Then it escaped upwards: $3.2$ per cent to the September 2025 quarter, $3.8$ in October, a peak of $4.6$ in March 2026. The Board raised the target at three consecutive meetings in early 2026, back to $4.35$, and has held it there since.
+
+    Inflation has come off that peak to $3.8$ per cent in June 2026 and $3.5$ in July, and is still above the band. That is why the rate is being held rather than cut: the Board is waiting for the readings to reach the shaded region, not merely to point at it.
+
+    note{
+        The readings change frequency partway along. The ABS published a full CPI quarterly until the September 2025 quarter and moved to a complete monthly CPI from November 2025, so the later points are monthly figures rather than quarterly ones.
+    }
+}[
+    canvas.graph{
+        axis.band(y: [2, 3]; colour: teal; label: target band)
+        scatter(x: #cpi.year; y: #cpi.rate; colour: orange)
+
+        cue{
+            axis.label(y: 2.5; label: midpoint; line)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: year
+        y axis label: annual CPI inflation (per cent)
+        x domain: [2024.9, 2026.8]
+        y domain: [0, 5]
+    )
+]
+
+scene{
+    ## Why the Board is not the Treasurer
+
+    Inflation targeting only works if the target survives the political calendar. A government facing an election has a standing reason to want cheaper borrowing now and to leave the inflation for later, and a central bank that answered to it directly would inherit that reason.
+
+    So the decision is placed outside the government's hands. Since the reforms that took effect in March 2025, the cash rate target is set by a specialist Monetary Policy Board, and the Treasurer cannot direct its decisions in practice. The Board publishes its reasoning after every meeting and the Governor appears before a parliamentary committee twice a year — the accountability is to Parliament and the public rather than to the minister.
+
+    The table sets the two arms of macroeconomic policy side by side. Neither dominates: monetary policy is fast to change and reaches everyone at once, which is also its weakness, since it cannot help one industry without moving rates for all of them.
+
+    task{
+        Unemployment is rising while inflation sits at $4$ per cent. Explain why the Board faces a genuine conflict, and why the lag makes it worse.
+    }[
+        Cutting the cash rate would support employment but add to demand while inflation is already above the band; holding or raising it protects the target at the cost of jobs. The lag means either choice is made on a forecast, and by the time the effect arrives the problem the Board was responding to may have changed.
+    ](
+        title: Your turn
+    )
+}[
+    table{
+        Feature             | Monetary policy                              | Fiscal policy
+        Who decides         | The Reserve Bank's Monetary Policy Board     | The federal government, through the Budget
+        Instrument          | The cash rate target                         | Taxation and government spending
+        How often it moves  | Eight scheduled meetings a year              | Mainly once a year, at the Budget
+        Who it reaches      | Every borrower and saver at once             | Chosen groups, sectors or regions
+        Main constraint     | One to two years before its peak effect      | Legislation, and the state of the Budget
+    }(
+        title: The two arms of macroeconomic policy
+        header column
+    )
+]

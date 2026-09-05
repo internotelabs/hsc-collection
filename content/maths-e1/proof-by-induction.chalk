@@ -1,32 +1,267 @@
 *(
     title: Proof by Induction
-    description: Proof by induction is a mathematical technique used to prove statements about natural numbers.
-    tags: proof by induction, mathematical induction, proofs
+    description: How two obligations — one case proved outright, one implication proved in general — settle infinitely many statements at once.
+    tags: proof by induction, mathematical induction, proof, extension 1
     lesson
 )
 
-scene{
-    Proof by induction is a powerful method for proving statements about natural numbers. It involves two main steps: the base case and the inductive step. In the base case, we show that the statement is true for the smallest value in the domain (usually $n = 1$). In the inductive step, we assume that the statement is true for some arbitrary value k and then prove that it must also be true for $k + 1$.
-
-    definition{
-        **Proof by Induction**: A mathematical technique used to prove statements about natural numbers by establishing a base case and an inductive step.
-    }(
-        term: Proof by Induction
-    )
+// Partial sums of 1 + 2 + ... + n, used in the opening graph and again
+// in the false-proof table. Computed, not asserted: S(n) = n(n + 1) / 2.
+@data#sums{
+    n | total
+    1 | 1
+    2 | 3
+    3 | 6
+    4 | 10
+    5 | 15
+    6 | 21
 }
 
+@include(src: ../preface.part.chalk)
+
 scene{
-    Imagine you want to prove that the sum of the first n natural numbers is given by the formula $S(n) = \frac{n(n + 1)}{2}$. To do this using proof by induction, we would first establish the base case for $n = 1$, showing that $S(1) = \frac{1(1 + 1)}{2} = 1$, which is true. Next, we would assume that the formula holds for some arbitrary value k, i.e., $S(k) = \frac{k(k + 1)}{2}$. Then, we would show that it must also hold for $k + 1$, i.e., $S(k + 1) = S(k) + (k + 1) = \frac{k(k + 1)}{2} + (k + 1) = \frac{(k + 1)(k + 2)}{2}$, thus completing the inductive step and proving the statement for all natural numbers n.
+    Add up the whole numbers from $1$ to $n$ and the answer always seems to be $\frac{n(n + 1)}{2}$. Six cases sit on the canvas, and the formula gets every one of them right.
+
+    That is not a proof, and the gap is not a small one. A formula in $n$ makes a separate claim for each of infinitely many values, so checking six settles six of them. The seventh is still open, and so is the ten-thousandth.
+
+    ===
+
+    Nor does the shape of the curve help. It passes through the six points we computed because we chose it to, and its behaviour past $n = 6$ is a drawing, not evidence.
+
+    ===
+
+    Testing cases can only ever move the boundary further right. Induction is the argument that removes the boundary altogether.
+}[
+    canvas.graph{
+        scatter(x: #sums.n; y: #sums.total; colour: orange)
+
+        cue.draw{
+            curve(expression: x * (x + 1) / 2; colour: teal)
+        }(
+            in: 1
+            in duration: 1.2s
+        )
+
+        cue{
+            axis.label(x: 6; label: checked to here; line)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: $n$
+        y axis label: $1 + 2 + \cdots + n$
+        x domain: [0, 12]
+        y domain: [0, 80]
+    )
+]
+
+scene{
+    # The initial statement and the inductive step
+
+    Induction replaces infinitely many separate proofs with two. The first proves one case outright. The second proves nothing about any particular case at all — it proves an implication: *if* the result holds at some value, it holds at the next one.
 
     definition{
-        **Base Case**: The initial step in a proof by induction where the statement is verified for the smallest value in the domain.
+        A proof technique for a statement $P(n)$ made about every integer $n$ from some starting value onwards, which establishes the statement at that starting value and then establishes that each case forces the next.
     }(
-        term: Base Case
+        term: Mathematical induction
     )
 
+    Neither obligation is optional, and neither does the other's work. The first supplies a case that is true; the second supplies a machine for turning a true case into another one.
+
     definition{
-        **Inductive Step**: The step in a proof by induction where we assume the statement is true for some arbitrary value k and then prove it is also true for k + 1.
+        The first of the two obligations in a proof by induction: a direct proof of $P(n)$ at the smallest value of $n$ the claim covers, usually $n = 1$.
     }(
-        term: Inductive Step
+        term: Initial statement
     )
-}
+
+    ===
+
+    The second obligation is where the algebra lives. It fixes an unspecified $k$, grants that $P(k)$ is true, and derives $P(k + 1)$ from it. Because $k$ is unspecified, one derivation covers every $k$ at once.
+
+    definition{
+        The second of the two obligations in a proof by induction: a proof that $P(k)$ implies $P(k + 1)$, carried out for an arbitrary $k$ rather than for any particular value.
+    }(
+        term: Inductive step
+    )
+
+    ===
+
+    Put the two together and every case is reachable. The initial statement hands over $P(1)$; the inductive step converts it to $P(2)$, then $P(3)$, and so on past any value a reader cares to name.
+}[
+    canvas.diagram{
+        box#base(label: $P(1)$ is true; sub: the initial statement, proved directly)
+
+        cue{
+            box#hyp(label: $P(k)$ is true; sub: granted, for an unspecified $k$)
+            box#step(label: $P(k + 1)$ is true; sub: derived from the line above)
+            arrow(from: #hyp; to: #step; label: the inductive step)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#all(label: $P(n)$ is true for every integer $n \ge 1$; shape: terminal)
+            arrow(from: #base; to: #all; label: supplies the first case)
+            arrow(from: #step; to: #all; label: supplies every case after it)
+        }(
+            in: 2
+        )
+    }(
+        flow: down
+    )
+]
+
+scene{
+    # Proving $1 + 2 + \cdots + n = \frac{n(n + 1)}{2}$
+
+    Write $P(n)$ for the claim that the first $n$ whole numbers add to $\frac{n(n + 1)}{2}$. The two obligations now have something concrete to bite on.
+
+    ===
+
+    The initial statement costs one line. At $n = 1$ the sum is the single term $1$, and $\frac{1 \times 2}{2}$ is also $1$, so $P(1)$ holds.
+
+    ===
+
+    Now fix a value $k$ and grant $P(k)$. Nothing has been proved about $k$ — it is an assumption, deliberately made so that the next line has something to work with.
+
+    definition{
+        The assumption made inside the inductive step of a proof by induction: that $P(k)$ holds for one unspecified value of $k$, granted so that $P(k + 1)$ can be derived from it.
+    }(
+        term: Inductive hypothesis
+    )
+
+    ===
+
+    The sum to $k + 1$ terms is the sum to $k$ terms plus one more, so the hypothesis can be substituted straight in. What remains is factorising: pull out $(k + 1)$, and the bracket left behind is $\frac{k + 2}{2}$.
+
+    The last line on the canvas is exactly what $P(k + 1)$ asserts, with $k + 1$ in place of $n$. The implication is proved, $P(1)$ is proved, and the two together close the claim for every $n \ge 1$.
+}[
+    #### The claim
+
+    equation{
+        P(n): \quad 1 + 2 + \cdots + n = \frac{n(n + 1)}{2}
+    }
+
+    cue{
+        #### Initial statement, $n = 1$
+
+        equation{
+            \text{LHS} = 1 \qquad \text{RHS} = \frac{1 \times 2}{2} = 1
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Inductive hypothesis, at $n = k$
+
+        equation{
+            1 + 2 + \cdots + k = \frac{k(k + 1)}{2}
+        }
+    }(
+        in: 2
+    )
+
+    cue{
+        #### Inductive step, at $n = k + 1$
+
+        equation{
+            1 + 2 + \cdots + k + (k + 1) = \frac{k(k + 1)}{2} + (k + 1)
+        }
+
+        equation{
+            = (k + 1)\left(\frac{k}{2} + 1\right) = \frac{(k + 1)(k + 2)}{2}
+        }
+    }(
+        in: 3
+    )
+]
+
+scene{
+    ## A false proof that passes the inductive step
+
+    Take the same sum and claim it equals $\frac{n(n + 1)}{2} + 1$. Run the inductive step on that: adding $(k + 1)$ to $\frac{k(k + 1)}{2} + 1$ gives $\frac{(k + 1)(k + 2)}{2} + 1$, which is the claim at $k + 1$. The implication is genuinely true.
+
+    The claim itself is false at every value of $n$, as the third column shows — it overshoots by exactly $1$ each time. What the implication proves is only that the error propagates, never that the error is zero.
+
+    The initial statement is what catches it. At $n = 1$ the sum is $1$ and the formula returns $2$, so the chain never gets a true case to start from. An inductive step with nothing to start from proves nothing.
+
+    note{
+        The reverse failure is quieter. A base case can be verified while the inductive step is wrong, and the algebra then looks like a proof of something that only happens to hold for the values anyone bothered to test.
+    }
+}[
+    table{
+        $n$ | $1 + 2 + \cdots + n$ | $\frac{n(n + 1)}{2} + 1$
+        1   | 1                    | 2
+        2   | 3                    | 4
+        3   | 6                    | 7
+        4   | 10                   | 11
+        5   | 15                   | 16
+    }(
+        title: The false formula against the real sums
+        highlight rows: 2
+        highlight colour: red
+    )
+]
+
+scene{
+    # Divisibility: $3^{2n} - 1$ is a multiple of 8
+
+    Sums are not the only thing induction settles. Since $3^{2n} = 9^n$, the claim is that $9^n - 1$ is a multiple of $8$ for every $n \ge 1$: $8$, $80$, $728$, $6560$.
+
+    ===
+
+    The initial statement is a single subtraction: $9 - 1 = 8$, which is $8 \times 1$.
+
+    ===
+
+    The hypothesis needs care in how it is written. "Divisible by $8$" is not something the algebra can act on, so it goes down as $9^k - 1 = 8m$ for some integer $m$ — an equation, which lets $9^k$ be replaced by $8m + 1$ wherever it appears.
+
+    ===
+
+    Nothing is being added on here, so the sum proof's move does not transfer. The step is to factorise the divisor back out: $9^{k+1} - 1$ becomes $72m + 8$, and $8$ divides both terms. Since $9m + 1$ is an integer, $9^{k+1} - 1$ is a multiple of $8$.
+
+    task{
+        Prove that $n^3 + 2n$ is divisible by $3$ for every positive integer $n$.
+    }[
+        Expanding gives $(k + 1)^3 + 2(k + 1) = k^3 + 2k + 3(k^2 + k + 1)$. The first two terms are the hypothesis; the last carries a factor of $3$ outright.
+    ](
+        title: Your turn
+    )
+}[
+    #### The claim
+
+    equation{
+        P(n): \quad 3^{2n} - 1 = 9^{n} - 1 \text{ is divisible by } 8
+    }
+
+    cue{
+        #### Initial statement, $n = 1$
+
+        equation{
+            9^{1} - 1 = 8 = 8 \times 1
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Inductive hypothesis, at $n = k$
+
+        equation{
+            9^{k} - 1 = 8m \quad \text{for some integer } m
+        }
+    }(
+        in: 2
+    )
+
+    cue{
+        #### Inductive step, at $n = k + 1$
+
+        equation{
+            9^{k+1} - 1 = 9 \cdot 9^{k} - 1 = 9(8m + 1) - 1 = 72m + 8 = 8(9m + 1)
+        }
+    }(
+        in: 3
+    )
+]
