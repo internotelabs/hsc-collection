@@ -1,6 +1,6 @@
 *(
     title: Roots of Unity
-    description: Why $z^n = 1$ has exactly $n$ solutions, why they sit at the corners of a regular polygon, and why they add to nothing.
+    description: Why there are exactly n complex numbers whose nth power is one, why they sit at the corners of a regular polygon, and why they add to nothing.
     tags: complex numbers, roots of unity, de moivre, polynomial equations, extension 2
     lesson
 )
@@ -9,8 +9,6 @@
 
 scene{
     Over the real numbers, $x^3 = 1$ has one solution. Cubing is increasing on the reals, so it passes through $1$ once and never returns.
-
-    internote(ref: complex-numbers.chalk)
 
     ===
 
@@ -45,8 +43,6 @@ scene{
     # Where the $n$ solutions come from
 
     Solving $z^n = 1$ is de Moivre's theorem read backwards. Write $z = r\operatorname{cis}\theta$; then $z^n = r^n\operatorname{cis}(n\theta)$, and that has to equal $1 = 1\operatorname{cis}0$.
-
-    internote(ref: polar-form.chalk)
 
     ===
 

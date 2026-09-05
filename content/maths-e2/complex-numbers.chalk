@@ -1,6 +1,6 @@
 *(
     title: Complex Numbers
-    description: Adjoining a square root of $-1$ to the reals, and the plane that turns the resulting arithmetic into geometry.
+    description: Adjoining a square root of minus one to the reals, and the plane that turns the resulting arithmetic into geometry.
     tags: complex numbers, argand plane, modulus, argument, extension 2
     lesson
 )
@@ -176,6 +176,12 @@ scene{
     note{
         Reading $\arg z$ off $\arctan\frac{b}{a}$ alone loses the quadrant: $1 + i$ and $-1 - i$ share the ratio $\frac{b}{a} = 1$ but point in opposite directions. Sketch the point before trusting the calculator.
     }
+
+    So $z$ can be named by the pair $|z|$ and $\arg z$ instead of by $a$ and $b$, and the change of naming is not cosmetic. Under it the moduli of a product multiply while the arguments add, so multiplying by a complex number scales the plane and rotates it in one move — and a power, which is hopeless to expand in Cartesian form beyond a square or two, costs one multiplication of the modulus and one of the angle.
+
+    That is the whole of *Polar Form and de Moivre's Theorem*, which takes the modulus and argument defined here and rebuilds multiplication, division and powers on top of them.
+
+    internote(ref: polar-form.chalk)
 }[
     canvas.graph{
         point(x: 0; y: 0; colour: grey; label: $O$)

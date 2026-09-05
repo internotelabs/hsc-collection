@@ -12,8 +12,6 @@ scene{
 
     Multiplication gets no such help. Expanding $(a + ib)(c + id)$ produces $ac - bd$ and $ad + bc$, two expressions that mix all four inputs and say nothing about what the product *is*. The operation has a simple description; the coordinates are the wrong coordinates to see it in.
 
-    internote(ref: complex-numbers.chalk)
-
     ===
 
     The modulus and the argument are the right ones. Both are already defined for any $z$: the distance from the origin, and the angle from the positive real axis. Reading the canvas by those two instead of by $\operatorname{Re}(z)$ and $\operatorname{Im}(z)$ gives $r = 2$ and $\theta = \frac{\pi}{3}$ for the point drawn there.
@@ -161,6 +159,12 @@ scene{
     ===
 
     Putting $\theta = \pi$ gives $e^{i\pi} = \cos\pi + i\sin\pi = -1$, the identity usually written $e^{i\pi} + 1 = 0$. It is not a separate curiosity: it is the statement that turning through half a revolution sends $1$ to $-1$.
+
+    Read that way, an equation like $z^n = 1$ stops being algebra and becomes a question about angles: which rotations, repeated $n$ times, bring a number back to where it started? Matching moduli forces $r = 1$, and matching arguments forces $n\theta$ to be a whole number of revolutions — so the solutions can be counted and drawn rather than solved for.
+
+    There turn out to be exactly $n$ of them, sitting at the corners of a regular polygon on the unit circle. *Roots of Unity* works that out and uses it to factorise $z^n - 1$ completely.
+
+    internote(ref: roots-of-unity.chalk)
 }[
     #### The three forms of one number
 
