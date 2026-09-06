@@ -78,7 +78,6 @@ scene{
         curve(expression: sin(x); domain: [0, 1.5708]; colour: grey; label: $\sin x$)
         curve(expression: sin(x)^2; domain: [0, 1.5708]; colour: grey; dashed; label: $\sin^2 x$)
         curve#s4(expression: sin(x)^4; domain: [0, 1.5708]; colour: blue; label: $\sin^4 x$)
-        axis.label(x: 1.5708; label: $\tfrac{\pi}{2}$)
 
         cue{
             integral#quartic(of: #s4; from: 0; to: 1.5708; colour: teal)
@@ -90,6 +89,7 @@ scene{
         y axis label: $y$
         x domain: [-0.2, 1.8]
         y domain: [-0.1, 1.2]
+        x format: radians
     )
 ]
 
