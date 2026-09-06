@@ -1,0 +1,159 @@
+*(
+    title: Evolution and Ecosystems
+    description: The branch that asks why this organism is here and not another, and how its eight internotes build one argument.
+    tags: evolution, ecosystems, branch overview, natural selection, biodiversity, biology
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    This branch answers one question at two scales. Why is this organism here, built this way, and not some other organism built some other way?
+
+    At the scale of a species the answer is evolutionary: its ancestors were selected by the conditions it lives in. At the scale of a community the answer is ecological: the species present are the ones whose requirements the place meets and whose competitors have not excluded them. The two answers are the same answer over different lengths of time.
+
+    ===
+
+    The branch builds that argument in a fixed order, and the canvas is the order.
+
+    Adaptations are the observation: organisms fit where they live. Selection pressures are the cause: the environment does not treat every individual the same. Natural selection is the mechanism connecting the two. Evidence is what turns the mechanism from a plausible story into an established one. And classification is the result — a tree, which the evidence produces and which nothing else explains.
+
+    ===
+
+    ===
+
+    The second half applies the same reasoning to communities rather than to species. Population dynamics is the mechanism at community scale, and the two ecosystem internotes run it backwards into the fossil record and forwards into the next century.
+
+    note{
+        This is the branch where the reasoning is examined more heavily than the content. An answer that names a feature is worth little; an answer that names the feature, the pressure, the mechanism and the evidence is worth a great deal. *Adaptations* has a whole scene on the difference.
+    }
+}[
+    canvas.diagram{
+        box#obs{
+            The observation
+            organisms fit where they live
+        }
+
+        cue.draw{
+            box#press{
+                The cause
+                the environment does not treat every individual alike
+            }
+            box#mech{
+                The mechanism
+                natural selection, from four conditions
+            }
+            arrow(from: #obs; to: #press)
+            arrow(from: #press; to: #mech)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#evid{
+                The evidence
+                four independent lines producing one tree
+            }
+            box#tree{
+                The result
+                classification by ancestry, and biodiversity measured
+            }
+            arrow(from: #mech; to: #evid)
+            arrow(from: #evid; to: #tree)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#comm:terminal{
+                The same reasoning at community scale
+                populations now, in the fossil record, and in the next century
+            }
+            arrow(from: #tree; to: #comm)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: One argument, built in order
+    )
+]
+
+scene{
+    # The route through it
+
+    Adaptations first, because it is the observation everything else explains — and because it is where the standard of evidence for calling something an adaptation is set.
+
+    internote(ref: adaptations.chalk)
+
+    Then the pressures themselves: what a habitat does to the individuals in it, and what decides where a species is found and how many of it there are.
+
+    internote(ref: effects-of-the-environment-on-organisms.chalk)
+
+    Then the mechanism, which is four conditions and a conclusion, and the speciation that follows when a population is divided.
+
+    internote(ref: natural-selection.chalk)
+
+    Then the evidence — fossils, anatomy, biochemistry and biogeography — and why their agreement is the argument rather than any one of them.
+
+    internote(ref: evidence-for-evolution.chalk)
+
+    Then what that evidence produces: a tree, how to read one, and what biodiversity actually measures.
+
+    internote(ref: biodiversity-and-classification.chalk)
+
+    Then communities. What one species does to the numbers of another, and how a population that cannot be counted is estimated.
+
+    internote(ref: population-dynamics.chalk)
+
+    And the same reasoning in both directions in time: reconstructing ecosystems that are gone, and projecting the ones being altered now.
+
+    internote(ref: past-ecosystems.chalk)
+
+    internote(ref: future-ecosystems.chalk)
+}[
+    table{
+        Internote                                    | The question it answers
+        Adaptations                                   | what makes a feature an adaptation rather than just a feature?
+        Effects of the Environment on Organisms       | what pressures does a habitat apply, and what sets a species' range?
+        Natural Selection                             | what four conditions produce evolutionary change, and how does one species become two?
+        Evidence for Evolution                        | what convinced people, and why does agreement between methods matter?
+        Biodiversity and Classification               | how are organisms grouped, and what does a tree actually claim?
+        Population Dynamics                           | what limits a population, and how is one estimated?
+        Past Ecosystems                               | how is a vanished ecosystem reconstructed, and what happened to Australia's?
+        Future Ecosystems                             | what does human activity do, and what can restoration recover?
+    }(
+        title: Eight internotes, in reading order
+    )
+]
+
+scene{
+    ## What to carry out of it
+
+    The first thing is that natural selection has no direction and no goal. It is an arithmetic consequence of four conditions, and "fitness" means leaving more offspring in this environment now — not being stronger, more complex, or better in any general sense. An adaptation is always provisional, because the environment it is an adaptation to can change.
+
+    ===
+
+    The second is that agreement between independent methods is a form of evidence in its own right, and a strong one. That idea appears in *Evidence for Evolution* at the largest scale, and again in *Adaptations* when a claim about one species is tested by comparison across many, and again in *Epidemiology* when a correlation has to be checked against several possible explanations.
+
+    internote(ref: disease.chalk)
+
+    The third is a matter of rates. A population can adapt, or it can move, and both take time. Almost every conservation problem in *Future Ecosystems* is a case of the environment changing faster than one of those responses can operate — or of habitat fragmentation having removed the second option entirely.
+}[
+    canvas.graph{
+        curve(f: 20 + 0.05 * x; domain: [0, 100]; colour: orange; label: the environment)
+        curve(f: 20 + 0.02 * x; domain: [0, 100]; colour: blue; label: the fastest a population can follow)
+
+        cue{
+            axis.brace(label: the mismatch; y: [22, 25]; colour: grey)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: years
+        y axis label: conditions the organism is suited to
+        x domain: [0, 100]
+        y domain: [19, 26]
+        !show ticks
+    )
+]

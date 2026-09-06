@@ -1,18 +1,235 @@
 *(
     title: Responses to Pathogens
     description: What a plant does when infected, and what an animal's first lines of defence do.
-    tags: pathogen response, plant defence, innate immunity, barriers, module 7, biology, stub
+    tags: pathogen response, plant defence, innate immunity, barriers, module 7, biology
     lesson
 )
 
+// Scene 4's fever curves are models rather than measurements. Bacterial
+// replication is drawn as a curve peaking near 37 C, the temperature most human
+// pathogens are adapted to, and immune activity as a curve still rising through
+// 39-40 C. The point is the crossing region, not the individual values.
 @include(src: ../preface.part.chalk)
 
 scene{
-    Most encounters with a pathogen never become an illness, because the first defences are non-specific, already in place, and effective against almost anything. They get less attention than the immune response proper and do most of the work.
+    You encounter pathogens constantly and are almost never ill. That ratio is the thing to explain, and the explanation is that most encounters are stopped before anything specific has to happen.
 
-    Written out here: physical and chemical barriers, the plant responses that operate without any circulating immune system at all, and the innate animal response — inflammation, phagocytosis and fever — which acts within minutes and treats every intruder the same way.
+    The body's defences come in three layers, and the canvas is the order they act in. Each one is slower than the last and more specific than the last, and each only deals with what got past the one before it.
+
+    ===
+
+    The first layer is a set of barriers. They are already in place, they act on everything indiscriminately, and they are not triggered by anything — skin does not detect a pathogen, it simply is not something a pathogen can cross.
+
+    ===
+
+    The second is the innate response, which is triggered but not specific. It acts within minutes to hours, and it treats a bacterium, a fungus and a splinter in much the same way.
+
+    definition{
+        The defences that act against any pathogen in the same way, without needing to have met it before. They are fast, they are present from birth, and they do not improve with exposure.
+    }(
+        term: Innate immunity
+    )
+
+    ===
+
+    The third is the adaptive response, which is specific to one pathogen and takes days to develop the first time. It is the subject of *Immunity*, and it is the only layer that remembers.
+
+    The proportions are worth stating plainly. The great majority of encounters end at the first layer, most of the rest end at the second, and the third is what happens when the first two have failed — which is when a person actually feels ill.
+}[
+    canvas.diagram{
+        box#arrive{
+            A pathogen arrives
+            in the air, in food, on a surface, through a cut
+        }
+
+        cue.draw{
+            box#barrier{
+                First line: barriers
+                already in place, non-specific, not triggered by anything
+            }
+            arrow(from: #arrive; to: #barrier)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#innate{
+                Second line: the innate response
+                triggered, non-specific, acting within minutes to hours
+            }
+            arrow(from: #barrier; to: #innate; label: if the barrier is breached)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#adaptive:terminal{
+                Third line: the adaptive response
+                specific to this pathogen, days to develop, and it remembers
+            }
+            arrow(from: #innate; to: #adaptive; label: if that is not enough)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Three layers, each slower and more specific
+    )
+]
+
+scene{
+    # The barriers
+
+    Barriers are unglamorous and do most of the work. They divide into physical ones, which stop a pathogen moving, and chemical ones, which damage it or make the environment unlivable.
+
+    The table lists both kinds. Two entries repay attention.
+
+    Skin is not just a covering. Its outer layer is dead, keratinised and continually shed, so a bacterium that lands on it is on a surface that is being thrown away, with no living cells to invade and very little moisture to grow in.
+
+    Stomach acid at around pH $2$ is the single most effective chemical barrier a person has, and it explains why food-borne infections need either a large dose or an acid-resistant pathogen. *Vibrio cholerae*, which causes cholera, is not acid-resistant — which is why the infective dose is very high, and why the disease spreads through water rather than through casual contact.
+
+    The last row is the one people forget. The bacteria already living on the skin and in the gut compete with arriving pathogens for space and nutrients, and produce compounds that inhibit them. Wiping them out — which is what a broad-spectrum antibiotic does — removes a defence, which is why *Clostridioides difficile* infections so often follow a course of antibiotics.
+}[
+    table{
+        Kind      | The barrier                                  | How it works
+        Physical  | skin                                         | dead, keratinised, dry and continually shed, with no living cells at the surface to invade
+        Physical  | mucus in the airways, with cilia beneath it   | traps particles, and the cilia sweep the mucus up and out of the lungs
+        Physical  | the flow of tears, saliva and urine           | washes pathogens off surfaces before they can attach
+        Chemical  | stomach acid, around pH $2$                  | destroys most of what is swallowed
+        Chemical  | lysozyme in tears, saliva and mucus           | an enzyme that breaks down bacterial cell walls
+        Chemical  | sebum and sweat, which are slightly acidic     | an environment most bacteria grow poorly in
+        Biological| the normal flora of the skin and gut          | occupies the space and the nutrients an arriving pathogen would need
+    }(
+        title: What stops most of it before anything is triggered
+        highlight rows: 8
+        highlight colour: orange
+    )
+]
+
+scene{
+    # A plant has no circulating immune system at all
+
+    Plants have no blood, no phagocytes and no antibodies. There is nothing in a plant that can travel to an infection, and so plant defence works on entirely different principles — and it works well enough that most plants, most of the time, are healthy.
+
+    The first difference is that plant barriers are thicker and more chemical. Bark, a waxy cuticle and cell walls of cellulose are formidable physical obstacles, and plant tissues are typically loaded with compounds — tannins, alkaloids, oils — that are toxic or unpalatable to a great deal of what might eat or infect them.
+
+    ===
+
+    The second difference is what happens when something gets through, and it is the canvas.
+
+    An infected plant cell detects the pathogen and kills itself, along with the cells immediately around it. The infected region dies and becomes a dry, isolated patch of dead tissue that the pathogen cannot spread out of, because there is nothing living between it and the rest of the plant.
+
+    definition{
+        A plant defence in which cells at the site of infection deliberately die, sealing the pathogen inside a region of dead tissue that it cannot spread out of.
+    }(
+        term: Hypersensitive response
+    )
+
+    ===
+
+    This works because a plant is built in a way an animal is not. A plant is modular and can afford to lose a leaf or a branch, and its cells are fixed in place by their walls, so isolating a region actually isolates it. Neither is true of an animal, and an animal that killed the tissue around every infection would not survive the treatment.
+
+    The plant then reinforces the boundary, depositing lignin and callose to wall the region off further, and produces antimicrobial compounds called phytoalexins around it. A signal also travels to the rest of the plant, which raises its defences before the pathogen arrives — the closest a plant comes to immunity, and it is neither specific nor remembered in the way an animal's is.
+
+    note{
+        The visible symptoms of a plant disease are frequently the defence rather than the damage. Leaf spots are often dead tissue the plant killed itself, and galls are tissue the plant grew to enclose an invader. A leaf covered in small dry spots may be a plant that is winning.
+    }
+}[
+    canvas.diagram{
+        box#detect{
+            An infected cell detects the pathogen
+            through receptors that recognise molecules only pathogens carry
+        }
+
+        cue.draw{
+            box#die{
+                That cell and its neighbours die
+                deliberately, and quickly
+            }
+            arrow(from: #detect; to: #die)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#seal{
+                The region is walled off
+                lignin and callose deposited around the dead patch
+            }
+            box#chem{
+                Antimicrobial compounds are made
+                phytoalexins, around the boundary
+            }
+            arrow(from: #die; to: #seal)
+            box#signal:terminal{
+                A signal reaches the rest of the plant
+                which raises its defences before the pathogen gets there
+            }
+            arrow(from: #die; to: #chem)
+            arrow(from: #seal; to: #signal)
+            arrow(from: #chem; to: #signal)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: Sacrificing the infected region
+    )
+]
+
+scene{
+    ## Inflammation, phagocytosis and fever
+
+    When something gets past the barriers in an animal, three things happen, and none of them is specific to what got through.
+
+    Inflammation comes first. Damaged cells and specialised cells in the tissue release histamine and other signals, which widen the local blood vessels and make their walls leakier. More blood arrives, plasma leaks into the tissue, and white blood cells follow it out of the circulation. The redness, heat, swelling and pain of an infected cut are all consequences of that one change, and they are the response rather than the damage.
+
+    Phagocytosis follows. Phagocytes — mainly neutrophils first and macrophages after them — engulf pathogens, cell debris and dead cells, enclose them in a vesicle, and fuse that vesicle with a lysosome, whose enzymes digest the contents. Pus is largely the phagocytes that died doing it.
+
+    ===
+
+    Fever is the third, and it is the one worth thinking about carefully, because it is easy to mistake for a symptom of the pathogen rather than a deliberate response.
+
+    Raising the body's temperature is a homeostatic act. The hypothalamus resets its own set point in response to signals released during infection, and the body then works towards the new target — which is why the person shivers on the way up, as *Homeostasis* explains.
+
+    ===
+
+    The canvas is why it helps. Most human pathogens are adapted to grow best at around $37\,^\circ\text{C}$, and their replication slows at higher temperatures, while several immune processes speed up. A few degrees moves the balance in the host's favour.
+
+    It is not a free move. Above about $40\,^\circ\text{C}$ the host's own enzymes are at risk, which is the *Enzymes* denaturation curve applied to the whole body, and a fever that runs too high is dangerous for exactly that reason. The response is a trade, and the body holds it in a narrow band.
+
+    task{
+        A person with a bacterial infection takes a drug that reduces their fever, and their temperature returns to $37\,^\circ\text{C}$. Explain what has and has not been done to the infection.
+    }[
+        Nothing has been done to the infection. The drug acts on the hypothalamus, lowering the set point back to normal, so the body stops working to hold the higher temperature. The bacteria are unaffected by the drug.
+
+        What has changed is the conditions they are growing in. Returning to $37\,^\circ\text{C}$ returns them to close to their own optimum, so their replication rate rises again and the immune processes that were running faster slow down. The person feels considerably better, which is the reason such drugs are used, and the balance on the canvas has moved slightly back towards the pathogen.
+    ](
+        title: Your turn
+    )
 
     When the non-specific defences are not enough, a slower system takes over, one that targets a particular pathogen and remembers it. That is *Immunity*.
 
     internote(ref: immunity.chalk)
-}
+}[
+    canvas.graph{
+        curve(f: 100 * exp(-((x - 37)/2.2)^2); domain: [33, 42]; colour: orange; label: bacterial replication)
+
+        cue{
+            curve(f: 20 + 80 / (1 + exp(-(x - 38.5) * 1.6)); domain: [33, 42]; colour: blue; label: immune activity)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.band(x: [38.5, 40]; label: where the balance favours the host; colour: grey; edges)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: body temperature ($^\circ$C)
+        y axis label: relative rate
+        x domain: [33, 42]
+        y domain: [0, 115]
+    )
+]

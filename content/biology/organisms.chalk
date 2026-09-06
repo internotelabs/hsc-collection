@@ -1,0 +1,141 @@
+*(
+    title: Organisms
+    description: The branch that asks what a body has to do that a single cell does not, and how its six internotes fit together.
+    tags: organisms, branch overview, transport, exchange, homeostasis, biology
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    A single-celled organism has no transport system, no lungs, no heart and no hormones, and it manages perfectly well. Every one of those things exists because of a decision made in this branch: cells specialising.
+
+    The moment a cell specialises it stops being self-sufficient. A nerve cell cannot photosynthesise, absorb its own food or dispose of its own waste, so something else has to do those things for it — and that something is the rest of the organism.
+
+    ===
+
+    The whole branch is the consequences of that one trade, and the canvas is the chain. Specialisation buys performance and creates dependency.
+
+    ===
+
+    Dependency requires supply, and supply over any distance requires bulk transport rather than diffusion — which is where exchange surfaces and circulatory systems come from.
+
+    ===
+
+    And a supplied cell only works if the fluid around it stays inside narrow limits, which requires detecting a change and acting to oppose it.
+
+    Read the branch in that order and none of it is a list of organs to memorise.
+}[
+    canvas.diagram{
+        box#spec{
+            Cells specialise
+            each does one job far better than a generalist could
+        }
+
+        cue.draw{
+            box#dep{
+                And stop being self-sufficient
+                a nerve cell cannot feed itself
+            }
+            arrow(from: #spec; to: #dep)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#supply{
+                So the organism must supply them
+                which needs exchange surfaces and transport systems
+            }
+            arrow(from: #dep; to: #supply)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#control:terminal{
+                And hold the fluid around them steady
+                which needs receptors, control centres and effectors
+            }
+            arrow(from: #supply; to: #control)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: One trade, and everything that follows from it
+    )
+]
+
+scene{
+    # The route through it
+
+    Start with the trade itself: how cells with identical genomes become different, what each gains and gives up, and the hierarchy of tissues, organs and systems that results.
+
+    internote(ref: cell-differentiation-and-specialisation.chalk)
+
+    Then supply, in two halves. The first is getting materials into the organism at all — what autotrophs and heterotrophs each need, and the exchange surfaces that obtain it.
+
+    internote(ref: nutrient-and-gas-exchange.chalk)
+
+    The second is moving them to every cell. Plants and animals solve this differently enough to be worth an internote each.
+
+    internote(ref: transport-in-plants.chalk)
+
+    internote(ref: transport-in-animals.chalk)
+
+    Then control. The general mechanism first — receptor, control centre, effector, and the feedback that makes it stabilise rather than run away.
+
+    internote(ref: homeostasis.chalk)
+
+    Then two cases worked in full, one thermal and one chemical, in both animals and plants.
+
+    internote(ref: thermoregulation-and-osmoregulation.chalk)
+}[
+    table{
+        Internote                                | The question it answers
+        Cell Differentiation and Specialisation  | how do identical genomes produce different cells, and what does that cost?
+        Nutrient and Gas Exchange                | what does the organism need from outside, and what surface obtains it?
+        Transport in Plants                      | how does water get up sixty metres with no pump, and sugar go either way?
+        Transport in Animals                     | why is bulk flow necessary at all, and what shapes each vessel?
+        Homeostasis                              | how is anything held steady while the outside changes?
+        Thermoregulation and Osmoregulation      | what do temperature and water balance look like worked all the way through?
+    }(
+        title: Six internotes, in reading order
+    )
+]
+
+scene{
+    ## What to carry out of it
+
+    Two habits are worth more than the details here.
+
+    The first is to ask, of any structure, what constraint it is answering. Alveoli, root hairs, villi and gills all exist because diffusion needs area and a short distance. Arteries have thick walls and veins have valves because of the pressures in the graph in *Transport in Animals*. Nothing in this branch is arbitrary, and a structure whose constraint you can name is one you will not forget.
+
+    ===
+
+    The second is the loop. Every homeostatic mechanism in the course has the same three parts and the same feedback. Once you can write that loop, you can answer questions about mechanisms you have never seen — including in *Disease*, where a fever turns out to be the loop working correctly with the set point moved.
+
+    internote(ref: disease.chalk)
+}[
+    canvas.diagram{
+        box#change{
+            Something moves off its set point
+        }
+
+        cue.draw{
+            box#rec{Receptor detects it}
+            box#cc{Control centre compares it against the set point}
+            box#eff{Effector acts to oppose the change}
+            arrow(from: #change; to: #rec)
+            arrow(from: #rec; to: #cc)
+            arrow(from: #cc; to: #eff)
+            arrow(from: #eff; to: #change; label: which changes what the receptor measures)
+        }(
+            in: 1
+        )
+    }(
+        flow: right
+        title: The loop, once, for every mechanism in the branch
+    )
+]

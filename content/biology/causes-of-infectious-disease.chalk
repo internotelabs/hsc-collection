@@ -1,20 +1,219 @@
 *(
     title: Causes of Infectious Disease
     description: The kinds of pathogen, how each is transmitted, and how a pathogen is shown to cause a disease.
-    tags: pathogens, virus, transmission, Koch's postulates, module 7, biology, stub
+    tags: pathogens, virus, transmission, Koch's postulates, module 7, biology
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    An infectious disease is one organism making a living inside another. That framing explains a great deal: the pathogen's interests, the routes it must take between hosts, and why interrupting a route works as well as attacking the pathogen.
+    An infectious disease is one organism making a living inside another. That framing is worth holding onto, because it explains most of what follows: the pathogen needs to get in, to obtain resources, to reproduce, and to reach the next host — and every one of those requirements is something that can be interfered with.
 
-    Written out here: prions, viruses, bacteria, protozoa, fungi and macroparasites and what distinguishes each as an agent of disease, modes of transmission, diseases of plants and of animals, and Koch's postulates as the standard for establishing that a particular microbe causes a particular illness.
+    definition{
+        Any organism or agent that causes disease in another organism. The damage may come from the pathogen consuming the host's resources, from toxins it releases, or from the host's own response to it.
+    }(
+        term: Pathogen
+    )
+
+    The table runs from the smallest agents to the largest. Two things change as you go down it.
+
+    The first is size, which spans about seven powers of ten from a prion to a tapeworm. The second is independence: the agents at the top cannot reproduce at all outside a host cell, while those at the bottom are complete organisms that happen to live inside another one.
+
+    That difference decides what can be used against each. Antibiotics attack structures and processes bacteria have and human cells do not — a cell wall, a bacterial ribosome — so they are useless against a virus, which has neither and uses the host's machinery instead.
+}[
+    table{
+        Agent          | What it is                                                          | Approximate size    | Example
+        Prion          | a misfolded protein that makes normal copies of the same protein misfold too | a few nanometres | Creutzfeldt–Jakob disease
+        Virus          | genetic material in a protein coat; no metabolism of its own, and it can only reproduce inside a host cell | $20$–$300\text{ nm}$ | influenza; HIV; measles; tobacco mosaic virus in plants
+        Bacterium      | a complete prokaryotic cell, which usually reproduces outside host cells      | $0.5$–$5\ \mu\text{m}$ | tuberculosis; cholera; crown gall in plants
+        Protozoan      | a single-celled eukaryote                                                    | $10$–$100\ \mu\text{m}$ | malaria (*Plasmodium*); amoebic dysentery
+        Fungus         | a eukaryote with a cell wall of chitin, growing as threads or as single cells | microscopic to metres | tinea; thrush; *Phytophthora* dieback in native plants
+        Macroparasite  | a multicellular animal living in or on the host                              | millimetres to metres | tapeworm; hookworm; head lice
+    }(
+        title: Six kinds of agent, over seven powers of ten
+        highlight rows: 3
+        highlight colour: orange
+    )
+]
+
+scene{
+    # Transmission, and why interrupting a route works
+
+    A pathogen that cannot reach a new host dies with the one it is in. That gives control measures a target that has nothing to do with medicine: the route between hosts.
+
+    The canvas is the chain that has to be complete for an infection to spread. Every link is necessary, so breaking any one of them stops transmission — and the link that is easiest to break varies enormously between diseases.
+
+    ===
+
+    A reservoir is wherever the pathogen persists between infections: other infected people, an animal population, water, or soil. The pathogen then has to get out, and the exit route is characteristic — respiratory pathogens leave in droplets, gut pathogens in faeces, blood-borne ones through blood or needles.
+
+    ===
+
+    Transmission is the link with the most variety, and the table of modes is the part worth learning: direct contact, droplets, airborne particles, contaminated food or water, a vector such as a mosquito, and transmission from mother to child.
+
+    Malaria is the standard illustration of attacking this link. Nobody has a vaccine that works well, and the parasite develops resistance to drugs — but *Plasmodium* has to spend part of its life cycle in a mosquito, so removing mosquitoes, or simply sleeping under a net, breaks the chain without touching the parasite at all.
+
+    ===
+
+    Entry and susceptibility are the last two links. A pathogen has to reach tissue it can infect, which is why intact skin is such an effective defence, and the new host has to be susceptible — which is where vaccination acts, and which is the subject of *Prevention, Treatment and Control*.
+
+    note{
+        Plant diseases run the same chain with different links. Wind carries fungal spores between crops; insects carry viruses from plant to plant as they feed; and soil and water carry *Phytophthora*, which is why so much Australian bushland now has boot-washing stations at the track head. Breaking the chain is the whole of the control strategy there too, because a plant cannot be treated individually.
+    }
+}[
+    canvas.diagram{
+        box#res{
+            A reservoir
+            infected people, an animal population, water, or soil
+        }
+
+        cue.draw{
+            box#exit{
+                A way out
+                droplets, faeces, blood, spores
+            }
+            arrow(from: #res; to: #exit)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#route{
+                A route between hosts
+                contact, droplets, air, food and water, a vector, or mother to child
+            }
+            arrow(from: #exit; to: #route)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#entry{
+                A way in
+                a cut, the airway, the gut, a bite
+            }
+            box#host:terminal{
+                A susceptible host
+                one whose defences have not met this pathogen before
+            }
+            arrow(from: #route; to: #entry)
+            arrow(from: #entry; to: #host)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Five links, and any one of them will do
+    )
+]
+
+scene{
+    # Showing that a particular microbe causes a particular disease
+
+    Finding a microbe in a sick person proves nothing on its own. Sick people are full of microbes, most of which are harmless, and some of which are there because the person is ill rather than the other way round.
+
+    Robert Koch set out a standard for establishing causation in the 1880s, and the canvas is its four steps. The first is that the microbe must be present in every case of the disease and absent from healthy individuals. This rules out an organism that merely happens to be common.
+
+    ===
+
+    The second is that it must be isolated from a diseased host and grown in pure culture. Growing it alone separates it from everything else that was in the patient.
+
+    ===
+
+    The third is the decisive one: the cultured organism, introduced into a healthy host, must cause the same disease. This is an experiment rather than an observation, and it is where a correlation becomes a demonstration.
+
+    ===
+
+    The fourth is that the microbe must then be re-isolated from the newly infected host and shown to be the same organism. Without this step, the third could be explained by something else in the injected material.
+
+    definition{
+        A set of four criteria for establishing that a particular microorganism causes a particular disease: it is found in every case, it can be grown in pure culture, the culture causes the disease in a healthy host, and it can be recovered from that host.
+    }(
+        term: Koch's postulates
+    )
+}[
+    canvas.diagram{
+        box#found{
+            Found in every case
+            and absent from healthy individuals
+        }
+
+        cue.draw{
+            box#culture{
+                Grown in pure culture
+                separated from everything else in the patient
+            }
+            arrow(from: #found; to: #culture)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#infect{
+                The culture causes the disease
+                when introduced into a healthy host
+            }
+            arrow(from: #culture; to: #infect)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#recover:terminal{
+                Recovered from that host
+                and shown to be the same organism
+            }
+            arrow(from: #infect; to: #recover)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Koch's four steps
+    )
+]
+
+scene{
+    ## Where the postulates run out
+
+    Koch's postulates were a genuine advance and they are not a complete method, which is worth knowing because the cases they fail on are some of the most important diseases there are.
+
+    The table lists the standard failures. Read the last column: in every case the postulate is not wrong, it is simply not applicable, and something else has to do the work instead.
+
+    The commonest problem is the second postulate. Viruses cannot be grown in pure culture at all — they need living cells — and a great many bacteria have never been cultured successfully, including *Mycobacterium leprae*, which causes leprosy.
+
+    The third postulate is worse. Deliberately infecting a healthy person with a serious disease is not something anyone may do, so for human-specific pathogens with no animal model it cannot be attempted.
+
+    Two other cases break the first postulate. Some people carry a pathogen without ever becoming ill, so it is present in healthy individuals as well as in every case. And some diseases need a pathogen and something else — a second infection, a genetic susceptibility, an environmental exposure — so the pathogen alone does not reliably produce the disease.
+
+    What fills the gap is the evidence from *Epidemiology*, plus molecular versions of the postulates that work on genes rather than on whole organisms. Show that a particular gene is present in pathogenic strains and absent from harmless ones. Delete it, and watch the strain become harmless. Put it back, and watch virulence return.
+
+    task{
+        A newly recognised illness is strongly associated with a particular virus. The virus cannot be grown in pure culture, and infecting volunteers is out of the question. Describe how the case for causation could still be made.
+    }[
+        Not by Koch's postulates, and not by any single line. The case would be built from several independent kinds of evidence agreeing, which is the same argument structure as *Evidence for Evolution*.
+
+        Epidemiology first: does the virus appear before the illness rather than after it, in a large cohort followed over time? Is there a dose–response relationship? Do outbreaks of illness follow outbreaks of the virus?
+
+        Then an animal model, if one exists, which allows the third postulate to be attempted in a species where it is permissible. Then molecular evidence: viral genetic material in the affected tissue and not elsewhere, and a demonstrable mechanism by which the virus damages that tissue. And finally, an intervention — a vaccine or an antiviral that reduces the illness is strong evidence, because it is a manipulation rather than an observation.
+    ](
+        title: Your turn
+    )
 
     Hosts are not passive. What a plant or an animal does when invaded is *Responses to Pathogens*. Disease that no pathogen causes at all is *Non-infectious Disease*.
 
     internote(ref: responses-to-pathogens.chalk)
 
     internote(ref: non-infectious-disease.chalk)
-}
+}[
+    table{
+        The postulate                              | Where it fails                                                     | What is used instead
+        Present in every case, absent from the healthy | asymptomatic carriers exist; some diseases need a second factor as well | epidemiological studies of large populations over time
+        Grown in pure culture                      | viruses need living cells; many bacteria have never been cultured    | growth in cell culture; detection of the pathogen's genetic material
+        The culture causes the disease in a healthy host | deliberately infecting a person is not permissible                  | animal models where one exists; natural experiments; intervention trials
+        Recovered from the new host                | follows from the third, so it fails wherever the third does          | molecular postulates, working on individual genes rather than organisms
+    }(
+        title: Four postulates and four ways they break
+    )
+]

@@ -1,14 +1,215 @@
 *(
     title: Past Ecosystems
     description: Reconstructing ecosystems that no longer exist, and what they show about long-term change.
-    tags: past ecosystems, fossils, palaeontology, Aboriginal land management, module 4, biology, stub
+    tags: past ecosystems, fossils, palaeontology, Aboriginal land management, module 4, biology
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    An ecosystem leaves traces after it is gone, and those traces constrain what it can have been. Reconstruction is inference from incomplete evidence, and the reasoning is as assessable as the conclusions.
+    An ecosystem that no longer exists cannot be observed, and it can still be constrained. What it left behind — pollen, charcoal, bones, chemical traces in ice and sediment — is not a picture of it, but each of those things is only produced under particular conditions, so each one rules some possibilities out.
 
-    Written out here: how fossils and other palaeontological evidence are used to reconstruct past environments, the changes in Australian ecosystems over geological time, and the long record of Aboriginal and Torres Strait Islander land management, including the use of fire to shape the ecosystems Europeans later found.
-}
+    definition{
+        Working out what an environment was like in the past from the physical evidence it left behind, rather than from any direct observation of it.
+    }(
+        term: Reconstruction
+    )
+
+    The table lists the main lines of evidence with what each one can and cannot say. Read the third column as carefully as the second: a reconstruction is only as good as the assumption that the evidence forms the same way now as it did then.
+
+    Pollen is the workhorse. Pollen grains are tough, they are produced in enormous quantities, they can be identified to genus or species, and they settle into lake sediments in datable layers. A core through a lake bed gives a sequence of vegetation, and vegetation is a good proxy for climate — so the sediment reads as a record of both.
+
+    Charcoal is found in the same cores, and it records fire. Its abundance says how much burning was happening; the size of the fragments says something about how close the fire was; and the layers around it say what the vegetation was before and after.
+}[
+    table{
+        Evidence                 | What it can establish                                              | What it assumes
+        Fossil pollen in sediment | which plants grew nearby, and therefore the climate                 | that the species involved had the same climate tolerances then
+        Charcoal in sediment      | how often and how intensely the area burned                        | that charcoal is preserved and deposited at a steady rate
+        Fossil bones and teeth    | which animals lived there, and what they ate                       | that the assemblage is a fair sample rather than, say, a predator's cache
+        Leaf shape in fossils     | rainfall — leaf size and drip tips track it closely in living plants | that the relationship held in the past
+        Oxygen isotopes in ice and shells | global temperature and ice volume                          | that the chemistry of the process has not changed
+        Tree rings                | year-by-year growth conditions, back a few thousand years          | that growth is limited by the same factor throughout
+    }(
+        title: What each line of evidence is good for
+    )
+]
+
+scene{
+    # Australia's long drying
+
+    Australia's ecosystems today are dominated by plants adapted to drought, poor soils and fire. That is a recent state for the continent, and the fossil record shows how it arrived.
+
+    ===
+
+    For most of its history Australia was part of Gondwana and covered largely in rainforest. Fossil pollen from that period is dominated by *Nothofagus*, the southern beech, which today survives in Tasmania, New Zealand and South America — the same distribution the biogeographic evidence in *Evidence for Evolution* explains.
+
+    ===
+
+    Australia separated from Antarctica and drifted north. That opened a continuous ocean passage around Antarctica, which allowed a circumpolar current to form, which cooled Antarctica and changed circulation across the southern hemisphere. Australia became progressively drier from around fifteen million years ago.
+
+    ===
+
+    The pollen record follows. Rainforest taxa decline; *Eucalyptus*, *Acacia* and the grasses rise. Charcoal in the same sediments increases, because dry sclerophyll vegetation burns and rainforest largely does not — and the plants that do well after fire then become commoner, which makes the vegetation more flammable still.
+
+    definition{
+        Vegetation dominated by plants with hard, tough, often oily leaves adapted to drought and poor soils. Eucalypt forest and woodland is the Australian case, and it is both fire-prone and fire-dependent.
+    }(
+        term: Sclerophyll vegetation
+    )
+
+    ===
+
+    Over the last two and a half million years, glacial cycles added repeated swings on top of the drying. At glacial maxima Australia was colder, drier and windier than now, the deserts expanded, and sea level fell far enough to join Tasmania and New Guinea to the mainland.
+
+    The important structural point is that none of this was caused by anything biological. Continental drift, ocean circulation and orbital cycles are geological and astronomical, and the ecosystems reorganised in response — which is a useful corrective to thinking of ecosystems as things that would stay put if left alone.
+}[
+    canvas.diagram{
+        box#gond{
+            Part of Gondwana
+            rainforest, dominated by southern beech
+        }
+
+        cue.draw{
+            box#sep{
+                Australia separates and drifts north
+                a circumpolar current forms and Antarctica cools
+            }
+            arrow(from: #gond; to: #sep)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#dry{
+                Progressive drying, from about fifteen million years ago
+                the continent becomes more arid and more seasonal
+            }
+            arrow(from: #sep; to: #dry)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#scler{
+                Sclerophyll vegetation spreads
+                eucalypts, acacias and grasses replace rainforest; charcoal increases
+            }
+            arrow(from: #dry; to: #scler)
+        }(
+            in: 3
+        )
+
+        cue.draw{
+            box#glacial:terminal{
+                Glacial cycles, over the last $2.5$ million years
+                deserts expand and contract; sea level falls and rises
+            }
+            arrow(from: #scler; to: #glacial)
+        }(
+            in: 4
+        )
+    }(
+        flow: down
+        title: How Australia stopped being a rainforest continent
+    )
+]
+
+scene{
+    # The megafauna question
+
+    Australia once carried very large animals. *Diprotodon*, a marsupial the size of a rhinoceros; *Thylacoleo*, a marsupial predator; *Genyornis*, a flightless bird twice the mass of an emu; kangaroos three metres tall. Almost all of them were gone by roughly forty-five thousand years ago.
+
+    definition{
+        The large-bodied animals of a region, conventionally those over about $45\text{ kg}$. Australia's were lost within a comparatively short window in the late Pleistocene.
+    }(
+        term: Megafauna
+    )
+
+    Three explanations have been proposed, and the disagreement between them is a good example of how a question about the past is actually argued.
+
+    The table sets each explanation against the evidence that would support it and the evidence that counts against. The point of laying it out this way is that no explanation is being asserted — each is being tested.
+
+    The current position among most researchers is that human arrival was the main factor, probably in combination with climate, but the dating is difficult and the debate is genuinely open. That is a more useful thing to be able to say than a confident answer would be.
+}[
+    table{
+        Explanation                     | What would support it                                                    | What counts against it
+        Climate change                  | extinctions coinciding with a period of rapid drying                      | the animals had survived many earlier glacial cycles of comparable severity
+        Hunting by people               | extinctions following human arrival closely across different regions      | very few kill sites have been found, and dating both events precisely is hard
+        Changed fire regimes            | a shift in charcoal and vegetation records at the same time as the losses | disentangling whether burning changed before or after the animals went is difficult
+    }(
+        title: Three explanations, and how they are tested
+    )
+]
+
+scene{
+    ## Sixty-five thousand years of management
+
+    The ecosystems Europeans encountered in 1788 were not wilderness. They had been actively managed by Aboriginal and Torres Strait Islander peoples for tens of thousands of years, and the most important tool was fire.
+
+    definition{
+        The deliberate use of low-intensity fire, applied at the right time and in the right place for that Country, to manage vegetation, encourage food species, and reduce the fuel that would otherwise carry an intense fire.
+    }(
+        term: Cultural burning
+    )
+
+    Cultural burning is not the same thing as a hazard reduction burn, and the differences are the point. Cool-season fires burn slowly and patchily, leaving unburnt refuges within the burnt area. They remove leaf litter and fine fuel without killing mature trees or destroying the canopy. Applied across a landscape over years, they produce a mosaic of patches at different times since fire.
+
+    ===
+
+    The canvas is what that mosaic does. Different animals need different stages — some need recently burnt open ground for feeding, some need long-unburnt dense cover for shelter — so a landscape holding all the stages at once supports species that a uniform landscape does not. And because no patch carries a large fuel load, an unplanned fire runs into recently burnt ground and stops.
+
+    ===
+
+    The evidence for all this comes from several directions at once, which is the pattern this whole topic keeps returning to. Charcoal records show changed fire regimes following human arrival. Early European accounts describe open grassy woodland that had to be actively maintained and which thickened rapidly once burning stopped. And the knowledge itself is held and practised by Traditional Owners, who are now applying it in partnership with land management agencies across Australia.
+
+    task{
+        After 1788, cultural burning largely stopped across southeastern Australia. Using the canvas, predict two changes to the vegetation and one change to the behaviour of bushfires.
+    }[
+        The vegetation thickens: without regular low-intensity fire, shrubs and small trees fill the space between the large trees, and the open grassy woodland described in early accounts closes up. Fire-sensitive species that were previously kept in check spread, and the food plants encouraged by regular burning become less common.
+
+        Fuel accumulates on the ground rather than being removed in small amounts regularly. So when a fire does start, it carries far more energy, reaches the canopy, and burns over a much larger area at once — replacing a mosaic of many small patches with a single uniform burn, which removes the refuges animals depended on.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.diagram{
+        box#cool{
+            Cool-season, low-intensity, patchy burning
+            applied at the right time for that Country
+        }
+
+        cue.draw{
+            box#mosaic{
+                A mosaic of patches
+                each at a different time since it last burned
+            }
+            box#habitat{
+                Habitat for more species
+                open ground for some, long-unburnt cover for others
+            }
+            arrow(from: #cool; to: #mosaic)
+            arrow(from: #mosaic; to: #habitat)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#fuel{
+                Fine fuel stays low everywhere
+                nothing accumulates enough to carry an intense fire
+            }
+            box#stop:terminal{
+                An unplanned fire runs into recently burnt ground
+                and stops
+            }
+            arrow(from: #mosaic; to: #fuel)
+            arrow(from: #fuel; to: #stop)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: What a mosaic of burnt patches buys
+    )
+]

@@ -1,16 +1,169 @@
 *(
     title: Adaptations
     description: Features that suit an organism to where it lives, and the three kinds they come in.
-    tags: adaptations, structural, physiological, behavioural, module 3, biology, stub
+    tags: adaptations, structural, physiological, behavioural, module 3, biology
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    A desert plant and a rainforest plant face different problems and are built differently in response. Calling a feature an adaptation is a claim that it improves survival or reproduction in that particular environment, which is stronger than merely noting that it is there.
+    Calling a feature an adaptation is not the same as noticing that the feature exists. It is a claim: that this feature improves the organism's survival or reproduction, in this environment, and that it is there because it did so for the organism's ancestors.
 
-    Written out here: structural, physiological and behavioural adaptations with Australian examples of each, how an adaptation is tested rather than assumed, and the care needed in avoiding the assumption that every feature must be adaptive.
+    definition{
+        A feature of an organism that improves its chance of surviving and reproducing in the environment it lives in, and which is present because it did so for that organism's ancestors.
+    }(
+        term: Adaptation
+    )
+
+    That is a strong claim, and it can be wrong. A camel's hump is an adaptation to a dry environment; a camel's brown colour is a fact about camels that nobody has shown to be one. The rest of this internote is about telling the two apart.
+
+    The table sorts adaptations into the three categories the course uses. They are categories of *how* the feature works — through the organism's structure, its chemistry, or what it does — rather than three different kinds of thing.
+}[
+    table{
+        Kind           | What it is                                        | Australian examples
+        Structural     | a feature of the body's shape or construction      | the thorny devil's grooved skin; a mulga's vertical leaves; a wombat's backward-facing pouch, which does not fill with soil as it digs
+        Physiological  | a feature of how the body's chemistry works        | a kangaroo concentrating its urine to lose less water; eucalypt leaves loaded with oils and toxins that most herbivores cannot process
+        Behavioural    | something the organism does                        | a bilby foraging at night and sheltering underground by day; a bearded dragon basking in the morning and retreating at midday
+    }(
+        title: Three ways an adaptation can work
+    )
+]
+
+scene{
+    # Testing the claim rather than telling a story
+
+    Any feature can be given a plausible explanation after the fact, and a plausible explanation is worth very little. The canvas is what turning a claim into a testable one looks like, using a real case.
+
+    The thorny devil is a small desert lizard whose skin is covered in fine grooves. The story is that these channels carry water to its mouth by capillary action, letting it drink from damp sand and from dew condensing on its own body.
+
+    ===
+
+    The first step is to state what the claim predicts. If the grooves move water to the mouth, then water placed anywhere on the lizard should end up at its mouth, it should get there without the lizard doing anything, and blocking the grooves should stop it.
+
+    ===
+
+    The second step is to measure rather than to observe. Put a lizard's foot in damp sand and record whether the skin elsewhere becomes wet, how quickly, and how much water arrives at the mouth. Every one of those is a number, and every one of them could have come out otherwise.
+
+    ===
+
+    The third step is comparison. Do related lizards from wetter habitats have the same grooves? If the grooves are an adaptation to aridity, the species that do not need them should not have them — and if they turn out to be present in every relative regardless of habitat, the claim is in trouble.
+
+    Studies of this kind have supported the water-transport account for the thorny devil. What matters here is the shape of the argument, not the answer: a claim that survives predictions it could have failed is a different thing from one that was never at risk.
+
+    note{
+        The comparative step is the one most often left out. A feature and an environment occurring together in one species is a single observation, and a single observation is consistent with almost any explanation. The evidence is in the pattern across many species — the same feature appearing wherever the environment demands it, and being absent where it does not.
+    }
+}[
+    canvas.diagram{
+        box#claim{
+            The claim
+            grooves in the skin carry water to the mouth
+        }
+
+        cue.draw{
+            box#predict{
+                What it predicts
+                water applied anywhere reaches the mouth, unaided, and stops if the grooves are blocked
+            }
+            arrow(from: #claim; to: #predict)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#measure{
+                Measure it
+                how much water arrives, how fast, and what happens when the grooves are blocked
+            }
+            arrow(from: #predict; to: #measure)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#compare{
+                Compare across species
+                do relatives in wetter habitats have the grooves too?
+            }
+            box#verdict:terminal{
+                Only now is it an adaptation
+                rather than a plausible story about a feature
+            }
+            arrow(from: #measure; to: #compare)
+            arrow(from: #compare; to: #verdict)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Turning a story into a claim that could fail
+    )
+]
+
+scene{
+    # Not every feature is an adaptation
+
+    The habit of asking "what is this for?" about every feature of every organism is a strong one and it leads to bad biology. Several kinds of feature exist for reasons that have nothing to do with improving survival, and the table names the common ones.
+
+    definition{
+        A structure that is reduced and no longer serves the function it evolved for, retained because there has been no strong selection against it. The human appendix and the pelvic bones of a whale are the usual examples.
+    }(
+        term: Vestigial structure
+    )
+
+    The most useful entry is the second. Many features are unavoidable side effects of something else. Blood is red because haemoglobin is red, and haemoglobin is that colour because of the iron at its centre — the redness has no function, and asking what the colour is for is asking the wrong question about a real feature.
+
+    The third entry is the one that most often catches people out in exam answers. Evolution cannot start over, so it works with what is already there. The vertebrate eye has a blind spot because its nerve fibres run across the front of the retina and have to pass back through it; an octopus eye, which evolved separately, does not have this problem. The vertebrate arrangement is not an adaptation for anything — it is a consequence of the order in which the eye was built.
+}[
+    table{
+        Kind of feature       | Why it is there                                                    | Example
+        A genuine adaptation  | it improved survival or reproduction, and was selected for          | the thorny devil's grooved skin
+        A side effect         | it follows unavoidably from something that was selected for         | the colour of blood; the sound a heartbeat makes
+        A constraint          | evolution could only modify what was already present                 | the blind spot in the vertebrate eye
+        A vestigial structure | it was an adaptation in an ancestor and no longer functions           | the pelvic bones of a whale; the wings of an emu
+        Genetic drift         | it became common by chance in a small population                     | many differences between isolated populations of the same species
+    }(
+        title: Five reasons a feature might exist
+        highlight rows: 2
+        highlight colour: orange
+    )
+]
+
+scene{
+    ## When two unrelated species arrive at the same answer
+
+    The strongest evidence that a feature is an adaptation is finding it twice, in species that could not have inherited it from a shared ancestor.
+
+    Australia is the best place in the world to see this, because its mammals were separated from the rest by ocean for tens of millions of years and evolved into the same ecological roles independently. The canvas takes two of those pairs.
+
+    ===
+
+    A thylacine and a wolf were not close relatives. The thylacine was a marsupial whose ancestors diverged from the placental line well over a hundred million years ago. It nevertheless had a long snout, forward-facing eyes, a comparable set of teeth and a body built for pursuit — because those are what hunting mid-sized prey requires.
+
+    ===
+
+    A marsupial mole and a placental mole are the same story underground: reduced eyes, a cylindrical body, enormous forelimbs with digging claws, and a nose shield. Neither inherited any of it from the other.
+
+    definition{
+        The independent evolution of similar features in unrelated species, because they face similar environmental demands. Similarity produced this way is evidence about the environment, not about ancestry.
+    }(
+        term: Convergent evolution
+    )
+
+    This is why convergence is such good evidence. When the same environment produces the same solution twice from different starting material, the feature is very unlikely to be an accident of history — and it is exactly the comparative argument the second scene called for, run at the largest possible scale.
+
+    task{
+        Emus have wings, and cannot fly. Are the wings an adaptation? Set out what you would need to know before answering.
+    }[
+        As flight structures they are vestigial: the ancestors of emus flew, and the wings are the reduced remains of the structures that did it. So they are not an adaptation for flight in an emu.
+
+        Whether they are an adaptation for something else is a separate question, and it is the one that needs evidence. Emus use their wings in display, and hold them out while running, which has been suggested to help with balance and with heat loss. Each of those is testable: measure whether removing the behaviour affects turning or body temperature, and check whether related flightless birds facing the same demands use their wings the same way.
+
+        The general answer is that "vestigial" describes a structure's history, not its current use, and a structure can be vestigial for its original function while being adapted to a new one.
+    ](
+        title: Your turn
+    )
 
     Three lines run from here. The pressures an environment applies are in *Effects of the Environment on Organisms*; the mechanism producing adaptations is *Natural Selection*; and the same reasoning applied to whole communities begins in *Population Dynamics*.
 
@@ -19,4 +172,44 @@ scene{
     internote(ref: natural-selection.chalk)
 
     internote(ref: population-dynamics.chalk)
-}
+}[
+    canvas.diagram{
+        box#split{
+            One ancestor, two lineages
+            separated for over a hundred million years
+        }
+
+        cue.draw{
+            box#thyl{
+                Thylacine, a marsupial
+                long snout, forward-facing eyes, built for pursuit
+            }
+            box#wolf{
+                Wolf, a placental
+                the same features, arrived at separately
+            }
+            arrow(from: #split; to: #thyl)
+            arrow(from: #split; to: #wolf)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#mmole{
+                Marsupial mole
+                reduced eyes, digging forelimbs, a nose shield
+            }
+            box#pmole{
+                Placental mole
+                reduced eyes, digging forelimbs, a nose shield
+            }
+            arrow(from: #split; to: #mmole)
+            arrow(from: #split; to: #pmole)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: The same demand, answered twice
+    )
+]

@@ -1,18 +1,211 @@
 *(
     title: Immunity
     description: The adaptive response that remembers a pathogen, and why the second exposure differs from the first.
-    tags: immunity, antigen, antibody, lymphocytes, module 7, biology, stub
+    tags: immunity, antigen, antibody, lymphocytes, module 7, biology
     lesson
 )
 
+// Scene 1's curves are shaped models pinned to the standard description of the
+// two responses. The primary response is drawn beginning about five days after
+// first exposure and peaking near day 12 at a low level; the secondary response
+// begins within a day or two of the second exposure and peaks several times
+// higher and sooner. The two exposures are set at day 0 and day 30.
 @include(src: ../preface.part.chalk)
 
 scene{
-    The adaptive immune response is slow the first time and fast every time after, and that asymmetry is the single most consequential fact in the whole of infectious disease. Everything vaccination does depends on it.
+    The adaptive immune response is slow the first time it meets a pathogen and fast every time afterwards. That single asymmetry is the most consequential fact in the whole of infectious disease, and the canvas is a picture of it.
 
-    Written out here: antigens and antibodies, the lymphatic system, the cell-mediated and antibody-mediated responses and the division of labour between them, and the memory cells that make a second exposure to the same pathogen a different event from the first.
+    definition{
+        Any molecule the immune system recognises as foreign and responds to. Antigens are usually proteins or carbohydrates on the surface of a pathogen or an infected cell.
+    }(
+        term: Antigen
+    )
+
+    ===
+
+    The blue curve is the first exposure. Nothing measurable happens for about five days, because the body has to find the very small number of lymphocytes that happen to recognise this particular antigen and then multiply them. Antibody levels then rise, peak modestly around a fortnight, and decline.
+
+    During those first days the person is often ill, because the pathogen is multiplying and only the innate defences from *Responses to Pathogens* are opposing it.
+
+    ===
+
+    The orange curve is the second exposure to the same pathogen, thirty days later. The response begins within a day or two, rises far more steeply, reaches a peak several times higher, and lasts longer.
+
+    The person usually does not become ill at all. The pathogen is cleared before it can multiply enough to cause symptoms, which is what being immune to something consists of.
+
+    ===
+
+    Everything vaccination does depends on this difference. A vaccine is a way of arranging for the first exposure to happen safely, so that the exposure that matters is the second one.
+
+    definition{
+        The state in which a pathogen no longer causes disease in a person who has met it before, because the adaptive response is now fast enough to clear it before symptoms develop.
+    }(
+        term: Immunity
+    )
+}[
+    canvas.graph{
+        axis.label(x: 0; label: first exposure; line; colour: grey)
+        axis.label(x: 30; label: second exposure; line; colour: grey)
+
+        cue{
+            curve(f: 100 * exp(-((x - 12)/5)^2); domain: [0, 28]; colour: blue; label: primary response)
+        }(
+            in: 1
+        )
+
+        cue{
+            curve(f: 900 * exp(-((x - 37)/5)^2); domain: [30, 60]; colour: orange; label: secondary response)
+        }(
+            in: 2
+        )
+
+        cue{
+            axis.brace(label: about five days of nothing; x: [0, 5]; colour: grey)
+        }(
+            in: 3
+        )
+    }(
+        x axis label: days
+        y axis label: antibody in the blood
+        x domain: [0, 60]
+        y domain: [0, 1000]
+        !show ticks
+    )
+]
+
+scene{
+    # Antibodies, and the four things they do
+
+    An antibody is a protein produced in response to one particular antigen, with a binding site shaped to fit that antigen and very few others. Its specificity is the same kind of specificity an enzyme's active site has, and it comes from the same source: a shape.
+
+    definition{
+        A protein produced by plasma cells that binds to one specific antigen. Antibodies do not destroy pathogens directly; they mark, immobilise or block them so that other parts of the system can.
+    }(
+        term: Antibody
+    )
+
+    That last clause is the point of the table, and it is the part most often left out of an answer. Binding an antigen achieves nothing on its own. What matters is what the binding leads to, and there are four routes.
+
+    Neutralisation blocks the part of a virus or toxin that would otherwise attach to a host cell, so it can no longer get in or do damage. Agglutination clumps many pathogens together, which immobilises them and makes them a single large target. Opsonisation coats a pathogen in antibody, which phagocytes recognise and grip far more readily than a bare surface. And bound antibody activates the complement system, a cascade of blood proteins that ends by punching holes in bacterial membranes.
+
+    The lymphatic system is where much of this is organised. It is a network of vessels draining fluid from the tissues, with lymph nodes along it in which lymphocytes are concentrated. Fluid from an infected area passes through a node on its way back to the blood, carrying antigen with it, so the node is where the pathogen and the lymphocytes that recognise it are brought together. Swollen glands during an infection are lymph nodes with a great deal of cell division going on in them.
+}[
+    table{
+        What the antibody does | How it works                                                        | What finishes the job
+        Neutralisation         | binds the part of a virus or toxin that would attach to a host cell  | nothing further is needed — the pathogen simply cannot get in
+        Agglutination          | binds several pathogens at once, clumping them together              | phagocytes, which can now engulf many at a time
+        Opsonisation           | coats the pathogen's surface in antibody                             | phagocytes, which grip a coated pathogen far more readily
+        Complement activation  | bound antibody triggers a cascade of blood proteins                  | the cascade itself, which punctures bacterial membranes
+    }(
+        title: Antibodies mark — something else destroys
+    )
+]
+
+scene{
+    # Two arms of one response
+
+    The adaptive response is usually taught as two halves, and they differ in what they can reach.
+
+    definition{
+        The arm of the adaptive response carried out by B lymphocytes, which produce antibodies that circulate in blood and lymph. It acts on pathogens outside cells.
+    }(
+        term: Antibody-mediated response
+    )
+
+    definition{
+        The arm carried out by T lymphocytes, which act on cells directly rather than by releasing antibodies. It acts on the body's own cells when they have been infected or have become cancerous.
+    }(
+        term: Cell-mediated response
+    )
+
+    The division of labour follows from where the pathogen is. An antibody is a molecule floating in fluid, so it can bind anything in the blood, the lymph or the tissue spaces — bacteria, toxins, viruses between cells. It cannot get inside a cell.
+
+    ===
+
+    A virus inside a cell is therefore invisible to antibodies, and something else has to deal with it. Infected cells display fragments of what is inside them on their surface, and a cytotoxic T cell that recognises those fragments kills the cell — destroying the virus factory along with the factory.
+
+    ===
+
+    Helper T cells sit between the two arms and activate both, which is why they matter out of proportion to what they do directly. HIV infects helper T cells specifically, and the reason it is so destructive is not that it attacks any one arm but that it removes the cell both arms depend on being activated by.
+
+    The canvas is the whole arrangement. Follow the two paths from the antigen-presenting cell in the middle, and note that memory cells are produced on both.
+}[
+    canvas.diagram{
+        box#apc{
+            A phagocyte engulfs the pathogen
+            and displays its antigens on its own surface
+        }
+
+        cue.draw{
+            box#helper{
+                Helper T cell
+                recognises the displayed antigen and activates both arms
+            }
+            arrow(from: #apc; to: #helper)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#b{
+                B cells divide
+                into plasma cells, which secrete antibody, and memory B cells
+            }
+            box#t{
+                Cytotoxic T cells divide
+                they kill infected body cells, and leave memory T cells
+            }
+            arrow(from: #helper; to: #b)
+            arrow(from: #helper; to: #t)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: One antigen, two arms, memory on both
+    )
+]
+
+scene{
+    ## Where immunity comes from
+
+    Memory cells are what the first scene's asymmetry is made of. During a first exposure, most of the activated lymphocytes become effector cells that do the work and then die, but some become memory cells that persist — sometimes for decades — and that are already present in large numbers and already specific to that antigen.
+
+    definition{
+        A long-lived lymphocyte produced during a first exposure to an antigen, which remains in the body afterwards so that a second exposure is met by a large, ready population rather than by a handful of cells that must first be found.
+    }(
+        term: Memory cell
+    )
+
+    Immunity can arrive four ways, and the table sorts them on two questions: did the person's own immune system make the response, and did the exposure happen naturally or was it arranged?
+
+    Active immunity means the person's own lymphocytes responded, so memory cells were produced and the protection is long-lasting. Passive immunity means antibodies were transferred from somewhere else, so there are no memory cells and the protection lasts only as long as the antibodies do — weeks to months.
+
+    That distinction has a direct practical consequence. Antibodies given after a snake bite or a suspected tetanus exposure work immediately and do not protect against the next exposure at all. A vaccine works slowly and does.
+
+    task{
+        A newborn baby is protected against several diseases for its first few months, then becomes susceptible to them. Explain, and say which row of the table this is.
+    }[
+        Antibodies crossed the placenta from the mother before birth, and more arrive in breast milk afterwards. This is natural passive immunity — the third row.
+
+        The baby's own immune system did not make those antibodies, so no memory cells were formed. Antibodies are proteins and are broken down over weeks to months, and once they are gone the protection goes with them. The baby is then susceptible until it either meets the pathogens itself or is vaccinated, both of which are active routes and both of which leave memory cells behind.
+    ](
+        title: Your turn
+    )
 
     Exploiting that memory deliberately, and attacking pathogens directly when it is not available, is *Prevention, Treatment and Control*.
 
     internote(ref: prevention-treatment-and-control.chalk)
-}
+}[
+    table{
+        Route                  | What happened                                                | Memory cells? | How long it lasts
+        Natural active         | the person caught the disease and recovered                   | yes            | often for life
+        Artificial active      | the person was vaccinated                                     | yes            | years, sometimes for life; boosters extend it
+        Natural passive        | antibodies crossed the placenta, or came in breast milk        | no             | weeks to months
+        Artificial passive     | antibodies were injected — antivenom, or tetanus immunoglobulin | no            | weeks, and it acts immediately
+    }(
+        title: Four routes to being protected
+        highlight rows: 4, 5
+        highlight colour: orange
+    )
+]

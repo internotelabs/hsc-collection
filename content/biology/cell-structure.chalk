@@ -46,7 +46,7 @@ scene{
 
     The lysosome is the clearest case. It holds digestive enzymes that work at about pH 4.8 and would attack the cell's own proteins if they were loose in the cytosol — except that at the cytosol's pH 7.2 those same enzymes barely function. The membrane and the pH difference together make a room in which something dangerous can be done safely.
 
-    A second gain is surface. Almost all of a cell's reactions happen on membranes rather than in open solution, so folding a great deal of membrane into a small volume — the stacked discs of the Golgi, the sheets of the endoplasmic reticulum, the cristae of a mitochondrion — is how a cell increases the area available to work on without growing.
+    A second gain is surface. Almost all of a cell's reactions happen on membranes rather than in open solution. So a cell increases the area available to work on by folding a great deal of membrane into a small volume: the stacked discs of the Golgi, the sheets of the endoplasmic reticulum, the cristae of a mitochondrion. It gains working surface without growing.
 
     note{
         Mitochondria and chloroplasts are the two organelles with their own DNA and their own ribosomes, and those ribosomes are the bacterial kind rather than the kind in the surrounding cytoplasm. The endosymbiotic explanation is that each began as a free-living prokaryote taken up by a larger cell and never digested.
@@ -160,7 +160,7 @@ scene{
         term: Eukaryote
     )
 
-    The size difference in the first row is the one to hold on to. A eukaryotic cell is typically ten to a hundred times wider than a prokaryotic one, which means something like a thousand to a million times the volume — and a volume that large cannot be served by diffusion from a single outer membrane, which is part of why the compartments in the previous scene exist at all.
+    The size difference in the first row is the one to hold on to. A eukaryotic cell is typically ten to a hundred times wider than a prokaryotic one. Cubing that, it holds something like a thousand to a million times the volume. A volume that large cannot be served by diffusion from a single outer membrane, which is part of why the compartments in the previous scene exist at all.
 
     task{
         A cell is examined and found to contain ribosomes, a plasma membrane, DNA and a cell wall, but no nucleus and no mitochondria. What can be concluded, and what cannot?

@@ -1,18 +1,262 @@
 *(
     title: Natural Selection
     description: The mechanism Darwin and Wallace proposed, and the four conditions it requires to operate.
-    tags: natural selection, Darwin, Wallace, speciation, module 3, biology, stub
+    tags: natural selection, Darwin, Wallace, speciation, module 3, biology
     lesson
 )
 
+// Scene 2 plots the standard logistic form for an advantageous allele spreading
+// through a population: p(t) = 1 / (1 + ((1 - p0)/p0) e^(-st)), with a starting
+// frequency p0 = 0.01 and a selective advantage s = 0.1. That gives
+//   p = 0.5 at t = ln(99)/0.1 = 46 generations
+//   p = 0.99 at t = 92 generations
 @include(src: ../preface.part.chalk)
 
 scene{
-    Natural selection is not a tendency of organisms to improve. It is an arithmetic consequence of four conditions, and wherever all four hold it follows whether anything is trying or not.
+    Natural selection is often described as though organisms were striving to improve, and that description is wrong in a way that makes the whole idea harder than it is. Nothing strives. Nothing is trying.
 
-    Written out here: variation, heritability, differential survival and reproduction, and overproduction of offspring; the argument Darwin and Wallace independently arrived at; and speciation, where populations of one species stop interbreeding and become two.
+    What natural selection is, is a conclusion that follows from four conditions. Wherever all four hold, the conclusion follows whether or not anything is aware of it — in a population of bacteria, in a set of computer programs being copied with errors, anywhere at all.
+
+    ===
+
+    The first condition is variation. The individuals in a population are not identical.
+
+    The second is heritability. Some of that variation is passed from parent to offspring.
+
+    ===
+
+    The third is overproduction. Every population produces more offspring than can survive, because resources are finite and reproduction is not.
+
+    The fourth is differential survival and reproduction. Which individuals survive and breed is not random with respect to the variation — some variants do better than others in this environment.
+
+    ===
+
+    Given all four, the conclusion is unavoidable. The variants that do better leave more offspring; those offspring inherit the characteristics that made their parents successful; so the proportion of the population carrying those characteristics rises. Repeat, and the population changes.
+
+    definition{
+        The process by which characteristics that improve survival and reproduction become more common in a population over generations, because the individuals carrying them leave more offspring.
+    }(
+        term: Natural selection
+    )
+
+    Notice what is not in the argument. There is no goal, no direction, and no guarantee of improvement in any general sense — only improvement relative to this environment, which may change tomorrow.
+}[
+    canvas.diagram{
+        box#pop{
+            A population
+            and four things that are true of it
+        }
+
+        cue.draw{
+            box#var{
+                Variation
+                the individuals are not identical
+            }
+            box#herit{
+                Heritability
+                some of that variation is passed to offspring
+            }
+            arrow(from: #pop; to: #var)
+            arrow(from: #pop; to: #herit)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#over{
+                Overproduction
+                more offspring are produced than can survive
+            }
+            box#diff{
+                Differential survival
+                which ones survive depends on the variation
+            }
+            arrow(from: #pop; to: #over)
+            arrow(from: #pop; to: #diff)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#conc:terminal{
+                Therefore the population changes
+                no goal, no striving, no exceptions
+            }
+            arrow(from: #var; to: #conc)
+            arrow(from: #herit; to: #conc)
+            arrow(from: #over; to: #conc)
+            arrow(from: #diff; to: #conc)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Four conditions and what follows
+    )
+]
+
+scene{
+    # A small advantage, compounded
+
+    The commonest objection to natural selection is that the advantages involved are too small to matter. If an allele makes an organism one per cent more likely to survive, how could that ever produce anything?
+
+    The answer is that the effect compounds, and the canvas is what compounding looks like. The allele plotted here gives its carriers a ten per cent advantage — small enough to be completely invisible in any one generation, and small enough that no individual organism's fate would be predictable from it.
+
+    ===
+
+    It starts at one per cent of the population. For the first twenty generations almost nothing appears to happen: the allele is rare, so the extra offspring it produces are few, and the line barely lifts off the axis.
+
+    Then it accelerates. By generation $46$ it is in half the population, and by generation $92$ it is in $99$ per cent of it.
+
+    ===
+
+    Ninety generations is a long time for a person and nothing at all in geological terms. For a bacterium it is a couple of days; for an insect, a few years; for a mammal, a few centuries. The mechanism does not need large advantages, because it has enormous amounts of time.
+
+    The shape is also worth reading. Change is slowest when the allele is rare and slowest again when it is nearly universal, and fastest in the middle. That is why a beneficial mutation can sit at a low frequency for a very long time before anything visible happens — and why, once a change starts, it can complete quickly.
+
+    note{
+        Nothing in this graph requires the environment to stay the same. If it changes, $s$ changes with it, and an allele that was spreading can start to decline — which is what makes an "improvement" always provisional. Natural selection tracks the environment; it does not head anywhere.
+    }
+}[
+    canvas.graph{
+        curve(f: 1 / (1 + 99 * exp(-0.1 * x)); domain: [0, 120]; colour: blue)
+
+        cue{
+            point(x: 46; y: 0.5; colour: orange; label: half the population, by generation $46$)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 92; y: 0.99; colour: orange; label: $99$ per cent, by generation $92$)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: generations
+        y axis label: frequency of the advantageous allele
+        x domain: [0, 120]
+        y domain: [0, 1.1]
+    )
+]
+
+scene{
+    # Darwin, Wallace, and a case anyone can check
+
+    Charles Darwin worked out the argument in the late 1830s and did not publish it for twenty years. Alfred Russel Wallace, working in the Malay Archipelago, arrived at essentially the same argument independently and sent it to Darwin in 1858. Their work was presented jointly to the Linnean Society that year, and Darwin's *On the Origin of Species* followed in 1859.
+
+    Two people reaching the same conclusion separately, from different evidence on opposite sides of the world, is worth noting. It suggests the argument was there to be found in the evidence rather than invented.
+
+    The peppered moth is the case most often used to check the four conditions against a real population, because all four can be observed rather than assumed.
+
+    The moth occurs in a pale speckled form and a dark form. Before industrialisation the pale form was overwhelmingly the commoner, resting on lichen-covered tree trunks where it was very hard to see. Industrial soot killed the lichens and blackened the bark around English cities, and over a few decades the dark form became the commoner one in those areas — while remaining rare in unpolluted regions.
+
+    The table runs the four conditions against the moth. Every row is an observation rather than an inference, which is what makes this a demonstration and not an illustration.
+
+    Then the argument was run in reverse. Clean air legislation from the 1950s onwards reduced the soot, the lichens returned, and the dark form declined again in the same areas. A prediction was made, the environment changed in the direction predicted, and the frequencies followed.
+}[
+    table{
+        The condition                 | What was observed in the moths
+        Variation                     | both a pale speckled form and a dark form occur in the same population
+        Heritability                  | the difference is caused by a single gene and is inherited in the ordinary way
+        Overproduction                | a female lays hundreds of eggs, of which very few reach adulthood
+        Differential survival         | on soot-blackened bark the pale form is conspicuous to birds and the dark form is not; on lichen-covered bark the reverse
+        The conclusion, checked        | the dark form became common near industrial cities, stayed rare elsewhere, and declined again after clean air legislation
+    }(
+        title: The four conditions, observed rather than assumed
+        highlight rows: 6
+        highlight colour: orange
+    )
+]
+
+scene{
+    ## How one species becomes two
+
+    Natural selection changes a population. It does not, on its own, make two species out of one — for that, something has to stop the population interbreeding with itself.
+
+    definition{
+        A group of organisms that can interbreed with one another and produce fertile offspring. Two populations that no longer do so are separate species, whatever they look like.
+    }(
+        term: Species
+    )
+
+    The commonest route is on the canvas, and the first step is geographical.
+
+    ===
+
+    A population is split by a barrier — a river changes course, sea level rises and isolates an island, a mountain range lifts, or a habitat contracts into fragments. Gene flow between the two halves stops.
+
+    ===
+
+    The two halves are now in different places, so they face different selection pressures, and different mutations arise in each. Both populations change, in different directions, and nothing brings them back together.
+
+    ===
+
+    Given enough time the differences accumulate to the point where individuals from the two populations can no longer produce fertile offspring even if they meet. At that moment there are two species where there was one, and the barrier is no longer doing any work — the isolation has become biological rather than geographical.
+
+    definition{
+        The formation of new species by the geographical separation of populations that then diverge until they can no longer interbreed. It is the commonest route to new species, and the one the fossil and biogeographic evidence most often shows.
+    }(
+        term: Allopatric speciation
+    )
+
+    task{
+        Two populations of a lizard are separated by a new road for fifty years. When a wildlife crossing is built, individuals from the two populations meet, mate, and produce fertile young. Has speciation occurred, and what would need to have been different?
+    }[
+        No. The test is whether they can still interbreed and produce fertile offspring, and they can, so they are still one species however different they may look.
+
+        What would have needed to be different is time, or the strength of the divergence. Fifty years is a handful of generations for a lizard, and reproductive isolation generally takes far longer to accumulate — long enough for differences in mating behaviour, breeding season, or genetic compatibility to build up. The road caused isolation; it did not last long enough to cause speciation.
+    ](
+        title: Your turn
+    )
 
     A mechanism this counterintuitive was not accepted on its plausibility. What convinced people is set out in *Evidence for Evolution*.
 
     internote(ref: evidence-for-evolution.chalk)
-}
+}[
+    canvas.diagram{
+        box#one{
+            One interbreeding population
+            gene flow throughout
+        }
+
+        cue.draw{
+            box#barrier{
+                A barrier appears
+                a river, a rising sea, a mountain range, cleared land
+            }
+            arrow(from: #one; to: #barrier)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#a{
+                Population A
+                its own selection pressures, its own mutations
+            }
+            box#b{
+                Population B
+                different pressures, different mutations
+            }
+            arrow(from: #barrier; to: #a)
+            arrow(from: #barrier; to: #b)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#two:terminal{
+                Two species
+                they can no longer produce fertile offspring, barrier or no barrier
+            }
+            arrow(from: #a; to: #two)
+            arrow(from: #b; to: #two)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Separation, divergence, and then isolation
+    )
+]

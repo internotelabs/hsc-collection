@@ -1,18 +1,227 @@
 *(
     title: Genetic Variation
     description: Where the differences between individuals of a single species come from.
-    tags: genetic variation, crossing over, independent assortment, module 5, biology, stub
+    tags: genetic variation, crossing over, independent assortment, module 5, biology
     lesson
 )
 
+// Scene 3's arithmetic. A human has 23 chromosome pairs, and each pair lines up
+// independently of the others at meiosis I, so the number of different
+// chromosome combinations in a gamete is 2^23 = 8 388 608. Fertilisation joins
+// one such gamete to another, giving 2^23 x 2^23 = 2^46 = 70 368 744 177 664
+// different zygotes — about 7.0 x 10^13. On the plotted log axis,
+// log10(2^n) = 0.30103 n, so n = 23 sits at 6.92 and n = 46 at 13.85.
 @include(src: ../preface.part.chalk)
 
 scene{
-    Two siblings share both parents and are still not identical. The variation has specific mechanical sources, all of them in meiosis and fertilisation, and they can be counted rather than merely asserted.
+    Two siblings have the same two parents and are not the same person. That is so familiar it can pass without comment, and it should not: every gene either of them carries came from the same two people, so where does the difference come from?
 
-    Written out here: crossing over, independent assortment and the number of combinations it makes available, random fertilisation, and mutation as the only source that introduces genuinely new alleles rather than reshuffling existing ones.
+    It comes from three specific mechanical events, all of them in meiosis and fertilisation. None of them invents anything. All three take the alleles the parents already had and deal them out differently.
+
+    definition{
+        Any of the alternative versions of a gene. A gene occupies a fixed position on a chromosome; which allele sits there is what differs between individuals.
+    }(
+        term: Allele
+    )
+
+    ===
+
+    The first is crossing over, in which the two chromosomes of a pair physically exchange sections before they separate.
+
+    ===
+
+    The second is independent assortment, in which each pair of chromosomes lines up without reference to how the other pairs have lined up, so which parent's copy goes into a given gamete is decided separately for every pair.
+
+    ===
+
+    The third is random fertilisation. Which one of many million sperm reaches the egg is not determined by anything, and the combination in the zygote is a combination of two independently produced shuffles.
+}[
+    canvas.diagram{
+        box#alleles{
+            The alleles the two parents carry
+            a fixed set — nothing on this canvas adds to it
+        }
+
+        cue.draw{
+            box#cross{
+                Crossing over
+                chromosomes of a pair swap sections, in meiosis I
+            }
+            arrow(from: #alleles; to: #cross)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#assort{
+                Independent assortment
+                each pair lines up without reference to the others
+            }
+            arrow(from: #alleles; to: #assort)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#fert{
+                Random fertilisation
+                any gamete may meet any other
+            }
+            box#out:terminal{
+                An offspring unlike either parent
+                and unlike any sibling
+            }
+            arrow(from: #alleles; to: #fert)
+            arrow(from: #cross; to: #out)
+            arrow(from: #assort; to: #out)
+            arrow(from: #fert; to: #out)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Three shuffles, no new cards
+    )
+]
+
+scene{
+    # Crossing over breaks up the combinations a parent inherited
+
+    Early in meiosis, the two chromosomes of each pair come to lie alongside each other and touch at points along their length. Where they touch, they break and rejoin — so a section of the maternal chromosome ends up attached to the paternal one, and the other way round.
+
+    definition{
+        The exchange of matching sections between the two chromosomes of a pair during the first division of meiosis. The result is chromosomes carrying a mixture of the alleles the individual inherited from each of their own parents.
+    }(
+        term: Crossing over
+    )
+
+    The canvas is the four chromatids that emerge from one such pair. Blue is a chromosome inherited from one parent and orange from the other.
+
+    ===
+
+    The two on the outside are unchanged — a whole maternal chromosome and a whole paternal one. The two in the middle are recombinants: each carries alleles from both.
+
+    definition{
+        A chromosome carrying a combination of alleles that neither of the individual's own chromosomes had, produced by crossing over.
+    }(
+        term: Recombinant chromosome
+    )
+
+    Without crossing over, the alleles on one chromosome would always travel together. Every gene on your chromosome 7 would be inherited as one block, exactly as your mother or exactly as your father had it. Crossing over is what stops that, and it is why two genes on the same chromosome can be separated in a way that would otherwise be impossible.
+
+    note{
+        How often two genes are separated depends on how far apart they sit, because a break is more likely to fall between them if there is more chromosome in between. That relationship was used to build the first gene maps, decades before anyone could read a sequence: the frequency of recombination between two genes is a measure of the distance between them.
+    }
+}[
+    canvas.graph{
+        segment(from: (1, 0); to: (1, 10); colour: blue)
+        segment(from: (7, 0); to: (7, 10); colour: orange)
+        text(x: 1; y: -1.4; label: parental; colour: grey)
+        text(x: 7; y: -1.4; label: parental; colour: grey)
+
+        cue.highlight{
+            segment(from: (3, 0); to: (3, 6); colour: blue)
+            segment(from: (3, 6); to: (3, 10); colour: orange)
+            segment(from: (5, 0); to: (5, 6); colour: orange)
+            segment(from: (5, 6); to: (5, 10); colour: blue)
+            text(x: 3; y: -1.4; label: recombinant; colour: grey)
+            text(x: 5; y: -1.4; label: recombinant; colour: grey)
+        }(
+            at: 1
+        )
+    }(
+        x domain: [0, 8]
+        y domain: [-2.5, 11.5]
+        !show background
+    )
+]
+
+scene{
+    # Independent assortment, counted
+
+    A human cell has $23$ pairs of chromosomes. At meiosis every pair lines up at the middle of the cell, and each pair does so without reference to any other pair — so for every pair it is a separate coin toss which parent's copy goes to which end.
+
+    definition{
+        The principle that the way one pair of chromosomes lines up at meiosis has no effect on how any other pair lines up, so alleles on different chromosomes are inherited independently of one another.
+    }(
+        term: Independent assortment
+    )
+
+    Two pairs give $2^2 = 4$ possible combinations. Ten pairs give $2^{10} = 1024$. The canvas plots this against the number of pairs, on an axis where each step is a factor of ten.
+
+    ===
+
+    Twenty-three pairs give $2^{23}$, which is $8\,388\,608$. A single person can produce more than eight million genetically different gametes from independent assortment alone, before crossing over is taken into account at all.
+
+    ===
+
+    Then fertilisation squares it. Any one of that eight million from one parent may meet any one of the eight million from the other, so the number of different children two particular people could have is
+
+    equation{
+        2^{23} \times 2^{23} = 2^{46} = 70\,368\,744\,177\,664
+    }
+
+    which is about seventy trillion — roughly ten thousand times the number of people who have ever lived. And crossing over multiplies that again by an amount too large to be worth writing down, because the number of possible break points along a chromosome is enormous.
+
+    The practical conclusion is short. Two siblings being different is not the thing that needs explaining. Two siblings being the same — identical twins — is, and it happens only because one zygote split rather than because two shuffles came out alike.
+}[
+    canvas.graph{
+        curve(f: 0.30103 * x; domain: [1, 46]; colour: blue)
+
+        cue{
+            point(x: 23; y: 6.92; colour: orange; label: one gamete: $8.4$ million)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 46; y: 13.85; colour: orange; label: one zygote: $7 \times 10^{13}$)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: chromosome pairs assorting independently
+        y axis label: combinations possible
+        x domain: [0, 52]
+        y domain: [0, 15]
+        y format: log
+    )
+]
+
+scene{
+    ## Shuffling is not creating
+
+    All three mechanisms rearrange alleles that already exist. None of them produces an allele that was not in the parents, and a moment's thought shows why: every base in an offspring's DNA was copied from a base in a parent's DNA.
+
+    That matters for evolution, because a population that could only shuffle would eventually run out of new material. Every possible combination would be reachable and none of them would ever be new.
+
+    Mutation is the exception, and it is the only one. A copying error changes a base to something that was not there before, and that is where every allele in existence originally came from — including the ones the three shuffling mechanisms have been dealing out ever since.
+
+    The table sorts the four sources on exactly that question, and the last column is the whole point of the scene.
+
+    task{
+        A plant breeder crosses two varieties repeatedly for twenty generations, selecting the best offspring each time, and finds that improvement eventually stops even though selection continues. Explain why, using the distinction in the table.
+    }[
+        Crossing and selecting only rearrange the alleles the two starting varieties had between them. After enough generations the favourable ones have all been brought together into the same plants, and there is nothing left to recombine — every remaining combination has already been tried.
+
+        Further improvement needs new alleles, and only mutation supplies those. That is why breeders introduce new varieties from elsewhere, or deliberately induce mutations, once a line stops responding to selection.
+    ](
+        title: Your turn
+    )
 
     Once variation exists, it is passed on in patterns regular enough to predict. Those patterns are *Inheritance Patterns*.
 
     internote(ref: inheritance-patterns.chalk)
-}
+}[
+    table{
+        Source                  | What it does                                                    | Does it create a new allele?
+        Crossing over           | swaps sections between the two chromosomes of a pair             | no
+        Independent assortment  | decides which parent's copy of each pair goes into a gamete       | no
+        Random fertilisation    | joins one shuffled gamete to another                             | no
+        Mutation                | changes a base to one that was not there before                   | yes — and it is the only source that does
+    }(
+        title: Three shuffles and one new deal
+        highlight rows: 5
+        highlight colour: orange
+    )
+]

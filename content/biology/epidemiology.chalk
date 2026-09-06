@@ -1,14 +1,282 @@
 *(
     title: Epidemiology
     description: Studying disease in populations rather than patients, and what such a study can and cannot establish.
-    tags: epidemiology, incidence, prevalence, correlation causation, module 7, biology, stub
+    tags: epidemiology, incidence, prevalence, correlation causation, module 7, biology
     lesson
 )
 
+// Scene 1's worked comparison uses prevalence = incidence x average duration.
+//   Influenza:        incidence 20 per 1000 per year, duration about 1 week
+//                     = 0.019 years, so prevalence = 20 x 0.019 = 0.38 per 1000
+//   Type 2 diabetes:  incidence 5 per 1000 per year, duration about 20 years,
+//                     so prevalence = 5 x 20 = 100 per 1000
+// Influenza has four times the incidence and about one 260th of the prevalence.
+//
+// Scene 4 uses John Snow's Table IX from "On the Mode of Communication of
+// Cholera" (1855), for the 1854 London epidemic: Southwark and Vauxhall,
+// 40 046 houses and 1263 cholera deaths, or 315 per 10 000 houses; Lambeth,
+// 26 107 houses and 98 deaths, or 37 per 10 000; the rest of London, 256 423
+// houses and 1422 deaths, or 59 per 10 000.
 @include(src: ../preface.part.chalk)
 
 scene{
-    An individual case tells you very little about a cause, because too many things differ between any two people. Comparing large groups that differ in one respect tells you considerably more — and still stops short of proof.
+    Two people differ in thousands of ways, so a single case tells you almost nothing about what caused a disease. A person who smoked and developed lung cancer also ate particular food, lived in a particular place and inherited a particular set of alleles, and nothing about that one case separates the candidates.
 
-    Written out here: incidence and prevalence and the difference between them, the design of epidemiological studies, the reasons a correlation between an exposure and a disease need not mean the exposure caused it, and the historical studies that changed public health despite that limitation.
-}
+    Comparing large groups that differ in one respect tells you a great deal more, because everything else tends to average out across enough people. That is what epidemiology does.
+
+    definition{
+        The study of the distribution of disease in populations, and of the factors that explain that distribution.
+    }(
+        term: Epidemiology
+    )
+
+    The first thing it needs is a way of counting, and there are two ways that are constantly confused.
+
+    definition{
+        The number of new cases of a disease arising in a population over a stated period, usually a year. It measures how fast the disease is being acquired.
+    }(
+        term: Incidence
+    )
+
+    definition{
+        The number of people who have the disease at one moment. It measures how much of it there is, and depends on how long people have it for as well as on how fast it is acquired.
+    }(
+        term: Prevalence
+    )
+
+    The table works two diseases through, using the relationship that prevalence is roughly incidence multiplied by how long the illness lasts.
+
+    Influenza is acquired four times as often as type 2 diabetes and is present in about one two-hundred-and-sixtieth as many people at any moment, because it lasts a week and diabetes lasts decades. Neither number is wrong and neither is more real than the other — they answer different questions, and a study that uses the wrong one gets a wrong answer.
+}[
+    table{
+                                        | Influenza                | Type 2 diabetes
+        Incidence, per $1000$ per year   | $20$                     | $5$
+        Average duration                 | about a week, or $0.019$ years | about $20$ years
+        Prevalence, per $1000$           | $20 \times 0.019 = 0.38$ | $5 \times 20 = 100$
+        What it is useful for            | judging how fast it spreads, and whether an outbreak is growing | planning how many people need ongoing care
+    }(
+        title: The same two diseases, counted two ways
+        header column
+        highlight rows: 4
+        highlight colour: orange
+    )
+]
+
+scene{
+    # Three ways to design a study
+
+    Once you can count, the question is who to compare with whom, and there are three standard answers. They differ in where the study starts and which way it looks.
+
+    ===
+
+    A cohort study starts with exposure and follows forwards. Take a large group of people who do not yet have the disease, record who is exposed to the suspected cause, wait, and see who develops it. It gives incidence directly and it establishes that the exposure came first — which matters, because a cause has to precede its effect.
+
+    Its cost is time and size. Following tens of thousands of people for decades is expensive, and for a rare disease almost nobody in the cohort will develop it.
+
+    ===
+
+    A case–control study starts with the disease and looks backwards. Take people who have it and a comparable group who do not, and compare what each group was exposed to in the past. It is fast and it works for rare diseases, because you begin by collecting the cases.
+
+    Its weakness is that the past has to be recalled or reconstructed, and people who are ill remember their exposures differently from people who are not. Choosing a genuinely comparable control group is also harder than it sounds.
+
+    ===
+
+    A cross-sectional study takes a snapshot. Survey a population at one moment and record who has the disease and who has the exposure. It is quick and cheap, and it measures prevalence rather than incidence.
+
+    Its weakness is fundamental: a snapshot cannot say which came first. It is a good way to find out how much of a disease there is, and a poor way to find out what caused it.
+}[
+    canvas.diagram{
+        box#q{
+            Does this exposure cause this disease?
+            three ways to attack it
+        }
+
+        cue.draw{
+            box#cohort{
+                Cohort study
+                start with exposure, follow forwards, see who becomes ill
+            }
+            arrow(from: #q; to: #cohort)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#cc{
+                Case–control study
+                start with the disease, look backwards at past exposure
+            }
+            arrow(from: #q; to: #cc)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#cross{
+                Cross-sectional study
+                one snapshot: who has the disease and who has the exposure, now
+            }
+            arrow(from: #q; to: #cross)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Where each design starts, and which way it looks
+    )
+]
+
+scene{
+    # Why a correlation is not a cause
+
+    Suppose a study finds that people who do X get disease Y more often than people who do not. Four things could be true, and only one of them is the interesting one.
+
+    ===
+
+    X might cause Y. That is the hypothesis.
+
+    Y might cause X, which is reverse causation and is more common than it sounds. People with early undiagnosed illness change their behaviour — they exercise less, they lose weight, they sleep more — and a study can easily record the change as a cause when it is a symptom.
+
+    ===
+
+    Something else might cause both. That is confounding, and it is the reason most correlations are not causes.
+
+    definition{
+        A third factor associated with both the exposure and the disease, which produces an apparent link between them where none exists. Age, income, smoking and where a person lives are the confounders that appear most often.
+    }(
+        term: Confounding variable
+    )
+
+    The standard example is that people who carry matches have higher rates of lung cancer. Carrying matches does not cause cancer; smoking causes both. Remove smoking from the comparison — compare match-carrying smokers with non-match-carrying smokers — and the association disappears.
+
+    ===
+
+    Or the association could be chance. Test enough associations and some will reach any threshold of statistical significance by luck alone, which is why a single surprising finding is treated as a reason to look again rather than as a result.
+
+    Epidemiologists deal with all four by design rather than by argument: matching or adjusting for known confounders, requiring the exposure to precede the disease, looking for a dose–response relationship, and above all replicating in a different population with different confounders.
+
+    note{
+        None of this makes epidemiology weak. It makes it careful. A conclusion that survives a dose–response test, replication in several populations, a plausible biological mechanism, and an intervention that reduces the disease is about as well established as anything in biology — which is exactly the position tobacco and lung cancer reached.
+    }
+}[
+    canvas.diagram{
+        box#obs{
+            Observed: people who do X have more of disease Y
+            four explanations, one of them the one you want
+        }
+
+        cue.draw{
+            box#cause{
+                X causes Y
+                the hypothesis
+            }
+            box#reverse{
+                Y causes X
+                early illness changed the behaviour
+            }
+            arrow(from: #obs; to: #cause)
+            arrow(from: #obs; to: #reverse)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#confound{
+                Something else causes both
+                a confounding variable
+            }
+            arrow(from: #obs; to: #confound)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#chance{
+                Chance
+                test enough associations and some will look real
+            }
+            arrow(from: #obs; to: #chance)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Four explanations for one correlation
+    )
+]
+
+scene{
+    ## A study that changed public health without proving anything
+
+    In 1854 cholera was widely believed to be caused by bad air. John Snow thought it was carried in water, and the argument he assembled is worth following because it is epidemiology doing what only epidemiology can.
+
+    South London was supplied by two water companies whose pipes ran down the same streets, serving neighbouring houses. The Southwark and Vauxhall company drew its water from the Thames within the tidal reach of London's sewage. The Lambeth company had moved its intake upriver, above the sewage outfalls, a few years earlier.
+
+    The households were not otherwise sorted. Neighbours on the same street, of the same occupations and incomes, breathing the same air, differed in which company happened to supply them — which is as close to a controlled experiment as anyone could arrange without running one.
+
+    ===
+
+    Snow counted deaths against houses supplied. The canvas is his figures.
+
+    Among the $40\,046$ houses supplied by Southwark and Vauxhall there were $1263$ cholera deaths, or $315$ per ten thousand houses. Among the $26\,107$ houses supplied by Lambeth there were $98$ deaths, or $37$ per ten thousand — about one ninth the rate. The rest of London sat between the two at $59$ per ten thousand.
+
+    ===
+
+    Notice what Snow did not have. He had no microscope image of the organism, no culture, no way of running Koch's postulates — which had not been formulated, and which could not have been applied to a bacterium nobody could yet grow. *Vibrio cholerae* was not established as the cause for another thirty years.
+
+    What he had was a comparison in which one thing differed and the rates differed with it, and it was enough to act on. Removing the handle from the Broad Street pump, and the sanitary reform that followed the argument, saved a very large number of lives on the strength of evidence that fell well short of proof.
+
+    That is the standing lesson of the topic. Epidemiology cannot demonstrate a mechanism, and it can identify a cause well enough to act — often decades before anyone can say why.
+
+    task{
+        A cross-sectional survey finds that people who drink coffee have lower rates of type 2 diabetes. A newspaper reports that coffee prevents diabetes. Give three reasons to be cautious, and describe a study that would settle it better.
+    }[
+        First, the design cannot say which came first. A cross-sectional survey is a snapshot, so people who already have diabetes may have cut down their coffee — reverse causation, and it would produce exactly this result.
+
+        Second, confounding. Coffee drinking is associated with age, income, smoking and diet, all of which affect diabetes risk independently, so the association may belong to one of those.
+
+        Third, chance and selective reporting. Dietary surveys test very many associations at once, and some will reach significance by luck.
+
+        A better design is a cohort study: recruit a large group without diabetes, record their coffee consumption at the start, follow them for years, and compare incidence — adjusting for the known confounders. Better still is a dose–response check within that cohort, and replication in a population where coffee drinking is associated with different things.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.graph{
+        histogram(
+            bins: 0, 1
+            values: 315
+            colour: orange
+            show labels
+        )
+        axis.label(x: 0.5; label: Southwark and Vauxhall; colour: grey)
+
+        cue{
+            histogram(
+                bins: 1, 2
+                values: 37
+                colour: blue
+                show labels
+            )
+            axis.label(x: 1.5; label: Lambeth; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            histogram(
+                bins: 2, 3
+                values: 59
+                colour: grey
+                show labels
+            )
+            axis.label(x: 2.5; label: the rest of London; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        y axis label: cholera deaths per $10\,000$ houses, 1854
+        x domain: [0, 3]
+        y domain: [0, 350]
+    )
+]

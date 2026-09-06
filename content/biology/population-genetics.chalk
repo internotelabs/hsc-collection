@@ -1,14 +1,187 @@
 *(
     title: Population Genetics
     description: Following alleles through a whole population rather than a single family, and the technologies that read them.
-    tags: population genetics, allele frequency, DNA profiling, sequencing, module 5, biology, stub
+    tags: population genetics, allele frequency, DNA profiling, sequencing, module 5, biology
     lesson
 )
 
+// Scene 1's worked population: 100 individuals, 36 AA, 48 Aa, 16 aa, so 200
+// alleles in total. A alleles = 2(36) + 48 = 120, giving p = 0.6; a alleles =
+// 2(16) + 48 = 80, giving q = 0.4. Hardy-Weinberg then predicts p^2 = 0.36,
+// 2pq = 0.48 and q^2 = 0.16 — exactly the counts observed.
+//
+// Scene 3 plots complete selection against a recessive phenotype, for which
+// q(t) = q0 / (1 + t q0) exactly. With q0 = 0.5 that gives 0.5, 0.333, 0.25 in
+// the first three generations, 0.083 at generation 10 and 0.0099 at 100.
 @include(src: ../preface.part.chalk)
 
 scene{
-    A pedigree tracks a handful of individuals. A population carries allele frequencies, which change over generations and can be measured — and it is those frequencies, not any individual, that evolution acts on.
+    A pedigree follows a handful of people. A population carries something a family does not: a frequency — the proportion of all the copies of a gene in the population that are one particular allele.
 
-    Written out here: allele and genotype frequencies and how they shift, DNA sequencing and DNA profiling and the difference between them, and the use of both in establishing relatedness, in medicine and in tracing population history.
-}
+    definition{
+        The proportion of all copies of a gene in a population that are a particular allele. Every individual carries two copies, so a population of $N$ individuals holds $2N$ copies of each gene.
+    }(
+        term: Allele frequency
+    )
+
+    Counting it is arithmetic and nothing more. The table takes a population of $100$ individuals with a known breakdown of genotypes. Each homozygote contributes two copies of its allele and each heterozygote contributes one of each.
+
+    So the $36$ individuals with genotype $AA$ contribute $72$ copies of $A$, and the $48$ heterozygotes contribute another $48$, giving $120$ out of the $200$ copies present. The frequency of $A$ is $0.6$, and the frequency of $a$ is the remaining $0.4$.
+
+    That number, rather than any individual, is what evolution changes. An organism cannot evolve; it is born with its alleles and dies with them. What changes across generations is the proportions, and the rest of this internote is about what moves them.
+}[
+    table{
+        Genotype | Individuals | Copies of $A$ | Copies of $a$
+        $AA$     | $36$        | $72$          | $0$
+        $Aa$     | $48$        | $48$          | $48$
+        $aa$     | $16$        | $0$           | $32$
+        Total    | $100$       | $120$         | $80$
+    }(
+        title: Counting alleles in a population of $100$
+        footer row
+        highlight rows: 5
+        highlight colour: orange
+    )
+]
+
+scene{
+    # Hardy–Weinberg: what the frequencies do when nothing acts on them
+
+    Before you can say that something changed a population, you need to know what the population would have done if nothing had. Hardy–Weinberg is that baseline.
+
+    It says that in a large population with random mating, no selection, no mutation and no migration, allele frequencies do not change from generation to generation — and the genotype frequencies settle at values fixed by the allele frequencies alone.
+
+    equation{
+        p^2 + 2pq + q^2 = 1
+    }
+
+    Here $p$ is the frequency of one allele and $q$ of the other, $p^2$ is the proportion of the population that is homozygous for the first, $q^2$ for the second, and $2pq$ is the proportion of heterozygotes.
+
+    ===
+
+    The canvas plots those three proportions against $p$. Two things in it are worth reading off.
+
+    The heterozygote curve peaks at $p = 0.5$ and never exceeds $0.5$. Half the population being carriers is the most that is ever possible.
+
+    ===
+
+    And at low frequencies, the recessive homozygotes almost vanish while the carriers do not. At $q = 0.1$, only one individual in a hundred shows the recessive character, while eighteen in a hundred carry the allele without showing it — eighteen times as many carriers as affected individuals.
+
+    That ratio is why recessive genetic conditions are so hard to eliminate, and it is the fact the next scene turns into a graph.
+
+    note{
+        The conditions Hardy–Weinberg assumes are never all true of a real population, and that is the point of it rather than a flaw in it. It is a null model: the interest is in the size and direction of the departure from it, which is what tells you which force is acting.
+    }
+}[
+    canvas.graph{
+        curve(f: x^2; domain: [0, 1]; colour: blue; label: $p^2$)
+        curve(f: (1 - x)^2; domain: [0, 1]; colour: teal; label: $q^2$)
+
+        cue{
+            curve(f: 2 * x * (1 - x); domain: [0, 1]; colour: orange; label: $2pq$)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.label(x: 0.9; label: $q = 0.1$; line; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: $p$, the frequency of one allele
+        y axis label: proportion of the population
+        x domain: [0, 1]
+        y domain: [0, 1]
+    )
+]
+
+scene{
+    # What moves the frequencies
+
+    Five things break the Hardy–Weinberg conditions, and each is a mechanism of evolution: natural selection, mutation, migration, non-random mating, and — in small populations — genetic drift, which is simply the effect of chance sampling when the number of individuals is not large.
+
+    definition{
+        Change in allele frequencies from one generation to the next caused purely by chance, because the individuals that happen to reproduce are a sample of the population rather than all of it. It is strong in small populations and negligible in large ones.
+    }(
+        term: Genetic drift
+    )
+
+    ===
+
+    The canvas shows the most extreme case selection can produce: a recessive condition so severe that no affected individual ever reproduces, starting from an allele frequency of $0.5$.
+
+    The first few generations are dramatic. The frequency halves within three generations. Then the curve flattens, and it keeps flattening: after ten generations the allele is still at $0.08$, and after a hundred it has only reached $0.01$.
+
+    ===
+
+    The reason is on the previous canvas. Selection can only act on phenotypes, and this allele is invisible in a heterozygote. At $q = 0.08$ the affected individuals are about six in every thousand while the carriers are about one in seven — so selection removes the six and never touches the rest.
+
+    The general point is the useful one. Selection against a recessive allele cannot eliminate it, because the rarer it becomes the larger the share of it that is hidden in carriers. A dominant allele has no such shelter, which is why a harmful dominant allele can be removed from a population in a few generations and a harmful recessive one effectively never is.
+}[
+    canvas.graph{
+        curve(f: 0.5 / (1 + 0.5 * x); domain: [0, 100]; colour: blue)
+
+        cue{
+            point(x: 10; y: 0.083; colour: orange; label: still $0.08$ after ten generations)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 100; y: 0.0099; colour: orange; label: $0.01$ after a hundred)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: generations
+        y axis label: frequency of the recessive allele
+        x domain: [0, 110]
+        y domain: [0, 0.55]
+    )
+]
+
+scene{
+    ## Two ways of reading DNA, and they answer different questions
+
+    Two technologies are usually mentioned together and do quite different things.
+
+    definition{
+        Determining the actual order of bases along a stretch of DNA. It reads the sequence itself, so it can find a specific mutation, identify a species, or reconstruct the history of a population.
+    }(
+        term: DNA sequencing
+    )
+
+    definition{
+        Comparing the lengths of a fixed set of short repeated regions of DNA, without reading their sequence. The number of repeats at each region varies between individuals, so the set of lengths acts as an identifier.
+    }(
+        term: DNA profiling
+    )
+
+    Profiling does not read genes and cannot tell you anything about a person's health, appearance or ancestry beyond the crudest level. It compares a small number of highly variable, non-coding regions, and its purpose is to answer one question: do these two samples come from the same person, or from close relatives?
+
+    That difference decides which tool suits which job, and the table sorts them accordingly.
+
+    The population-history applications are the most striking use of sequencing. Because mutations accumulate at a roughly steady rate, the number of differences between two populations' DNA is a measure of how long ago they separated. Sequencing has been used this way to trace the peopling of the Pacific, to establish the relationships between Aboriginal Australian populations, and to show that modern humans and Neanderthals interbred.
+
+    task{
+        A forensic laboratory reports that a DNA profile from a crime scene matches a suspect at all thirteen regions tested, and that the chance of an unrelated person matching by coincidence is about one in a hundred billion. What does this establish, and what does it not?
+    }[
+        It establishes very strongly that the sample came from that person or from an identical twin. What it does not establish is anything about how or when the sample got there, which is a separate question that DNA cannot answer.
+
+        Two further limits are worth naming. The coincidence figure applies to unrelated people; close relatives share far more regions, so the chance of a sibling matching is much higher than one in a hundred billion. And the profile says nothing about the person beyond identity, because the regions tested are deliberately chosen from non-coding DNA.
+    ](
+        title: Your turn
+    )
+}[
+    table{
+        Question                                        | Which tool          | Why
+        Does this blood match this suspect?             | profiling            | it compares highly variable regions and needs no gene information at all
+        Is this man the child's father?                 | profiling            | a child's repeat lengths must each come from one parent or the other
+        Does this person carry the cystic fibrosis allele? | sequencing        | the answer is a specific change in a specific gene, which only reading the sequence finds
+        Which species is this fragment of meat from?    | sequencing           | it compares the sample against known sequences for each species
+        When did these two populations separate?        | sequencing           | the number of accumulated differences is a measure of the time since they shared ancestors
+    }(
+        title: Match the tool to the question
+    )
+]

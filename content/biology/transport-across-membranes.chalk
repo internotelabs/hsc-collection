@@ -169,7 +169,7 @@ scene{
 
     Read the numbers off. A cube $2\ \mu\text{m}$ across has three units of surface for every unit of volume; at $20\ \mu\text{m}$ across it has $0.3$, a tenfold fall for a tenfold increase in width. The shaded band is where most eukaryotic cells sit, and it is where the curve has already flattened close to the axis.
 
-    The consequence is a supply problem. Demand for oxygen and nutrients rises with volume while the surface delivering them rises only with area, so beyond some size the interior cannot be served fast enough by diffusion from the outside — and diffusion is slow over distance in any case, taking around four times as long to cover twice the distance.
+    The consequence is a supply problem. Demand for oxygen and nutrients rises with volume, while the surface delivering them rises only with area. Beyond some size the interior cannot be served fast enough from the outside. Diffusion is slow over distance in any case, taking around four times as long to cover twice the distance.
 
     ===
 

@@ -1,14 +1,239 @@
 *(
     title: Future Ecosystems
     description: Human impact on ecosystems, and what restoration can and cannot recover.
-    tags: human impact, restoration, conservation, biodiversity loss, module 4, biology, stub
+    tags: human impact, restoration, conservation, biodiversity loss, module 4, biology
     lesson
 )
 
+// Scene 1's carbon dioxide figures, in parts per million. The values to 1900
+// are from Antarctic ice cores (the Law Dome record); those from 1960 are the
+// annual means measured directly at Mauna Loa.
+//   1750: 277   1850: 285   1900: 296   1960: 317
+//   1980: 339   2000: 370   2020: 414
+//
+// Scene 3's cane toad figures are from Phillips and colleagues (Nature, 2006,
+// and later work): the invasion front advanced at roughly 10 km a year in the
+// decades after the 1935 release and at roughly 55 km a year by the 2000s — an
+// increase of about fivefold, accompanied by measurably longer legs in the
+// toads at the front.
 @include(src: ../preface.part.chalk)
 
 scene{
-    Human activity changes ecosystems faster than the processes that formed them, which is why the effects are visible within a single lifetime. Predicting the outcome requires the population reasoning already established, applied to a disturbance of known size.
+    Ecosystems have always changed. *Past Ecosystems* is a record of continental drift, ocean circulation and glacial cycles rearranging Australia over tens of millions of years, and nothing about change itself is new.
 
-    Written out here: the impact of human activity on ecosystem dynamics, the modelling used to project what follows, restoration and rehabilitation and the limits on each, and why an ecosystem that has lost species does not simply reassemble when the pressure is removed.
-}
+    What is new is the rate, and the canvas is one measurement of it.
+
+    ===
+
+    The first three points come from air trapped in Antarctic ice, which gives a direct sample of the atmosphere at the time the ice formed. Between $1750$ and $1900$ the carbon dioxide concentration moved from about $277$ to about $296$ parts per million — roughly $19$ parts per million in $150$ years.
+
+    ===
+
+    The remaining points are measured directly. Between $1960$ and $2020$ the concentration went from $317$ to $414$ parts per million: $97$ parts per million in $60$ years.
+
+    That is a rate about thirteen times the earlier one, and the earlier one was itself the beginning of the industrial rise rather than a natural background.
+
+    The reason the rate matters more than the amount is the argument from *Effects of the Environment on Organisms*. A population can adapt to a change, or move away from it, if it has time. The graph is a statement about how much time is available, and for long-lived species with small fragmented populations the answer is not enough.
+
+    note{
+        Ice cores are worth understanding as evidence rather than taking on trust. Snow falling on an ice sheet traps air bubbles as it compacts, and the layers accumulate in order and can be counted like tree rings. The bubble is a physical sample of the atmosphere of that year — not a proxy for it, and not a model of it.
+    }
+}[
+    canvas.graph{
+        line(x: 1750, 1850, 1900; y: 277, 285, 296; colour: grey; label: from ice cores)
+
+        cue{
+            line(x: 1960, 1980, 2000, 2020; y: 317, 339, 370, 414; colour: blue; label: measured directly)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.brace(label: $97$ ppm in $60$ years; y: [317, 414]; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: year
+        y axis label: atmospheric carbon dioxide (ppm)
+        x domain: [1740, 2030]
+        y domain: [260, 430]
+    )
+]
+
+scene{
+    # What human activity actually does to an ecosystem
+
+    "Human impact" covers several quite different mechanisms, and an answer that names the mechanism is worth more than one that names the outcome. The table separates them.
+
+    definition{
+        The division of a continuous habitat into smaller isolated pieces. It reduces the total area, and it also cuts populations off from one another, so each fragment holds a small population with no way of exchanging individuals with any other.
+    }(
+        term: Habitat fragmentation
+    )
+
+    Fragmentation is worth singling out because it is often more damaging than the direct loss of area. A species needing a large territory may be unable to persist in any of the fragments even though the total area remaining would be enough. And small isolated populations lose genetic diversity, which is exactly the material selection needs, so they lose the ability to respond to whatever comes next.
+
+    The other entry worth watching is the last. Climate change does not usually kill organisms directly. It moves the conditions each species needs, and species then have to follow — which requires somewhere to go and a route to it, and fragmentation has usually removed both.
+}[
+    table{
+        Mechanism             | What it does                                                          | Australian example
+        Habitat loss          | removes the area a population needs outright                           | clearing of temperate woodland for agriculture
+        Fragmentation         | isolates the remaining populations from one another                     | remnant bushland separated by farmland and roads
+        Invasive species      | adds a predator, competitor or disease the natives never faced          | foxes and cats; cane toads; rabbits; *Phytophthora* dieback
+        Overexploitation      | removes individuals faster than they are replaced                       | overfishing of several southern fish stocks
+        Pollution             | changes the chemistry organisms are adapted to                          | nutrient runoff causing algal blooms in rivers and reefs
+        Climate change        | moves the conditions each species needs, faster than they can follow    | coral bleaching; species ranges shifting south and uphill
+    }(
+        title: Six mechanisms, not one
+        highlight rows: 3
+        highlight colour: orange
+    )
+]
+
+scene{
+    # An invasion that got faster
+
+    Cane toads were released in Queensland in 1935 to control beetles attacking sugar cane. They did not control the beetles — the beetles live high on the cane stems and the toads cannot climb — and the toads spread instead.
+
+    Their effect on native animals is chemical rather than competitive. A cane toad carries a potent toxin, and Australian predators had never encountered anything like it, so quolls, goannas and several snakes die from eating one. Populations of those species have collapsed as the toad front passed through.
+
+    ===
+
+    The canvas is the part that matters biologically. In the decades after the release, the invasion front advanced at roughly ten kilometres a year. By the 2000s it was advancing at roughly fifty-five — about five times faster.
+
+    ===
+
+    The explanation is natural selection acting on the invasion itself. The toads that arrive at the front each year are, by definition, the ones that travelled furthest, and they breed with each other. Their offspring inherit whatever made them fast.
+
+    Toads at the front were found to have measurably longer legs than toads from long-established populations, and to travel further per night. The front is a filter that selects for dispersal ability, generation after generation, and the result is an invasion that accelerates.
+
+    note{
+        This is a case where the four conditions from *Natural Selection* can all be checked directly and within a human lifetime. There was variation in leg length and dispersal ability; it is heritable; the front selected on it; and the frequency of the fast phenotype rose. The prediction that the front would accelerate was made from the mechanism, and it did.
+    }
+}[
+    canvas.graph{
+        histogram(
+            bins: 0, 1
+            values: 10
+            colour: blue
+            show labels
+        )
+        axis.label(x: 0.5; label: 1940s to 1960s; colour: grey)
+
+        cue{
+            histogram(
+                bins: 1, 2
+                values: 55
+                colour: orange
+                show labels
+            )
+            axis.label(x: 1.5; label: 2000s; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.brace(label: about five times faster; y: [10, 55]; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        y axis label: advance of the invasion front (km per year)
+        x domain: [0, 2]
+        y domain: [0, 62]
+    )
+]
+
+scene{
+    ## Restoration, and why it does not simply run backwards
+
+    Removing the pressure that damaged an ecosystem does not return the ecosystem. This is the most important idea in the topic and the least intuitive, so it is worth setting out as a mechanism rather than as a warning.
+
+    definition{
+        Returning a degraded ecosystem to something close to its original composition and function. Rehabilitation is the weaker aim of restoring function — stabilising soil, re-establishing cover — without attempting to recreate the original community.
+    }(
+        term: Restoration
+    )
+
+    ===
+
+    The canvas is why the two are different aims. Each box is a thing the original ecosystem had that is not restored by stopping the damage.
+
+    Some species are simply gone. An extinct species is not coming back, and a locally extinct one only returns if there is a source population within dispersal range — which fragmentation has usually removed.
+
+    ===
+
+    The soil is often changed permanently. Clearing and cropping remove the seed bank, alter the structure and nutrient balance, and destroy the fungal networks that many native plants depend on to take up nutrients. A plant whose mycorrhizal partner is absent does not establish, however many seeds are sown.
+
+    ===
+
+    And the new state may be self-maintaining. Weeds already established shade out seedlings; without the original grazing and fire regimes the vegetation structure changes and stays changed; an ecosystem missing a predator may be held in a different state by whatever it used to control.
+
+    definition{
+        A situation in which an ecosystem, once pushed past a threshold, settles into a new state that maintains itself — so that removing the original pressure does not return it to what it was.
+    }(
+        term: Alternative stable state
+    )
+
+    The practical conclusion is not that restoration is pointless. It is that prevention is enormously cheaper than repair, that restoration usually requires active intervention rather than merely stopping the damage, and that an honest restoration project states which of these obstacles it faces.
+
+    task{
+        A grazing property is retired and fenced off, with the intention of letting the original woodland return on its own. Twenty years later the site is dominated by introduced pasture grasses with very few native seedlings. Give three reasons, using the canvas.
+    }[
+        The seed bank is gone. Decades of grazing and pasture improvement removed the native seeds stored in the soil, so there is nothing there to germinate, and the nearest remnant may be too far away for seed to arrive.
+
+        The soil has changed. Pasture improvement usually means added phosphorus, which many Australian natives are adapted to low levels of and which favours the introduced grasses instead. The fungal networks native seedlings depend on may also be absent.
+
+        And the new state maintains itself. A dense sward of pasture grass suppresses native seedlings by competition for water and light, so removing the stock does not remove the obstacle — which is an alternative stable state, and it needs active intervention rather than time.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.diagram{
+        box#stop{
+            The damaging pressure is removed
+            the stock are taken off, the clearing stops
+        }
+
+        cue.draw{
+            box#gone{
+                Species are missing
+                extinct, or with no source population within reach
+            }
+            arrow(from: #stop; to: #gone)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#soil{
+                The soil has changed
+                seed bank lost, nutrients altered, fungal partners absent
+            }
+            arrow(from: #stop; to: #soil)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#state{
+                The new state maintains itself
+                weeds suppress seedlings; the fire and grazing regimes have changed
+            }
+            box#result:terminal{
+                Something different from what was there
+                and stable, unless it is actively intervened in
+            }
+            arrow(from: #stop; to: #state)
+            arrow(from: #gone; to: #result)
+            arrow(from: #soil; to: #result)
+            arrow(from: #state; to: #result)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: What stopping the damage does not undo
+    )
+]

@@ -1,14 +1,267 @@
 *(
     title: Biodiversity and Classification
     description: Sorting organisms by shared ancestry rather than by resemblance, and reading a phylogenetic tree.
-    tags: classification, phylogeny, biodiversity, convergent divergent, module 3, biology, stub
+    tags: classification, phylogeny, biodiversity, convergent divergent, module 3, biology
     lesson
 )
 
+// Scene 4 uses Simpson's index of diversity, D = 1 - sum(p_i^2), on two
+// communities of 100 individuals and four species each.
+//   Even:   25, 25, 25, 25 -> sum p^2 = 4(0.25)^2 = 0.25,  D = 0.75
+//   Uneven: 97,  1,  1,  1 -> sum p^2 = 0.97^2 + 3(0.01)^2
+//                           = 0.9409 + 0.0003 = 0.9412,     D = 0.0588
+// Same species richness, and diversity differing by more than tenfold.
 @include(src: ../preface.part.chalk)
 
 scene{
-    Grouping organisms by how alike they look is intuitive and frequently wrong, because unrelated species living the same way come to resemble each other. Classification by ancestry gives a different and more useful answer.
+    A shark, a dolphin and an extinct marine reptile called an ichthyosaur are all torpedo-shaped, with fins, a tail and a pointed snout. Sorted by how they look, they belong together.
 
-    Written out here: the taxonomic hierarchy and the modern criteria for it, phylogenetic trees and how to read relatedness off one, convergent and divergent evolution and why the first misleads the eye, and what biodiversity measures and why it is worth measuring.
-}
+    They do not belong together. The shark is a fish, the dolphin is a mammal that returned to the water from land ancestors, and the ichthyosaur was a reptile that did the same thing separately. The resemblance is convergent evolution: three lineages shaped by the same demand, which is fast movement through water.
+
+    definition{
+        The evolution of similar features in unrelated lineages, because they face similar demands. It produces resemblance that says nothing about ancestry.
+    }(
+        term: Convergent evolution
+    )
+
+    ===
+
+    Divergence is the opposite mistake waiting to happen. A wolf and a chihuahua look very different and are the same species; a bat's wing and a whale's flipper look nothing alike and contain the same bones in the same order.
+
+    definition{
+        The evolution of increasingly different features in related lineages, because they face different demands. It hides ancestry behind dissimilarity, as convergence hides its absence behind similarity.
+    }(
+        term: Divergent evolution
+    )
+
+    ===
+
+    So appearance is unreliable in both directions, which is why modern classification is not based on it. What it is based on is shared ancestry, established from the evidence in *Evidence for Evolution* — and above all from DNA, which convergence does not fake.
+
+    A group is valid, in modern classification, if it contains an ancestor and every one of its descendants. Reptiles as traditionally defined fail that test, because birds descend from within the reptile group and were left out of it — which is why birds are now classified as reptiles, and why the change was made on evidence rather than on how a bird looks.
+}[
+    canvas.diagram{
+        box#anc{
+            Three distant ancestors
+            a fish, a reptile and a land mammal
+        }
+
+        cue.draw{
+            box#shark{
+                Shark
+                torpedo body, fins, pointed snout
+            }
+            arrow(from: #anc; to: #shark)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#ichth{
+                Ichthyosaur
+                torpedo body, fins, pointed snout
+            }
+            box#dolph{
+                Dolphin
+                torpedo body, fins, pointed snout
+            }
+            box#lesson:terminal{
+                The same shape, three times over
+                so shape is evidence about water, not about ancestry
+            }
+            arrow(from: #anc; to: #ichth)
+            arrow(from: #anc; to: #dolph)
+            arrow(from: #shark; to: #lesson)
+            arrow(from: #ichth; to: #lesson)
+            arrow(from: #dolph; to: #lesson)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: Why resemblance is not relatedness
+    )
+]
+
+scene{
+    # The hierarchy, and the two-word name at the bottom of it
+
+    Classification places every organism in a series of nested groups, each contained in the one above it. The table works the ladder for one species.
+
+    definition{
+        The system of naming a species with two words: the genus, capitalised, followed by the species name, both italicised. It is used worldwide, so a species has one name regardless of language.
+    }(
+        term: Binomial nomenclature
+    )
+
+    Binomial names solve a real problem. A koala is also called a koala bear, and it is not a bear; the word "possum" means one animal in Australia and a different one in North America. *Phascolarctos cinereus* means exactly one species to a biologist anywhere.
+
+    The name is also informative in a way a common name is not. The first word is the genus, so two species sharing it are close relatives — and that is a claim about ancestry, testable and occasionally revised when the evidence changes.
+
+    The criteria used to place an organism have changed considerably. Early classification used structure, because that was what could be observed. Modern classification uses that plus embryology, biochemistry, and above all DNA sequence — and where they disagree, sequence usually wins, because it is the least affected by convergence.
+
+    The three-domain system at the top of the ladder is a result of that shift. Before molecular sequencing, all prokaryotes were placed in one group because they look alike under a microscope. Sequencing showed that the group contains two lineages as different from each other as either is from us, and the domains Bacteria and Archaea were separated on that basis alone.
+}[
+    table{
+        Rank    | Koala                | What the group contains
+        Domain  | Eukarya              | all organisms whose cells have a nucleus
+        Kingdom | Animalia             | multicellular heterotrophs without cell walls
+        Phylum  | Chordata             | animals with a notochord at some stage of development
+        Class   | Mammalia             | animals with hair and mammary glands
+        Order   | Diprotodontia        | marsupials with two forward-facing lower incisors — kangaroos, wombats, possums
+        Family  | Phascolarctidae      | the koala and its extinct relatives
+        Genus   | *Phascolarctos*      | the koala's immediate group
+        Species | *cinereus*           | one interbreeding group
+    }(
+        title: One species, placed
+        highlight rows: 8, 9
+        highlight colour: orange
+    )
+]
+
+scene{
+    # Reading a phylogenetic tree
+
+    A phylogenetic tree is a diagram of ancestry. The tips are the species being compared, the branch points are common ancestors, and the shape of the tree is a claim about who is related to whom and in what order.
+
+    definition{
+        A branching diagram showing the inferred evolutionary relationships between a group of species, in which each branch point represents a common ancestor of everything above it.
+    }(
+        term: Phylogenetic tree
+    )
+
+    ===
+
+    Relatedness is read from the branch points and nothing else. Two species are more closely related if their most recent common ancestor is more recent — that is, if you have to travel down fewer branch points to get from one to the other.
+
+    ===
+
+    The commonest mistake is reading relatedness off how close two tips are on the page. The tips can be rotated around any branch point without changing what the tree says, in the same way that swapping which child is drawn on the left in a family tree does not change who anybody's cousin is.
+
+    ===
+
+    The second commonest mistake is treating the species at one end as more advanced, or as the point the tree was heading towards. Every tip on a tree is a species alive now, and every one of them has exactly the same amount of evolutionary history behind it. A tree has no top.
+
+    note{
+        Trees are built by finding the arrangement that requires the fewest evolutionary changes to explain the data. That means a tree is always a hypothesis, and new data — usually more sequence — can change it. Several substantial rearrangements of the mammal tree have happened this way since the 1990s.
+    }
+}[
+    canvas.diagram{
+        box#root{
+            A common ancestor
+            of everything on this tree
+        }
+
+        cue.draw{
+            box#n1{
+                A later common ancestor
+                of the two species above it
+            }
+            box#c{
+                Species C
+                the outgroup here
+            }
+            arrow(from: #root; to: #n1)
+            arrow(from: #root; to: #c)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#a{Species A}
+            box#b{Species B}
+            arrow(from: #n1; to: #a)
+            arrow(from: #n1; to: #b)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#read{
+                A and B are more closely related to each other than either is to C
+                because their common ancestor is the more recent one
+            }(
+                at: 0.8, 0.5
+            )
+        }(
+            in: 3
+        )
+    }(
+        flow: down
+        title: What a branch point means
+    )
+]
+
+scene{
+    ## Biodiversity is not just a count of species
+
+    Biodiversity is measured at three levels, and they can move independently of one another.
+
+    definition{
+        The variety of living things, measured at three levels: genetic diversity within a species, species diversity within an ecosystem, and ecosystem diversity across a region.
+    }(
+        term: Biodiversity
+    )
+
+    Genetic diversity within a species is what *Biotechnology* was concerned with: a crop reduced to a few varieties has lost it, even though the number of species has not changed. Ecosystem diversity is the variety of habitats in a region, and a region can lose an entire ecosystem type while keeping most of its species elsewhere.
+
+    Species diversity is the level most often measured, and counting species is not enough on its own. The canvas shows two communities with exactly four species and exactly one hundred individuals each.
+
+    The first is even: twenty-five of each. The second has ninety-seven individuals of one species and one each of the other three.
+
+    Simpson's index puts a number on the difference. It computes the proportion of each species, squares it, adds the results, and subtracts from one — so a community dominated by a single species scores low and an even one scores high.
+
+    equation{
+        D = 1 - \sum p_i^2
+    }
+
+    For the even community, $D = 1 - 4(0.25)^2 = 0.75$. For the uneven one, $D = 1 - \left(0.97^2 + 3 \times 0.01^2\right) = 0.06$. Same richness, and more than a tenfold difference in diversity.
+
+    The uneven community is also the fragile one. Three of its species are one individual away from local extinction, and a count of species alone would not have said so.
+
+    task{
+        A survey of a bushland site records $14$ species. Five years later the same survey records $14$ species again, and the site is reported as unchanged. What could have happened in between that this report would miss?
+    }[
+        A great deal. The evenness could have collapsed — one species becoming dominant and several reduced to a handful of individuals — which Simpson's index would show and a species count would not.
+
+        The identity of the species could also have changed: several natives lost and the same number of weeds and introduced species gained gives an unchanged count and a very different ecosystem.
+
+        And genetic diversity within each species could have fallen, which no species survey measures at all.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.graph{
+        histogram(
+            bins: 0, 1, 2, 3, 4
+            values: 25, 25, 25, 25
+            colour: blue
+            show labels
+        )
+    }(
+        title: An even community
+        x axis label: species
+        y axis label: individuals
+        x domain: [0, 4]
+        y domain: [0, 100]
+        !show ticks
+    )
+
+    canvas.graph{
+        histogram(
+            bins: 0, 1, 2, 3, 4
+            values: 97, 1, 1, 1
+            colour: orange
+            show labels
+        )
+    }(
+        title: An uneven one, with the same four species
+        x axis label: species
+        y axis label: individuals
+        x domain: [0, 4]
+        y domain: [0, 100]
+        !show ticks
+    )
+](
+    direction: horizontal
+)

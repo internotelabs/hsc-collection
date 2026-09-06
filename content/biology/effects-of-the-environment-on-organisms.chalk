@@ -1,14 +1,211 @@
 *(
     title: Effects of the Environment on Organisms
     description: The pressures a habitat applies, and how they change which organisms are found in it.
-    tags: selection pressure, abiotic, biotic, distribution, module 3, biology, stub
+    tags: selection pressure, abiotic, biotic, distribution, module 3, biology
     lesson
 )
 
+// Scene 1 plots a model tolerance curve, not measurements:
+// abundance = 100 exp(-((T - 24)/6)^2), which peaks at 24 C and falls to about
+// 1 per cent of that peak by 11 C and 37 C.
+//
+// Scene 3 plots two straight lines: an environment warming at 0.05 degrees a
+// year, and a population whose optimum can shift at most 0.02 degrees a year.
+// The gap between them is 0.03 degrees a year, so after 100 years it is 3
+// degrees and still widening.
 @include(src: ../preface.part.chalk)
 
 scene{
-    An environment does not affect every individual in a species equally, and that unevenness is the whole mechanism. Where conditions differ across a range, the organisms found at each point differ too.
+    An environment is not a single thing that happens to a species. It is a set of conditions that vary from place to place, and the same species does better in some of them than in others.
 
-    Written out here: abiotic and biotic selection pressures, their effect on the distribution and abundance of species, and what happens to a population when the environment changes faster than the population can — including the conditions under which extinction rather than adaptation is the outcome.
-}
+    The canvas is that idea plotted for one condition. Somewhere near the middle is a value where the organism does best. On either side it does progressively worse, and beyond a certain point it cannot live there at all.
+
+    definition{
+        The range of an environmental condition — temperature, salinity, pH, moisture — within which a species can survive. Within it there is usually a narrower band where the species does best.
+    }(
+        term: Range of tolerance
+    )
+
+    ===
+
+    Two things follow from the shape, and they are what a question about distribution and abundance is asking for.
+
+    Distribution is about where the species is found at all: the width of the curve, and where its edges fall. A species is absent from anywhere the condition lies outside its tolerance, and that is the commonest single explanation for why an organism is not somewhere.
+
+    Abundance is about how many are found where they do occur: the height of the curve at that point. A species can be present and rare, and being near the edge of its tolerance is one reason for it.
+
+    ===
+
+    Real distributions are set by several conditions at once, and the narrowest one wins. A plant may tolerate the temperature, the soil pH and the light at a site and still be absent because the site floods — which is the limiting factor idea from *Photosynthesis and Respiration*, applied to a whole organism instead of one reaction.
+
+    note{
+        A tolerance curve measured in a laboratory and a species' actual distribution are often quite different, and the gap is informative rather than a measurement error. What the laboratory measures is where the species *could* live; where it is actually found is narrower, because other species are already there. The difference between the two is the size of the biotic pressure.
+    }
+}[
+    canvas.graph{
+        curve(f: 100 * exp(-((x - 24)/6)^2); domain: [5, 43]; colour: blue)
+
+        cue{
+            axis.label(x: 24; label: does best here; line; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.band(x: [12, 36]; label: found here at all; colour: grey; edges)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: temperature ($^\circ$C)
+        y axis label: abundance, per cent of the maximum
+        x domain: [5, 43]
+        y domain: [0, 110]
+    )
+]
+
+scene{
+    # Two kinds of pressure
+
+    Whatever makes it harder for some individuals to survive and reproduce than others is a selection pressure, and they divide into pressures from the non-living environment and pressures from other organisms.
+
+    definition{
+        Any factor that causes individuals with some characteristics to survive and reproduce more successfully than individuals with others. Abiotic pressures come from the non-living environment; biotic pressures come from other organisms.
+    }(
+        term: Selection pressure
+    )
+
+    The distinction matters because the two behave differently over time. An abiotic pressure does not respond. A desert does not get drier because the plants in it have become better at conserving water.
+
+    A biotic pressure does respond, because the other organism is also evolving. A predator that becomes faster selects for faster prey, which selects for faster predators. Neither ends up better off relative to the other, and both have spent a great deal on it — an arrangement often called an evolutionary arms race.
+
+    The table lists the common pressures of each kind, with what each selects for.
+}[
+    table{
+        Kind     | Pressure                    | What it selects for
+        Abiotic  | temperature extremes         | insulation, behavioural avoidance, tolerance of the extremes themselves
+        Abiotic  | water availability           | water conservation, deep roots, dormancy through dry periods
+        Abiotic  | salinity                     | ways of excluding or excreting salt
+        Abiotic  | light                        | height and leaf arrangement in plants; eye structure in animals
+        Biotic   | predation                    | speed, camouflage, armour, group living, toxicity
+        Biotic   | competition for a resource   | using the resource more efficiently, or using a slightly different one
+        Biotic   | disease                      | immune resistance, and behaviour that reduces contact
+    }(
+        title: What each pressure selects for
+    )
+]
+
+scene{
+    # When the environment moves faster than the population can
+
+    A population can adapt to a changing environment, but only at a certain rate. That rate is set by how much variation the population already contains, how strong the selection is, and how long a generation takes.
+
+    The canvas puts a changing environment against a population's best possible response. The upper line is a condition changing steadily. The lower line is where the population's optimum sits, shifting as fast as selection can move it.
+
+    ===
+
+    The lines diverge, and the gap between them is the problem. The population is not failing to adapt — it is adapting continuously, and still falling further behind every year, because the environment is moving faster than the response can follow.
+
+    ===
+
+    Three things set how fast a population can move, and all three are worth naming because they predict which species are at risk.
+
+    Generation time is the first. Selection works between generations, so a bacterium can shift in weeks what a tree cannot shift in a century.
+
+    Existing variation is the second. Selection can only work on differences already present, so a population that is already genetically uniform has nothing to select between and cannot respond at all until a useful mutation appears.
+
+    Population size is the third. A large population holds more variation and generates more mutations, so a species already reduced to a few hundred individuals has far less to work with than the same species had at a hundred thousand.
+}[
+    canvas.graph{
+        curve(f: 20 + 0.05 * x; domain: [0, 100]; colour: orange; label: the environment)
+
+        cue{
+            curve(f: 20 + 0.02 * x; domain: [0, 100]; colour: blue; label: the population's best response)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.brace(label: the mismatch; y: [22, 25]; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: years
+        y axis label: temperature the organism is suited to ($^\circ$C)
+        x domain: [0, 100]
+        y domain: [19, 26]
+    )
+]
+
+scene{
+    ## Adapt, move, or die
+
+    A population facing a change it cannot tolerate has exactly three outcomes, and the canvas is the decision between them.
+
+    It can adapt, if it has the variation and the time. That is the first branch on the canvas.
+
+    ===
+
+    It can move, if there is somewhere suitable to move to and a way of getting there.
+
+    ===
+
+    Which outcome occurs is not a matter of how much the species deserves to survive. It is decided by the three factors from the previous scene, together with whether a route to suitable habitat exists.
+
+    That last condition is the one human activity most often removes. A species whose range is shifting south as the climate warms can only do so if there is habitat to the south and a continuous path to it. A population isolated on a mountain top, or in a fragment of bush surrounded by farmland, has nowhere to go — and the canvas ends at the same box whether or not it could have adapted somewhere else.
+
+    ===
+
+    Extinction, in this account, is not a special event requiring a special explanation. It is what happens when the rate of environmental change exceeds the rate at which a population can respond, and no route to suitable conditions is available.
+
+    task{
+        Two species live in the same warming region. One is an insect with several generations a year and a large, genetically varied population. The other is a tree with a thirty-year generation time, surviving as a few hundred individuals in scattered remnants. Predict which is more likely to persist, and give three reasons.
+    }[
+        The insect, on all three counts from the previous scene. Its generation time is short, so selection acts many times in the period the tree manages once. Its population is large and varied, so there are already differences for selection to work on. And it can disperse, so moving is available as well as adapting.
+
+        The tree has none of these. Thirty years to a generation means only a handful of rounds of selection in a century of change; a few hundred individuals hold little variation; and scattered remnants surrounded by cleared land mean there is no route to anywhere cooler. It is the second half of the canvas rather than the first.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.diagram{
+        box#change{
+            The environment changes
+            beyond what the population currently tolerates
+        }
+
+        cue.draw{
+            box#adapt{
+                Adapt
+                if there is variation to select on, and generations to spare
+            }
+            arrow(from: #change; to: #adapt)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#move{
+                Move
+                if suitable habitat exists and there is a route to it
+            }
+            arrow(from: #change; to: #move)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#extinct:terminal{
+                Local extinction
+                which is simply what is left when neither of the others is available
+            }
+            arrow(from: #change; to: #extinct)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: The only three outcomes
+    )
+]

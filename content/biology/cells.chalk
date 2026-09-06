@@ -1,0 +1,138 @@
+*(
+    title: Cells
+    description: The branch that asks how a bag of chemicals stays alive, and the order its six internotes are best read in.
+    tags: cells, branch overview, membrane, enzymes, metabolism, biology
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Everything else in biology sits on top of this branch. An organism is made of cells, heredity is a molecule inside a cell being copied, and a pathogen is one cell exploiting another — so if the cell is vague, all of that is vague too.
+
+    The branch has one question running through it: how does a small volume of chemistry stay alive when the world outside it is not trying to help?
+
+    ===
+
+    Answering that turns out to need four things, and the canvas is them. A boundary, so the contents stay together. A way of choosing what crosses that boundary, because a perfect seal starves. A way of making reactions go fast enough at body temperature. And a supply of energy to pay for all of it.
+
+    Each of those is one or two of the internotes in this branch, and the order below is the order they build in.
+
+    note{
+        The two Year 12 topics in this branch — cell replication and the molecular genetics that follows it — are grouped under *Heredity* instead, because they are about information rather than about staying alive. Everything here is Year 11 material.
+    }
+}[
+    canvas.diagram{
+        box#alive{
+            To stay alive, a cell needs
+            four things, and each is an internote below
+        }
+
+        cue.draw{
+            box#bound{
+                A boundary
+                and control over what crosses it
+            }
+            box#chem{
+                Chemistry that runs fast enough
+                at a temperature the cell can survive
+            }
+            arrow(from: #alive; to: #bound)
+            arrow(from: #alive; to: #chem)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#energy{
+                A supply of energy
+                to pay for everything that is not spontaneous
+            }
+            box#small{
+                And to stay small
+                because supply happens at the surface
+            }
+            arrow(from: #alive; to: #energy)
+            arrow(from: #alive; to: #small)
+        }(
+            in: 1
+        )
+    }(
+        flow: right
+        title: What the branch is actually asking
+    )
+]
+
+scene{
+    # The route through it
+
+    Start with the evidence that cells exist at all, because cell theory is a historical argument as much as a biological one and the instruments decided what could be claimed.
+
+    internote(ref: microscopy-and-cell-theory.chalk)
+
+    Then the inventory: what is inside a cell, why eukaryotes divide themselves into compartments, and the deepest split in the living world.
+
+    internote(ref: cell-structure.chalk)
+
+    The boundary comes next, and it is worth two internotes rather than one. The first is what the membrane is made of and why that structure decides what can cross it.
+
+    internote(ref: the-cell-membrane.chalk)
+
+    The second is what actually crosses, in which direction, and at what cost — ending in the surface-area argument that puts a ceiling on how large any cell can be.
+
+    internote(ref: transport-across-membranes.chalk)
+
+    Then the chemistry. Enzymes are why a cell can run reactions at $37\,^\circ\text{C}$ that would otherwise take years, and the temperature and pH curves in that internote reappear in almost every later topic.
+
+    internote(ref: enzymes.chalk)
+
+    Finally the two reaction sequences that everything else is paid for out of: one that captures energy from light, one that releases it again.
+
+    internote(ref: photosynthesis-and-respiration.chalk)
+}[
+    table{
+        Internote                       | The question it answers
+        Microscopy and Cell Theory      | how do we know cells exist, and what could each instrument actually show?
+        Cell Structure                  | what is inside a cell, and why are there two fundamentally different kinds?
+        The Cell Membrane               | what is the boundary made of, and why does that decide what crosses it?
+        Transport Across Membranes      | what crosses, in which direction, and what does it cost?
+        Enzymes                         | how does a cell make reactions go fast without heating itself?
+        Photosynthesis and Respiration  | where does the energy come from, and how is it spent?
+    }(
+        title: Six internotes, in reading order
+    )
+]
+
+scene{
+    ## One idea that keeps coming back
+
+    If you take a single thing out of this branch, take the relationship between surface and volume.
+
+    A cell exchanges everything across its surface and uses everything in its volume. Volume grows faster than surface, so a cell that gets larger gets worse at supplying itself — which is why cells are small, why they fold their internal membranes, and why anything bigger than a millimetre needs a transport system.
+
+    ===
+
+    The same argument reappears at every scale above this branch. It is why a lung has three hundred million alveoli, why the small intestine is folded six hundred times over, why a root grows hairs, and why *Transport in Animals* opens with a graph about diffusion times rather than with a heart.
+
+    The second recurring idea is the gradient. Diffusion, osmosis, active transport, the electron transport chain and the resting membrane potential are all statements about a difference in concentration across a membrane — either being used, or being maintained at a cost.
+
+    Everything in *Organisms* is built out of those two ideas applied to bodies rather than to cells.
+
+    internote(ref: organisms.chalk)
+}[
+    canvas.graph{
+        curve(f: 6 / x; domain: [1, 40]; colour: blue)
+        axis.band(x: [10, 40]; label: where most cells sit; colour: grey)
+
+        cue{
+            point(x: 2; y: 3; colour: orange; label: a small cell has surface to spare)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: width of the cell ($\mu\text{m}$)
+        y axis label: surface area per unit volume ($\mu\text{m}^{-1}$)
+        x domain: [0, 40]
+        y domain: [0, 6.5]
+    )
+]

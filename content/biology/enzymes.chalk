@@ -86,7 +86,7 @@ scene{
     The last step is the one that makes an enzyme a catalyst rather than a reactant. Products no longer fit the site, so they leave, and the site returns to the shape it had before. Nothing has been consumed, and the same enzyme molecule begins again.
 
     note{
-        The turnover rates involved are extreme. Catalase converts on the order of tens of thousands of hydrogen peroxide molecules per second per enzyme molecule, which is why a cell needs so little of it — and why the amount of enzyme present, rather than the amount of chemistry to be done, is so rarely the thing in short supply.
+        The turnover rates involved are extreme. One catalase molecule converts on the order of tens of thousands of hydrogen peroxide molecules every second. That is why a cell needs so little of it, and why the amount of enzyme present is so rarely the thing in short supply.
     }
 }[
     canvas.diagram{

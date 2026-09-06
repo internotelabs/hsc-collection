@@ -1,18 +1,240 @@
 *(
     title: Prevention, Treatment and Control
     description: Vaccination, antibiotics and antivirals, quarantine, and why resistance keeps eroding them.
-    tags: vaccination, antibiotics, antivirals, quarantine, module 7, biology, stub
+    tags: vaccination, antibiotics, antivirals, quarantine, module 7, biology
     lesson
 )
 
+// Scene 2 plots the herd immunity threshold, 1 - 1/R0, which follows directly
+// from requiring each infection to cause fewer than one further infection.
+//   R0 = 1.5 -> 0.333    R0 = 3  -> 0.667
+//   R0 = 6   -> 0.833    R0 = 15 -> 0.933
 @include(src: ../preface.part.chalk)
 
 scene{
-    Controlling an infectious disease means breaking the chain somewhere, and the chain has several links: the pathogen, the route between hosts, and the susceptibility of the next host. Different measures attack different links.
+    Controlling an infectious disease means breaking the chain from *Causes of Infectious Disease* somewhere, and the chain has several links. Different measures attack different ones, and which link is easiest to break depends entirely on the disease.
 
-    Written out here: hygiene and quarantine as interruptions of transmission, vaccination and herd immunity as reduction of susceptibility, antibiotics and antivirals and why the two are not interchangeable, the evolution of resistance as natural selection acting on a pathogen population, and Aboriginal and Torres Strait Islander protocols for managing disease.
+    The canvas puts the interventions on the links they act on.
+
+    ===
+
+    Hygiene attacks the route. Handwashing, clean water, sewerage, food handling rules and sterile instruments all work by removing the path from an exit to an entry, and between them they have prevented more disease than every drug ever developed.
+
+    ===
+
+    Quarantine attacks the same link differently, by separating infected or potentially infected individuals from everyone else. It requires no understanding of the pathogen at all, which is why it is the oldest control measure there is and why it works against something entirely new.
+
+    definition{
+        Separating individuals who are, or may be, infected from those who are not, for long enough that any infection would have become apparent. It interrupts transmission without needing to know what the pathogen is.
+    }(
+        term: Quarantine
+    )
+
+    Aboriginal and Torres Strait Islander peoples managed disease with a set of protocols built on the same principle, developed over tens of thousands of years. Sick people were separated from the group and cared for apart. Camps were moved rather than allowing waste to accumulate, and sites where people had died were avoided for a period. Smoking ceremonies, using the smoke of particular plants, were used to cleanse people and places. Movement between groups was restricted when illness was present, and a large body of knowledge about medicinal plants — including several now studied for their antimicrobial compounds — was applied to treatment.
+
+    These protocols are still held and practised, and they were used again during recent outbreaks: several remote communities restricted entry early and on their own authority, drawing on the same principles rather than waiting for external instruction.
+
+    ===
+
+    Vaccination attacks the last link, susceptibility, and it is the only measure that does. The next scene is about what that buys.
+}[
+    canvas.diagram{
+        box#chain{
+            The chain of infection
+            reservoir, exit, route, entry, susceptible host
+        }
+
+        cue.draw{
+            box#hygiene{
+                Hygiene
+                handwashing, clean water, sewerage, sterile instruments — it removes the route
+            }
+            arrow(from: #hygiene; to: #chain)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#quarantine{
+                Quarantine and separation of the sick
+                it removes the route too, without needing to know the pathogen
+            }
+            arrow(from: #quarantine; to: #chain)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#vaccine{
+                Vaccination
+                it removes the susceptibility of the next host
+            }
+            arrow(from: #vaccine; to: #chain)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Four measures, three different links
+    )
+]
+
+scene{
+    # Herd immunity, and where the threshold comes from
+
+    A vaccine protects the person who receives it. Vaccinating enough people protects the people who did not receive it, and the reason is arithmetic rather than generosity.
+
+    definition{
+        The average number of further infections one infected person causes, in a population where nobody is immune. It is written $R_0$, and it varies enormously between diseases.
+    }(
+        term: Basic reproduction number
+    )
+
+    An outbreak grows if each infection causes more than one further infection, and dies out if it causes fewer. So the condition for a disease to fade away is that the number of susceptible people an infected person meets is small enough to bring that number below one.
+
+    ===
+
+    If a proportion $p$ of the population is immune, then only $1 - p$ of the contacts an infected person has are with susceptible people, so the effective number of new infections is $R_0(1 - p)$. Setting that below one and rearranging gives the threshold.
+
+    equation{
+        p > 1 - \frac{1}{R_0}
+    }
+
+    definition{
+        The proportion of a population that must be immune before an infected person causes, on average, fewer than one further infection — at which point the disease cannot sustain an outbreak and people who are not immune are protected too.
+    }(
+        term: Herd immunity threshold
+    )
+
+    ===
+
+    The canvas plots that threshold against $R_0$, and the shape of it explains a great deal of public health policy.
+
+    For a disease with $R_0$ around $1.5$, a third of the population being immune is enough. For measles, with $R_0$ around $15$, the threshold is above $93$ per cent — and that is why measles is the disease that returns first whenever vaccination rates slip, and why the target coverage for it is so unforgiving.
+
+    The steep part of the curve is where most diseases sit, and the flat part at the right is where a few percentage points of coverage are the difference between control and an outbreak.
+
+    note{
+        Herd immunity is what protects the people who cannot be vaccinated: newborns, people undergoing chemotherapy, people with immune disorders, and the small proportion in whom a vaccine does not take. They rely entirely on the rest of the population being above the threshold, which is why coverage is treated as a collective rather than an individual matter.
+    }
+}[
+    canvas.graph{
+        curve(f: 1 - 1 / x; domain: [1.05, 20]; colour: blue)
+
+        cue{
+            point(x: 1.5; y: 0.333; colour: orange; label: $R_0 = 1.5$, a third)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 15; y: 0.933; colour: orange; label: measles, over $93$ per cent)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: $R_0$
+        y axis label: proportion that must be immune
+        x domain: [1, 20]
+        y domain: [0, 1.05]
+    )
+]
+
+scene{
+    # Antibiotics and antivirals are not interchangeable
+
+    An antibiotic works by attacking something a bacterium has and a human cell does not. Penicillin blocks the construction of the bacterial cell wall; several others jam the bacterial ribosome, which differs from a human ribosome enough to be targeted specifically.
+
+    definition{
+        A drug that kills bacteria or stops them multiplying, by acting on a structure or process bacteria have and human cells do not. It has no effect on viruses.
+    }(
+        term: Antibiotic
+    )
+
+    That mechanism is exactly why antibiotics do nothing against a virus. A virus has no cell wall, no ribosome and no metabolism of its own; it uses the host cell's machinery, so there is nothing to attack that is not also the patient.
+
+    Antivirals therefore work differently and are much harder to make. They target steps in the viral life cycle — entering the cell, copying the viral genome, assembling new particles — and because those steps use host machinery too, the margin between harming the virus and harming the patient is narrow. That is why there are hundreds of antibiotics and comparatively few antivirals, and why most of the antivirals that exist work against one virus rather than many.
+
+    The table sets the two out. The last row is the practical one: prescribing an antibiotic for a viral infection does nothing for the patient and contributes to the problem in the next scene.
+}[
+    table{
+                            | Antibiotics                                        | Antivirals
+        What they act on    | bacteria                                           | viruses
+        How                 | attack a structure bacteria have and human cells do not — the cell wall, the bacterial ribosome | interfere with a step of the viral life cycle inside a host cell
+        Breadth             | many are broad spectrum, working against a wide range of bacteria | most work against one virus or a small group
+        Difficulty          | comparatively straightforward, because the target is not in human cells | difficult, because the virus uses host machinery
+        Used for a cold?    | no — a cold is viral, so an antibiotic can do nothing but harm | only for a few viruses, and generally only early in the infection
+    }(
+        title: Different targets, different problems
+        highlight rows: 6
+        highlight colour: orange
+    )
+]
+
+scene{
+    ## Resistance is natural selection, run at speed
+
+    Antibiotic resistance is not a new kind of biological process. It is the four conditions from *Natural Selection* operating on a bacterial population, with the antibiotic as the selection pressure.
+
+    Variation exists: in any large bacterial population, some cells carry mutations that happen to reduce the drug's effect. The variation is heritable, because bacteria pass their genes to their descendants. Bacteria overproduce spectacularly, dividing every twenty minutes or so in good conditions. And survival is not random with respect to the variation — the antibiotic sees to that.
+
+    ===
+
+    The canvas is the consequence. Before the drug is used, resistant cells are a tiny fraction of the population and are at no advantage; the mutation usually costs something to carry.
+
+    Introduce the antibiotic and the susceptible cells die. The resistant ones do not, and they now have the resources to themselves. Within a small number of generations the population is largely resistant, and the drug no longer works.
+
+    ===
+
+    Two features make it faster in bacteria than in anything else.
+
+    The generation time is minutes rather than years, so a hundred generations is a matter of days. And bacteria transfer genes horizontally — passing plasmids directly to unrelated bacteria, including bacteria of other species — so a resistance gene that arises once can spread sideways through a community rather than only downwards through a lineage.
+
+    ===
+
+    Everything in the standard advice follows from the mechanism.
+
+    Do not use antibiotics for viral infections: there is no benefit, and the selection pressure is applied to every bacterium in the patient regardless. Finish the course: stopping early leaves the partially resistant survivors, which are precisely the ones that should not be left. Restrict agricultural use: routine low doses in healthy livestock are the ideal conditions for selecting resistance, since the dose is enough to select and not enough to eliminate.
+
+    task{
+        Explain why a bacterial population becoming resistant is *not* evidence that individual bacteria changed in response to the antibiotic.
+    }[
+        The resistant cells were already there before the drug arrived, as a small fraction of the population carrying mutations that happened to have that effect. The antibiotic did not cause those mutations; it removed everything else.
+
+        The distinction is the one between selection and instruction, and it is testable. If bacteria changed in response to the drug, then a population never exposed to it would contain no resistant cells. Experiments in which parallel cultures are grown separately and then tested show resistant cells arising before any exposure, which is what selection predicts and what an instructive mechanism does not.
+    ](
+        title: Your turn
+    )
 
     Measuring whether any of it works means studying populations rather than patients, which is *Epidemiology*.
 
     internote(ref: epidemiology.chalk)
-}
+}[
+    canvas.graph{
+        curve(f: 0.02; domain: [0, 10]; colour: blue)
+        axis.label(x: 10; label: the drug is introduced; line; colour: grey)
+
+        cue{
+            curve(f: 1 / (1 + 49 * exp(-0.5 * (x - 10))); domain: [10, 30]; colour: orange)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 17.8; y: 0.5; colour: orange; label: half the population, about eight generations later)
+        }(
+            in: 2
+        )
+
+        cue{
+            axis.band(y: [0.9, 1]; label: the drug no longer works; colour: grey)
+        }(
+            in: 3
+        )
+    }(
+        x axis label: bacterial generations
+        y axis label: proportion of the population that is resistant
+        x domain: [0, 30]
+        y domain: [0, 1.1]
+    )
+]

@@ -1,18 +1,234 @@
 *(
     title: Inheritance Patterns
     description: Predicting offspring from parents, and the crosses where the simple ratios stop working.
-    tags: inheritance, punnett square, pedigree, sex linkage, module 5, biology, stub
+    tags: inheritance, punnett square, pedigree, sex linkage, module 5, biology
     lesson
 )
 
+// Scene 1 plots Mendel's own published F2 counts for his seven pea characters,
+// dominant against recessive. The pairs are
+//   round 5474 : wrinkled 1850   (2.96)      yellow 6022 : green 2001   (3.01)
+//   purple 705 : white 224       (3.15)      tall 787 : dwarf 277       (2.84)
+//   inflated 882 : constricted 299 (2.95)    green pods 428 : yellow 152 (2.82)
+//   axial 651 : terminal 207     (3.15)
+// Totals 14 949 : 5010, a ratio of 2.98. The plotted line is y = 3x, which is
+// the 3:1 prediction drawn as a straight line through the origin.
 @include(src: ../preface.part.chalk)
 
-scene{
-    Mendel's ratios come out of a model simple enough to be wrong in interesting ways: two alleles per gene, one dominant, genes inherited independently. Most of the work is recognising which assumption a given cross violates.
+@data#mendel{
+    dominant | recessive
+    5474     | 1850
+    6022     | 2001
+    705      | 224
+    787      | 277
+    882      | 299
+    428      | 152
+    651      | 207
+}
 
-    Written out here: monohybrid and dihybrid crosses and the Punnett squares that predict them, reading a pedigree backwards to infer genotypes, sex linkage and why it produces different ratios in males and females, and codominance and incomplete dominance where neither allele is masked.
+scene{
+    Mendel's model of inheritance is simple enough to state in four claims. Each character is controlled by a gene with two versions. Every plant carries two copies of that gene. One version can mask the other. And which copy goes into a gamete is decided at random, independently for each gene.
+
+    From those four claims a specific prediction follows: cross two plants that each carry one of each version, and the offspring should show the masked character in one case out of four.
+
+    definition{
+        The allele whose effect appears in the phenotype whenever it is present, masking the other. The masked allele is described as recessive, and it appears in the phenotype only when both copies are recessive.
+    }(
+        term: Dominant allele
+    )
+
+    ===
+
+    The canvas is Mendel's own counts for the seven characters he studied, dominant plants plotted against recessive ones. The line is the prediction: three dominant for every one recessive, drawn as a straight line of slope $3$ through the origin.
+
+    ===
+
+    The points sit close to it and not on it. The individual ratios run from $2.82$ to $3.15$, and across all seven characters together — nearly twenty thousand plants — the ratio is $2.98$.
+
+    That scatter is the most important thing on the canvas. A $3:1$ ratio is a statement about probabilities, not a rule about outcomes, and it is approached more closely the more offspring are counted. A cross producing four offspring will very often give something other than three and one, and nothing has gone wrong when it does.
+
+    note{
+        Mendel's figures have been argued about for a century, since the statistician R. A. Fisher pointed out in 1936 that they fit the predictions rather better than chance alone would usually allow. Nobody has produced a settled explanation, and the ratios themselves have been confirmed many times over by other people since — so the argument is about how these particular numbers were arrived at, not about whether the model is right.
+    }
+}[
+    canvas.graph{
+        scatter(x: #mendel.recessive; y: #mendel.dominant; colour: blue)
+
+        cue{
+            curve(f: 3 * x; domain: [0, 2100]; colour: grey; label: the $3:1$ prediction)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 2001; y: 6022; colour: orange; label: yellow against green seeds)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: plants showing the recessive character
+        y axis label: plants showing the dominant character
+        x domain: [0, 2300]
+        y domain: [0, 6800]
+    )
+]
+
+scene{
+    # Predicting a cross
+
+    A Punnett square is a way of not making mistakes. Write the gametes one parent can make along the top, the gametes the other can make down the side, and fill each cell with the combination those two gametes produce. Every cell is equally likely, so counting cells gives the expected proportions directly.
+
+    The first square is a monohybrid cross: one gene, both parents carrying one dominant and one recessive allele. Four cells, of which one is $aa$ — the $3:1$ ratio the previous scene tested.
+
+    definition{
+        The pair of alleles an individual carries for a gene. Two identical alleles is homozygous, one of each is heterozygous, and only a homozygous recessive individual shows a recessive character.
+    }(
+        term: Genotype
+    )
+
+    The second square follows two genes at once. Each parent is heterozygous for both, so each can make four kinds of gamete — $AB$, $Ab$, $aB$ and $ab$ — and the square has sixteen cells.
+
+    Counting phenotypes across those sixteen gives nine showing both dominant characters, three showing one, three showing the other, and one showing both recessives. That is the $9:3:3:1$ ratio, and it comes out of the square rather than having to be remembered.
+
+    The $9:3:3:1$ depends on the two genes assorting independently, which they do when they are on different chromosomes. Two genes close together on the same chromosome travel together more often than not, and the ratio is different — which is how the exception was discovered.
+}[
+    table{
+              | $A$    | $a$
+        $A$   | $AA$   | $Aa$
+        $a$   | $Aa$   | $aa$
+    }(
+        title: $Aa \times Aa$ — three dominant to one recessive
+        header column
+        highlight cells: C4
+        highlight colour: orange
+    )
+
+    table{
+                | $AB$     | $Ab$     | $aB$     | $ab$
+        $AB$    | $AABB$   | $AABb$   | $AaBB$   | $AaBb$
+        $Ab$    | $AABb$   | $AAbb$   | $AaBb$   | $Aabb$
+        $aB$    | $AaBB$   | $AaBb$   | $aaBB$   | $aaBb$
+        $ab$    | $AaBb$   | $Aabb$   | $aaBb$   | $aabb$
+    }(
+        title: $AaBb \times AaBb$ — nine to three to three to one
+        header column
+        highlight cells: E6
+        highlight colour: orange
+    )
+]
+
+scene{
+    # Pedigrees: working the argument backwards
+
+    A Punnett square goes forwards, from known parents to expected offspring. A pedigree goes backwards, from an observed family to genotypes nobody has measured — and that is the harder and more useful direction.
+
+    The canvas is a small family. Neither parent shows the condition; one of their two children does.
+
+    ===
+
+    That single fact settles the mode of inheritance. If the condition were dominant, anyone carrying the allele would show it, so an affected child would need an affected parent. Neither parent is affected, so the allele must be recessive.
+
+    ===
+
+    The genotypes then follow without any further information. The affected son must be homozygous recessive, so he received one recessive allele from each parent. Each parent therefore carries one — and since neither shows the condition, each must also carry a dominant allele. Both parents are heterozygous.
+
+    definition{
+        An individual heterozygous for a recessive allele: they carry it and can pass it on, but do not show the condition themselves.
+    }(
+        term: Carrier
+    )
+
+    Reading a pedigree is a matter of finding the individual whose genotype is forced, and working outwards from them. An affected individual with a recessive condition is always the place to start, because their genotype is the only one a phenotype ever settles completely.
+}[
+    canvas.diagram{
+        box#father{
+            Father
+            unaffected
+        }
+        box#mother{
+            Mother
+            unaffected
+        }
+        box#daughter{
+            Daughter
+            unaffected
+        }
+        box#son{
+            Son
+            affected
+        }(
+            colour: orange
+        )
+        arrow(from: #father; to: #daughter)
+        arrow(from: #mother; to: #daughter)
+        arrow(from: #father; to: #son)
+        arrow(from: #mother; to: #son)
+
+        cue.draw{
+            box#step1{
+                Affected child, unaffected parents
+                so the allele must be recessive
+            }(
+                at: 0.84, 0.28
+            )
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#step2{
+                The son is $aa$, so each parent gave an $a$
+                and neither is affected, so both are $Aa$
+            }(
+                at: 0.84, 0.66
+            )
+        }(
+            in: 2
+        )
+    }(
+        flow: down
+        title: One family, and what it forces
+    )
+]
+
+scene{
+    ## Where the simple ratios break
+
+    Mendel's four claims are each an assumption, and each of them fails somewhere. Most exam questions about inheritance are really questions about which assumption a particular cross violates, so it is worth having the list.
+
+    definition{
+        Inheritance of a gene carried on the X chromosome. Males have only one X, so a single recessive allele on it is expressed in a male and masked in a female — which produces different ratios in the two sexes.
+    }(
+        term: Sex linkage
+    )
+
+    Sex linkage is the commonest of them. Red–green colour blindness and haemophilia are both recessive alleles on the X chromosome. A female with one copy is a carrier; a male with one copy has the condition, because he has no second X to mask it. That is why both conditions are far more common in males, and why an affected male's daughters are all carriers while his sons are not affected at all.
+
+    The other three rows are failures of dominance itself. In incomplete dominance neither allele masks the other and the heterozygote is intermediate; in codominance both are fully expressed at once; and in multiple allele systems there are more than two versions of the gene in the population, even though any one individual still carries only two.
+
+    task{
+        A white-flowered snapdragon is crossed with a red-flowered one and all the offspring are pink. Those pink plants are then crossed with each other. Predict the phenotypes of the second generation and their proportions.
+    }[
+        This is incomplete dominance, so the heterozygote is pink. Writing the red allele $C^R$ and the white $C^W$, the pink plants are all $C^R C^W$, and crossing two of them gives a Punnett square with $C^R C^R$, $C^R C^W$, $C^W C^R$ and $C^W C^W$.
+
+        That is one red, two pink and one white — a $1:2:1$ ratio rather than $3:1$. The ratio differs from Mendel's because every genotype now has its own phenotype, so nothing is hidden and the genotype ratio and the phenotype ratio are the same.
+    ](
+        title: Your turn
+    )
 
     Scaling the same reasoning from one family to a whole population, and the technologies that read genomes directly, is *Population Genetics*.
 
     internote(ref: population-genetics.chalk)
-}
+}[
+    table{
+        What fails               | What happens instead                                          | Example                    | The ratio you get
+        Two alleles per gene     | the population holds three or more versions                    | ABO blood groups            | depends on which two alleles each parent carries
+        One allele masks the other | the heterozygote is intermediate between the two homozygotes  | snapdragon flower colour    | $1:2:1$, because every genotype looks different
+        One allele masks the other | both alleles are fully expressed at the same time             | roan cattle; AB blood type  | $1:2:1$, with the heterozygote showing both characters
+        The gene is on an autosome | the gene is on the X chromosome, and males carry only one     | haemophilia; colour blindness | different in males and females, and it matters which parent carried it
+    }(
+        title: Four assumptions, and what happens when each one fails
+        highlight rows: 5
+        highlight colour: orange
+    )
+]

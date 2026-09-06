@@ -1,0 +1,147 @@
+*(
+    title: Disease
+    description: The branch where the rest of the course is put to work, and how its seven internotes divide into two halves.
+    tags: disease, branch overview, infection, immunity, epidemiology, biology
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Disease is the branch that uses everything else. A pathogen is an organism exploiting another organism's cells and systems, immunity is those systems responding, and non-infectious disease is what happens when they fail with nothing having invaded.
+
+    Almost nothing in this branch is a new idea. The membrane, enzymes, natural selection, homeostasis and gene expression all reappear here doing recognisable work, and the branch is largely an exercise in recognising them.
+
+    ===
+
+    It divides cleanly in two, and the division is the one on the canvas: whether anything is transmitted.
+
+    Infectious disease has an agent that moves between hosts, so there is a chain to break and a defence to mount. Everything about how it is prevented, treated and studied follows from those two facts.
+
+    ===
+
+    Non-infectious disease has no agent. Nothing is caught, so nothing can be quarantined and nobody can be vaccinated — and the causes are usually several acting together over decades rather than one acting over days.
+
+    That is why the two halves are studied so differently, and why the same tools do not work on both.
+}[
+    canvas.diagram{
+        box#q{
+            Is anything transmitted?
+            the question that splits the branch
+        }
+
+        cue.draw{
+            box#inf{
+                Infectious
+                an agent, a chain between hosts, and a defence
+            }
+            box#route{
+                So: break the chain, or make the host immune
+                and study it by tracing transmission
+            }
+            arrow(from: #q; to: #inf)
+            arrow(from: #inf; to: #route)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#non{
+                Non-infectious
+                no agent, and usually several causes over decades
+            }
+            box#prev{
+                So: change the exposures, or replace the lost function
+                and study it by comparing large groups
+            }
+            arrow(from: #q; to: #non)
+            arrow(from: #non; to: #prev)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: Two halves, and why they need different tools
+    )
+]
+
+scene{
+    # The route through it
+
+    The infectious half runs in a natural order. Start with the agents themselves, how each is transmitted, and the standard for showing that a particular microbe causes a particular disease.
+
+    internote(ref: causes-of-infectious-disease.chalk)
+
+    Then what the host does about it — the barriers and the innate response, which between them stop almost everything, and the plant defences that work with no circulating immune system at all.
+
+    internote(ref: responses-to-pathogens.chalk)
+
+    Then the adaptive response, which is slow once and fast forever after — the asymmetry every vaccine depends on.
+
+    internote(ref: immunity.chalk)
+
+    Then the interventions: hygiene and quarantine, vaccination and herd immunity, antibiotics and antivirals, and the resistance that keeps eroding them.
+
+    internote(ref: prevention-treatment-and-control.chalk)
+
+    And the discipline that measures whether any of it works, which is also where the limits of what a study can establish are set.
+
+    internote(ref: epidemiology.chalk)
+
+    The non-infectious half is shorter. First the causes — genetic, environmental and nutritional — how they interact, and why these conditions now account for most deaths in Australia.
+
+    internote(ref: non-infectious-disease.chalk)
+
+    Then what can be done when the biology cannot be repaired: replacing a lost function with a device, for hearing, sight and kidney failure.
+
+    internote(ref: technologies-and-disorders.chalk)
+}[
+    table{
+        Half            | Internote                          | The question it answers
+        Infectious      | Causes of Infectious Disease        | what kinds of agent are there, and how is causation established?
+        Infectious      | Responses to Pathogens              | what stops most infections before you ever feel ill?
+        Infectious      | Immunity                            | why is the second exposure different from the first?
+        Infectious      | Prevention, Treatment and Control   | which link of the chain does each measure attack?
+        Infectious      | Epidemiology                        | what can a study of populations establish, and what can it not?
+        Non-infectious  | Non-infectious Disease              | what causes disease when nothing is transmitted?
+        Non-infectious  | Technologies and Disorders          | what can a device do when the biology has failed?
+    }(
+        title: Seven internotes, in reading order
+        highlight rows: 7, 8
+        highlight colour: orange
+    )
+]
+
+scene{
+    ## What to carry out of it
+
+    The first thing is that antibiotic resistance is not a special process. It is the four conditions from *Natural Selection* operating on a bacterial population with a generation time of twenty minutes, and every piece of standard advice about antibiotics follows from that mechanism rather than from convention.
+
+    ===
+
+    The second is that a fever is homeostasis working, not failing. The hypothalamus moves its own set point, and the body then works towards the new one — which is why a person with a fever shivers. Recognising the loop from *Organisms* inside an unfamiliar situation is most of what this branch asks for.
+
+    internote(ref: organisms.chalk)
+
+    The third is about evidence. Koch's postulates are a high standard that many important diseases cannot meet, and epidemiology is a lower standard that can identify a cause well enough to act on decades before anyone can say why. John Snow stopped a cholera outbreak thirty years before the bacterium responsible could be grown.
+
+    Knowing what each kind of evidence can and cannot establish is worth more, in this branch, than any individual fact in it.
+}[
+    canvas.graph{
+        axis.label(x: 0; label: first exposure; line; colour: grey)
+        axis.label(x: 30; label: second exposure; line; colour: grey)
+        curve(f: 100 * exp(-((x - 12)/5)^2); domain: [0, 28]; colour: blue; label: primary response)
+
+        cue{
+            curve(f: 900 * exp(-((x - 37)/5)^2); domain: [30, 60]; colour: orange; label: secondary response)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: days
+        y axis label: antibody in the blood
+        x domain: [0, 60]
+        y domain: [0, 1000]
+        !show ticks
+    )
+]

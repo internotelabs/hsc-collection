@@ -1,18 +1,234 @@
 *(
     title: Evidence for Evolution
     description: The independent lines of evidence, and why their agreement is what makes the case.
-    tags: evolution, fossils, comparative anatomy, biochemistry, module 3, biology, stub
+    tags: evolution, fossils, comparative anatomy, biochemistry, module 3, biology
     lesson
 )
 
+// Scene 2 plots exponential decay, N/N0 = (1/2)^(t/T), for carbon-14 with a
+// half-life T of 5730 years. After 1, 2, 3 and 4 half-lives (5730, 11 460,
+// 17 190 and 22 920 years) the fraction remaining is 0.5, 0.25, 0.125, 0.0625.
+// By about 50 000 years, roughly 8.7 half-lives, only 0.24 per cent remains,
+// which is the practical limit of the method.
+//
+// Scene 3 uses the classic cytochrome c comparison: the number of amino acid
+// positions at which each species differs from human cytochrome c is 0 for
+// chimpanzee, 1 for rhesus monkey, 12 for horse, 13 for chicken, 21 for tuna
+// and 44 for baker's yeast.
 @include(src: ../preface.part.chalk)
 
 scene{
-    No single observation establishes common descent. What does is that several kinds of evidence, collected by people who were not looking for the same thing, produce the same family tree.
+    No single observation proves common descent. A fossil is one animal that lived once; a similarity between two skeletons could be a coincidence; a shared gene could mean anything on its own.
 
-    Written out here: the fossil record and how it is dated, comparative anatomy and embryology, biochemical and DNA comparison, biogeography and the distribution of Australian species in particular, and the strength of an argument built on independent lines agreeing.
+    What makes the case is that several completely different kinds of evidence, gathered by people who were not looking for the same thing and often could not have known what the others would find, produce the same family tree.
+
+    ===
+
+    Fossils give an order in time. Comparative anatomy gives a pattern of shared structure. Biochemistry gives a set of sequence similarities. Biogeography gives a distribution across the world's landmasses.
+
+    ===
+
+    None of those depends on any of the others. A palaeontologist dating a rock layer uses radioactive decay; an anatomist comparing limb bones uses neither rocks nor chemistry; a molecular biologist comparing protein sequences uses neither bones nor geography.
+
+    ===
+
+    And they agree. Whales are placed close to hoofed mammals by their fossils, by the vestigial pelvic bones in their skeletons, and by their DNA — three answers from three methods with nothing in common except the animal.
+
+    That agreement is the argument, and it is the reason the case is regarded as settled. Any one line could be explained away. The agreement of four independent lines could not be a coincidence, and no rival explanation predicts it.
+}[
+    canvas.diagram{
+        box#fossils{
+            Fossils
+            an order in time, dated by radioactive decay
+        }
+        box#tree{
+            One family tree
+            the same relationships, from every method
+        }
+        arrow(from: #fossils; to: #tree)
+
+        cue.draw{
+            box#anat{
+                Comparative anatomy
+                shared structure, modified for different jobs
+            }
+            arrow(from: #anat; to: #tree)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#biochem{
+                Biochemistry and DNA
+                sequence differences that accumulate with time
+            }
+            arrow(from: #biochem; to: #tree)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#geo{
+                Biogeography
+                which organisms are found on which landmass
+            }
+            arrow(from: #geo; to: #tree)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Four methods, one answer
+    )
+]
+
+scene{
+    # Fossils, and how a date is put on one
+
+    A fossil is any preserved trace of a past organism, and the record they form has two properties that matter. Fossils occur in an order — deeper layers are older — and that order is consistent everywhere the layers are undisturbed. And the order is not arbitrary: no rabbit has ever been found in rock older than the first mammals.
+
+    definition{
+        Determining the age of a rock by measuring how much of a radioactive isotope in it has decayed. Because decay proceeds at a fixed rate unaffected by temperature, pressure or chemistry, the proportion remaining is a clock.
+    }(
+        term: Radiometric dating
+    )
+
+    ===
+
+    The canvas is the decay curve. Every half-life, half of what remains decays, so the fraction left is $\left(\tfrac{1}{2}\right)^{t/T}$ where $T$ is the half-life. Carbon-14 has a half-life of $5730$ years, so after one half-life half remains, after two a quarter, after three an eighth.
+
+    ===
+
+    That shape sets the limits of the method. By about $50\,000$ years — roughly nine half-lives — less than a quarter of one per cent of the original carbon-14 is left, which is too little to measure reliably.
+
+    So carbon-14 dates the recent past and nothing else, and different isotopes are used for older material. Potassium-40 has a half-life of $1.25$ billion years and dates volcanic rock; uranium-lead methods reach further still, and are how the age of the Earth was established.
+
+    Transitional fossils are what the record contributes that nothing else can. *Tiktaalik*, found in $375$-million-year-old rock, has a fish's scales and gills together with a neck, a shoulder and limb bones with a wrist. It was found by working out from the existing record roughly when and where such an animal should be, and then looking there.
+
+    note{
+        The fossil record is very incomplete, and this is a genuine limitation rather than a debating point. Fossilisation needs specific conditions, so soft-bodied organisms and animals from forests and mountains are badly under-represented. The record is strong evidence for what it does contain and weak evidence about what it does not.
+    }
+}[
+    canvas.graph{
+        curve(f: 0.5^(x / 5730); domain: [0, 50000]; colour: blue)
+
+        cue{
+            point(x: 5730; y: 0.5; colour: orange; label: one half-life)
+            point(x: 11460; y: 0.25; colour: orange; label: two)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.band(x: [40000, 50000]; label: too little left to measure; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: years since the organism died
+        y axis label: fraction of the carbon-14 remaining
+        x domain: [0, 50000]
+        y domain: [0, 1.05]
+    )
+]
+
+scene{
+    # Structure and sequence
+
+    Comparative anatomy asks a question that sounds naive and is not: why should a bat's wing, a whale's flipper, a horse's leg and a human arm all contain the same bones, in the same order, doing four completely different jobs?
+
+    definition{
+        A structure shared by different species because they inherited it from a common ancestor, even where it has been modified to perform quite different functions. The forelimb of every land vertebrate is the standard example.
+    }(
+        term: Homologous structure
+    )
+
+    A designer starting fresh for each animal would not produce this. Inheritance from a common ancestor, followed by modification, produces exactly this — the same parts, rearranged, because that is all there was to work with.
+
+    ===
+
+    Biochemistry runs the same argument on molecules, and the canvas is the classic dataset. Cytochrome c is a protein used in respiration by almost every organism that respires aerobically, from yeast to humans, and its sequence can be compared directly.
+
+    A chimpanzee's cytochrome c is identical to a human's — not one amino acid differs out of about a hundred. A rhesus monkey's differs at one position, a horse's at twelve, a chicken's at thirteen, a tuna's at twenty-one, and baker's yeast at forty-four.
+
+    ===
+
+    Nobody arranged that order. It is what falls out of comparing sequences, and it reproduces the order anatomists had arrived at from skeletons a century earlier.
+
+    The reason it works is that mutations accumulate over time, so two lineages separated longer ago have had longer to differ. That makes sequence difference a measure of time since separation — the idea behind a molecular clock, and the reason DNA comparison can now place species that left no useful fossils.
+
+    Embryology adds a third strand. Vertebrate embryos are far more alike than the adults are: fish, chickens, pigs and humans all develop pharyngeal arches and a tail early on, structures that become gills in a fish and parts of the jaw and ear in a mammal. The similarity is in the shared starting point rather than in the finished animal.
+}[
+    canvas.graph{
+        histogram(
+            bins: -0.5, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5
+            values: 0, 1, 12, 13, 21, 44
+            colour: blue
+            show labels
+        )
+        axis.label(x: 0; label: chimpanzee; colour: grey)
+        axis.label(x: 1; label: rhesus; colour: grey)
+
+        cue{
+            axis.label(x: 2; label: horse; colour: grey)
+            axis.label(x: 3; label: chicken; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.label(x: 4; label: tuna; colour: grey)
+            axis.label(x: 5; label: yeast; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        y axis label: amino acids differing from human cytochrome c
+        x domain: [-0.5, 5.5]
+        y domain: [0, 48]
+    )
+]
+
+scene{
+    ## Biogeography, and why agreement is the argument
+
+    Biogeography asks why particular organisms are found where they are, and Australia is the clearest case anywhere.
+
+    Australia has almost all the world's marsupials and almost none of the placental mammals that dominate every other continent, apart from bats and rodents that could arrive by air or on floating debris, and the animals humans brought. It has the only two egg-laying mammals. Its plants include groups shared with South America and southern Africa and with nowhere else.
+
+    The explanation is that Australia, South America, Africa, India and Antarctica were once a single landmass, and separated. Populations that were continuous became isolated, and diverged — allopatric speciation, at continental scale and over tens of millions of years.
+
+    The point to notice is that this explanation was not invented to account for the animals. Continental drift was established from rock formations, magnetic reversals and the shapes of the coastlines, by geologists with no interest in marsupials. The biological distribution and the geological history are independent measurements that agree.
+
+    That is the shape of the whole argument, and it is worth stating plainly because it is what the topic is actually about.
+
+    Each line of evidence has weaknesses. The fossil record is patchy. Anatomical similarity can be produced by convergence rather than ancestry. Molecular clocks run at different rates in different lineages. Biogeography can be confused by species that crossed oceans.
+
+    But the weaknesses are different weaknesses. Nothing that would make the fossil record misleading would also make protein sequences misleading in the same direction, and nothing that would make anatomy misleading would also rearrange the continents to match. Four methods with unrelated failure modes producing one tree is the argument, and it is a stronger form of argument than any single decisive observation could be.
+
+    task{
+        A newly discovered species of plant is found only on two islands separated by $3000$ km of ocean. Give two explanations consistent with evolution, and say what evidence would distinguish them.
+    }[
+        Either the two islands were once connected, or joined to a common landmass, and the population was split when they separated; or the plant crossed the ocean once, by seeds carried on wind, water or a bird.
+
+        Geology distinguishes them. If the islands are fragments of one older landmass, the rocks will show it and the separation will have a date, which can be compared against the genetic difference between the two populations. If the islands are young volcanoes that were never connected, dispersal is the only possibility left.
+
+        The genetic difference is the second test. A split at continental separation predicts a large difference matching the geological date; a recent single dispersal predicts a small one, and often that one island's population is a subset of the other's variation rather than an equal half of it.
+    ](
+        title: Your turn
+    )
 
     Those lines together produce a tree, and reading one is a skill of its own — *Biodiversity and Classification*.
 
     internote(ref: biodiversity-and-classification.chalk)
-}
+}[
+    table{
+        Line of evidence      | What it is good at                                        | Where it is weak
+        Fossils               | putting events in order in time, and dating them absolutely | the record is patchy, and biased towards hard-bodied organisms in sediments
+        Comparative anatomy   | showing shared construction beneath different functions     | convergence can produce similarity without ancestry
+        Biochemistry and DNA  | comparing species with no useful fossils, and estimating times | clocks run at different rates in different lineages
+        Biogeography          | explaining distributions across landmasses                  | oceanic dispersal and human introduction can confuse the pattern
+    }(
+        title: Different strengths, and different weaknesses
+    )
+]

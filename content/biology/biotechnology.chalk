@@ -1,14 +1,206 @@
 *(
     title: Biotechnology
     description: What genetic techniques are used for in agriculture and medicine, and what their spread does to biodiversity.
-    tags: biotechnology, agriculture, medicine, biodiversity, module 6, biology, stub
+    tags: biotechnology, agriculture, medicine, biodiversity, module 6, biology
     lesson
 )
 
+// Scene 2's figures come from CSIRO and Cotton Australia: before Bt cotton,
+// Australian cotton crops were typically sprayed with insecticide 10 to 14
+// times a season; insecticide use in the industry has since fallen by about
+// 85 per cent, and essentially the whole Australian crop is now grown from
+// CSIRO-bred varieties carrying the Bt genes.
 @include(src: ../preface.part.chalk)
 
 scene{
-    A technique that alters one organism in a laboratory becomes a different proposition when it is applied to a continent of farmland. The biology of the method and the consequences of deploying it are separate questions, and the course asks both.
+    Biotechnology is much older than genetics. Bread, beer, wine, cheese and yoghurt are all made by getting a microorganism to do chemistry on your behalf, and every one of them predates any understanding of what a microorganism is.
 
-    Written out here: past and present applications in agriculture and medicine, the effect of widespread genetically modified crops on genetic diversity, and the social and ethical arguments made on each side, which are assessable and therefore have to be understood rather than merely held.
-}
+    definition{
+        The use of living organisms, or their components, to make a product or carry out a process useful to people.
+    }(
+        term: Biotechnology
+    )
+
+    What genetic technologies added is not the idea of using organisms but the ability to specify what the organism does. A brewer selects a yeast strain that already ferments well; a biotechnologist inserts a gene so that a yeast makes something no yeast has ever made.
+
+    The table sets the older applications against the newer ones. Reading across the rows, the pattern is that the aim usually stays the same and the method becomes direct.
+}[
+    table{
+        Aim                              | The traditional method                                  | The genetic method
+        Make a food or drink             | ferment with whatever microorganism was already present  | select or engineer a strain with the exact properties wanted
+        Improve a crop                   | selective breeding over many generations                 | insert a specific gene for pest resistance, drought tolerance or nutrient content
+        Improve livestock                | selective breeding, then artificial insemination         | genetic testing of embryos; selection on genotype rather than appearance
+        Produce a medicine               | extract it from animal tissue or plants                   | engineer bacteria or yeast to make the human protein directly
+        Diagnose a disease               | observe symptoms                                          | test for the pathogen's DNA, or for the patient's own alleles
+    }(
+        title: The same aims, met more directly
+    )
+]
+
+scene{
+    # In agriculture: a worked Australian case
+
+    Cotton is the clearest example in Australia, and it is worth following because both the benefit and the concern are measurable.
+
+    Cotton is attacked by caterpillars of the *Helicoverpa* moths, and before the 1990s Australian growers typically sprayed insecticide ten to fourteen times in a season to control them. That is expensive, it kills the predatory insects that would otherwise help, and it puts a great deal of insecticide into the surrounding environment.
+
+    ===
+
+    *Bacillus thuringiensis* is a soil bacterium that produces a protein toxic to those caterpillars and to very little else. The gene for it was inserted into cotton, so the plant produces the toxin in its own tissues, and a caterpillar that eats the plant dies.
+
+    definition{
+        An organism containing a gene transferred from a different species. Bt cotton is transgenic: the gene it expresses came from a bacterium.
+    }(
+        term: Transgenic organism
+    )
+
+    Insecticide use in the Australian cotton industry has fallen by around $85$ per cent since the technology was introduced, and essentially the whole national crop is now grown from varieties carrying the Bt genes.
+
+    ===
+
+    Two things are worth noticing about that outcome, because they are the two halves of the assessable argument.
+
+    The environmental gain is real, specific and measured. An $85$ per cent reduction in insecticide is not a projection; it is a figure from an industry that has been recording its spraying for decades.
+
+    And the technology's own success is what threatens it. A caterpillar population exposed to the same toxin in every plant in the district is under intense selection to become resistant to it — which is natural selection operating exactly as *Natural Selection* describes, with the crop as the environment. Growers are required to plant refuges of non-Bt crop precisely so that some susceptible moths survive to breed.
+}[
+    canvas.diagram{
+        box#before{
+            Before Bt cotton
+            ten to fourteen insecticide sprays a season
+        }
+
+        cue.draw{
+            box#gene{
+                A gene from a soil bacterium is inserted
+                the plant makes a protein toxic to the caterpillars
+            }
+            box#after{
+                Insecticide use falls by about $85$ per cent
+                and predatory insects survive in the crop
+            }
+            arrow(from: #before; to: #gene)
+            arrow(from: #gene; to: #after)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#select{
+                Every plant in the district carries the same toxin
+                so the caterpillar population is under intense selection
+            }
+            box#refuge:terminal{
+                Refuges of non-Bt crop are required
+                so that susceptible moths survive to breed
+            }
+            arrow(from: #after; to: #select)
+            arrow(from: #select; to: #refuge)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: Bt cotton in Australia
+    )
+]
+
+scene{
+    # What widespread adoption does to genetic diversity
+
+    A useful new variety spreads, and the varieties it replaces stop being grown. That is the mechanism, and it does not require anything to go wrong.
+
+    A farmer who adopts a high-yielding variety has a good reason to. But when most farmers in a region adopt the same one, the older local varieties — which nobody has any commercial reason to keep planting — are lost within a few seasons. What is lost with them is the alleles they carried, including alleles for resistance to diseases that are not currently a problem.
+
+    ===
+
+    The canvas is the chain. Note that none of the steps is a mistake: each is a reasonable decision, and the outcome is a crop with a much narrower gene pool than it had before.
+
+    definition{
+        The practice of growing a single variety of a single crop over a large area. It simplifies management and maximises yield, and it means every plant in that area shares the same weaknesses.
+    }(
+        term: Monoculture
+    )
+
+    ===
+
+    The consequence is the one *Reproduction* set out in general terms. A genetically uniform population is only as good as the environment staying the same, and a new pathogen that can defeat one plant can defeat all of them.
+
+    The Irish potato famine of the 1840s is the standard illustration and it predates genetic engineering entirely. Irish potato growing depended on a very small number of varieties, propagated vegetatively and therefore clones. When potato blight arrived, there was no variety in the crop for it to fail against.
+
+    note{
+        The response is to store the diversity rather than to stop using improved varieties. Seed banks — including the Australian Grains Genebank and the global facility at Svalbard — exist to hold varieties that nobody is growing, so that alleles which turn out to matter later have not been lost in the meantime.
+    }
+}[
+    canvas.diagram{
+        box#new{
+            A new variety yields more
+            so growers adopt it
+        }
+
+        cue.draw{
+            box#drop{
+                Older local varieties stop being planted
+                there is no commercial reason to keep them
+            }
+            arrow(from: #new; to: #drop)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#narrow{
+                The crop's gene pool narrows
+                alleles for resistance to problems that are not current are lost with them
+            }
+            box#risk:terminal{
+                A new pathogen meets no resistance anywhere
+                because every plant in the region is close to identical
+            }
+            arrow(from: #drop; to: #narrow)
+            arrow(from: #narrow; to: #risk)
+        }(
+            in: 2
+        )
+    }(
+        flow: down
+        title: How a good decision narrows a gene pool
+    )
+]
+
+scene{
+    ## The arguments, and how to handle them in an answer
+
+    Questions about biotechnology often ask you to discuss social and ethical implications, and the marks are for the quality of the reasoning rather than for the position taken. The most useful habit is to sort each claim by what kind of claim it is, because they are answered in different ways.
+
+    An empirical claim is about what is the case, and evidence settles it. "Bt cotton reduced insecticide use in Australia by about $85$ per cent" is empirical, and it happens to be true. "GM food is unsafe to eat" is also empirical, and the accumulated evidence does not support it.
+
+    An ethical claim is about what ought to be done, and evidence constrains it without settling it. "Farmers should not be legally prevented from saving seed" is not shown true or false by any measurement; it depends on how you weigh a company's claim to recover its research costs against a farmer's independence.
+
+    A third group are claims about risk, which are the hardest because they are partly empirical and partly about how much uncertainty is acceptable. Whether a gene inserted into a crop could transfer to a wild relative is a question with an answer; how much of that risk is worth accepting for a given benefit is not.
+
+    The table sorts the common arguments accordingly. A good answer identifies which kind of claim is being made, gives the evidence where evidence applies, and is explicit about where the disagreement is a disagreement about values.
+
+    task{
+        "Genetically modified crops should be banned because they are unnatural." Analyse this claim.
+    }[
+        It runs two claims together. The empirical part — that GM crops are unnatural — is weak, because every crop plant has been genetically modified by thousands of years of selective breeding, and several ordinary crops were produced by deliberately inducing mutations with radiation. Wheat as grown is not a natural organism by any definition that excludes GM crops.
+
+        The ethical part — that being unnatural is a reason to ban something — is a value claim, and it needs an argument rather than an assertion. Many things people accept are unnatural, including insulin injections and the varieties in the previous sentence.
+
+        A stronger version of the concern would name a specific harm: effects on non-target insects, gene transfer to wild relatives, or the concentration of seed supply in a few companies. Each of those is arguable on evidence, which is what makes them better arguments.
+    ](
+        title: Your turn
+    )
+}[
+    table{
+        The argument                                                   | What kind of claim it is | How it is settled
+        "It reduced insecticide use by $85$ per cent"                  | empirical                 | by measurement, and this one is well supported
+        "GM food is unsafe to eat"                                     | empirical                 | by evidence, and decades of it do not support the claim
+        "Widespread adoption narrows the crop's gene pool"              | empirical                 | by measurement, and this one is well supported
+        "Farmers should be free to save and replant seed"               | ethical                   | not by evidence; it depends on how competing interests are weighed
+        "The risk of gene transfer to wild relatives is unacceptable"   | both                      | the size of the risk is measurable; what counts as acceptable is not
+    }(
+        title: Sort the claim before answering it
+    )
+]

@@ -1,20 +1,220 @@
 *(
     title: Population Dynamics
     description: What one species does to the numbers of another, and how ecologists count populations they cannot count directly.
-    tags: population dynamics, predation, competition, symbiosis, module 4, biology, stub
+    tags: population dynamics, predation, competition, symbiosis, module 4, biology
     lesson
 )
 
+// Scene 1 plots two standard growth models with the same starting size and the
+// same growth rate: exponential N = 10 e^(0.3t), and logistic
+// N = K / (1 + ((K - N0)/N0) e^(-rt)) with K = 1000, N0 = 10, r = 0.3, which is
+// N = 1000 / (1 + 99 e^(-0.3t)).
+//
+// Scene 4's worked estimate uses the Lincoln index, N = MC/R, with M = 60
+// marked and released, C = 80 caught in the second sample and R = 15 of those
+// carrying marks: N = 60 x 80 / 15 = 320.
 @include(src: ../preface.part.chalk)
 
-scene{
-    Populations do not grow without limit, and what stops them is usually other organisms. The interactions are few enough to name and their effects on numbers are specific enough to predict.
+// Hudson's Bay Company pelt records, 1900-1920, in thousands of pelts, as
+// reproduced in ecology texts from MacLulich (1937). Pelt counts are a proxy
+// for population rather than a census; the hare figures before 1903 come from
+// fur records and those after it from questionnaires.
+@data#pelts{
+    year | hare | lynx
+    1900 | 30.0 | 4.0
+    1901 | 47.2 | 6.1
+    1902 | 70.2 | 9.8
+    1903 | 77.4 | 35.2
+    1904 | 36.3 | 59.4
+    1905 | 20.6 | 41.7
+    1906 | 18.1 | 19.0
+    1907 | 21.4 | 13.0
+    1908 | 22.0 | 8.3
+    1909 | 25.4 | 9.1
+    1910 | 27.1 | 7.4
+    1911 | 40.3 | 8.0
+    1912 | 57.0 | 12.3
+    1913 | 76.6 | 19.5
+    1914 | 52.3 | 45.7
+    1915 | 19.5 | 51.1
+    1916 | 11.2 | 29.7
+    1917 | 7.6  | 15.8
+    1918 | 14.6 | 9.7
+    1919 | 16.2 | 10.1
+    1920 | 24.7 | 8.6
+}
 
-    Written out here: predation, competition, symbiosis and allelopathy and the effect each has on the abundance of both parties, the sampling techniques used to estimate populations that cannot be counted individually, and the sources of error in each.
+scene{
+    A single pair of houseflies, if every descendant survived and bred, would produce enough flies to bury the Earth within a year. They do not, and what stops them is the subject of this internote.
+
+    The canvas puts the two possibilities side by side. Both curves start with ten individuals and both have the same growth rate. The difference is that one is allowed to keep growing and one is not.
+
+    ===
+
+    The blue curve is exponential growth: the population multiplies by the same factor each unit of time, so the increase itself gets larger as the population gets larger. It is what happens when nothing is limiting a population — a species newly arrived in a suitable place, or bacteria in fresh medium.
+
+    ===
+
+    The orange curve is logistic growth, and it is what real populations do. It rises at the same rate at first, when the population is small and resources are plentiful, then slows, and levels off.
+
+    definition{
+        The largest population an environment can support indefinitely, given the food, water, space and other resources available in it. A population above it declines; one below it can grow.
+    }(
+        term: Carrying capacity
+    )
+
+    The levelling is not a rule imposed from outside. It happens because as numbers rise, each individual gets a smaller share of the food, competition intensifies, waste accumulates, disease spreads more easily, and predators are attracted — so the birth rate falls, the death rate rises, and the two meet.
+}[
+    canvas.graph{
+        curve(f: 10 * exp(0.3 * x); domain: [0, 16]; colour: blue; label: exponential)
+
+        cue{
+            curve(f: 1000 / (1 + 99 * exp(-0.3 * x)); domain: [0, 40]; colour: orange; label: logistic)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.label(y: 1000; label: carrying capacity; line; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: time
+        y axis label: number of individuals
+        x domain: [0, 40]
+        y domain: [0, 1200]
+    )
+]
+
+scene{
+    # The interactions that do the limiting
+
+    What actually holds a population below the ceiling is usually other organisms, and the interactions are few enough to name. The useful way to sort them is by what each does to each party.
+
+    definition{
+        Two species living in close, long-term association. Mutualism benefits both; commensalism benefits one and does nothing to the other; parasitism benefits one at the other's expense.
+    }(
+        term: Symbiosis
+    )
+
+    Predation and parasitism differ in speed rather than in kind: a predator kills its prey quickly and a parasite takes from its host slowly and usually without killing it. Both reduce the numbers of one party and support the numbers of the other.
+
+    Competition is the one where both parties lose. Two species needing the same limited resource each get less of it than they would alone, and this is the pressure behind a great deal of specialisation — two species that compete directly generally end up using slightly different resources, or one of them is eliminated.
+
+    Allelopathy is worth knowing because it is easy to miss in the field. Some plants release chemicals that inhibit the germination or growth of others nearby, which produces bare ground around them that looks like a soil or water effect and is not. Several eucalypts do it.
+}[
+    table{
+        Interaction   | Effect on the first species | Effect on the second | Example
+        Predation     | benefits                     | killed                | a lynx and a snowshoe hare
+        Parasitism    | benefits                     | harmed, usually slowly | a tapeworm and its host
+        Competition   | harmed                       | harmed                | two plant species using the same soil water
+        Mutualism     | benefits                     | benefits              | a flowering plant and its pollinator
+        Commensalism  | benefits                     | unaffected            | a bird nesting in a tree hollow
+        Allelopathy   | benefits                     | harmed                | eucalypts inhibiting germination beneath them
+    }(
+        title: Sorted by who gains and who loses
+    )
+]
+
+scene{
+    # Predator and prey, in real data
+
+    The canvas is the best-known dataset in ecology: pelts traded to the Hudson's Bay Company in Canada between $1900$ and $1920$, snowshoe hare and Canada lynx.
+
+    Two things are immediately visible. Both populations rise and fall in cycles of roughly ten years, and the lynx peaks come after the hare peaks rather than with them.
+
+    ===
+
+    The lag is the mechanism made visible. Hares increase; more food means more lynx survive and breed, so the lynx population rises — but only after a delay, because reproduction takes time. More lynx then means heavier predation, so the hare population falls. Fewer hares means lynx starve, so the lynx population falls. Fewer lynx means the hares recover, and the cycle repeats.
+
+    ===
+
+    This is negative feedback with a delay in it, and the delay is exactly why the result is a cycle rather than a steady state. A correction that arrives late always overshoots.
+
+    ===
+
+    Two cautions belong with this dataset, and they are as much a part of the lesson as the cycle is.
+
+    The first is that pelts traded are not animals alive. The record measures how many were caught and sold, which depends on how many trappers were working and what fur was worth as well as on how many animals there were.
+
+    The second is that the cycle is not caused by lynx alone. Hare numbers cycle even in areas with no lynx, and the food supply available to the hares cycles too — so the picture is at least a three-way interaction, and the tidy two-species story is a simplification of it.
+
+    note{
+        The hare series has a further complication that is worth knowing about. The figures up to $1903$ come from fur trading records and those after it from questionnaires sent to traders, so the series changes its method of collection part way through. Nothing in the cycle depends on that, but it is the kind of thing worth checking before treating any long series as a single measurement.
+    }
+}[
+    canvas.graph{
+        line(x: #pelts.year; y: #pelts.hare; colour: blue; label: snowshoe hare)
+
+        cue{
+            line(x: #pelts.year; y: #pelts.lynx; colour: orange; label: Canada lynx)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 1903; y: 77.4; colour: blue; label: hares peak in $1903$)
+        }(
+            in: 2
+        )
+
+        cue{
+            point(x: 1904; y: 59.4; colour: orange; label: lynx a year later)
+        }(
+            in: 3
+        )
+    }(
+        x axis label: year
+        y axis label: pelts traded (thousands)
+        x domain: [1899, 1921]
+        y domain: [0, 85]
+    )
+]
+
+scene{
+    ## Counting a population you cannot count
+
+    Almost no population can be counted individually, so ecologists estimate. Three techniques cover most cases, and each carries its own assumptions.
+
+    Quadrats are frames of known area placed on the ground, with everything inside them counted. Multiply the average count per quadrat by the total area and you have an estimate. It works for plants and for slow animals, and it depends on the quadrats being placed randomly — placing them where the plants look interesting produces a number that means nothing.
+
+    Transects are lines along which counts are made at intervals, and they are used where the point is how abundance changes along a gradient rather than what the total is: up a hillside, out from a creek, down a rocky shore.
+
+    For animals that move, neither works, and the method is capture–mark–recapture.
+
+    Catch a sample, mark them, release them, wait, and catch a second sample. The proportion of the second sample that carries marks estimates the proportion of the whole population that was marked — so if $60$ animals were marked and $15$ of a second sample of $80$ carry marks, then those $60$ represent about $15/80$ of the population.
+
+    equation{
+        N = \frac{M \times C}{R} = \frac{60 \times 80}{15} = 320
+    }
+
+    Every step of that estimate assumes something, and the table lists the assumptions with what goes wrong when each fails. This is the part most worth learning, because an exam question about sampling is almost always a question about which assumption a described method breaks.
+
+    task{
+        A student estimates a population of skinks by marking them with a spot of white paint on the back. Their estimate comes out much larger than other methods suggest. Give a likely reason, in terms of the assumptions.
+    }[
+        A white spot makes a skink more conspicuous to predators, so marked animals are removed from the population faster than unmarked ones. That lowers $R$, the number of marked animals in the second sample — and since $R$ is in the denominator, lowering it inflates the estimate.
+
+        A second possibility with the same effect is that marked skinks learned to avoid the trap, so they were present but not recaptured. Both break the same assumption: that a marked animal is as likely to be caught the second time as an unmarked one.
+    ](
+        title: Your turn
+    )
 
     The same reasoning runs backwards and forwards in time. Communities that no longer exist are *Past Ecosystems*; the ones being altered now are *Future Ecosystems*.
 
     internote(ref: past-ecosystems.chalk)
 
     internote(ref: future-ecosystems.chalk)
-}
+}[
+    table{
+        The method assumes                                   | If it is false                                        | What goes wrong
+        marked animals mix evenly back into the population    | they stay near the release point                       | the second sample over-represents them, and the estimate is too small
+        the mark does not affect survival                     | the mark makes them conspicuous to predators            | fewer marked animals survive, and the estimate is too large
+        the mark does not affect recapture                    | they learn to avoid the trap, or are drawn to the bait  | the estimate is too large, or too small, respectively
+        the mark stays on and stays visible                   | paint wears off, or the animal moults                   | marked animals are counted as unmarked, and the estimate is too large
+        no births, deaths or migration between the samples    | the interval was long enough for the population to change | the estimate describes neither population accurately
+    }(
+        title: Five assumptions behind one number
+    )
+]

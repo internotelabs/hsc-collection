@@ -1,0 +1,171 @@
+*(
+    title: Heredity and Genetics
+    description: The branch that follows information — copied, read, passed on, and changed — and the order its nine internotes build in.
+    tags: genetics, heredity, branch overview, DNA, inheritance, biology
+    lesson
+)
+
+@include(src: ../preface.part.chalk)
+
+scene{
+    Genetics looks like a large collection of unrelated things: mitosis, Punnett squares, transcription, restriction enzymes, allele frequencies. It is one thing seen at four stages, and the four are on the canvas.
+
+    A genome is information. It has to be copied without error, read into something that does work, passed to the next generation, and — occasionally — changed. Every internote in this branch is one of those four verbs.
+
+    ===
+
+    Copying is the first, and it is where the branch starts. It is also where accuracy matters most, because an error made while copying is inherited by everything downstream.
+
+    ===
+
+    Reading is the second: turning a sequence of bases into a sequence of amino acids, and from there into something an organism actually has.
+
+    ===
+
+    Passing on is the third, and it is the largest part of the branch. Meiosis and fertilisation shuffle the alleles, inheritance patterns predict the result for a family, and allele frequencies do the same for a whole population.
+
+    ===
+
+    Changing is the fourth. Mutation is the only source of genuinely new alleles there is, and the technologies at the end of the branch are what happens when people start doing deliberately what mutation does by accident.
+}[
+    canvas.diagram{
+        box#info{
+            A genome is information
+            and four things happen to it
+        }
+
+        cue.draw{
+            box#copy{
+                Copied
+                exactly, before every division
+            }
+            arrow(from: #info; to: #copy)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#read{
+                Read
+                into polypeptides, and from there into a phenotype
+            }
+            arrow(from: #info; to: #read)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#pass{
+                Passed on
+                shuffled by meiosis and fertilisation
+            }
+            arrow(from: #info; to: #pass)
+        }(
+            in: 3
+        )
+
+        cue.draw{
+            box#change{
+                Changed
+                by mutation, and now deliberately
+            }
+            arrow(from: #info; to: #change)
+        }(
+            in: 4
+        )
+    }(
+        flow: right
+        title: One thing, four verbs
+    )
+]
+
+scene{
+    # The route through it
+
+    Copying first. This internote also introduces the two kinds of cell division, which everything after it depends on.
+
+    internote(ref: cell-replication.chalk)
+
+    Then reading, which is where "what a gene actually does" gets settled — and it is narrower than most people expect.
+
+    internote(ref: dna-and-polypeptide-synthesis.chalk)
+
+    Then the passing-on sequence, in four steps. How organisms reproduce and what each strategy does to variation.
+
+    internote(ref: reproduction.chalk)
+
+    Where the variation between siblings mechanically comes from, and how much of it there is.
+
+    internote(ref: genetic-variation.chalk)
+
+    Predicting one family, forwards with Punnett squares and backwards with pedigrees.
+
+    internote(ref: inheritance-patterns.chalk)
+
+    And the same reasoning scaled to a whole population, plus the technologies that read DNA directly.
+
+    internote(ref: population-genetics.chalk)
+
+    Then changing, in three steps: the accidental version, the deliberate version, and what the deliberate version is used for.
+
+    internote(ref: mutation.chalk)
+
+    internote(ref: genetic-technologies.chalk)
+
+    internote(ref: biotechnology.chalk)
+}[
+    table{
+        Verb        | Internote                        | The question it answers
+        Copied      | Cell Replication                  | how is a genome copied exactly, and what are the two kinds of division for?
+        Read        | DNA and Polypeptide Synthesis     | how does a base sequence become an amino acid sequence?
+        Passed on   | Reproduction                      | what do the two reproductive strategies each cost and buy?
+        Passed on   | Genetic Variation                 | where do the differences between siblings come from, and how many are possible?
+        Passed on   | Inheritance Patterns              | how is a cross predicted, and which assumption does a given cross break?
+        Passed on   | Population Genetics               | how do allele frequencies move, and how is DNA actually read?
+        Changed     | Mutation                          | what kinds of error occur, what causes them, and which are inherited?
+        Changed     | Genetic Technologies              | how is a genome altered deliberately, and at what resolution?
+        Changed     | Biotechnology                     | what is it used for, and what does it do to genetic diversity?
+    }(
+        title: Nine internotes, sorted by what is happening to the information
+    )
+]
+
+scene{
+    ## What to carry out of it
+
+    Three things, and the first is a habit of precision.
+
+    A gene specifies one polypeptide. It does not specify a trait, and almost every confusion in genetics comes from sliding between those two statements. Height, eye colour and disease risk are all downstream of many genes and an environment, and *DNA and Polypeptide Synthesis* spends a scene on exactly that gap.
+
+    ===
+
+    The second is that shuffling is not creating. Crossing over, independent assortment and random fertilisation between them produce an astronomical number of combinations and not one new allele. Only mutation does that — which is why the branch cannot end without it, and why *Natural Selection* cannot begin without it.
+
+    internote(ref: evolution-and-ecosystems.chalk)
+
+    ===
+
+    The third is that a ratio is a probability. Mendel's own counts came out at $2.98$ to one rather than exactly three to one, across nearly twenty thousand plants, and a cross producing four offspring will very often give something that looks nothing like $3:1$. A prediction in genetics is a statement about expectation, and a small sample is not evidence against it.
+}[
+    canvas.graph{
+        curve(f: 0.30103 * x; domain: [1, 46]; colour: blue)
+
+        cue{
+            point(x: 23; y: 6.92; colour: orange; label: gametes one person can make)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 46; y: 13.85; colour: orange; label: children two people could have)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: chromosome pairs assorting independently
+        y axis label: combinations possible
+        x domain: [0, 52]
+        y domain: [0, 15]
+        y format: log
+    )
+]

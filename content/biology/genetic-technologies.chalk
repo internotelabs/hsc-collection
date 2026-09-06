@@ -1,18 +1,227 @@
 *(
     title: Genetic Technologies
     description: Deliberately changing a genome, from selective breeding to cutting and pasting DNA directly.
-    tags: recombinant DNA, transgenic, cloning, gene therapy, module 6, biology, stub
+    tags: recombinant DNA, transgenic, cloning, gene therapy, module 6, biology
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Humans have been altering genomes since the first domesticated crop, by choosing which organisms breed. What changed recently is the resolution: whole genomes selected blindly, then individual genes moved on purpose.
+    Every domesticated plant and animal is a genetically modified organism. Wheat, maize, cattle, dogs and apples have all had their genomes changed enormously by humans, over thousands of years, by the simple method of deciding which individuals were allowed to breed.
 
-    Written out here: artificial insemination and artificial pollination, cloning, recombinant DNA and the transgenic organisms it produces, and gene therapy — with the differences in precision and in risk between selecting an organism and editing one.
+    definition{
+        Choosing which individuals reproduce, on the basis of characteristics they show, so that the alleles producing those characteristics become more common in the next generation.
+    }(
+        term: Selective breeding
+    )
+
+    What has changed recently is not whether humans alter genomes but how precisely. The canvas is that increase in resolution, and it is the frame worth holding for the whole internote.
+
+    ===
+
+    Selective breeding moves whole genomes at once. A breeder choosing a high-yielding plant gets every allele that plant carries, including thousands they know nothing about and some they would not have chosen. The method is slow, it works only within a species or close to it, and its effects are large but imprecise.
+
+    ===
+
+    Recombinant DNA moves one identified gene. It works between any two species, because the genetic code is the same in all of them, and it changes only what was intended.
+
+    ===
+
+    Gene editing changes individual bases in place. Nothing is added from elsewhere; a sequence already present is corrected or disabled.
+
+    Each step down the canvas gives more control over what changes. What none of them gives is control over the consequences, because a gene's effect depends on everything else in the organism — which is why every one of these technologies still has to be tested rather than merely designed.
+}[
+    canvas.diagram{
+        box#breed{
+            Selective breeding
+            whole genomes, chosen by what the organism looks like
+        }
+
+        cue.draw{
+            box#assist{
+                Artificial insemination and artificial pollination
+                the same genomes, but the breeder now chooses both parents exactly
+            }
+            arrow(from: #breed; to: #assist)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#recomb{
+                Recombinant DNA
+                one identified gene, moved between any two species
+            }
+            arrow(from: #assist; to: #recomb)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#edit:terminal{
+                Gene editing
+                individual bases changed where they already sit
+            }
+            arrow(from: #recomb; to: #edit)
+        }(
+            in: 3
+        )
+    }(
+        flow: down
+        title: The same aim, at four different resolutions
+    )
+]
+
+scene{
+    # Choosing the parents, and copying an individual
+
+    The oldest technologies do not touch DNA at all. They control which gametes meet, or they skip the gametes entirely.
+
+    Artificial insemination collects semen from a chosen male and introduces it to a chosen female. One prize bull can father tens of thousands of calves across many countries, which spreads his alleles far faster than natural mating could — and narrows the breed's gene pool by the same amount. Artificial pollination does the equivalent in plants, by transferring pollen by hand and preventing any other pollen from reaching the flower.
+
+    Cloning goes further and removes variation altogether. Whole-organism cloning by nuclear transfer takes the nucleus from a body cell of the animal to be copied and puts it into an egg cell whose own nucleus has been removed. The egg is stimulated to divide, and develops into an animal genetically identical to the nucleus donor.
+
+    definition{
+        Producing an organism genetically identical to an existing one, by transferring the nucleus of one of its body cells into an egg cell that has had its own nucleus removed.
+    }(
+        term: Reproductive cloning
+    )
+
+    Dolly the sheep, born in 1996, was the first mammal produced this way from an adult cell, and the reason it mattered was not the sheep. It showed that a fully differentiated cell still contains a complete and usable genome — the point made in *Cell Differentiation and Specialisation* — because a mammary gland cell's nucleus was able to direct the building of an entire animal.
+
+    The table sets the three out with what each controls and what each does not.
+}[
+    table{
+        Technology                | What the operator chooses                       | What is still left to chance
+        Artificial insemination   | both parents, exactly                            | which of the male's many gametes fertilises the egg, and which alleles it carries
+        Artificial pollination    | both parents, exactly, and it excludes all other pollen | the same — meiosis still shuffles before the pollen is made
+        Reproductive cloning      | the entire nuclear genome of the offspring       | nothing genetic, except the small amount of DNA in the egg's own mitochondria
+    }(
+        title: How much of the outcome each one fixes
+    )
+]
+
+scene{
+    # Moving one gene into another organism
+
+    Recombinant DNA technology exists because the genetic code is universal. A human gene put into a bacterium is read by the bacterium's ribosomes in exactly the same way, and produces exactly the same protein — which is the fact the whole industry rests on.
+
+    definition{
+        DNA made by joining sequences from two different sources. An organism containing DNA from another species is described as transgenic.
+    }(
+        term: Recombinant DNA
+    )
+
+    The canvas follows the making of human insulin, which was the first medicine produced this way and has been in use since the early 1980s.
+
+    ===
+
+    Restriction enzymes do the cutting. Each one recognises a short specific sequence and cuts there, and many of them cut the two strands at staggered positions — leaving short single-stranded overhangs. Two pieces of DNA cut with the same enzyme have matching overhangs, which is what allows a human gene and a bacterial plasmid to be joined.
+
+    ===
+
+    A plasmid is a small circular piece of DNA that bacteria carry in addition to their main chromosome. Cutting one open with the same enzyme used on the insulin gene, mixing the two, and adding DNA ligase to seal the joins produces plasmids carrying a human gene.
+
+    ===
+
+    Those plasmids are then taken up by bacteria, and every time a bacterium divides it copies the plasmid too. A culture grown overnight is billions of cells all transcribing and translating the human insulin gene, and the protein is harvested from it.
+
+    Before this, insulin was extracted from the pancreases of slaughtered pigs and cattle. It worked, but the supply depended on the meat industry, and animal insulin differs slightly from human insulin, which caused reactions in some patients. Recombinant insulin is the human protein exactly, in unlimited supply.
+}[
+    canvas.diagram{
+        box#gene{
+            The human insulin gene
+            identified and located in human DNA
+        }
+
+        cue.draw{
+            box#cut{
+                A restriction enzyme cuts both
+                the gene, and a bacterial plasmid, at the same sequence
+            }
+            arrow(from: #gene; to: #cut)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#join{
+                DNA ligase seals the joins
+                the plasmid now carries a human gene
+            }
+            arrow(from: #cut; to: #join)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#grow{
+                Bacteria take up the plasmid and are grown
+                each division copies the gene along with everything else
+            }
+            box#harvest:terminal{
+                Human insulin, harvested from the culture
+                identical to the protein a human pancreas makes
+            }
+            arrow(from: #join; to: #grow)
+            arrow(from: #grow; to: #harvest)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Making human insulin in bacteria
+    )
+]
+
+scene{
+    ## Gene therapy, and the line most countries have drawn
+
+    Gene therapy applies the same technology to a person rather than to a bacterium. A working copy of a faulty gene is delivered into the patient's cells — usually inside a virus that has been stripped of its ability to cause disease — in the hope that the cells will express it.
+
+    It has proved much harder than the description suggests. The gene has to reach enough of the right cells, it has to be expressed at the right level, and it must not insert itself into a place where it disrupts something else. Early trials produced both a small number of genuine cures and a small number of serious harms, including leukaemias caused by the inserted gene landing next to a gene controlling cell division.
+
+    The distinction that matters most is the one from *Mutation*: which cells are changed.
+
+    definition{
+        Gene therapy that alters body cells only. The change affects the patient and is not passed to their children.
+    }(
+        term: Somatic gene therapy
+    )
+
+    definition{
+        Gene therapy that alters gametes or an early embryo, so the change is present in every cell of the resulting person and in every generation after them.
+    }(
+        term: Germline gene therapy
+    )
+
+    Somatic gene therapy is permitted and in clinical use for several conditions. Germline modification of humans is prohibited by law in most countries, including Australia. The reason is not that the technique is different — it is much the same technique — but that the people affected by it have not consented and do not yet exist.
+
+    task{
+        A bacterium is engineered to produce a human protein, and a human patient is treated with somatic gene therapy for the same faulty gene. Both involve inserting the same human gene. Explain why one is uncontroversial and the other is regulated tightly.
+    }[
+        In the bacterium, the gene is being used as a manufacturing instruction. The organism modified is a bacterium in a sealed vessel; the patient receives a purified protein and their own genome is untouched.
+
+        In gene therapy the modified organism is the patient. The gene has to enter their own cells and it may insert in an unpredictable place, so the risks fall on a person rather than on a culture — and any failure is a harm to them rather than a spoiled batch. The regulation follows the location of the risk, not the identity of the gene.
+    ](
+        title: Your turn
+    )
 
     What those techniques are actually used for, and what their spread does to biodiversity, is *Biotechnology*.
 
     internote(ref: biotechnology.chalk)
-}
+}[
+    table{
+        Technology              | How precise it is                                   | Where the risk sits
+        Selective breeding      | whole genomes; thousands of unintended alleles come with the chosen one | slow, and confined to what the species already carries
+        Cloning                 | exact — the whole nuclear genome is copied           | no variation at all, so a cloned population shares every weakness
+        Recombinant DNA         | one identified gene, moved deliberately              | where the gene inserts is not fully controlled, and its effects depend on the rest of the organism
+        Somatic gene therapy    | one gene, in one patient's body cells                | insertion in the wrong place can disrupt a gene controlling cell division
+        Germline modification   | one gene, in every cell of every descendant          | the people affected cannot consent, and the change cannot be recalled
+    }(
+        title: Precision and risk do not rise together
+        highlight rows: 6
+        highlight colour: orange
+    )
+]
