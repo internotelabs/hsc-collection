@@ -130,14 +130,23 @@ scene{
     }
 }[
     canvas.diagram{
-        box#lift(label: The Board raises the cash rate target; shape: terminal)
-        box#banks(label: Banks' funding costs rise)
-        box#rates(label: Mortgage and business lending rates rise)
+        box#lift:terminal{The Board raises the cash rate target}
+        box#banks{Banks' funding costs rise}
+        box#rates{Mortgage and business lending rates rise}
 
         cue{
-            box#spend(label: Households spend less; sub: more income to interest, more reward for saving)
-            box#invest(label: Firms defer investment; sub: projects must clear a higher hurdle)
-            box#dollar(label: The dollar appreciates; sub: higher returns pull in foreign capital)
+            box#spend{
+                Households spend less
+                more income to interest, more reward for saving
+            }
+            box#invest{
+                Firms defer investment
+                projects must clear a higher hurdle
+            }
+            box#dollar{
+                The dollar appreciates
+                higher returns pull in foreign capital
+            }
             arrow(from: #rates; to: #spend)
             arrow(from: #rates; to: #invest)
             arrow(from: #rates; to: #dollar)
@@ -146,8 +155,8 @@ scene{
         )
 
         cue.draw{
-            box#demand(label: Aggregate demand growth slows)
-            box#inflation(label: Inflation eases; shape: terminal)
+            box#demand{Aggregate demand growth slows}
+            box#inflation:terminal{Inflation eases}
             arrow(from: #spend; to: #demand)
             arrow(from: #invest; to: #demand)
             arrow(from: #dollar; to: #demand; label: net exports fall)

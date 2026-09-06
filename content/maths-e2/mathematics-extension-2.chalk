@@ -55,12 +55,24 @@ scene{
     internote(ref: velocity-as-a-function-of-displacement.chalk)
 }[
     canvas.diagram{
-        box#proof(label: Proof; sub: the language the other four are written in; shape: terminal)
+        box#proof:terminal{
+            Proof
+            the language the other four are written in
+        }
 
         cue{
-            box#vectors(label: Vectors; sub: coordinates on three-dimensional space)
-            box#complex(label: Complex numbers; sub: coordinates on the plane, with a multiplication)
-            box#calculus(label: Calculus; sub: techniques of integration)
+            box#vectors{
+                Vectors
+                coordinates on three-dimensional space
+            }
+            box#complex{
+                Complex numbers
+                coordinates on the plane, with a multiplication
+            }
+            box#calculus{
+                Calculus
+                techniques of integration
+            }
             arrow(from: #proof; to: #vectors; dashed)
             arrow(from: #proof; to: #complex; dashed)
             arrow(from: #proof; to: #calculus; dashed)
@@ -69,7 +81,10 @@ scene{
         )
 
         cue.draw{
-            box#mechanics(label: Mechanics; sub: calculus applied to a moving body)
+            box#mechanics{
+                Mechanics
+                calculus applied to a moving body
+            }
             arrow(from: #calculus; to: #mechanics; label: needs the integration first)
         }(
             in: 2

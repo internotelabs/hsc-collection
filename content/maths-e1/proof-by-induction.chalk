@@ -89,18 +89,27 @@ scene{
     Put the two together and every case is reachable. The initial statement hands over $P(1)$; the inductive step converts it to $P(2)$, then $P(3)$, and so on past any value a reader cares to name.
 }[
     canvas.diagram{
-        box#base(label: $P(1)$ is true; sub: the initial statement, proved directly)
+        box#base{
+            $P(1)$ is true
+            the initial statement, proved directly
+        }
 
         cue{
-            box#hyp(label: $P(k)$ is true; sub: granted, for an unspecified $k$)
-            box#step(label: $P(k + 1)$ is true; sub: derived from the line above)
+            box#hyp{
+                $P(k)$ is true
+                granted, for an unspecified $k$
+            }
+            box#step{
+                $P(k + 1)$ is true
+                derived from the line above
+            }
             arrow(from: #hyp; to: #step; label: the inductive step)
         }(
             in: 1
         )
 
         cue.draw{
-            box#all(label: $P(n)$ is true for every integer $n \ge 1$; shape: terminal)
+            box#all:terminal{$P(n)$ is true for every integer $n \ge 1$}
             arrow(from: #base; to: #all; label: supplies the first case)
             arrow(from: #step; to: #all; label: supplies every case after it)
         }(

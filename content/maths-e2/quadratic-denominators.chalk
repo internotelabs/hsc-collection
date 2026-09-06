@@ -150,15 +150,28 @@ scene{
     )
 }[
     canvas.diagram{
-        box#start(label: A quadratic in the denominator; shape: terminal)
-        box#factor(label: Does it factorise over the reals?; shape: decision)
-        box#pf(label: Partial fractions; sub: every piece is a logarithm; colour: purple)
+        box#start:terminal{A quadratic in the denominator}
+        box#factor:decision{Does it factorise over the reals?}
+        box#pf{
+            Partial fractions
+            every piece is a logarithm
+        }(
+            colour: purple
+        )
         arrow(from: #start; to: #factor)
         arrow(from: #factor; to: #pf; label: yes)
 
         cue{
-            box#split(label: Split the numerator; sub: derivative part, plus a constant)
-            box#log(label: Logarithm; sub: from the derivative part; colour: teal)
+            box#split{
+                Split the numerator
+                derivative part, plus a constant
+            }
+            box#log{
+                Logarithm
+                from the derivative part
+            }(
+                colour: teal
+            )
             arrow(from: #factor; to: #split; label: no)
             arrow(from: #split; to: #log)
         }(
@@ -166,9 +179,22 @@ scene{
         )
 
         cue{
-            box#square(label: Complete the square; sub: on the constant part)
-            box#atan(label: Inverse tangent; sub: a square plus a constant; colour: orange)
-            box#asin(label: Inverse sine; sub: a constant minus a square, under a root; colour: orange)
+            box#square{
+                Complete the square
+                on the constant part
+            }
+            box#atan{
+                Inverse tangent
+                a square plus a constant
+            }(
+                colour: orange
+            )
+            box#asin{
+                Inverse sine
+                a constant minus a square, under a root
+            }(
+                colour: orange
+            )
             arrow(from: #split; to: #square)
             arrow(from: #square; to: #atan)
             arrow(from: #square; to: #asin)

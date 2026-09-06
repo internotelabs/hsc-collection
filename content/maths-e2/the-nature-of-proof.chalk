@@ -35,8 +35,14 @@ scene{
     The original implication is untouched by this. It never claimed that only multiples of $4$ are even; it claimed that multiples of $4$ are among the even numbers, and they are. Confusing a statement with its converse is the most common error in the whole subject, and it is an error of reading before it is an error of mathematics.
 }[
     canvas.diagram{
-        box#p(label: $n$ is a multiple of $4$; sub: the condition $P$)
-        box#q(label: $n$ is even; sub: the conclusion $Q$)
+        box#p{
+            $n$ is a multiple of $4$
+            the condition $P$
+        }
+        box#q{
+            $n$ is even
+            the conclusion $Q$
+        }
         arrow(from: #p; to: #q; label: implies — true)
 
         cue{
@@ -46,7 +52,12 @@ scene{
         )
 
         cue{
-            box#six(label: $n = 6$; sub: even, but not a multiple of $4$; shape: terminal; colour: red)
+            box#six:terminal{
+                $n = 6$
+                even, but not a multiple of $4$
+            }(
+                colour: red
+            )
             arrow(from: #six; to: #q; label: satisfies $Q$)
             arrow(from: #six; to: #p; label: fails $P$; dashed)
         }(

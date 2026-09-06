@@ -17,16 +17,34 @@ scene{
     What changes as you climb is what counts as an explanation. At the bottom the answers are chemical: this molecule binds that one. At the top they are statistical: this population declines when that one arrives. Neither replaces the other, and a good biological answer usually names the rung it is being given at.
 }[
     canvas.diagram{
-        box#molecule(label: Molecules; sub: DNA, proteins, lipids)
-        box#cell(label: Cells; sub: the smallest thing that is alive)
-        box#tissue(label: Tissues and organs; sub: specialised cells working together)
+        box#molecule{
+            Molecules
+            DNA, proteins, lipids
+        }
+        box#cell{
+            Cells
+            the smallest thing that is alive
+        }
+        box#tissue{
+            Tissues and organs
+            specialised cells working together
+        }
         arrow(from: #molecule; to: #cell)
         arrow(from: #cell; to: #tissue)
 
         cue.draw{
-            box#organism(label: Organisms; sub: systems holding an internal environment steady)
-            box#population(label: Populations; sub: one species, interbreeding)
-            box#ecosystem(label: Ecosystems; sub: many species, and the non-living world around them)
+            box#organism{
+                Organisms
+                systems holding an internal environment steady
+            }
+            box#population{
+                Populations
+                one species, interbreeding
+            }
+            box#ecosystem{
+                Ecosystems
+                many species, and the non-living world around them
+            }
             arrow(from: #tissue; to: #organism)
             arrow(from: #organism; to: #population)
             arrow(from: #population; to: #ecosystem)
@@ -86,11 +104,17 @@ scene{
     internote(ref: causes-of-infectious-disease.chalk)
 }[
     canvas.diagram{
-        box#bio(label: Biology; shape: terminal)
+        box#bio:terminal{Biology}
 
         cue{
-            box#cells(label: Cells; sub: modules 1 and 5)
-            box#organisms(label: Organisms; sub: modules 2 and 8)
+            box#cells{
+                Cells
+                modules 1 and 5
+            }
+            box#organisms{
+                Organisms
+                modules 2 and 8
+            }
             arrow(from: #bio; to: #cells)
             arrow(from: #bio; to: #organisms)
         }(
@@ -98,9 +122,18 @@ scene{
         )
 
         cue.draw{
-            box#heredity(label: Heredity; sub: modules 5 and 6)
-            box#evolution(label: Evolution and ecosystems; sub: modules 3 and 4)
-            box#disease(label: Disease; sub: modules 7 and 8)
+            box#heredity{
+                Heredity
+                modules 5 and 6
+            }
+            box#evolution{
+                Evolution and ecosystems
+                modules 3 and 4
+            }
+            box#disease{
+                Disease
+                modules 7 and 8
+            }
             arrow(from: #bio; to: #heredity)
             arrow(from: #bio; to: #evolution)
             arrow(from: #bio; to: #disease)

@@ -27,11 +27,17 @@ scene{
     The method's power is that the assumption can be anything at all, provided it is exactly the negation of what is wanted. Its weakness is the same: get the negation wrong and the proof establishes something other than the claim. *The Nature of Proof* set out how negation works; the last scene here returns to it.
 }[
     canvas.diagram{
-        box#want(label: To prove: $P$; shape: terminal)
+        box#want:terminal{To prove: $P$}
 
         cue{
-            box#suppose(label: Suppose $P$ is false; sub: the negation, taken as a working assumption)
-            box#deduce(label: Reason from it; sub: every step valid)
+            box#suppose{
+                Suppose $P$ is false
+                the negation, taken as a working assumption
+            }
+            box#deduce{
+                Reason from it
+                every step valid
+            }
             arrow(from: #want; to: #suppose)
             arrow(from: #suppose; to: #deduce)
         }(
@@ -39,8 +45,13 @@ scene{
         )
 
         cue{
-            box#absurd(label: A contradiction; sub: something known to be false; shape: decision; colour: red)
-            box#done(label: So $P$ is true; shape: terminal; colour: green)
+            box#absurd:decision{
+                A contradiction
+                something known to be false
+            }(
+                colour: red
+            )
+            box#done:terminal{So $P$ is true}(colour: green)
             arrow(from: #deduce; to: #absurd)
             arrow(from: #absurd; to: #done; label: the supposition was false)
         }(

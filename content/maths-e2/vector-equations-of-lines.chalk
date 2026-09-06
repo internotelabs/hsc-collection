@@ -116,15 +116,26 @@ scene{
     }
 }[
     canvas.diagram{
-        box#start(label: Two lines in space; shape: terminal)
-        box#dir(label: Are the directions parallel?; shape: decision)
-        box#par(label: Parallel; sub: or the same line, if a point is shared)
+        box#start:terminal{Two lines in space}
+        box#dir:decision{Are the directions parallel?}
+        box#par{
+            Parallel
+            or the same line, if a point is shared
+        }
         arrow(from: #start; to: #dir)
         arrow(from: #dir; to: #par; label: yes)
 
         cue{
-            box#solve(label: Do the equations share a solution?; sub: solve two, test the third; shape: decision)
-            box#meet(label: Intersecting; sub: at the point the solution names; colour: teal)
+            box#solve:decision{
+                Do the equations share a solution?
+                solve two, test the third
+            }
+            box#meet{
+                Intersecting
+                at the point the solution names
+            }(
+                colour: teal
+            )
             arrow(from: #dir; to: #solve; label: no)
             arrow(from: #solve; to: #meet; label: yes)
         }(
@@ -132,7 +143,12 @@ scene{
         )
 
         cue{
-            box#skew(label: Skew; sub: neither parallel nor meeting; colour: orange)
+            box#skew{
+                Skew
+                neither parallel nor meeting
+            }(
+                colour: orange
+            )
             arrow(from: #solve; to: #skew; label: no)
         }(
             in: 2

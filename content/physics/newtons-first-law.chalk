@@ -163,10 +163,16 @@ scene{
     )
 }[
     canvas.diagram{
-        box#zero(label: Net force is zero; shape: terminal)
-        box#const(label: Velocity stays constant; sub: at rest, or a straight line at steady speed)
-        box#nonzero(label: Net force is not zero; shape: terminal)
-        box#change(label: Velocity changes; sub: speed, direction, or both)
+        box#zero:terminal{Net force is zero}
+        box#const{
+            Velocity stays constant
+            at rest, or a straight line at steady speed
+        }
+        box#nonzero:terminal{Net force is not zero}
+        box#change{
+            Velocity changes
+            speed, direction, or both
+        }
         arrow(from: #zero; to: #const)
         arrow(from: #nonzero; to: #change)
 
