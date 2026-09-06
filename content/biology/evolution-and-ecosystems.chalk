@@ -82,11 +82,11 @@ scene{
 scene{
     # The route through it
 
-    !internote(ref: adaptations.chalk) comes first, because it is the observation everything else explains — and because it is where the standard of evidence for calling something an adaptation is set. !internote(ref: effects-of-the-environment-on-organisms.chalk) then supplies the pressures: what a habitat does to the individuals in it, and what decides where a species is found and how many of it there are.
+    !internote(ref: adaptations.chalk) comes first, because it is the observation everything else explains — and because it is where the standard of evidence for calling something an adaptation is set. !internote(ref: effects-of-the-environment-on-organisms.chalk; !connect) then supplies the pressures: what a habitat does to the individuals in it, and what decides where a species is found and how many of it there are.
 
-    The mechanism itself is !internote(ref: natural-selection.chalk) — four conditions and a conclusion, plus the speciation that follows when a population is divided. !internote(ref: evidence-for-evolution.chalk) is what convinced people, and why the agreement between fossils, anatomy, biochemistry and biogeography is the argument rather than any one of them. What that evidence produces is a tree, and reading one is !internote(ref: biodiversity-and-classification.chalk).
+    The mechanism itself is !internote(ref: natural-selection.chalk; !connect) — four conditions and a conclusion, plus the speciation that follows when a population is divided. !internote(ref: evidence-for-evolution.chalk; !connect) is what convinced people, and why the agreement between fossils, anatomy, biochemistry and biogeography is the argument rather than any one of them. What that evidence produces is a tree, and reading one is !internote(ref: biodiversity-and-classification.chalk; !connect).
 
-    The last three move up to communities. !internote(ref: population-dynamics.chalk) is what one species does to the numbers of another, and how a population that cannot be counted is estimated; !internote(ref: past-ecosystems.chalk) and !internote(ref: future-ecosystems.chalk) run the same reasoning backwards into the fossil record and forwards into the next century.
+    The last three move up to communities. !internote(ref: population-dynamics.chalk; !connect) is what one species does to the numbers of another, and how a population that cannot be counted is estimated; !internote(ref: past-ecosystems.chalk; !connect) and !internote(ref: future-ecosystems.chalk; !connect) run the same reasoning backwards into the fossil record and forwards into the next century.
 }[
     table{
         Internote                                    | The question it answers
