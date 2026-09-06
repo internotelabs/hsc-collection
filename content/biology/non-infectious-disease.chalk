@@ -189,9 +189,7 @@ scene{
         title: Your turn
     )
 
-    Where the underlying biology cannot be repaired, the remaining option is to replace the function by other means, which is *Technologies and Disorders*.
-
-    internote(ref: technologies-and-disorders.chalk)
+    Where the underlying biology cannot be repaired, the remaining option is to replace the function by other means, which is !internote(ref: technologies-and-disorders.chalk).
 }[
     table{
         Risk factor             | Diseases it contributes to

@@ -82,35 +82,11 @@ scene{
 scene{
     # The route through it
 
-    Adaptations first, because it is the observation everything else explains — and because it is where the standard of evidence for calling something an adaptation is set.
+    !internote(ref: adaptations.chalk; !connect) comes first, because it is the observation everything else explains — and because it is where the standard of evidence for calling something an adaptation is set. !internote(ref: effects-of-the-environment-on-organisms.chalk; !connect) then supplies the pressures: what a habitat does to the individuals in it, and what decides where a species is found and how many of it there are.
 
-    internote(ref: adaptations.chalk)
+    The mechanism itself is !internote(ref: natural-selection.chalk; !connect) — four conditions and a conclusion, plus the speciation that follows when a population is divided. !internote(ref: evidence-for-evolution.chalk; !connect) is what convinced people, and why the agreement between fossils, anatomy, biochemistry and biogeography is the argument rather than any one of them. What that evidence produces is a tree, and reading one is !internote(ref: biodiversity-and-classification.chalk; !connect).
 
-    Then the pressures themselves: what a habitat does to the individuals in it, and what decides where a species is found and how many of it there are.
-
-    internote(ref: effects-of-the-environment-on-organisms.chalk)
-
-    Then the mechanism, which is four conditions and a conclusion, and the speciation that follows when a population is divided.
-
-    internote(ref: natural-selection.chalk)
-
-    Then the evidence — fossils, anatomy, biochemistry and biogeography — and why their agreement is the argument rather than any one of them.
-
-    internote(ref: evidence-for-evolution.chalk)
-
-    Then what that evidence produces: a tree, how to read one, and what biodiversity actually measures.
-
-    internote(ref: biodiversity-and-classification.chalk)
-
-    Then communities. What one species does to the numbers of another, and how a population that cannot be counted is estimated.
-
-    internote(ref: population-dynamics.chalk)
-
-    And the same reasoning in both directions in time: reconstructing ecosystems that are gone, and projecting the ones being altered now.
-
-    internote(ref: past-ecosystems.chalk)
-
-    internote(ref: future-ecosystems.chalk)
+    The last three move up to communities. !internote(ref: population-dynamics.chalk; !connect) is what one species does to the numbers of another, and how a population that cannot be counted is estimated; !internote(ref: past-ecosystems.chalk; !connect) and !internote(ref: future-ecosystems.chalk; !connect) run the same reasoning backwards into the fossil record and forwards into the next century.
 }[
     table{
         Internote                                    | The question it answers
@@ -134,9 +110,7 @@ scene{
 
     ===
 
-    The second is that agreement between independent methods is a form of evidence in its own right, and a strong one. That idea appears in *Evidence for Evolution* at the largest scale, and again in *Adaptations* when a claim about one species is tested by comparison across many, and again in *Epidemiology* when a correlation has to be checked against several possible explanations.
-
-    internote(ref: disease.chalk)
+    The second is that agreement between independent methods is a form of evidence in its own right, and a strong one. That idea appears in *Evidence for Evolution* at the largest scale, again in *Adaptations* when a claim about one species is tested by comparison across many, and again over in !internote(ref: disease.chalk; !connect), where a correlation has to be checked against every other explanation before it counts as a cause.
 
     The third is a matter of rates. A population can adapt, or it can move, and both take time. Almost every conservation problem in *Future Ecosystems* is a case of the environment changing faster than one of those responses can operate — or of habitat fragmentation having removed the second option entirely.
 }[

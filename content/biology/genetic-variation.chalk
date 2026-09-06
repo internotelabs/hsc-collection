@@ -209,9 +209,7 @@ scene{
         title: Your turn
     )
 
-    Once variation exists, it is passed on in patterns regular enough to predict. Those patterns are *Inheritance Patterns*.
-
-    internote(ref: inheritance-patterns.chalk)
+    Once variation exists, it is passed on in patterns regular enough to predict. Those patterns are !internote(ref: inheritance-patterns.chalk).
 }[
     table{
         Source                  | What it does                                                    | Does it create a new allele?

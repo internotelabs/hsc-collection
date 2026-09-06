@@ -82,37 +82,11 @@ scene{
 scene{
     # The route through it
 
-    Copying first. This internote also introduces the two kinds of cell division, which everything after it depends on.
+    Copying comes first, in !internote(ref: cell-replication.chalk; !connect), which also introduces the two kinds of cell division that everything after it depends on. Reading follows in !internote(ref: dna-and-polypeptide-synthesis.chalk; !connect), where "what a gene actually does" gets settled — and it is narrower than most people expect.
 
-    internote(ref: cell-replication.chalk)
+    Passing on takes four internotes. !internote(ref: reproduction.chalk; !connect) covers how organisms reproduce and what each strategy does to variation; !internote(ref: genetic-variation.chalk; !connect) is where the differences between siblings mechanically come from, and how many are possible. !internote(ref: inheritance-patterns.chalk; !connect) predicts one family, forwards with Punnett squares and backwards with pedigrees, and !internote(ref: population-genetics.chalk; !connect) scales the same reasoning to a whole population and adds the technologies that read DNA directly.
 
-    Then reading, which is where "what a gene actually does" gets settled — and it is narrower than most people expect.
-
-    internote(ref: dna-and-polypeptide-synthesis.chalk)
-
-    Then the passing-on sequence, in four steps. How organisms reproduce and what each strategy does to variation.
-
-    internote(ref: reproduction.chalk)
-
-    Where the variation between siblings mechanically comes from, and how much of it there is.
-
-    internote(ref: genetic-variation.chalk)
-
-    Predicting one family, forwards with Punnett squares and backwards with pedigrees.
-
-    internote(ref: inheritance-patterns.chalk)
-
-    And the same reasoning scaled to a whole population, plus the technologies that read DNA directly.
-
-    internote(ref: population-genetics.chalk)
-
-    Then changing, in three steps: the accidental version, the deliberate version, and what the deliberate version is used for.
-
-    internote(ref: mutation.chalk)
-
-    internote(ref: genetic-technologies.chalk)
-
-    internote(ref: biotechnology.chalk)
+    Changing takes three. !internote(ref: mutation.chalk; !connect) is the accidental version, !internote(ref: genetic-technologies.chalk; !connect) the deliberate one, and !internote(ref: biotechnology.chalk; !connect) is what the deliberate version is actually used for.
 }[
     table{
         Verb        | Internote                        | The question it answers
@@ -139,9 +113,7 @@ scene{
 
     ===
 
-    The second is that shuffling is not creating. Crossing over, independent assortment and random fertilisation between them produce an astronomical number of combinations and not one new allele. Only mutation does that — which is why the branch cannot end without it, and why *Natural Selection* cannot begin without it.
-
-    internote(ref: evolution-and-ecosystems.chalk)
+    The second is that shuffling is not creating. Crossing over, independent assortment and random fertilisation between them produce an astronomical number of combinations and not one new allele. Only mutation does that — which is why this branch cannot end without it, and why !internote(ref: evolution-and-ecosystems.chalk; !connect) cannot begin without it.
 
     ===
 

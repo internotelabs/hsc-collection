@@ -70,27 +70,11 @@ scene{
 scene{
     # The route through it
 
-    Start with the trade itself: how cells with identical genomes become different, what each gains and gives up, and the hierarchy of tissues, organs and systems that results.
+    Start with the trade itself in !internote(ref: cell-differentiation-and-specialisation.chalk; !connect): how cells with identical genomes become different, what each gains and gives up, and the hierarchy of tissues, organs and systems that results.
 
-    internote(ref: cell-differentiation-and-specialisation.chalk)
+    Then supply, in two halves. Getting materials into the organism at all is !internote(ref: nutrient-and-gas-exchange.chalk; !connect) — what autotrophs and heterotrophs each need, and the exchange surfaces that obtain it. Moving them to every cell is the second half, and plants and animals solve it differently enough to be worth an internote each: !internote(ref: transport-in-plants.chalk; !connect) and !internote(ref: transport-in-animals.chalk; !connect).
 
-    Then supply, in two halves. The first is getting materials into the organism at all — what autotrophs and heterotrophs each need, and the exchange surfaces that obtain it.
-
-    internote(ref: nutrient-and-gas-exchange.chalk)
-
-    The second is moving them to every cell. Plants and animals solve this differently enough to be worth an internote each.
-
-    internote(ref: transport-in-plants.chalk)
-
-    internote(ref: transport-in-animals.chalk)
-
-    Then control. The general mechanism first — receptor, control centre, effector, and the feedback that makes it stabilise rather than run away.
-
-    internote(ref: homeostasis.chalk)
-
-    Then two cases worked in full, one thermal and one chemical, in both animals and plants.
-
-    internote(ref: thermoregulation-and-osmoregulation.chalk)
+    Then control. The general mechanism comes first in !internote(ref: homeostasis.chalk; !connect) — receptor, control centre, effector, and the feedback that makes the arrangement stabilise rather than run away. !internote(ref: thermoregulation-and-osmoregulation.chalk; !connect) then works two cases in full, one thermal and one chemical, in both animals and plants.
 }[
     table{
         Internote                                | The question it answers
@@ -114,9 +98,7 @@ scene{
 
     ===
 
-    The second is the loop. Every homeostatic mechanism in the course has the same three parts and the same feedback. Once you can write that loop, you can answer questions about mechanisms you have never seen — including in *Disease*, where a fever turns out to be the loop working correctly with the set point moved.
-
-    internote(ref: disease.chalk)
+    The second is the loop. Every homeostatic mechanism in the course has the same three parts and the same feedback. Once you can write that loop, you can answer questions about mechanisms you have never seen — including in !internote(ref: disease.chalk; !connect), where a fever turns out to be the loop working correctly with the set point moved.
 }[
     canvas.diagram{
         box#change{

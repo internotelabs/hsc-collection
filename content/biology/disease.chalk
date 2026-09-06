@@ -68,33 +68,11 @@ scene{
 scene{
     # The route through it
 
-    The infectious half runs in a natural order. Start with the agents themselves, how each is transmitted, and the standard for showing that a particular microbe causes a particular disease.
+    The infectious half runs in a natural order. !internote(ref: causes-of-infectious-disease.chalk; !connect) covers the agents themselves, how each is transmitted, and the standard for showing that a particular microbe causes a particular disease. !internote(ref: responses-to-pathogens.chalk; !connect) is what the host does about it — the barriers and the innate response, which between them stop almost everything, and the plant defences that work with no circulating immune system at all.
 
-    internote(ref: causes-of-infectious-disease.chalk)
+    !internote(ref: immunity.chalk; !connect) is the adaptive response, slow once and fast forever after, which is the asymmetry every vaccine depends on. !internote(ref: prevention-treatment-and-control.chalk; !connect) then sets out the interventions: hygiene and quarantine, vaccination and herd immunity, antibiotics and antivirals, and the resistance that keeps eroding them. !internote(ref: epidemiology.chalk; !connect) is the discipline that measures whether any of it works, and where the limits of what a study can establish are set.
 
-    Then what the host does about it — the barriers and the innate response, which between them stop almost everything, and the plant defences that work with no circulating immune system at all.
-
-    internote(ref: responses-to-pathogens.chalk)
-
-    Then the adaptive response, which is slow once and fast forever after — the asymmetry every vaccine depends on.
-
-    internote(ref: immunity.chalk)
-
-    Then the interventions: hygiene and quarantine, vaccination and herd immunity, antibiotics and antivirals, and the resistance that keeps eroding them.
-
-    internote(ref: prevention-treatment-and-control.chalk)
-
-    And the discipline that measures whether any of it works, which is also where the limits of what a study can establish are set.
-
-    internote(ref: epidemiology.chalk)
-
-    The non-infectious half is shorter. First the causes — genetic, environmental and nutritional — how they interact, and why these conditions now account for most deaths in Australia.
-
-    internote(ref: non-infectious-disease.chalk)
-
-    Then what can be done when the biology cannot be repaired: replacing a lost function with a device, for hearing, sight and kidney failure.
-
-    internote(ref: technologies-and-disorders.chalk)
+    The non-infectious half is shorter. !internote(ref: non-infectious-disease.chalk; !connect) covers the causes — genetic, environmental and nutritional — how they interact, and why these conditions now account for most deaths in Australia. !internote(ref: technologies-and-disorders.chalk; !connect) is what can be done when the biology cannot be repaired: replacing a lost function with a device, for hearing, sight and kidney failure.
 }[
     table{
         Half            | Internote                          | The question it answers
@@ -119,9 +97,7 @@ scene{
 
     ===
 
-    The second is that a fever is homeostasis working, not failing. The hypothalamus moves its own set point, and the body then works towards the new one — which is why a person with a fever shivers. Recognising the loop from *Organisms* inside an unfamiliar situation is most of what this branch asks for.
-
-    internote(ref: organisms.chalk)
+    The second is that a fever is homeostasis working, not failing. The hypothalamus moves its own set point, and the body then works towards the new one — which is why a person with a fever shivers. Recognising the loop from !internote(ref: organisms.chalk; !connect) inside an unfamiliar situation is most of what this branch asks for.
 
     The third is about evidence. Koch's postulates are a high standard that many important diseases cannot meet, and epidemiology is a lower standard that can identify a cause well enough to act on decades before anyone can say why. John Snow stopped a cholera outbreak thirty years before the bacterium responsible could be grown.
 

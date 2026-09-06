@@ -208,9 +208,7 @@ scene{
         title: Your turn
     )
 
-    When the non-specific defences are not enough, a slower system takes over, one that targets a particular pathogen and remembers it. That is *Immunity*.
-
-    internote(ref: immunity.chalk)
+    When the non-specific defences are not enough, a slower system takes over, one that targets a particular pathogen and remembers it. That is !internote(ref: immunity.chalk).
 }[
     canvas.graph{
         curve(f: 100 * exp(-((x - 37)/2.2)^2); domain: [33, 42]; colour: orange; label: bacterial replication)

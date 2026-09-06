@@ -208,9 +208,7 @@ scene{
         title: Your turn
     )
 
-    What those techniques are actually used for, and what their spread does to biodiversity, is *Biotechnology*.
-
-    internote(ref: biotechnology.chalk)
+    What those techniques are actually used for, and what their spread does to biodiversity, is !internote(ref: biotechnology.chalk).
 }[
     table{
         Technology              | How precise it is                                   | Where the risk sits

@@ -79,29 +79,19 @@ scene{
 scene{
     # The five branches
 
-    Cells is where the subject starts, because nothing above it makes sense first. It runs from the evidence that cells exist at all through to the membrane, the enzymes and the metabolic reactions that keep one running.
-
-    internote(ref: cells.chalk)
+    !internote(ref: cells.chalk) is where the subject starts, because nothing above it makes sense first. It runs from the evidence that cells exist at all through to the membrane, the enzymes and the metabolic reactions that keep one running.
 
     ===
 
-    Organisms takes the single cell and multiplies it. Once cells specialise they stop being self-sufficient, which forces the organism to supply them — hence gas exchange, digestion, transport systems, and the homeostatic control that keeps the fluid around every cell within tolerance.
+    !internote(ref: organisms.chalk) takes the single cell and multiplies it. Once cells specialise they stop being self-sufficient, which forces the organism to supply them — hence gas exchange, digestion, transport systems, and the homeostatic control that keeps the fluid around every cell within tolerance.
 
-    Heredity is the molecular branch. It opens on cell division and DNA replication, then splits: one line follows the genome into protein and on to mutation and genetic engineering, the other follows it through reproduction into inheritance and population genetics.
-
-    internote(ref: organisms.chalk)
-
-    internote(ref: heredity.chalk)
+    !internote(ref: heredity.chalk) is the molecular branch. It opens on cell division and DNA replication, then splits: one line follows the genome into protein and on to mutation and genetic engineering, the other follows it through reproduction into inheritance and population genetics.
 
     ===
 
-    Evolution and ecosystems is the branch above the organism. Adaptation is the observation, natural selection the mechanism, and the fossil, anatomical and biochemical records the evidence — after which the same reasoning is applied to whole communities, past and future.
+    !internote(ref: evolution-and-ecosystems.chalk) is the branch above the organism. Adaptation is the observation, natural selection the mechanism, and the fossil, anatomical and biochemical records the evidence — after which the same reasoning is applied to whole communities, past and future.
 
-    Disease is where the other four are put to work. A pathogen is an organism exploiting another organism's systems, immunity is those systems responding, and non-infectious disease is what happens when they fail without anything having invaded.
-
-    internote(ref: evolution-and-ecosystems.chalk)
-
-    internote(ref: disease.chalk)
+    !internote(ref: disease.chalk) is where the other four are put to work. A pathogen is an organism exploiting another organism's systems, immunity is those systems responding, and non-infectious disease is what happens when they fail without anything having invaded.
 }[
     canvas.diagram{
         box#bio:terminal{Biology}

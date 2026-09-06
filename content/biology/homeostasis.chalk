@@ -183,9 +183,7 @@ scene{
         title: Your turn
     )
 
-    Two cases are worked in detail, one thermal and one chemical, in *Thermoregulation and Osmoregulation*.
-
-    internote(ref: thermoregulation-and-osmoregulation.chalk)
+    Two cases are worked in detail, one thermal and one chemical, in !internote(ref: thermoregulation-and-osmoregulation.chalk).
 }[
     canvas.graph{
         curve(f: 5 + 9.5 * x * exp(-1.3 * x); domain: [0, 4]; colour: blue; label: insulin response working)
