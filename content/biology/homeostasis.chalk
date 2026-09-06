@@ -1,18 +1,211 @@
 *(
     title: Homeostasis
     description: Holding internal conditions steady while the outside world does not, and the feedback that achieves it.
-    tags: homeostasis, negative feedback, receptor effector, module 8, biology, stub
+    tags: homeostasis, negative feedback, receptor effector, module 8, biology
     lesson
 )
 
+// Scene 2 plots two model responses to the same disturbance, not measurements:
+// negative feedback as 37 + 1.5 e^(-0.4t) cos(1.5t), a damped return to the set
+// point, and positive feedback as 37 + 0.2 e^(0.3t), which never returns.
+//
+// Scene 4's glucose curves are also models, pinned to real reference values:
+// a fasting level of 5 mmol/L, a normal post-meal peak below 7.8, and the WHO
+// diagnostic thresholds of 7.0 mmol/L fasting and 11.1 mmol/L two hours after
+// a glucose load. Normal: 5 + 9.5 t e^(-1.3t), peaking at 7.7 after 46 minutes.
+// Untreated: 9 + 6 t e^(-0.4t), peaking at 14.5 and still 13.9 at four hours.
 @include(src: ../preface.part.chalk)
 
 scene{
-    Cells work within narrow tolerances of temperature, pH and concentration, and the external environment respects none of them. An organism therefore has to hold its internal conditions steady against whatever the outside is doing, which requires detecting a change and acting to oppose it.
+    The enzymes doing the work in your cells stop working outside a narrow range of temperature and pH, and the cells themselves burst or shrivel if the fluid around them is much more dilute or much more concentrated than their contents. Meanwhile the air outside might be five degrees or forty, you might have eaten nothing since yesterday or a large meal ten minutes ago, and none of that is under your control.
 
-    Written out here: the receptor, control centre and effector that every homeostatic mechanism is built from, negative feedback and why opposing a change stabilises a system while reinforcing one does not, and the endocrine and nervous signalling that carries the instructions.
+    Something therefore has to hold the internal conditions steady against the external ones, and the arrangement that does it is the same in every case.
+
+    definition{
+        The maintenance of a relatively constant internal environment by an organism, within the narrow limits its cells can tolerate, despite changes in the external environment.
+    }(
+        term: Homeostasis
+    )
+
+    ===
+
+    Every homeostatic mechanism has three parts, and the canvas is the loop they form. A receptor detects the change. A control centre — usually a region of the brain, most often the hypothalamus — compares what the receptor reports against a set point. An effector, a muscle or a gland, acts.
+
+    ===
+
+    What closes the loop is that the effector's action changes the very thing the receptor is measuring. That is the whole of the design, and it is why the diagram is a circle rather than a chain: the output feeds back to the input, and the system corrects itself without anything having to decide to.
+
+    note{
+        Nothing in this is held perfectly constant. A regulated variable oscillates continuously around its set point, because the correction can only begin after the deviation has been detected. Homeostasis produces a variable that stays within a range, never one that stays at a value.
+    }
+}[
+    canvas.diagram{
+        box#change{
+            The variable moves away from its set point
+            body temperature, blood glucose, water balance
+        }
+
+        cue.draw{
+            box#receptor{
+                Receptor
+                detects the change and reports it
+            }
+            box#centre{
+                Control centre
+                compares the report against the set point
+            }
+            arrow(from: #change; to: #receptor)
+            arrow(from: #receptor; to: #centre)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#effector{
+                Effector
+                a muscle or gland, instructed to act
+            }
+            arrow(from: #centre; to: #effector)
+            arrow(from: #effector; to: #change; label: which changes the variable back)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: The loop every homeostatic mechanism is built from
+    )
+]
+
+scene{
+    # Opposing a change stabilises; reinforcing it does not
+
+    The direction the effector pushes is the whole difference between a system that regulates and a system that destroys itself, and the canvas puts the two responses to the same initial disturbance side by side.
+
+    definition{
+        A control arrangement in which the response to a deviation acts to reverse it. Because the correction always opposes the change, the variable is driven back towards the set point and the system is self-stabilising.
+    }(
+        term: Negative feedback
+    )
+
+    The blue trace is negative feedback. A rise is met by a response that lowers the variable, so it comes back down — overshooting slightly, being corrected again, and settling into a small oscillation around the set point. Almost every regulated quantity in the body behaves this way.
+
+    ===
+
+    The orange trace is the same disturbance answered in the other direction: a rise met by a response that raises it further. There is no set point to return to, because nothing in the loop is pulling the variable back, and the deviation grows until something outside the system stops it.
+
+    definition{
+        A control arrangement in which the response to a deviation acts to increase it. It drives a variable away from its starting value rather than back towards it, so it cannot regulate anything and is used only where a process needs to be driven quickly to completion.
+    }(
+        term: Positive feedback
+    )
+
+    ===
+
+    Positive feedback is not a malfunction; it is simply used for a different job. Childbirth runs on it — the pressure of the baby's head on the cervix triggers oxytocin release, which strengthens the contractions, which increases the pressure — and so does blood clotting, where activated platelets attract more platelets. In both cases the runaway is the desired outcome and an external event ends it.
+
+    Fever is a third case worth keeping straight. A fever is not the temperature control failing; it is negative feedback still operating, with the set point deliberately raised. That is why a person with a fever shivers at $38\,^\circ\text{C}$ — their body is below its new target, and the mechanism is working exactly as designed.
+}[
+    canvas.graph{
+        curve(f: 37 + 1.5 * exp(-0.4 * x) * cos(1.5 * x); domain: [0, 10]; colour: blue; label: negative feedback)
+        axis.label(y: 37; label: set point; line; colour: grey)
+
+        cue{
+            curve(f: 37 + 0.2 * exp(0.3 * x); domain: [0, 10]; colour: orange; label: positive feedback)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.band(y: [36.5, 37.5]; label: the tolerated range; colour: grey; edges)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: time after the disturbance
+        y axis label: the regulated variable
+        x domain: [0, 10]
+        y domain: [34, 42]
+        !show ticks
+    )
+]
+
+scene{
+    # Two ways to send the instruction
+
+    The control centre has to reach the effector, and the body has two messaging systems to do it with. They are not redundant, because they differ in almost every property that matters.
+
+    A nervous signal is an electrical impulse along a specific neuron to a specific target, arriving in milliseconds and stopping the moment the impulses stop. A hormonal signal is a molecule released into the blood, reaching every cell in the body and acting on the few that carry the receptor for it, over seconds to hours, and persisting until it is broken down.
+
+    The table sets the two against each other. Read the last row first: the difference in duration is why shivering is nervous and growth is hormonal. You want shivering to stop immediately when you are warm enough; you do not want growth to.
+
+    Most homeostatic mechanisms use both. Temperature regulation is largely nervous, because the corrections must be fast and must stop fast. Blood glucose regulation is entirely hormonal, because the correction takes hours and has to reach every cell in the body — which is precisely what a chemical released into the blood is good at.
+}[
+    table{
+                        | Nervous signalling                              | Endocrine signalling
+        The signal      | an electrical impulse along a neuron            | a hormone, released into the blood
+        Route           | a specific neuron to a specific target          | everywhere the blood goes; only cells with the receptor respond
+        Speed           | milliseconds                                    | seconds to hours
+        Duration        | ends as soon as the impulses stop               | persists until the hormone is broken down or excreted
+        Typical use     | shivering, sweating, reflexes                   | blood glucose, water balance, growth, reproduction
+    }(
+        title: The two systems, compared where they differ
+    )
+]
+
+scene{
+    ## A worked loop: blood glucose
+
+    Glucose is the case where the loop is easiest to see whole, because both directions of correction have a named hormone and the failure of the mechanism is a common and well-measured disease.
+
+    After a meal, glucose is absorbed from the gut and blood glucose rises. Receptor cells in the pancreas detect it and release insulin, which instructs liver and muscle cells to take glucose out of the blood and store it as glycogen, and instructs most other cells to take up more glucose. Blood glucose falls, so less insulin is released — the loop closing itself.
+
+    ===
+
+    Between meals the opposite runs. Blood glucose falls, the pancreas releases glucagon instead, the liver breaks glycogen back down into glucose and releases it, and the level rises again. Two hormones with opposite effects from the same organ, each switched on by the deviation the other corrects.
+
+    definition{
+        A pair of hormones whose effects on the same variable are opposite, so that the variable can be corrected in either direction. Insulin and glucagon are the standard example.
+    }(
+        term: Antagonistic hormones
+    )
+
+    Between them the two hold blood glucose inside the shaded band on the canvas for most of the day. The blue curve is the meal that band is holding against: a peak below $7.8\text{ mmol L}^{-1}$ within an hour of eating, and back inside the band within two.
+
+    ===
+
+    The second curve shows what the loop is worth by showing what happens without it. It is the same meal without an effective insulin response. It starts high because the level was never brought down after the last meal, rises further, and is still far above the normal range four hours later. The variable is not being regulated, and every consequence of diabetes follows from the tissue damage that persistently high glucose causes.
+
+    task{
+        A person's blood glucose is measured at $6.9\text{ mmol L}^{-1}$ after a twelve-hour fast, and again at $12.0\text{ mmol L}^{-1}$ two hours after a standard glucose drink. Which of the two readings is more informative, and why?
+    }[
+        The second. The fasting figure is close to the top of the normal range but below the $7.0\text{ mmol L}^{-1}$ threshold, so on its own it is ambiguous — it says the resting level is being held, roughly. The two-hour figure is a test of the loop under load, and $12.0$ is above the $11.1\text{ mmol L}^{-1}$ threshold: the correction was demanded and did not happen fast enough. Testing a homeostatic mechanism means disturbing it, not measuring it at rest.
+    ](
+        title: Your turn
+    )
 
     Two cases are worked in detail, one thermal and one chemical, in *Thermoregulation and Osmoregulation*.
 
     internote(ref: thermoregulation-and-osmoregulation.chalk)
-}
+}[
+    canvas.graph{
+        curve(f: 5 + 9.5 * x * exp(-1.3 * x); domain: [0, 4]; colour: blue; label: insulin response working)
+
+        cue{
+            axis.band(y: [4, 6]; label: the range the pair holds; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            curve(f: 9 + 6 * x * exp(-0.4 * x); domain: [0, 4]; colour: orange; label: without one)
+            axis.label(y: 11.1; label: the two-hour threshold; line; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: hours since the meal
+        y axis label: blood glucose (mmol L$^{-1}$)
+        x domain: [0, 4]
+        y domain: [0, 17]
+    )
+]

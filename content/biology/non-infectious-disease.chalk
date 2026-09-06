@@ -1,18 +1,207 @@
 *(
     title: Non-infectious Disease
     description: Disease that nothing transmits, and why it now accounts for more deaths than infection does.
-    tags: non-infectious disease, genetic, environmental, nutritional, module 8, biology, stub
+    tags: non-infectious disease, genetic, environmental, nutritional, module 8, biology
     lesson
 )
 
+// Scene 2 uses the death rates from Hammond, Selikoff and Seidman's 1979 study
+// of US insulation workers. Taking a non-smoker with no asbestos exposure as 1,
+// asbestos alone gave about 5 times the lung cancer death rate, smoking alone
+// about 10 times, and the two together about 50 times — close to 10 x 5 rather
+// than to 10 + 5.
+//
+// Scene 3's figure is the AIHW's: chronic conditions contributed to 9 in 10
+// deaths in Australia in 2022, and to between 89 and 92 per cent of deaths in
+// every year from 2002 to 2022.
 @include(src: ../preface.part.chalk)
 
 scene{
-    Nothing is caught, so nothing can be quarantined and no one can be vaccinated. Non-infectious disease has to be understood through its causes, which are typically several acting together over years rather than one acting in days.
+    Nobody catches heart disease. Nobody can be quarantined from diabetes, and there is no vaccine against melanoma. Non-infectious diseases have no pathogen to find, so everything that works against infection is useless against them.
 
-    Written out here: genetic, environmental and nutritional causes and the cases where they interact, the effects on individuals and on the health system, and the epidemiological evidence for the shift that has made these diseases the larger cause of death in countries like Australia.
+    That changes how they have to be studied. With an infection you can look for the organism causing it. With a non-infectious disease there is no organism, so you have to look for the conditions under which people get it — and those conditions usually act over years rather than days.
+
+    definition{
+        A disease that is not caused by a pathogen and cannot be passed from one person to another. Its causes are in the person's genes, their environment, their diet, or some combination of the three.
+    }(
+        term: Non-infectious disease
+    )
+
+    The table gives the three usual categories with an example of each. They are useful labels, but the next scene shows why they are only labels: most real cases sit in more than one of them at once.
+}[
+    table{
+        Kind of cause  | What it means                                                    | Examples
+        Genetic        | a fault in the person's own DNA, present from conception          | cystic fibrosis; Huntington's disease; haemophilia
+        Environmental  | something the person is exposed to from outside                   | mesothelioma from asbestos; melanoma from ultraviolet light; lead poisoning
+        Nutritional    | too little or too much of something in the diet                   | scurvy from lack of vitamin C; rickets from lack of vitamin D; type 2 diabetes
+    }(
+        title: Three kinds of cause
+    )
+]
+
+scene{
+    # Two causes together can be far worse than both added up
+
+    Asbestos causes lung cancer. So does smoking. The obvious guess is that someone doing both has the risk from one plus the risk from the other — and that guess is badly wrong.
+
+    The canvas shows real death rates from a study of American insulation workers published in 1979. Take a man who neither smoked nor worked with asbestos as the baseline of $1$. Asbestos alone raised his risk of dying from lung cancer about five times. Smoking alone raised it about ten times.
+
+    ===
+
+    Doing both raised it about fifty times. Not fifteen — fifty. The two risks multiply rather than add, and the fourth bar is nearly three and a half times taller than adding the middle two would predict.
+
+    definition{
+        Two causes acting together to produce a much larger effect than the sum of what each produces alone. It is why the risk from one exposure cannot be worked out without knowing what else the person is exposed to.
+    }(
+        term: Synergistic interaction
+    )
+
+    ===
+
+    Genes work the same way. Fair skin does not give you melanoma and neither does an afternoon outdoors, but fair skin plus repeated sunburn does. Genes that affect how the body handles glucose do not give you type 2 diabetes on their own, and neither does any single meal.
+
+    This is the useful thing to take from the category table in the previous scene. "Genetic", "environmental" and "nutritional" describe contributions rather than separate diseases, and most people who develop a non-infectious disease have several of those contributions at once.
+
+    note{
+        Multiplying risks is also where the good news is. If two causes multiply, then removing one of them removes most of the combined risk, not half of it. An asbestos worker who stops smoking does not go from fifty times the risk to forty; he goes to something near five.
+    }
+}[
+    canvas.graph{
+        histogram(
+            bins: 0, 1, 2, 3
+            values: 1, 5, 10
+            colours: grey, blue, blue
+            show labels
+        )
+        axis.label(x: 0.5; label: neither; colour: grey)
+        axis.label(x: 1.5; label: asbestos; colour: grey)
+        axis.label(x: 2.5; label: smoking; colour: grey)
+
+        cue{
+            histogram(
+                bins: 3, 4
+                values: 50
+                colour: orange
+                show labels
+            )
+            axis.label(x: 3.5; label: both; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.label(y: 15; label: what adding them would predict; line; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        y axis label: lung cancer death rate, relative to neither
+        x domain: [0, 4]
+        y domain: [0, 56]
+    )
+]
+
+scene{
+    # Why these diseases now cause most of the deaths
+
+    A century ago, most Australians who died young died of an infection. Today most Australians die of something they were not given by anybody. The Australian Institute of Health and Welfare puts it plainly: chronic conditions contributed to about nine in every ten deaths in Australia in 2022, and that figure has stayed between $89$ and $92$ per cent every year since 2002.
+
+    That shift is not a mystery, and it is not mainly a sign that non-infectious disease became more common. The canvas is the chain of causes.
+
+    ===
+
+    Clean water and sewerage removed most of the diseases spread by contamination. Vaccination removed most of the childhood killers. Antibiotics dealt with a great deal of what was left. Deaths from infection in wealthy countries fell enormously in the space of a few generations.
+
+    ===
+
+    People who do not die of infection at twenty live to be seventy, and that is where the second half of the chain begins. Cancers, heart disease and type 2 diabetes are mostly diseases of long exposure and long life. They need decades of accumulated damage, or decades of a particular diet, or decades of cell divisions in which a mutation might occur.
+
+    ===
+
+    So the rise in non-infectious disease is partly a real rise — modern diets, tobacco and inactivity have all made a genuine contribution — and partly an arithmetic consequence of everybody having to die of something. Remove the causes that used to kill people at twenty and the causes that kill people at seventy become the majority.
+
+    note{
+        This is why "non-infectious disease is the bigger problem now" is a statement about wealthy countries and not about the world. Where clean water and vaccination are not universal, infectious disease is still a leading cause of death, and the transition described here has not happened.
+    }
+}[
+    canvas.diagram{
+        box#start{
+            Around 1900
+            infection is the main cause of death, and most of it strikes the young
+        }
+
+        cue.draw{
+            box#public{
+                Clean water, sewerage, vaccination, antibiotics
+                the infectious causes are removed one after another
+            }
+            arrow(from: #start; to: #public)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#age{
+                People live decades longer
+                long enough to accumulate damage, and long enough for cancers to arise
+            }
+            arrow(from: #public; to: #age)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#now:terminal{
+                Today
+                chronic, non-infectious conditions contribute to about nine deaths in ten
+            }
+            box#diet{
+                And a genuine rise as well
+                tobacco, diet and inactivity add causes that were rarer before
+            }
+            arrow(from: #age; to: #now)
+            arrow(from: #diet; to: #now)
+        }(
+            in: 3
+        )
+    }(
+        flow: down
+        title: How the leading causes of death changed places
+    )
+]
+
+scene{
+    ## What it costs, and where the leverage is
+
+    A non-infectious disease usually cannot be cured, because there is nothing to kill. What there is instead is a long period of managing it, and that has two consequences worth stating separately.
+
+    For the individual, the disease is usually permanent. Type 2 diabetes, chronic heart failure and emphysema are conditions people live with for decades, taking daily medication and losing some of what they could previously do. Many of them are also progressive, so the management is about slowing the decline rather than reversing it.
+
+    For the health system, the cost is a long tail rather than a spike. An infection is treated in days; a chronic condition is treated for thirty years. That is why chronic disease absorbs so large a share of health spending even though the number of new cases each year is not extraordinary.
+
+    The leverage is therefore almost entirely in prevention, and the risk factors are a short and well-established list. The table pairs each with the diseases it feeds. What makes the list useful is that most of the entries appear in more than one row — which means that changing one behaviour reduces the risk of several diseases at once.
+
+    task{
+        Cystic fibrosis and type 2 diabetes are both classified as non-infectious diseases, but a public health campaign could plausibly reduce the number of new cases of one and not the other. Which is which, and why?
+    }[
+        Type 2 diabetes. Its causes include diet, body weight and physical activity, all of which a campaign can act on, and its genetic contribution raises risk rather than guaranteeing the disease. Cystic fibrosis is caused by inheriting two faulty copies of a single gene. Nothing about a person's behaviour changes whether they have them, so prevention campaigns cannot reduce its incidence — screening and treatment are what is available instead.
+    ](
+        title: Your turn
+    )
 
     Where the underlying biology cannot be repaired, the remaining option is to replace the function by other means, which is *Technologies and Disorders*.
 
     internote(ref: technologies-and-disorders.chalk)
-}
+}[
+    table{
+        Risk factor             | Diseases it contributes to
+        Tobacco smoking         | lung cancer, several other cancers, coronary heart disease, stroke, emphysema
+        Poor diet               | type 2 diabetes, coronary heart disease, stroke, bowel cancer
+        Physical inactivity     | type 2 diabetes, coronary heart disease, some cancers
+        Excess body weight      | type 2 diabetes, coronary heart disease, several cancers, osteoarthritis
+        Alcohol                 | liver disease, several cancers, stroke
+        Ultraviolet exposure    | melanoma and other skin cancers
+    }(
+        title: A short list, and how often the entries repeat
+    )
+]

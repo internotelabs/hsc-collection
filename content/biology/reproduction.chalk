@@ -1,18 +1,216 @@
 *(
     title: Reproduction
     description: The strategies organisms use to make more of themselves, and what each does to genetic variation.
-    tags: reproduction, asexual, sexual, fertilisation, module 5, biology, stub
+    tags: reproduction, asexual, sexual, fertilisation, module 5, biology
     lesson
 )
 
+// Scene 1: the twofold cost of sex, counted directly. Give every reproducing
+// individual two offspring. An asexual population doubles each generation, so
+// after n generations it is 2^n times its starting size (log10 = 0.301n). In a
+// sexual population half the individuals are male and do not bear young, so two
+// offspring per female exactly replaces the parents and the size stays put.
+// After ten generations that is 1024 against 1.
+//
+// Scene 3 plots eggs or offspring per breeding attempt, as log10:
+//   ocean sunfish  3 x 10^8  -> 8.48     Atlantic cod 5 x 10^6 -> 6.70
+//   common frog    2 x 10^3  -> 3.30     magpie       4        -> 0.60
+//   human          1         -> 0
+//
+// Scene 4's hormone curves are shaped models of the human menstrual cycle, with
+// the peaks placed on the conventional days: oestrogen peaking just before
+// ovulation, the LH surge at day 14, progesterone peaking around day 21.
 @include(src: ../preface.part.chalk)
 
 scene{
-    Reproducing without a partner is faster, cheaper and reliably produces offspring that suit the current environment. Reproducing with one is slower and costlier and produces offspring that do not match either parent. Both strategies persist, which means each must be paying for itself.
+    Reproducing without a partner is faster, cheaper and more reliable. You do not have to find anyone, you do not waste half your population on individuals who cannot bear young, and the offspring are copies of a parent that has already demonstrated it can survive here.
 
-    Written out here: asexual reproduction and the identical offspring it yields, sexual reproduction in plants and animals, fertilisation internal and external, the hormones that coordinate it in mammals, and the trade between reliability and variation that separates the two.
+    The canvas puts a number on how much faster. Give every reproducing individual two offspring. An asexual population doubles every generation. A sexual one does not grow at all, because half of it is male, and two offspring per female only replaces the two parents.
+
+    ===
+
+    After ten generations the asexual population is a thousand times larger. This is usually called the twofold cost of sex, and it is a real cost that has to be paid every generation.
+
+    definition{
+        The disadvantage a sexually reproducing population carries because only half its members bear offspring. For the same number of offspring each, an asexual population grows twice as fast every generation.
+    }(
+        term: The twofold cost of sex
+    )
+
+    ===
+
+    And yet almost every large organism reproduces sexually. Whatever sex buys must be worth paying a thousandfold disadvantage over ten generations, and it is worth being clear that this is a puzzle rather than an obvious fact.
+
+    The answer is variation. Asexual offspring are copies, so a population of them is only as good as the environment staying the same. Sexual offspring are all different, so when the environment changes — a new disease, a colder decade, a new predator — a sexual population is likely to contain individuals that cope, and an asexual one is likely to contain none.
+}[
+    canvas.graph{
+        curve(f: 0.301 * x; domain: [0, 10]; colour: blue; label: asexual)
+
+        cue{
+            curve(f: 0; domain: [0, 10]; colour: orange; label: sexual)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 10; y: 3.01; colour: blue; label: $1024$ times the starting size)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: generations
+        y axis label: population size, relative to the start
+        x domain: [0, 12]
+        y domain: [-0.3, 3.6]
+        y format: log
+    )
+]
+
+scene{
+    # Asexual reproduction, and where it wins
+
+    Asexual reproduction involves one parent and produces offspring genetically identical to it. The mechanism is mitosis, which is why the offspring are identical: mitosis makes copies, and nothing in the process introduces a difference.
+
+    definition{
+        Offspring that are genetically identical to one another and to the single parent that produced them. Every organism produced asexually is a member of a clone.
+    }(
+        term: Clone
+    )
+
+    The table lists the common forms. They look very different from one another and they are all doing the same thing — dividing a body, or part of one, by mitosis.
+
+    Where this strategy wins is in a stable environment that a parent has already proved it can handle, and in situations where finding a partner is unlikely or slow. A single bacterium in a favourable medium can produce billions of descendants overnight. A single strawberry plant can cover a bed. Neither has to find anything or wait for anything.
+
+    Where it loses is against change. Every member of a clone has the same weaknesses, so a disease that can kill one can kill all of them — which is a large part of why commercial banana and potato crops, grown from cuttings and therefore clones, are so vulnerable to a single new pathogen.
+}[
+    table{
+        Form                   | How it works                                                    | Examples
+        Binary fission         | the cell copies its DNA and splits into two equal cells           | bacteria; amoeba and other protists
+        Budding                | an outgrowth forms on the parent and detaches as a new individual | yeast; hydra
+        Vegetative propagation | a part of the plant body grows into a whole new plant             | strawberry runners; potato tubers; onion bulbs
+        Spore formation        | single cells are released that grow into new individuals          | fungi; ferns; mosses
+        Parthenogenesis        | an unfertilised egg develops into an offspring                    | aphids in summer; some lizards and stick insects
+    }(
+        title: Five ways of making a copy
+    )
+]
+
+scene{
+    # Sexual reproduction, and where the gametes meet
+
+    Sexual reproduction involves two haploid gametes fusing into a diploid zygote. The halving happens in meiosis and the doubling happens at fertilisation, so the chromosome number is restored exactly.
+
+    definition{
+        The fusion of a male and a female gamete to form a zygote, restoring the full chromosome number and combining genetic material from two parents.
+    }(
+        term: Fertilisation
+    )
+
+    Where that fusion happens divides the animal kingdom in two, and the canvas shows what the choice costs.
+
+    ===
+
+    External fertilisation means releasing gametes into water and letting them find each other. Almost all of them fail — swept away, eaten, or never meeting a partner gamete at all — so the strategy only works in enormous numbers. An ocean sunfish can release three hundred million eggs at a spawning, and a cod several million — the two points already on the canvas. Even a frog, spawning in a pond rather than the open ocean, produces a couple of thousand.
+
+    ===
+
+    Internal fertilisation places the male gametes inside the female, so the meeting is close to certain and the developing embryo is protected. The number of offspring collapses accordingly. A magpie lays a clutch of about four; a human pregnancy usually produces one.
+
+    Read the canvas as a single trade rather than five separate facts. Each step on the vertical axis is a factor of ten, and the five species span eight of them. Every step down is bought by investing more in each individual offspring — a shell, a placenta, a period of parental care.
+
+    ===
+
+    Plants do the same thing with the same trade, using pollen instead of motile sperm. Wind-pollinated plants such as grasses release pollen in vast quantities and rely on chance, which is why they cause hay fever. Insect-pollinated plants produce far less pollen and spend the difference on petals, scent and nectar, which buys them a courier that goes directly to another flower of the same species.
+
+    note{
+        In flowering plants the fusion happens twice. One male nucleus fertilises the egg to make the zygote, and a second fuses with two other nuclei to make the endosperm — the food store inside the seed. Double fertilisation of this kind occurs nowhere else, and it means a plant does not invest in a food supply until a seed has actually been fertilised.
+    }
+}[
+    canvas.graph{
+        point(x: 0; y: 8.48; colour: blue)
+        point(x: 1; y: 6.7; colour: blue)
+        axis.label(x: 0; label: sunfish; colour: grey)
+        axis.label(x: 1; label: cod; colour: grey)
+
+        cue{
+            point(x: 2; y: 3.3; colour: blue)
+            axis.label(x: 2; label: frog; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 3; y: 0.6; colour: orange)
+            point(x: 4; y: 0; colour: orange)
+            axis.label(x: 3; label: magpie; colour: grey)
+            axis.label(x: 4; label: human; colour: grey)
+        }(
+            in: 2
+        )
+
+        cue{
+            axis.band(y: [-0.6, 3.3]; label: where parental care begins; colour: grey)
+        }(
+            in: 3
+        )
+    }(
+        y axis label: eggs or offspring per breeding attempt
+        x domain: [-0.5, 4.5]
+        y domain: [-0.6, 9.2]
+        y format: log
+    )
+]
+
+scene{
+    ## The hormones that time it
+
+    In mammals the two gametes have to be ready at the same time and the body has to be prepared to support an embryo. That coordination is hormonal, and the canvas is one cycle of it.
+
+    Follicle stimulating hormone, from the pituitary, causes a follicle in the ovary to develop. The developing follicle secretes oestrogen, which rebuilds the lining of the uterus after the previous cycle and which climbs steadily as the follicle matures.
+
+    ===
+
+    When oestrogen passes a threshold it triggers a sharp surge of luteinising hormone — the spike in the middle of the canvas. That surge causes ovulation: the follicle ruptures and releases the egg, on about day $14$.
+
+    This is the one place in the body where positive feedback is doing the work. Oestrogen causes more luteinising hormone, which causes more oestrogen, and the loop runs away in a matter of hours — which is exactly what is wanted, because ovulation needs to happen decisively rather than gradually.
+
+    ===
+
+    After ovulation the ruptured follicle becomes the corpus luteum and secretes progesterone, which maintains the thickened uterine lining and suppresses further FSH — so no new follicle develops while an embryo might be implanting.
+
+    If no embryo implants, the corpus luteum breaks down. Progesterone falls, the lining is shed, FSH is no longer suppressed, and the next cycle begins. If an embryo does implant, it secretes a hormone that keeps the corpus luteum alive, progesterone stays high, and the cycle does not restart — which is what a pregnancy test detects.
+
+    task{
+        Hormonal contraceptive pills contain progesterone, or progesterone together with oestrogen, taken daily. Using the canvas, explain how keeping progesterone high at all times prevents pregnancy.
+    }[
+        Progesterone suppresses FSH. Holding it high through the whole cycle means FSH never rises at the start, so no follicle develops, so there is no maturing follicle to produce the oestrogen surge, so there is no LH surge and no ovulation. The mechanism copies the state the body is normally in during pregnancy, when a high progesterone level is already stopping the cycle from restarting for the same reason.
+    ](
+        title: Your turn
+    )
 
     The variation sexual reproduction generates is not incidental — it is the point, and where it comes from mechanically is *Genetic Variation*.
 
     internote(ref: genetic-variation.chalk)
-}
+}[
+    canvas.graph{
+        curve(f: 60 * exp(-((x - 12)/2.5)^2) + 35 * exp(-((x - 21)/4)^2); domain: [0, 28]; colour: teal; label: oestrogen)
+
+        cue{
+            curve(f: 100 * exp(-((x - 14)/1.1)^2); domain: [0, 28]; colour: orange; label: luteinising hormone)
+            axis.label(x: 14; label: ovulation; line; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            curve(f: 80 * exp(-((x - 21)/4)^2); domain: [0, 28]; colour: purple; label: progesterone)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: day of the cycle
+        y axis label: hormone level, relative to the LH peak
+        x domain: [0, 28]
+        y domain: [0, 115]
+    )
+]

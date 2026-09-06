@@ -1,14 +1,215 @@
 *(
     title: Technologies and Disorders
     description: What engineering can do for hearing, sight and kidney function when the biology has failed.
-    tags: hearing loss, visual disorders, kidney dialysis, technology, module 8, biology, stub
+    tags: hearing loss, visual disorders, kidney dialysis, technology, module 8, biology
     lesson
 )
 
+// Scene 4's sawtooth uses standard reference values: blood urea in a healthy
+// adult sits at roughly 2.5-7.8 mmol/L, held steady because the kidneys work
+// continuously. A patient on haemodialysis three times a week accumulates urea
+// between sessions, reaching perhaps 25 mmol/L before a session and being
+// brought down to about 8 mmol/L during it. The plotted points are a schematic
+// week built from those levels, not one patient's readings.
 @include(src: ../preface.part.chalk)
 
 scene{
-    A disorder is a loss of function, and a function lost to biology can sometimes be supplied by a device. Each technology in this section is best understood by first knowing exactly which step of the normal process has stopped.
+    A disorder is a lost function. Before asking what technology can replace it, it is worth asking exactly which step stopped working — because the answer decides which technology is any use at all.
 
-    Written out here: the causes of hearing loss and the technologies addressing each, visual disorders and their correction, and kidney failure with dialysis as a substitute for filtration — in every case set against the normal physiology it is standing in for.
-}
+    Hearing makes this clearest, because the path from a sound in the air to a signal in the brain has several separate stages. The canvas follows it.
+
+    ===
+
+    Sound arrives as a pressure wave in air. The outer ear funnels it to the eardrum, which vibrates. Three small bones in the middle ear pass that vibration on, and because they act as levers they amplify it — which matters, because the next stage is fluid rather than air, and vibrations do not pass easily from air into liquid.
+
+    ===
+
+    Inside the cochlea, that vibration travels through fluid and bends tiny hair cells sitting on a membrane. Bending a hair cell makes it fire. Different parts of the cochlea respond to different frequencies, so which hair cells fire is what tells the brain the pitch.
+
+    ===
+
+    The auditory nerve carries those signals to the brain, which interprets them. Five stages, and hearing loss can come from a failure at any of them — which is why there is no single treatment for deafness.
+}[
+    canvas.diagram{
+        box#air{
+            Sound in the air
+            a pressure wave
+        }
+
+        cue.draw{
+            box#outer{
+                Outer ear and eardrum
+                the wave is funnelled in and the eardrum vibrates
+            }
+            box#middle{
+                Three bones of the middle ear
+                they lever the vibration up, ready to enter fluid
+            }
+            arrow(from: #air; to: #outer)
+            arrow(from: #outer; to: #middle)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#cochlea{
+                Cochlea
+                fluid carries the vibration; hair cells bend and fire
+            }
+            arrow(from: #middle; to: #cochlea)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#nerve:terminal{
+                Auditory nerve and brain
+                the signals are carried away and interpreted
+            }
+            arrow(from: #cochlea; to: #nerve)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: The five stages a sound passes through
+    )
+]
+
+scene{
+    # Two kinds of hearing loss, and why the device must match
+
+    Hearing loss divides in two, according to where in that chain the failure is.
+
+    definition{
+        Hearing loss caused by a problem in the outer or middle ear, so that sound is not conducted efficiently to the cochlea. The cochlea and the nerve are working normally.
+    }(
+        term: Conductive hearing loss
+    )
+
+    definition{
+        Hearing loss caused by damage to the hair cells in the cochlea or to the auditory nerve. The sound arrives, and there is nothing working to convert it into a signal.
+    }(
+        term: Sensorineural hearing loss
+    )
+
+    The distinction decides everything about treatment. A hearing aid is essentially an amplifier: it makes the sound louder, so more of it gets through a poor conducting path. That is exactly the right answer for conductive loss and close to useless for severe sensorineural loss, where making a sound louder does not help if there are no working hair cells to detect it.
+
+    A cochlear implant answers the sensorineural case by skipping the broken stage entirely. A microphone and processor outside the head convert sound into electrical signals, and an array of electrodes threaded into the cochlea stimulates the auditory nerve directly. No hair cells are involved, because there are none left to involve.
+
+    The table sets the causes against the technologies, and the pattern in it is the general one for this whole topic: a device replaces one stage, so it works only where that stage is the stage that failed.
+}[
+    table{
+        Cause                                          | Which stage fails                       | What helps
+        A blocked ear canal, or fluid in the middle ear | conduction to the cochlea               | removing the blockage; a hearing aid to amplify what does get through
+        Otosclerosis — the middle ear bones stiffen     | conduction to the cochlea               | surgery to replace a bone; a bone conduction implant, which vibrates the skull and bypasses the middle ear entirely
+        Loud noise or ageing damages the hair cells     | conversion into a nerve signal           | a hearing aid if some hair cells remain; a cochlear implant if too few do
+        Damage to the auditory nerve itself             | carrying the signal to the brain         | neither a hearing aid nor a cochlear implant; the stage they feed into is the one that is broken
+    }(
+        title: Match the device to the stage
+        highlight rows: 5
+        highlight colour: orange
+    )
+]
+
+scene{
+    # Sight: the image lands in the wrong place
+
+    A healthy eye brings light from a distant object to a focus exactly on the retina. Two of the commonest visual disorders are simply that focus landing somewhere else.
+
+    definition{
+        Short-sightedness: the eyeball is too long, or the lens too strongly curved, so light from distant objects is brought to a focus in front of the retina and reaches it again as a blur. Near objects are seen clearly.
+    }(
+        term: Myopia
+    )
+
+    The canvas is that. The orange rays converge before they reach the back of the eye, cross over, and are spreading apart again by the time they arrive — which is why a distant object looks blurred.
+
+    ===
+
+    The correction follows directly from the diagram. If the eye is bending light too much, put something in front of it that bends the light the other way first. A diverging lens spreads the rays slightly before they enter the eye, so the eye's own focusing brings them together further back — on the retina, where the teal rays land.
+
+    Long-sightedness is the same problem in reverse. The eyeball is too short or the lens too weak, the focus falls behind the retina, and a converging lens is used to bend the rays inwards a little before they enter.
+
+    note{
+        Two other common disorders are not focus errors at all, and this is why naming the failing step matters. A cataract is a clouding of the lens itself, so no amount of correction helps and the treatment is to replace the lens. Glaucoma is pressure damage to the optic nerve — the equivalent of the last row of the hearing table, where the signal path rather than the detector has failed.
+    }
+}[
+    canvas.graph{
+        circle(x: 0; y: 0; size: 3; colour: grey; !fill)
+        point(x: 2.9; y: 0; colour: grey; label: retina)
+
+        segment(from: (-7, 1.2); to: (-5, 1.2); colour: grey)
+        segment(from: (-7, -1.2); to: (-5, -1.2); colour: grey)
+
+        segment(from: (-5, 1.2); to: (0.5, 0); colour: orange)
+        segment(from: (0.5, 0); to: (2.9, -0.85); colour: orange)
+        segment(from: (-5, -1.2); to: (0.5, 0); colour: orange)
+        segment(from: (0.5, 0); to: (2.9, 0.85); colour: orange)
+
+        cue.draw{
+            segment(from: (-5, -1.7); to: (-5, 1.7); colour: teal; dashed; label: diverging lens)
+            segment(from: (-5, 1.2); to: (2.9, 0); colour: teal)
+            segment(from: (-5, -1.2); to: (2.9, 0); colour: teal)
+        }(
+            in: 1
+        )
+    }(
+        !show background
+    )
+]
+
+scene{
+    ## The kidney: replacing an organ that never stops
+
+    The kidneys filter blood continuously, which is why a healthy person's blood urea barely moves. Urea is produced steadily as the liver breaks down surplus amino acids, and it is removed just as steadily. The flat blue line on the canvas is that.
+
+    When the kidneys fail, nothing removes it. Urea and other wastes build up in the blood, water and salt balance is lost, and the person dies within weeks unless the function is replaced.
+
+    ===
+
+    Haemodialysis replaces it, three times a week for a few hours at a time. Blood is pumped out of the body and along one side of a partially permeable membrane, with dialysis fluid flowing the other way along the other side, and urea diffuses out of the blood into the fluid.
+
+    The orange line is what that schedule produces. Urea climbs between sessions and each session brings it down sharply — a sawtooth, where working kidneys give a flat line.
+
+    ===
+
+    The membrane itself does no selecting. The composition of the dialysis fluid does all of it, by deciding which substances have a concentration gradient to cross and which do not. Urea is absent from the fluid, so it leaves the blood; glucose and the ions the body needs are present at normal blood concentrations, so they have almost no gradient and stay put.
+
+    What the machine cannot copy is the continuity. The marked point is the worst moment of each cycle, and it is several times the level a working kidney would ever allow. Living with the sawtooth means restricting diet and fluid between sessions, because everything the kidneys would have removed continuously has to wait — which is why a transplant, restoring the continuous function, is the better outcome where one is available.
+
+    task{
+        Dialysis fluid contains glucose and sodium ions at roughly the same concentrations as normal blood plasma, and no urea at all. Explain why it is made this way rather than being pure water.
+    }[
+        Everything that crosses the membrane does so by diffusing down its own concentration gradient, so the fluid's composition is what decides what is removed. Urea is absent from the fluid, so there is a steep gradient and urea leaves the blood. Glucose and sodium are present at normal plasma concentrations, so there is almost no gradient and they stay in the blood.
+
+        Pure water would give every dissolved substance a gradient out of the blood. The patient would lose glucose and essential ions along with the urea, and water would also move into the blood by osmosis.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.graph{
+        line(x: 0, 7; y: 5, 5; colour: blue; label: working kidneys)
+
+        cue{
+            line(
+                x: 0, 2, 2.15, 4, 4.15, 6, 6.15, 7
+                y: 8, 25, 8, 25, 8, 25, 8, 16
+                colour: orange
+            )
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 2; y: 25; colour: orange; label: just before a session)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: days
+        y axis label: blood urea (mmol L$^{-1}$)
+        x domain: [0, 7]
+        y domain: [0, 30]
+    )
+]

@@ -1,14 +1,200 @@
 *(
     title: Transport in Plants
     description: Two separate plumbing systems, one pulled upwards by evaporation and one pushed by pressure.
-    tags: xylem, phloem, transpiration, translocation, module 2, biology, stub
+    tags: xylem, phloem, transpiration, translocation, module 2, biology
     lesson
 )
 
+// Scene 3 plots a model of the pressure-flow hypothesis, not measurements.
+// Hydrostatic pressure is taken as falling linearly from 1.6 MPa at the source
+// to 0.6 MPa at the sink, and sucrose concentration from 25 to 5 per cent, over
+// the same distance; the point is that both fall together and in the same
+// direction, which is what drives the flow.
 @include(src: ../preface.part.chalk)
 
 scene{
-    A tall plant must lift water many metres without a pump and must also move sugar from wherever it is made to wherever it is needed. These are different problems, and plants solve them with two different tissues running side by side.
+    A tall eucalypt has to get water from the soil to leaves that may be sixty metres above it, and it has no pump and no muscle of any kind. It also has to move sugar from the leaves, where it is made, to the roots and the growing tips, where it is needed — which is the opposite direction, at a different time of year, for a different substance.
 
-    Written out here: xylem and the transpiration stream that pulls water up a column without expending energy, phloem and the pressure-driven translocation of sugars, the movement of each, and how the composition of the fluid changes along the journey.
-}
+    These are two different problems and plants solve them with two different tissues, running alongside each other in every vein and every stem. The table sets them out, and almost every row is a contrast rather than a variation.
+
+    definition{
+        The tissue that carries water and dissolved mineral ions from the roots to the rest of the plant. Its conducting cells are dead at maturity: hollow tubes of lignified wall with the end walls dissolved away, forming a continuous open pipe.
+    }(
+        term: Xylem
+    )
+
+    definition{
+        The tissue that carries dissolved sugars from where they are made or stored to where they are used. Its sieve tube elements are living cells with perforated end walls, kept alive by the companion cells beside them.
+    }(
+        term: Phloem
+    )
+
+    The row worth pausing on is the last. Water movement through xylem costs the plant nothing — the energy comes from the sun evaporating water off the leaves. Sugar movement through phloem does cost, and the cost is paid at the ends rather than along the pipe.
+}[
+    table{
+                            | Xylem                                              | Phloem
+        What moves          | water and mineral ions                             | sucrose, amino acids and plant hormones
+        Direction           | upwards only, roots to leaves                      | either way — from any source to any sink
+        The conducting cells | dead, hollow, no end walls, walls thickened with lignin | living, no nucleus, end walls perforated into sieve plates
+        What drives it      | evaporation from the leaves, pulling the column upwards | a pressure difference created by loading and unloading sugar
+        Energy cost         | none to the plant                                  | ATP, spent loading sucrose at the source and unloading it at the sink
+    }(
+        title: Two tissues, two jobs
+        highlight rows: 5
+        highlight colour: orange
+    )
+]
+
+scene{
+    # The transpiration stream is pulled from the top
+
+    The obvious way to move water sixty metres up is to push it from below, and plants can do a little of that — root pressure will force water a metre or so up a stem, and is why cut grass beads with droplets overnight. It falls hopelessly short of a tree, and the direction of the real mechanism is the opposite one.
+
+    definition{
+        The evaporation of water from the surfaces of the mesophyll cells inside a leaf and its diffusion out through the stomata. It is the consequence of having to open the leaf to carbon dioxide, and it is what drives the entire water column.
+    }(
+        term: Transpiration
+    )
+
+    ===
+
+    Follow the chain on the canvas from the top. A water molecule evaporates from a mesophyll cell wall and leaves through a stoma. That leaves the wall very slightly drier, so water is drawn out of the cell to replace it, and out of the xylem vessel next to that cell to replace that.
+
+    ===
+
+    Removing a molecule from the top of the column would leave a gap, except that water molecules are hydrogen-bonded to one another strongly enough that the column does not break. It is pulled up bodily instead — the entire thread of water from leaf to root moves, under tension, like a rope being hauled rather than a fluid being pumped.
+
+    definition{
+        The explanation of water movement up the xylem: evaporation at the leaf puts the water column under tension, cohesion between water molecules transmits that tension down the column without it breaking, and adhesion to the xylem walls keeps it in place.
+    }(
+        term: Cohesion–tension theory
+    )
+
+    ===
+
+    At the bottom, water enters the root hairs by osmosis, because the soil solution is more dilute than the cytoplasm inside them, and it keeps entering for as long as water is being removed at the top.
+
+    Three things follow from the mechanism being a pull rather than a push. The xylem is under tension, not pressure, which is why the vessels need lignified walls to stop them collapsing inwards. The conducting cells can be dead, because nothing living is required. And the whole system stops if the stomata close, which is why a plant short of water cannot photosynthesise.
+
+    note{
+        The tension is real enough to measure. Tree trunks contract very slightly in diameter during the day, when transpiration is fastest and the tension in the xylem is greatest, and expand again at night. That the column of water in a coast redwood over $110$ metres tall holds together under such tension is the strongest evidence the theory has.
+    }
+}[
+    canvas.diagram{
+        box#stoma{
+            Water evaporates from mesophyll walls
+            and diffuses out through the open stomata
+        }
+
+        cue.draw{
+            box#pull{
+                The cell wall is left slightly drier
+                so water is drawn from the cell, and from the xylem beside it
+            }
+            arrow(from: #stoma; to: #pull)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#column{
+                The whole column moves up
+                cohesion holds the thread together; adhesion holds it to the walls
+            }
+            arrow(from: #pull; to: #column)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#root:terminal{
+                Water enters the root hairs by osmosis
+                replacing what left the leaf, metres above
+            }
+            arrow(from: #column; to: #root)
+        }(
+            in: 3
+        )
+    }(
+        flow: down
+        title: The chain from the stoma down
+    )
+]
+
+scene{
+    # Translocation is pushed, and the plant pays for it
+
+    Phloem transport cannot work the same way, because it has to go in whichever direction the plant needs on the day. Sugar moves from a leaf to a root in summer and out of that root to a new shoot in spring, so no fixed gradient can be doing it.
+
+    definition{
+        The movement of dissolved organic substances through the phloem from a source — anywhere sugar is made or released from store — to a sink, anywhere it is used or stored.
+    }(
+        term: Translocation
+    )
+
+    ===
+
+    The accepted explanation is the pressure-flow hypothesis, and the canvas is its central claim. At the source, sucrose is actively loaded into the sieve tube — this is the step that costs ATP. The sieve tube's contents become concentrated, so water follows osmotically from the neighbouring xylem, and the hydrostatic pressure inside the tube rises.
+
+    At the sink the reverse happens. Sucrose is unloaded into the surrounding cells, the sieve tube's contents become dilute, water leaves, and the pressure falls.
+
+    ===
+
+    Both quantities on the canvas therefore slope the same way, and the pressure difference between the two ends pushes the entire contents of the tube along — sucrose, amino acids, hormones and all — from high pressure to low. Nothing pumps along the length of the tube; the pumping is done at the ends, and the pipe in between is passive.
+
+    That also explains the reversibility. A root storing starch in autumn is a sink; the same root mobilising that starch in spring is a source, and simply by loading instead of unloading it reverses the pressure gradient and the direction of flow.
+
+    note{
+        Aphids provided some of the best evidence for this. An aphid feeds by pushing a stylet into a single sieve tube; cut the insect away and the stylet is left in place, and sap continues to flow out of it under its own pressure. The rate of that flow, and the fact that it flows at all without suction, is a direct measurement of the pressure inside the tube.
+    }
+}[
+    canvas.graph{
+        line(x: 0, 10; y: 1.6, 0.6; colour: blue; label: hydrostatic pressure (MPa))
+
+        cue{
+            line(x: 0, 10; y: 2.5, 0.5; colour: teal; label: sucrose (per cent, scaled by ten))
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.label(x: 0; label: source; colour: grey)
+            axis.label(x: 10; label: sink; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: distance along the sieve tube
+        x domain: [0, 10]
+        y domain: [0, 3]
+        !show ticks
+    )
+]
+
+scene{
+    ## What changes the transpiration rate
+
+    Because the water column is driven by evaporation, anything that changes the rate of evaporation from a leaf changes the rate of water movement through the entire plant. The four factors in the table are the ones that matter, and each acts on one of the two terms that set an evaporation rate: how steep the water vapour gradient is at the leaf surface, or how quickly the vapour that has left is carried away.
+
+    The plant's own response to all of them is the same: close the stomata. That is effective, immediate, and costs the plant its carbon dioxide supply, which is why a plant under water stress in bright sunshine is losing growth at exactly the time of day it could grow fastest.
+
+    task{
+        Two identical potted plants are weighed, watered to the same mass, and left for six hours — one in still air at $25\,^\circ\text{C}$, the other in front of a fan at the same temperature. The fanned plant has lost considerably more mass. Explain the difference, and say what a third plant with petroleum jelly smeared on the undersides of its leaves would show.
+    }[
+        Moving air sweeps away the humid layer that otherwise sits against the leaf surface, so the water vapour gradient between the inside of the leaf and the air immediately outside it stays steep, and evaporation continues at its maximum rate. In still air that layer builds up, the gradient shallows, and transpiration slows itself down.
+
+        The third plant would lose very little mass. Most stomata are on the lower surface, so blocking it blocks nearly all the transpiration — and it would also block the carbon dioxide, so the plant would stop photosynthesising as well.
+    ](
+        title: Your turn
+    )
+}[
+    table{
+        Factor                | Effect on transpiration | Why
+        Light intensity       | increases it            | stomata open in light, so the pores the water leaves through are open
+        Temperature           | increases it            | more molecules have enough energy to evaporate, and warm air holds more vapour, so the gradient steepens
+        Humidity              | decreases it            | the air outside already holds water vapour, so the gradient between leaf and air is shallower
+        Air movement          | increases it            | it removes the humid layer sitting against the leaf, restoring a steep gradient at the surface
+    }(
+        title: The four factors, and the two things they act on
+    )
+]

@@ -1,14 +1,208 @@
 *(
     title: Photosynthesis and Respiration
     description: The two linked reactions that bring energy into living systems and release it again.
-    tags: photosynthesis, respiration, ATP, metabolism, module 1, biology, stub
+    tags: photosynthesis, respiration, ATP, metabolism, module 1, biology
     lesson
 )
 
+// Energy arithmetic, all per mole of glucose. Complete oxidation of glucose
+// releases about 2870 kJ. Hydrolysing ATP to ADP releases about 30.5 kJ under
+// standard conditions. So the commonly quoted aerobic yield of 36 ATP captures
+// 36 x 30.5 = 1098 kJ, which is 1098 / 2870 = 38 per cent; anaerobic
+// respiration's 2 ATP captures 61 kJ, or 2.1 per cent.
+//
+// Scene 4 plots a model, not measurements: rate = V I / (K + I) with
+// (V, K) = (20, 200) and (35, 350), chosen so the two share an initial slope
+// of V/K = 0.1 and differ only in where they level off.
 @include(src: ../preface.part.chalk)
 
 scene{
-    Almost all the energy in the living world entered it through photosynthesis, and almost all of it is released again by respiration. The products of each are close to the reactants of the other, which is why the two together form a cycle rather than two unrelated processes.
+    Almost all the energy in the living world arrived through one reaction, and almost all of it leaves through another. Written side by side on the canvas, the two look suspiciously like each other read in opposite directions — and that near-symmetry is the reason the biosphere works as a cycle rather than running down.
 
-    Written out here: the inputs, outputs and locations of photosynthesis and of aerobic respiration, ATP as the currency both are denominated in, anaerobic respiration and what it costs, and the factors that limit the rate of each.
-}
+    Photosynthesis takes carbon dioxide and water, and uses the energy in light to assemble them into glucose, releasing oxygen as a by-product. It happens in the chloroplast: the light-dependent stage on the stacked thylakoid membranes, where the light is actually captured, and the light-independent stage in the stroma around them, where carbon dioxide is fixed into sugar.
+
+    ===
+
+    Aerobic respiration runs the other way. Glucose and oxygen go in, carbon dioxide and water come out, and the energy that was stored in the glucose is released. It happens in two places: glycolysis in the cytosol, and everything after it inside the mitochondrion.
+
+    definition{
+        An organism that makes its own organic compounds from inorganic ones, using an external energy source. Plants and algae are the photosynthetic case, using light; some bacteria use chemical energy instead.
+    }(
+        term: Autotroph
+    )
+
+    ===
+
+    The symmetry is real but it is not exact, and the difference is the point. The reactants of each are the products of the other, so the same atoms cycle indefinitely — but energy does not cycle. It enters as light, is held for a while in chemical bonds, and leaves as heat. Every organism on the planet is living off the interval between those two events.
+
+    note{
+        Plants respire as well as photosynthesise, all the time. In good light a leaf photosynthesises faster than it respires and shows a net uptake of carbon dioxide; in the dark only respiration continues and the flow reverses. The point at which the two exactly cancel is the light compensation point, and it is measured rather than assumed.
+    }
+}[
+    #### Photosynthesis, in the chloroplast
+
+    equation{
+        6\text{CO}_2 + 6\text{H}_2\text{O} \;\xrightarrow{\;\text{light}\;}\; \text{C}_6\text{H}_{12}\text{O}_6 + 6\text{O}_2
+    }
+
+    cue{
+        #### Aerobic respiration, in the cytosol and the mitochondrion
+
+        equation{
+            \text{C}_6\text{H}_{12}\text{O}_6 + 6\text{O}_2 \;\longrightarrow\; 6\text{CO}_2 + 6\text{H}_2\text{O}
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Matter cycles; energy does not
+
+        equation{
+            \text{light} \;\longrightarrow\; \text{chemical bonds} \;\longrightarrow\; \text{work} + \text{heat}
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # ATP is the currency both are denominated in
+
+    Glucose is not spendable. Oxidising it completely releases about $2870\text{ kJ mol}^{-1}$, and no process in a cell needs anything remotely that large in one payment — releasing it all at once would simply cook the cell. What a cell needs is a small, uniform unit of energy it can hand to whatever requires one.
+
+    definition{
+        Adenosine triphosphate: a nucleotide carrying three phosphate groups, the last of which is removed to release usable energy — about $30.5\text{ kJ mol}^{-1}$ — leaving ADP. It is the form in which almost all energy transfer inside cells is carried out.
+    }(
+        term: ATP
+    )
+
+    The canvas is the cycle that results, and the important thing about it is that ATP is not storage. A cell holds only a few seconds' worth at any moment and turns over its entire supply many times a minute; what respiration does is not accumulate ATP but keep rebuilding it from ADP as fast as the cell spends it.
+
+    ===
+
+    Every energy-requiring process in the rest of the course draws on this cycle. Active transport, muscle contraction, the synthesis of proteins and DNA, and the pumping that holds a lysosome acidic are all paid for by hydrolysing ATP, which is why they all stop within seconds of respiration stopping.
+}[
+    canvas.diagram{
+        box#atp{
+            ATP
+            adenosine + three phosphates
+        }
+        box#adp{
+            ADP + phosphate
+            the spent form
+        }
+        arrow(from: #atp; to: #adp; label: hydrolysis releases $30.5\text{ kJ mol}^{-1}$)
+
+        cue.draw{
+            arrow(from: #adp; to: #atp; label: rebuilt by respiration)
+        }(
+            in: 1
+        )
+    }(
+        flow: right
+        title: The ATP–ADP cycle
+    )
+]
+
+scene{
+    # What oxygen is worth, counted in ATP
+
+    Respiration without oxygen is possible and it is expensive. Glycolysis — the first stage, in the cytosol — splits glucose into two three-carbon molecules and nets two ATP, and it needs no oxygen at all. Everything after glycolysis does.
+
+    definition{
+        The release of energy from glucose without oxygen. In animal cells the pyruvate from glycolysis is converted to lactic acid; in yeast and plant cells to ethanol and carbon dioxide. Either way the yield is the two ATP that glycolysis produced.
+    }(
+        term: Anaerobic respiration
+    )
+
+    ===
+
+    The canvas puts the two yields beside each other. Aerobic respiration is conventionally quoted at $36$ ATP per glucose, which is eighteen times what the anaerobic route delivers from the same molecule.
+
+    That is not a small margin, and it is worth converting into energy to see how large it is. At $30.5\text{ kJ}$ per ATP, $36$ ATP is $1098\text{ kJ}$ of the $2870\text{ kJ}$ available in a mole of glucose — about $38$ per cent captured, with the rest lost as heat. The anaerobic route captures $61\text{ kJ}$, or roughly two per cent.
+
+    note{
+        The figure of $36$ is a textbook convention rather than a measurement. Careful accounting for the cost of moving substrates into the mitochondrion puts the real yield closer to $30$ to $32$ ATP, and it varies between tissues. The comparison with anaerobic respiration survives either way: the ratio is around fifteen to one rather than exactly eighteen.
+    }
+
+    ===
+
+    The reason anything bothers with the anaerobic route is speed and availability rather than yield. Glycolysis is fast and needs no mitochondria, so a muscle working harder than its oxygen supply allows can keep contracting on anaerobic respiration for a short time — at the cost of accumulating lactic acid, and of consuming glucose eighteen times faster for the same work.
+}[
+    canvas.graph{
+        histogram(
+            bins: 0, 1
+            values: 2
+            colour: orange
+            show labels
+        )
+        axis.label(x: 0.5; label: without oxygen; colour: grey)
+
+        cue{
+            histogram(
+                bins: 1, 2
+                values: 36
+                colour: blue
+                show labels
+            )
+            axis.label(x: 1.5; label: with oxygen; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.band(y: [30, 32]; label: modern estimates; colour: grey; edges)
+        }(
+            in: 2
+        )
+    }(
+        y axis label: ATP per molecule of glucose
+        x domain: [0, 2]
+        y domain: [0, 42]
+    )
+]
+
+scene{
+    ## What sets the rate
+
+    A rate always has something limiting it, and in photosynthesis the candidates are few: light intensity, carbon dioxide concentration and temperature. Which one is limiting at a given moment is a question with an answer, and the canvas shows how to find it.
+
+    Both curves rise steeply and identically at first. In that region light is scarce and everything else is in excess, so every extra photon is used and the rate is proportional to the light — the two carbon dioxide levels make no difference at all, because carbon dioxide is not what is short.
+
+    ===
+
+    Then each curve levels off, and they level off at different heights. Beyond the bend, adding light changes nothing: the leaf has more photons than it can use, and the rate is set by how fast carbon dioxide can be fixed. Raising the carbon dioxide concentration now raises the rate, and raising the light does not.
+
+    definition{
+        The factor in shortest supply relative to what a process needs, which alone sets the rate. Increasing any other factor has no effect until the limiting one is relieved.
+    }(
+        term: Limiting factor
+    )
+
+    Temperature enters differently from the other two. The light-independent stage is enzyme-catalysed, so the rate rises with temperature to an optimum and then falls as those enzymes denature — the curve from *Enzymes*, appearing again in a whole-organism setting.
+
+    task{
+        A grower measures the photosynthetic rate in a glasshouse and finds that adding artificial light at midday produces almost no increase, while adding carbon dioxide produces a large one. What is limiting the rate, and what would you expect from the same two interventions at dawn?
+    }[
+        Carbon dioxide is limiting at midday: the leaves are past the bend in the curve, where extra light has nowhere to go. At dawn the light intensity is low and the leaves are on the steep initial part, where the two carbon dioxide levels give the same rate — so at dawn the answers reverse, and it is the extra light that helps.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.graph{
+        curve(f: 20 * x / (200 + x); domain: [0, 2000]; colour: blue; label: lower $\text{CO}_2$)
+
+        cue{
+            curve(f: 35 * x / (350 + x); domain: [0, 2000]; colour: teal; label: higher $\text{CO}_2$)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: light intensity
+        y axis label: rate of photosynthesis
+        x domain: [0, 2000]
+        y domain: [0, 36]
+        !show ticks
+    )
+]

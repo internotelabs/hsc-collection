@@ -1,14 +1,160 @@
 *(
     title: Microscopy and Cell Theory
     description: The instruments that made cells visible, and the three claims that hardened into a theory.
-    tags: microscopy, cell theory, magnification, resolution, module 1, biology, stub
+    tags: microscopy, cell theory, magnification, resolution, module 1, biology
     lesson
+)
+
+// Abbe's diffraction limit, d = lambda / (2 NA), with lambda = 550 nm (green,
+// the middle of the visible band). At the best oil-immersion NA of 1.4 this is
+// 550 / 2.8 = 196 nm, which is the 0.2 um quoted as the light microscope's floor.
+@let(
+    abbe floor: 196
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Cells are not visible to the unaided eye, so cell theory could not be proposed before the glass was good enough to see one. The history and the biology are hard to separate here: each claim of the theory waited on an instrument.
+    The unaided eye separates two things about a tenth of a millimetre apart. Almost nothing that biology calls a cell is that large, which is why the claim that living material is made of cells could not be made — let alone tested — until someone had ground a lens good enough.
 
-    Written out here: light and electron microscopes and what each can resolve, the difference between magnification and resolution, the technologies that followed, and the three statements of cell theory with the observations that support each.
-}
+    The table sets the sizes against the instruments. Read down the first column and the scale falls by five powers of ten between a human egg cell and the width of a DNA molecule; read across and each instrument gives out somewhere along that fall.
+
+    definition{
+        The smallest separation at which two points are still seen as two rather than one. It is a property of the instrument and the light it uses, and no amount of enlargement improves it.
+    }(
+        term: Resolution
+    )
+
+    The human egg is the exception that makes the point. At about $0.12\text{ mm}$ it is the one human cell a person can see without help, and it is visible because it is roughly a hundred times wider than the red blood cells in the same body.
+}[
+    table{
+        Object                  | Approximate size      | Unaided eye                     | Light microscope                | Electron microscope
+        Human egg cell          | $120\ \mu\text{m}$    | !icon(name: tick; colour: green) | !icon(name: tick; colour: green) | !icon(name: tick; colour: green)
+        Red blood cell          | $8\ \mu\text{m}$      | !icon(name: cross; colour: red) | !icon(name: tick; colour: green) | !icon(name: tick; colour: green)
+        *E. coli* bacterium     | $2\ \mu\text{m}$      | !icon(name: cross; colour: red) | !icon(name: tick; colour: green) | !icon(name: tick; colour: green)
+        Influenza virus         | $100\text{ nm}$       | !icon(name: cross; colour: red) | !icon(name: cross; colour: red) | !icon(name: tick; colour: green)
+        Ribosome                | $25\text{ nm}$        | !icon(name: cross; colour: red) | !icon(name: cross; colour: red) | !icon(name: tick; colour: green)
+        DNA double helix, width | $2\text{ nm}$         | !icon(name: cross; colour: red) | !icon(name: cross; colour: red) | !icon(name: tick; colour: green)
+    }(
+        title: What each instrument can separate
+        highlight rows: 2
+        highlight colour: orange
+    )
+]
+
+scene{
+    # Magnification enlarges; resolution decides whether that helps
+
+    Magnification is a ratio and nothing more: the image divided by the object. A light microscope with a $\times 40$ objective and a $\times 10$ eyepiece magnifies $\times 400$, and the two numbers multiply because the eyepiece enlarges the objective's image rather than the specimen.
+
+    definition{
+        The ratio of the size of an image to the size of the object that produced it. On a compound microscope it is the objective's power multiplied by the eyepiece's.
+    }(
+        term: Magnification
+    )
+
+    Nothing in that ratio promises detail. Photograph a light-microscope image and enlarge the print by a further ten times and the magnification is genuinely ten times greater, while the number of distinguishable features is exactly what it was.
+
+    ===
+
+    The reason there is a floor is that light diffracts. Two points closer together than about half a wavelength send out overlapping waves, and the objective receives one blur where the specimen held two objects. Ernst Abbe's expression for the smallest separation still resolved is $d = \lambda / (2\,\text{NA})$, where $\lambda$ is the wavelength and the numerical aperture $\text{NA}$ measures how wide a cone of light the lens collects.
+
+    The canvas plots that expression for green light at $\lambda = 550\text{ nm}$. Increasing the aperture buys a great deal at first and almost nothing at the end: the best oil-immersion objectives reach $\text{NA} = 1.4$, giving {{abbe floor}} nanometres — the $0.2\ \mu\text{m}$ that every account of the light microscope quotes as its limit.
+
+    An electron beam has a wavelength thousands of times shorter, which is the whole of the reason electron microscopes resolve to about $0.1\text{ nm}$. They are not better-built light microscopes; they are the same physics run with a shorter wave.
+}[
+    canvas.graph{
+        curve(f: 275 / x; domain: [0.25, 1.5]; colour: blue; label: $d = \lambda / (2\,\text{NA})$)
+        point(x: 0.65; y: 423; colour: orange; label: a good dry objective)
+
+        cue{
+            axis.label(y: 196; label: $0.2\ \mu\text{m}$; line; colour: grey)
+            point(x: 1.4; y: 196; colour: orange; label: oil immersion)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: numerical aperture
+        y axis label: smallest resolvable separation (nm)
+        x domain: [0.2, 1.6]
+        y domain: [0, 1200]
+    )
+]
+
+scene{
+    # The three statements, and what each rests on
+
+    Cell theory is usually given as three claims, and they were not established together. Each waited on a different observation, and the third waited nearly two centuries after the first.
+
+    definition{
+        A theory in three parts: that all living things are made of one or more cells, that the cell is the smallest unit that can be called alive, and that every cell arises from a pre-existing cell by division.
+    }(
+        term: Cell theory
+    )
+
+    The third statement is the one that does real work. The first two describe what is there; the third forbids something — it says that no cell has ever appeared in any way except from another cell, which is a claim strong enough to be wrong and therefore worth testing.
+
+    note{
+        The theory is stated for cells, and viruses are the standing awkwardness. A virus has genetic material and a protein coat, replicates, and evolves, but carries no machinery to do any of it and so does nothing at all outside a host cell. The usual resolution is to say that the theory is about living things and that a virus is not one — which is a decision about the word rather than a discovery about the virus.
+    }
+}[
+    table{
+        The claim                                        | The observation behind it                                                                                 | Who, and when
+        All organisms are composed of one or more cells  | Compartments seen first in cork, then in every plant and animal tissue anyone examined                     | Hooke 1665; Schleiden 1838; Schwann 1839
+        The cell is the basic unit of life               | Nothing smaller taken from a cell carries on any of the activities the whole cell performs                 | Schleiden and Schwann, 1838–39
+        Every cell comes from a pre-existing cell        | Cells were repeatedly watched dividing, and never watched forming out of anything that was not already a cell | Virchow, 1855
+    }(
+        title: The three statements of cell theory
+    )
+]
+
+scene{
+    ## The experiment the third statement had to survive
+
+    If cells only ever come from cells, then a sterile broth sealed away from existing cells must stay sterile forever. The rival position — that life arises spontaneously from non-living material given air and nutrients — makes the opposite prediction, and it had been the majority view for a very long time.
+
+    Louis Pasteur's flasks settled it in a way that is worth following closely, because the design does one difficult thing. Boiling the broth kills whatever is in it, but sealing the flask afterwards also excludes air, and a defender of spontaneous generation could always say that the air was what the process needed.
+
+    ===
+
+    The swan neck admits air and stops dust. The bend is long and low, so airborne particles settle in it and never reach the liquid; the broth stays clear for months. Snap the neck off and the same flask, with the same broth and the same air, clouds within days.
+
+    Nothing changed except whether pre-existing cells could get in. That is the third statement of cell theory, tested against the one alternative anyone was offering.
+
+    task{
+        A student examines a specimen at $\times 400$ and can just distinguish two structures. They photograph the image and enlarge the photograph five times. Have they resolved anything new, and what has changed?
+    }[
+        Nothing new. The enlargement raises the magnification to an effective $\times 2000$ but the resolution was fixed the moment the light passed through the objective — around $0.2\ \mu\text{m}$ for a light microscope. Structures closer together than that were merged into one blur before the photograph was taken, and enlarging the blur makes it a larger blur.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.diagram{
+        box#boil{
+            Broth boiled in the flask
+            anything already living in it is killed
+        }
+        box#neck{
+            Left open through a long swan neck
+            air passes freely; dust settles in the bend
+        }
+        box#clear:terminal{No growth, month after month}
+        arrow(from: #boil; to: #neck)
+        arrow(from: #neck; to: #clear)
+
+        cue.draw{
+            box#break{
+                The neck is snapped off
+                same broth, same air, dust now reaches the liquid
+            }
+            box#cloudy:terminal{Growth within days}
+            arrow(from: #neck; to: #break)
+            arrow(from: #break; to: #cloudy)
+        }(
+            in: 1
+        )
+    }(
+        flow: down
+        title: Pasteur's swan-neck flasks, 1859–61
+    )
+]

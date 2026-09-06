@@ -1,14 +1,207 @@
 *(
     title: Transport Across Membranes
     description: Diffusion, osmosis and active transport, and why they put a ceiling on how large a cell can be.
-    tags: diffusion, osmosis, active transport, surface area volume, module 1, biology, stub
+    tags: diffusion, osmosis, active transport, surface area volume, module 1, biology
     lesson
 )
 
+// Scene 1 plots two models rather than measurements. Simple diffusion is taken
+// as rate = 0.5 x gradient; facilitated diffusion as the saturating form
+// rate = 10 x gradient / (3 + gradient), whose ceiling of 10 is the point.
+// They cross where 0.5g = 10g / (3 + g), i.e. g = 17.
+//
+// Scene 4: for a cube of side L, surface area 6L^2 and volume L^3 give a ratio
+// of 6/L, so L = 1, 2, 5, 10, 20 um give 6, 3, 1.2, 0.6, 0.3 per um.
 @include(src: ../preface.part.chalk)
 
 scene{
-    Some substances cross a membrane without the cell doing anything, simply because there are more of them on one side. Others must be pushed against that gradient, and pushing costs energy. The distinction runs through the whole of cell physiology.
+    Some substances cross a membrane without the cell spending anything. Oxygen is more concentrated in the blood than in a working muscle cell, so oxygen molecules arrive at the cell faster than they leave it, and the net flow is inward for as long as that difference lasts. Nothing directs it and nothing pays for it — the movement is a statistical consequence of molecules moving at random.
 
-    Written out here: diffusion and facilitated diffusion, osmosis and the effect of concentrated and dilute surroundings on plant and animal cells, active transport and the ATP it consumes, and the surface area to volume ratio that limits cell size because volume grows faster than the surface serving it.
-}
+    definition{
+        The net movement of a substance from a region where it is more concentrated to one where it is less concentrated, arising from the random motion of the particles themselves and requiring no energy from the cell.
+    }(
+        term: Diffusion
+    )
+
+    The canvas plots the rate of that movement against the size of the concentration difference driving it. For a substance crossing the lipid directly the relationship is a straight line: double the gradient and you double the rate, with no upper limit short of the membrane dissolving.
+
+    ===
+
+    Most of what a cell needs cannot cross the lipid at all, and goes through a protein instead. The second curve is what that looks like. At small gradients it behaves like the first, but it bends over and flattens, and the flattening is the whole difference.
+
+    definition{
+        Passive movement down a concentration gradient through a channel or carrier protein rather than through the lipid. It requires no energy, but it can only go as fast as the available proteins allow.
+    }(
+        term: Facilitated diffusion
+    )
+
+    ===
+
+    The ceiling is there because there are only so many carriers. Once every one of them is occupied at all times, increasing the gradient further changes nothing: the queue outside a carrier gets longer and the rate does not. Simple diffusion has no such limit because it uses no machinery, which is why the straight line eventually overtakes the curve.
+
+    That saturation is diagnostic. An experimenter who raises the external concentration of a substance and finds that uptake stops responding has shown that the substance is crossing through protein, without ever seeing the protein.
+}[
+    canvas.graph{
+        curve(f: 0.5 * x; domain: [0, 24]; colour: blue; label: simple diffusion)
+
+        cue{
+            curve(f: 10 * x / (3 + x); domain: [0, 24]; colour: teal; label: facilitated diffusion)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.label(y: 10; label: every carrier occupied; line; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: concentration gradient across the membrane
+        y axis label: rate of transport
+        x domain: [0, 24]
+        y domain: [0, 13]
+        !show ticks
+    )
+]
+
+scene{
+    # Osmosis is the same process, seen from the water's side
+
+    Water diffuses too, and it diffuses down its own concentration gradient like anything else. The confusion osmosis causes is almost entirely a matter of bookkeeping: a solution with a lot of dissolved solute has, by that fact, less water per unit volume, so water moves from the dilute side to the concentrated side.
+
+    definition{
+        The net movement of water across a partially permeable membrane, from a solution where the water concentration is higher to one where it is lower — equivalently, from the more dilute solution towards the more concentrated one.
+    }(
+        term: Osmosis
+    )
+
+    A cell has no way to refuse. Water crosses the membrane freely in both directions, so the cell's water content is decided by the solution around it rather than by the cell, and every organism that lives in fresh or salt water has had to solve the problem this creates.
+
+    The table sets out the three cases for an animal cell and a plant cell, and the difference between the two columns is the cell wall. An animal cell placed in pure water takes in water until it bursts. A plant cell in the same water takes in water until the wall stops it, and the pressure that builds up against the wall is what holds a non-woody plant upright.
+
+    note{
+        This is why a wilting plant recovers when watered and a limp lettuce leaf crisps in cold water. Turgor is not a metaphor: it is hydrostatic pressure inside each cell, pushing outwards on a wall that does not stretch.
+    }
+}[
+    table{
+        The solution outside the cell     | An animal cell                                        | A plant cell
+        More dilute (hypotonic)           | water enters; the cell swells and may burst           | water enters; the vacuole swells and the cell becomes turgid, held by the wall
+        Equal concentration (isotonic)    | no net movement; the normal state for a body cell      | no net movement; the cell is flaccid and the plant droops
+        More concentrated (hypertonic)    | water leaves; the cell shrinks and its surface crinkles | water leaves; the membrane pulls away from the wall — plasmolysis
+    }(
+        title: What the surroundings do to a cell
+    )
+]
+
+scene{
+    # Active transport pays to go the wrong way
+
+    Diffusion can only ever level a gradient out, and a cell that did nothing else would end up in chemical equilibrium with its surroundings, which is what being dead consists of. Holding a concentration different from the outside means moving substances up their gradients, and that costs energy.
+
+    definition{
+        The movement of a substance across a membrane against its concentration gradient, using a carrier protein driven by energy from ATP.
+    }(
+        term: Active transport
+    )
+
+    The clearest example is the sodium–potassium pump, which almost every animal cell runs continuously. The canvas follows one cycle of it.
+
+    ===
+
+    Three sodium ions bind to the pump from inside the cell. Splitting one molecule of ATP attaches a phosphate group to the pump, and the pump changes shape — which is the step energy is spent on, and the reason the process stops the moment ATP runs out.
+
+    ===
+
+    The new shape opens to the outside and has no affinity for sodium, so the three ions are released into a region where sodium is already more concentrated than it was inside. Two potassium ions then bind, the phosphate comes off, the pump returns to its original shape, and the potassium is released inside.
+
+    The arithmetic is the interesting part. Three positive charges leave and two come back for each molecule of ATP, so every cycle makes the inside of the cell slightly more negative than the outside. That difference in charge is the resting membrane potential, and every nerve impulse in the body is a controlled collapse and restoration of it.
+
+    note{
+        Running this pump is expensive enough to be a significant share of a resting animal cell's energy budget, and considerably more than that in nerve cells, where the potential it maintains is being spent and rebuilt constantly.
+    }
+}[
+    canvas.diagram{
+        box#bind{
+            Three $\text{Na}^+$ bind from inside
+            the pump is open to the cytosol
+        }
+
+        cue.draw{
+            box#atp{
+                One ATP is split
+                a phosphate attaches and the pump changes shape
+            }
+            arrow(from: #bind; to: #atp)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#release{
+                Open to the outside, sodium is released
+                three $\text{Na}^+$ out, against their gradient
+            }
+            box#kin{
+                Two $\text{K}^+$ bind and the phosphate leaves
+                the pump returns to its first shape and releases them inside
+            }
+            box#net:terminal{Net result: one positive charge leaves the cell per cycle}
+            arrow(from: #atp; to: #release)
+            arrow(from: #release; to: #kin)
+            arrow(from: #kin; to: #net)
+        }(
+            in: 2
+        )
+    }(
+        flow: down
+        title: One cycle of the sodium–potassium pump
+    )
+]
+
+scene{
+    # Why a cell cannot solve its problems by growing
+
+    Everything so far happens at the surface, and everything the surface has to supply is in the interior. Those two quantities do not scale together, which is the constraint that fixes how large a cell can be.
+
+    Take a cube of side $L$. Its surface area is $6L^2$ and its volume is $L^3$, so the surface available per unit of volume is $6L^2 / L^3 = 6/L$ — the curve on the canvas. Growing the cube does not reduce its surface; it increases the volume faster.
+
+    ===
+
+    Read the numbers off. A cube $2\ \mu\text{m}$ across has three units of surface for every unit of volume; at $20\ \mu\text{m}$ across it has $0.3$, a tenfold fall for a tenfold increase in width. The shaded band is where most eukaryotic cells sit, and it is where the curve has already flattened close to the axis.
+
+    The consequence is a supply problem. Demand for oxygen and nutrients rises with volume while the surface delivering them rises only with area, so beyond some size the interior cannot be served fast enough by diffusion from the outside — and diffusion is slow over distance in any case, taking around four times as long to cover twice the distance.
+
+    ===
+
+    Cells have three ways out, and all three are visible in the rest of the course. Stay small and divide, which is what almost everything does. Change shape so that surface keeps up with volume — the flattened disc of a red blood cell, the enormous branched surface of a nerve cell, the microvilli on a gut cell. Or become multicellular and build transport systems, which is where organisms come from.
+
+    task{
+        A spherical cell of radius $r$ has surface area $4\pi r^2$ and volume $\tfrac{4}{3}\pi r^3$. Find its surface area to volume ratio, and say what happens to that ratio when the radius doubles.
+    }[
+        The ratio is $4\pi r^2 \div \tfrac{4}{3}\pi r^3 = 3/r$. Doubling the radius halves the ratio. The form is the same as the cube's $6/L$ — the constant differs with the shape, but the inverse dependence on size does not, which is why no shape rescues a cell that simply grows.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.graph{
+        curve(f: 6 / x; domain: [1, 40]; colour: blue)
+
+        cue{
+            point(x: 2; y: 3; colour: orange; label: $2\ \mu\text{m}$)
+            point(x: 20; y: 0.3; colour: orange; label: $20\ \mu\text{m}$)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.band(x: [10, 40]; label: most eukaryotic cells; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: width of the cell ($\mu\text{m}$)
+        y axis label: surface area per unit volume ($\mu\text{m}^{-1}$)
+        x domain: [0, 40]
+        y domain: [0, 6.5]
+    )
+]

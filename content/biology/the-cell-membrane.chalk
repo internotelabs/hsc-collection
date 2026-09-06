@@ -1,18 +1,193 @@
 *(
     title: The Cell Membrane
     description: A double layer of lipid with proteins floating in it, and why that structure decides what can cross.
-    tags: cell membrane, phospholipid bilayer, fluid mosaic, module 1, biology, stub
+    tags: cell membrane, phospholipid bilayer, fluid mosaic, module 1, biology
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    A cell must be separated from its surroundings or its contents would disperse, but a perfect seal would starve it. The membrane resolves the conflict by being selectively permeable, and it can do that because of what it is made of.
+    A cell has to be separated from its surroundings, because a bag of enzymes that leaks its contents into the pond is not a cell for long. It also has to take in glucose and oxygen and get rid of carbon dioxide. A perfect seal solves the first problem and guarantees starvation; an open boundary solves the second and is not a boundary.
 
-    Written out here: the phospholipid bilayer and why molecules with a water-loving head and a water-fearing tail arrange themselves that way on their own, the fluid mosaic model, and the channel and carrier proteins embedded in it.
+    The membrane resolves the conflict by letting some things through and not others, and it can do that because of the molecule it is built from. A phospholipid has a phosphate head that dissolves readily in water and two fatty acid tails that do not — one molecule, two incompatible halves.
+
+    definition{
+        A molecule with one region attracted to water and another repelled by it. Phospholipids are the biologically important case: a polar phosphate head and two non-polar hydrocarbon tails on the same molecule.
+    }(
+        term: Amphipathic molecule
+    )
+
+    Put enough of them in water and no assembly is required. Each tail is pushed away from the water and each head is pulled towards it, and the only arrangement that satisfies every molecule at once is two sheets back to back — tails facing tails on the inside, heads facing the water on both outer faces. The canvas is that arrangement, with the cell's interior below and its surroundings above.
+
+    ===
+
+    The band across the middle is the consequence that matters. Between the two rows of heads lies a layer of hydrocarbon a few nanometres thick with no water in it at all, and a charged ion or a polar sugar entering that layer would have to leave every water molecule it was attached to behind. That is why a sodium ion cannot simply drift across a membrane, while oxygen and carbon dioxide — small and non-polar — pass straight through as though nothing were there.
+
+    note{
+        The same physics makes the membrane self-sealing. Puncture it and the exposed tails are again in contact with water, which the arrangement resolves by closing the gap. Nothing repairs the hole; there is simply no stable configuration in which it stays open.
+    }
+}[
+    canvas.graph{
+        text(x: 8; y: 4.3; label: outside the cell; colour: grey)
+        text(x: 8; y: -4.3; label: cytosol; colour: grey)
+
+        scatter(x: 1, 3, 5, 7, 9, 11, 13, 15; y: 2, 2, 2, 2, 2, 2, 2, 2; colour: blue)
+        segment(from: (1, 1.7); to: (1, 0.2); colour: blue)
+        segment(from: (3, 1.7); to: (3, 0.2); colour: blue)
+        segment(from: (5, 1.7); to: (5, 0.2); colour: blue)
+        segment(from: (7, 1.7); to: (7, 0.2); colour: blue)
+        segment(from: (9, 1.7); to: (9, 0.2); colour: blue)
+        segment(from: (11, 1.7); to: (11, 0.2); colour: blue)
+        segment(from: (13, 1.7); to: (13, 0.2); colour: blue)
+        segment(from: (15, 1.7); to: (15, 0.2); colour: blue)
+
+        scatter(x: 1, 3, 5, 7, 9, 11, 13, 15; y: -2, -2, -2, -2, -2, -2, -2, -2; colour: blue)
+        segment(from: (1, -1.7); to: (1, -0.2); colour: blue)
+        segment(from: (3, -1.7); to: (3, -0.2); colour: blue)
+        segment(from: (5, -1.7); to: (5, -0.2); colour: blue)
+        segment(from: (7, -1.7); to: (7, -0.2); colour: blue)
+        segment(from: (9, -1.7); to: (9, -0.2); colour: blue)
+        segment(from: (11, -1.7); to: (11, -0.2); colour: blue)
+        segment(from: (13, -1.7); to: (13, -0.2); colour: blue)
+        segment(from: (15, -1.7); to: (15, -0.2); colour: blue)
+
+        cue{
+            axis.band(y: [-1.9, 1.9]; label: no water in here; colour: grey)
+        }(
+            in: 1
+        )
+    }(
+        x domain: [0, 16]
+        y domain: [-5, 5]
+        !show background
+    )
+]
+
+scene{
+    # The mosaic: what is set into the sheet
+
+    A membrane made only of phospholipid would be a good barrier and nothing else. Everything a membrane does beyond keeping the inside in is done by something embedded in it, and the table is the inventory.
+
+    definition{
+        A model of membrane structure in which a phospholipid bilayer forms a two-dimensional fluid, with proteins of several kinds embedded in it or attached to its faces and free to move within the plane of the sheet.
+    }(
+        term: Fluid mosaic model
+    )
+
+    The two protein types in the middle rows are the ones the rest of the course keeps returning to, and the difference between them is worth stating precisely now. A channel protein is a hole with a lining that suits one substance: it is open, or it is gated shut, and anything of the right kind passing through does so at whatever rate the gradient dictates. A carrier protein has no hole at all — it binds its substance on one face, changes shape, and releases it on the other.
+
+    That structural difference produces a behavioural one. A channel can pass tens of millions of ions a second because nothing has to happen between one ion and the next. A carrier must complete a shape change for every molecule it moves, which is slower, and which is also what makes it possible to drive that shape change with ATP and move something the wrong way up its gradient.
+}[
+    table{
+        Set into or onto the bilayer | What it is                                                    | What it is for
+        Channel protein              | a pore through the membrane, lined to suit one substance      | lets specific ions and small polar molecules through, very fast, always down the gradient
+        Carrier protein              | a protein that binds a substance and changes shape             | moves specific molecules across, one shape change at a time — and can be driven by ATP against the gradient
+        Glycoprotein                 | a protein with a carbohydrate chain on the outer face          | cell recognition and receptors — how one cell identifies another, and how hormones are detected
+        Glycolipid                   | a lipid with a carbohydrate chain on the outer face            | recognition markers, including the ABO blood group antigens
+        Cholesterol                  | a small rigid lipid wedged between the phospholipid tails      | holds the fluidity of the sheet steady as temperature changes
+    }(
+        title: The components of a fluid mosaic membrane
+        highlight rows: 2, 3
+        highlight colour: teal
+    )
+]
+
+scene{
+    # The fluid: nothing in the sheet is bolted down
+
+    Calling the membrane fluid is a specific claim, and one that was not obvious. A phospholipid can drift sideways within its own leaflet, and so can a protein set into it; the sheet holds together while its components rearrange, in the way a soap film does.
+
+    The evidence usually given is a cell fusion experiment done by Frye and Edidin in 1970, and it is worth following because the design is so direct.
+
+    ===
+
+    A mouse cell and a human cell were fused into a single cell with one continuous membrane. The proteins of each were tagged with fluorescent antibodies of different colours beforehand, so that immediately after fusion the membrane was visibly two-toned: mouse markers on one half, human markers on the other.
+
+    ===
+
+    Left at $37\,^\circ\text{C}$, the two sets of markers were completely intermixed within about forty minutes. Nothing transported them and nothing was consumed; the proteins simply diffused within the plane of the membrane until they were evenly spread.
+
+    That result rules out the model the fluid mosaic replaced, in which the membrane was a lipid layer sandwiched between fixed sheets of protein. Proteins in a fixed sheet cannot travel half a cell in forty minutes, and these did.
+}[
+    canvas.diagram{
+        box#label{
+            Two cells, two sets of membrane proteins
+            mouse markers tagged one colour, human markers another
+        }
+
+        cue.draw{
+            box#fuse{
+                Fused into one cell
+                one continuous membrane, markers still in two halves
+            }
+            arrow(from: #label; to: #fuse)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#wait{
+                Held at $37\,^\circ\text{C}$ for forty minutes
+                no transport, no energy supplied
+            }
+            box#mixed:terminal{Markers evenly intermixed over the whole surface}
+            arrow(from: #fuse; to: #wait)
+            arrow(from: #wait; to: #mixed)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: Frye and Edidin's fusion experiment, 1970
+    )
+]
+
+scene{
+    ## Reading the membrane as a set of routes
+
+    Put the structure and the inventory together and the membrane becomes a question with a small number of answers. Something arriving at the outer face either dissolves in the hydrocarbon core and crosses unaided, or it does not.
+
+    Oxygen does. It is small, uncharged and non-polar, so the hydrocarbon layer is no obstacle at all and it crosses wherever it happens to arrive — which is the arrow on the left of the canvas, passing through bare lipid.
+
+    ===
+
+    Everything else crosses through a protein or does not cross. A potassium ion goes through the channel in the middle of the canvas; a glucose molecule is bound, carried and released by the carrier on the right. Those two routes and the lipid route are the whole of what a membrane admits, apart from a fourth case in which the membrane engulfs the substance rather than admitting it.
+
+    The selectivity therefore comes from the proteins, not from the lipid. The bilayer is indiscriminate in a simple way — it admits what dissolves in oil and blocks what does not — and every case of a cell admitting one sugar and refusing another, or holding an ion concentration a hundred times the outside, is a protein doing it.
+
+    task{
+        Ethanol crosses cell membranes very quickly and reaches the brain within minutes of being drunk. Sodium ions are far smaller than an ethanol molecule and do not cross at all without help. What decides this, and what does it predict about which of the two the cell can control?
+    }[
+        Polarity and charge decide it, not size. Ethanol is small and largely non-polar, so it dissolves in the hydrocarbon core and diffuses straight through. A sodium ion carries a full charge and a shell of water molecules it cannot take into the core, so it can only cross through a protein. That is exactly why the cell can control its sodium concentration and cannot control its ethanol concentration — anything crossing through a protein can be gated, pumped or shut off, and anything dissolving through the lipid cannot.
+    ](
+        title: Your turn
+    )
 
     What the structure permits is the next question: which substances cross, in which direction, and at what cost to the cell. That is *Transport Across Membranes*.
 
     internote(ref: transport-across-membranes.chalk)
-}
+}[
+    canvas.graph{
+        scatter(x: 1, 3, 5, 7, 9, 11, 13, 15; y: 2, 2, 2, 2, 2, 2, 2, 2; colour: blue)
+        scatter(x: 1, 3, 5, 7, 9, 11, 13, 15; y: -2, -2, -2, -2, -2, -2, -2, -2; colour: blue)
+        axis.band(y: [-1.9, 1.9]; colour: grey)
+
+        segment(from: (6.4, -2.4); to: (6.4, 2.4); colour: teal)
+        segment(from: (7.6, -2.4); to: (7.6, 2.4); colour: teal; label: channel)
+        hexagon(x: 13; y: 0; size: 1.9; colour: teal; label: carrier)
+
+        vector(x: 2; y: 3.6; dx: 0; dy: -7.2; colour: orange; label: $\text{O}_2$)
+
+        cue.draw{
+            vector(x: 7; y: 3.6; dx: 0; dy: -7.2; colour: orange; label: $\text{K}^+$)
+            vector(x: 13; y: -3.6; dx: 0; dy: 7.2; colour: orange; label: glucose)
+        }(
+            in: 1
+        )
+    }(
+        x domain: [0, 16]
+        y domain: [-5, 5]
+        !show background
+    )
+]

@@ -1,18 +1,218 @@
 *(
     title: Mutation
     description: Errors in the sequence, what causes them, and which of them are passed on.
-    tags: mutation, point mutation, mutagens, germline somatic, module 6, biology, stub
+    tags: mutation, point mutation, mutagens, germline somatic, module 6, biology
     lesson
 )
 
+// The worked sequence continues the one in DNA and Polypeptide Synthesis:
+// mRNA AUG CCU GAA UUC UAG = Met Pro Glu Phe stop. The four altered versions
+// are checked against the standard code — GAG is still glutamate, GUA is
+// valine, UAA is a stop codon, and deleting the first U of UUC reframes the
+// remainder as UCU (serine) with the stop signal lost.
+//
+// Scene 3's figures are the commonly published incidences of Down syndrome in
+// live births by maternal age, per 1000 births: about 0.7 at 20, 0.8 at 25,
+// 1.1 at 30, 2.9 at 35, 10 at 40 and 28 at 45.
 @include(src: ../preface.part.chalk)
 
 scene{
-    Mutation is the only source of alleles that did not exist before, which makes it simultaneously the raw material of evolution and the cause of a great deal of disease. Whether a given mutation matters depends on what it changes and on which cell it happens in.
+    A mutation is a change in a DNA sequence. That is the whole definition, and it is worth keeping that plain, because the word carries a lot of baggage that the biology does not support.
 
-    Written out here: point mutations and chromosomal mutations and the differing scales of their effects, physical, chemical and biological mutagens, and the distinction between somatic mutations, which die with the individual, and germline mutations, which do not.
+    definition{
+        A change in the base sequence of an organism's DNA. It may involve a single base, a section of a chromosome, or a whole chromosome.
+    }(
+        term: Mutation
+    )
+
+    Most mutations do nothing at all. A good number are harmful. A small number are useful — and that small number is where every allele that has ever existed came from, so mutation is simultaneously the cause of a great deal of disease and the only reason there is anything to select between.
+
+    The canvas takes one short piece of mRNA and changes one base four different ways. The starting sequence is the one from the previous internote: AUG CCU GAA UUC UAG, which reads as methionine, proline, glutamate, phenylalanine, stop.
+
+    Change the last base of GAA to give GAG, and nothing happens. GAG is still glutamate. That is the redundancy of the code doing its job, and it is why so many single-base changes never show up in the protein.
+
+    Change the middle base instead, GAA to GUA, and one amino acid becomes another — glutamate becomes valine. Whether this matters depends entirely on where in the protein it falls. In the middle of a structural region it is often harmless; in an active site it can destroy the protein's function.
+
+    Change the first base to give UAA and the effect is much larger, because UAA is a stop codon. Translation ends there, and the polypeptide is produced as a short fragment that almost certainly does nothing.
+
+    The fourth row is worse again. Deleting a base rather than substituting one shifts every codon boundary after it, so every amino acid downstream is wrong. That is a frameshift, and it is why insertions and deletions are usually more damaging than substitutions.
+
+    note{
+        Sickle cell anaemia is a single substitution of exactly the kind in the second row. One base changes in the gene for the beta chain of haemoglobin, glutamate becomes valine at the sixth position, and the altered haemoglobin sticks to itself and distorts the red blood cell. One base out of three billion, and a serious disease.
+    }
+}[
+    table{
+        The change                         | New codon    | Reads as        | Name
+        none — the original                | GAA          | glutamate       | —
+        third base of GAA altered          | GAG          | glutamate       | silent
+        middle base of GAA altered         | GUA          | valine          | missense
+        first base of GAA altered          | UAA          | stop            | nonsense
+        a base deleted before UUC          | UCU, and on  | serine, and every codon after it is wrong | frameshift
+    }(
+        title: One codon, changed four ways
+        highlight rows: 5, 6
+        highlight colour: orange
+    )
+]
+
+scene{
+    # Chromosomal mutations change far more at once
+
+    A point mutation alters one base. A chromosomal mutation alters a block of a chromosome, or a whole chromosome, and therefore affects many genes together.
+
+    Four kinds involve rearrangement. A deletion loses a section. A duplication repeats one. An inversion cuts a section out and puts it back the other way round. A translocation moves a section onto a different chromosome altogether. In each case no base has necessarily been altered — what has changed is which genes are present, how many copies there are, and what order they sit in.
+
+    ===
+
+    The fifth kind is different and is the one most often examined. During meiosis, a pair of chromosomes sometimes fails to separate, so one gamete receives both and the other receives neither.
+
+    definition{
+        The failure of a chromosome pair to separate during meiosis, producing gametes with one chromosome too many or too few.
+    }(
+        term: Non-disjunction
+    )
+
+    If such a gamete is fertilised, the resulting cell has $47$ or $45$ chromosomes instead of $46$, and every cell of the resulting individual carries the same error. Down syndrome is the case of an extra copy of chromosome 21, and it is the commonest chromosomal condition compatible with survival to adulthood.
+
+    ===
+
+    The canvas plots how the chance of that varies with the mother's age, using the figures usually published for live births. Below $35$ it is under three cases per thousand births. By $40$ it is around ten, and by $45$ around $28$ — a fortyfold increase over the value at $20$.
+
+    The reason is in the biology of the egg. A human female's egg cells begin meiosis before she is born and then pause, part-way through the first division, for years or decades until that egg is released. The machinery holding the chromosome pairs together has to hold for that whole time, and it becomes less reliable the longer it waits.
+
+    Sperm are made continuously from puberty onwards, and the corresponding rise with the father's age is far weaker — which is exactly what the explanation predicts.
+}[
+    canvas.graph{
+        line(x: 20, 25, 30, 35, 40, 45; y: 0.7, 0.8, 1.1, 2.9, 10, 28; interpolate: bezier; colour: blue)
+
+        cue{
+            axis.band(x: [20, 35]; label: under three per thousand; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 45; y: 28; colour: orange; label: about $28$ per thousand)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: mother's age at the birth
+        y axis label: Down syndrome, per $1000$ live births
+        x domain: [18, 48]
+        y domain: [0, 33]
+    )
+]
+
+scene{
+    # What causes a mutation
+
+    Some mutations happen spontaneously. DNA polymerase is very accurate but not perfect, and bases occasionally alter chemically on their own, so a certain rate of mutation would occur in an organism kept in a sealed box with nothing done to it.
+
+    Everything above that background rate is caused by a mutagen, and the table sorts them into three groups.
+
+    definition{
+        Any agent that increases the rate at which mutations occur — by damaging DNA directly, by inserting itself into the sequence, or by interfering with replication.
+    }(
+        term: Mutagen
+    )
+
+    Two things about the table are worth stating explicitly.
+
+    The first is that a mutagen raises a rate. It does not decide which gene is hit. Ultraviolet light damages DNA wherever it lands, so a sunburn does not cause skin cancer in the way a switch causes a light — it raises the chance that one of the mutations it causes will be in a gene that matters.
+
+    The second is the overlap with the previous internote's list of risk factors. Tobacco smoke, ultraviolet light and asbestos all appear in both, and this is why: the reason they cause cancer is that they are mutagens, and cancer is what happens when the mutations land in genes controlling cell division.
+}[
+    table{
+        Kind of mutagen | Examples                                            | How it damages DNA
+        Physical        | ultraviolet light; X-rays; gamma radiation           | ultraviolet fuses adjacent bases together; ionising radiation breaks the strands outright
+        Chemical        | benzene; components of tobacco smoke; mustard gas    | they react with bases chemically, or slot between them and distort the helix
+        Biological      | human papillomavirus; hepatitis B virus              | viral DNA inserts into the host genome, disrupting whatever gene it lands in and interfering with the controls on cell division
+    }(
+        title: Three kinds of mutagen
+    )
+]
+
+scene{
+    ## Which cell it happens in decides who is affected
+
+    The same mutation has completely different consequences depending on which cell it occurs in, and this is the distinction to get right.
+
+    definition{
+        A mutation occurring in any body cell other than those that produce gametes. It is passed to that cell's descendants within the individual, and it dies with the individual.
+    }(
+        term: Somatic mutation
+    )
+
+    definition{
+        A mutation occurring in a cell that produces gametes, or in a gamete itself. It is passed to the offspring, and to every cell of the offspring's body.
+    }(
+        term: Germline mutation
+    )
+
+    ===
+
+    A somatic mutation affects one person. Every cancer is a somatic mutation — or rather an accumulation of several — in a single cell whose descendants then grow out of control. It cannot be inherited, and a child of that person is at no direct risk from it.
+
+    A germline mutation affects every generation after it. It is present in the fertilised egg, so it is copied into every cell of the resulting body, including the cells that make that individual's own gametes.
+
+    ===
+
+    Only germline mutations matter for evolution. Natural selection acts on what is passed on, and a somatic mutation, however advantageous it might be to the individual carrying it, ends when that individual does.
+
+    This is also why "inherited risk of cancer" is not a contradiction. What is inherited in those families is a germline mutation that makes the further somatic mutations more likely or more damaging — not the cancer itself.
+
+    task{
+        A person is exposed to a large dose of ultraviolet light on their skin. Explain why this might cause them to develop melanoma, but will not increase the chance of their children being born with a genetic disorder.
+    }[
+        Ultraviolet light is a mutagen and penetrates only a short distance into the skin, so the mutations it causes are in skin cells — somatic cells. If one of those mutations, or a combination of them, falls in a gene controlling cell division, that cell's descendants can grow uncontrolled, which is melanoma.
+
+        The cells that produce gametes are not in the skin and are not reached by the ultraviolet light. No germline mutation is caused, so nothing is added to what the children inherit.
+    ](
+        title: Your turn
+    )
 
     Once mutation is understood as editing of the sequence, doing it deliberately becomes conceivable — which is *Genetic Technologies*.
 
     internote(ref: genetic-technologies.chalk)
-}
+}[
+    canvas.diagram{
+        box#mut{
+            A mutation occurs in one cell
+            the same change either way
+        }
+
+        cue.draw{
+            box#somatic{
+                In a body cell
+                copied into that cell's descendants only
+            }
+            box#person:terminal{
+                Affects this individual
+                and ends with them
+            }
+            arrow(from: #mut; to: #somatic)
+            arrow(from: #somatic; to: #person)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#germ{
+                In a cell that makes gametes
+                carried into the fertilised egg
+            }
+            box#child:terminal{
+                In every cell of the offspring
+                and available to natural selection
+            }
+            arrow(from: #mut; to: #germ)
+            arrow(from: #germ; to: #child)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: The same change, two destinations
+    )
+]

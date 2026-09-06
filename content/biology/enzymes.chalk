@@ -1,18 +1,228 @@
 *(
     title: Enzymes
     description: Why the reactions of life need catalysts, and what temperature and pH do to them.
-    tags: enzymes, catalysis, active site, denaturation, module 1, biology, stub
+    tags: enzymes, catalysis, active site, denaturation, module 1, biology
     lesson
 )
 
+// Scene 1 uses measured values for the decomposition of hydrogen peroxide,
+// 2 H2O2 -> 2 H2O + O2. Activation energy is about 75 kJ/mol uncatalysed and
+// below 8 kJ/mol with catalase, an acceleration of order 2 x 10^11; the
+// enthalpy change is about -196 kJ/mol, unaffected by the catalyst.
+//
+// Scenes 3 and 4 plot models, not measurements. The temperature curve is
+// exp(-((T - 39)/12)^2) / (1 + exp((T - 42)/1.5)), scaled by 106.5 so its
+// maximum sits at 100 per cent; it peaks near 37 C. The pH curves are
+// Gaussians of width 1.1 centred on each enzyme's quoted optimum. Scene 4's
+// saturation curves are rate = V s / (4 + s) with V = 100 and V = 200.
 @include(src: ../preface.part.chalk)
 
 scene{
-    Most reactions a cell depends on would proceed far too slowly at body temperature to sustain anything. Heating the cell is not an option, so the alternative is to lower the energy the reaction needs to get started, which is what an enzyme does.
+    Hydrogen peroxide decomposes into water and oxygen, and the reaction releases energy — about $196\text{ kJ}$ for every two moles that break down. A bottle of it on a shelf nevertheless lasts for months, because releasing energy overall is not the same as being able to get started.
 
-    Written out here: activation energy and how a catalyst reduces it, the active site and the specificity that follows from its shape, and the effects of temperature, pH and concentration — including denaturation, where the shape is lost and the enzyme with it.
+    Getting started costs about $75\text{ kJ mol}^{-1}$, which is the barrier on the canvas. Only the small fraction of molecules carrying at least that much energy at any moment can react, and at room temperature that fraction is very small.
+
+    definition{
+        The minimum energy a set of reactant molecules must have before they can react. It sets the rate of a reaction independently of how much energy the reaction goes on to release.
+    }(
+        term: Activation energy
+    )
+
+    A cell could raise that fraction by heating up, and it cannot: the proteins holding it together come apart not far above the temperature it already runs at. The alternative is to lower the barrier instead, and that is the whole function of an enzyme.
+
+    ===
+
+    The second profile is the same reaction with catalase present. The barrier falls from $75$ to below $8\text{ kJ mol}^{-1}$, and because the fraction of molecules clearing a barrier depends exponentially on its height, the reaction speeds up by a factor of order $2 \times 10^{11}$. Catalase is the reason a cut fizzes when peroxide is poured on it: the enzyme is in the blood, and the decomposition that took months takes an instant.
+
+    definition{
+        A protein that increases the rate of a specific reaction by lowering its activation energy, and is unchanged by the reaction, so that one molecule catalyses the same conversion repeatedly.
+    }(
+        term: Enzyme
+    )
+
+    Both profiles start and end at the same heights. The enzyme changes the route between reactants and products and nothing about either end, so it cannot make a reaction release more energy, and it cannot make a reaction happen that would not otherwise happen at all — only sooner.
+}[
+    canvas.graph{
+        line(x: 0, 2, 5, 8, 10; y: 0, 0, 75, -196, -196; interpolate: bezier; colour: blue)
+        point(x: 5; y: 75; colour: blue; label: $75\text{ kJ mol}^{-1}$ without it)
+        axis.label(y: 0; label: reactants; line; colour: grey)
+        axis.label(y: -196; label: products; line; colour: grey)
+
+        cue.draw{
+            line(x: 0, 2, 5, 8, 10; y: 0, 0, 8, -196, -196; interpolate: bezier; colour: teal)
+            point(x: 5; y: 8; colour: teal; label: under $8$ with catalase)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: reaction progress
+        y axis label: energy (kJ mol$^{-1}$)
+        x domain: [0, 10]
+        y domain: [-230, 130]
+    )
+]
+
+scene{
+    # The active site is a shape, and specificity follows from it
+
+    An enzyme is a large protein, and almost all of it is scaffolding. The chemistry happens in a small pocket whose shape and charge distribution suit one substrate and very few others.
+
+    definition{
+        The region of an enzyme where the substrate binds and the reaction takes place. Its three-dimensional shape and the charges lining it are what restrict an enzyme to one reaction or a small family of them.
+    }(
+        term: Active site
+    )
+
+    That pocket explains the property that makes enzymes usable at all. A cell runs thousands of reactions in one compartment without them interfering, and it can do so because catalase acts on hydrogen peroxide and does nothing to glucose, while every other enzyme in the same cytosol is equally particular.
+
+    ===
+
+    Binding is only the first step. The active site is not a rigid mould: it adjusts as the substrate enters, closing around it so that the fit becomes tighter than it was. This is the induced fit description, and it replaced an earlier lock-and-key picture that had the site already the right shape and waiting.
+
+    The difference matters because the adjustment is part of the catalysis. Closing around the substrate strains the bonds that are about to break, holds the reacting groups in the orientation they need, and in doing so lowers the barrier the previous scene plotted.
+
+    ===
+
+    The last step is the one that makes an enzyme a catalyst rather than a reactant. Products no longer fit the site, so they leave, and the site returns to the shape it had before. Nothing has been consumed, and the same enzyme molecule begins again.
+
+    note{
+        The turnover rates involved are extreme. Catalase converts on the order of tens of thousands of hydrogen peroxide molecules per second per enzyme molecule, which is why a cell needs so little of it — and why the amount of enzyme present, rather than the amount of chemistry to be done, is so rarely the thing in short supply.
+    }
+}[
+    canvas.diagram{
+        box#free{
+            Enzyme and substrate, separate
+            the active site is the right shape for this substrate and few others
+        }
+
+        cue.draw{
+            box#complex{
+                Enzyme–substrate complex
+                the site closes around the substrate and strains its bonds
+            }
+            box#react{
+                The reaction proceeds
+                over a lower barrier than the substrate would face alone
+            }
+            arrow(from: #free; to: #complex)
+            arrow(from: #complex; to: #react)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#products{
+                Products leave
+                they no longer fit the site, and the enzyme is unchanged
+            }
+            arrow(from: #react; to: #products)
+            arrow(from: #products; to: #free; label: and again; dashed)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: One catalytic cycle
+    )
+]
+
+scene{
+    # Temperature and pH both act on the same thing: the shape
+
+    Raising the temperature of a reaction speeds it up, for the ordinary reason that molecules move faster and collide more often and harder. The left-hand curve does that for the first part of its range, and then does something no uncatalysed reaction does: it collapses.
+
+    The collapse happens because the enzyme is a protein, and a protein's shape is held by a large number of individually weak bonds. Heat breaks them. Once enough have gone the chain relaxes out of its folded form, the active site is no longer the shape the substrate fits, and the enzyme stops working.
+
+    definition{
+        The loss of a protein's three-dimensional shape, and with it its function, caused by heat or by extremes of pH. The sequence of amino acids is untouched; what is destroyed is the folding, and for most enzymes the change is permanent.
+    }(
+        term: Denaturation
+    )
+
+    ===
+
+    The asymmetry of the curve is the evidence for that account. Below the optimum the rate falls off gently and reversibly — cool an enzyme down and warm it again and it works exactly as before. Above the optimum it falls off sharply and does not come back, because a denatured protein does not refold on cooling. A boiled egg does not unboil.
+
+    ===
+
+    pH does the same damage by a different route. The active site works because particular amino acids in it carry particular charges, and whether a given group is charged depends on the hydrogen ion concentration around it. Move the pH far enough and the charges change, the folding they were holding gives way, and the site is lost.
+
+    The right-hand pane makes the point that an optimum is a property of the enzyme rather than of living things generally. Pepsin works in the stomach at about pH $2$ and is destroyed by the neutral conditions most enzymes require; trypsin continues the same job in the small intestine at about pH $8$ and would be destroyed by the stomach. They are made by the same body and their optima are six units — a millionfold in hydrogen ion concentration — apart.
+}[
+    canvas.graph{
+        curve(f: 106.5 * exp(-((x - 39)/12)^2) / (1 + exp((x - 42)/1.5)); domain: [0, 60]; colour: blue)
+        axis.label(x: 37; label: $37\,^\circ\text{C}$; line; colour: grey)
+
+        cue{
+            axis.band(x: [45, 60]; label: denatured; colour: red)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: temperature ($^\circ$C)
+        y axis label: rate (per cent of maximum)
+        x domain: [0, 60]
+        y domain: [0, 115]
+    )
+
+    canvas.graph{
+        curve(f: 100 * exp(-((x - 2)/1.1)^2); domain: [0, 14]; colour: orange; label: pepsin)
+
+        cue{
+            curve(f: 100 * exp(-((x - 8)/1.1)^2); domain: [0, 14]; colour: purple; label: trypsin)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: pH
+        y axis label: rate (per cent of maximum)
+        x domain: [0, 14]
+        y domain: [0, 115]
+    )
+](
+    direction: horizontal
+)
+
+scene{
+    ## Concentration acts on opportunity instead
+
+    Substrate concentration changes the rate too, and it is worth separating from the previous two because the mechanism is entirely different. Nothing is being damaged; there are simply more or fewer collisions with an active site per second.
+
+    At low substrate concentrations most active sites are empty at any instant, so adding substrate finds more of them and the rate rises in proportion. The lower curve is that region, and it is a straight line for as long as the enzyme is in excess.
+
+    ===
+
+    Then it flattens. Once every active site is occupied continuously, the enzyme is working as fast as its own catalytic cycle allows, and further substrate simply waits. The reaction has become limited by the enzyme rather than by the substrate.
+
+    The test for which regime a reaction is in is direct: add more enzyme. On the flat part of the curve that raises the rate immediately, which is the upper curve — twice the enzyme, twice the ceiling. On the rising part it changes almost nothing, because the sites already there are not being used.
+
+    task{
+        A student measures the rate of an enzyme-catalysed reaction at $20\,^\circ\text{C}$ and again at $60\,^\circ\text{C}$, finds the rate at $60\,^\circ\text{C}$ is almost zero, and concludes that the enzyme works best at low temperatures. What has gone wrong, and what measurement would settle it?
+    }[
+        Two points cannot distinguish a curve that rises to an optimum from one that falls throughout, and the reading at $60\,^\circ\text{C}$ is almost certainly a denatured enzyme rather than a slow one. Measuring at a spread of intermediate temperatures would show the peak. The decisive test is to take the sample held at $60\,^\circ\text{C}$, cool it back to $20\,^\circ\text{C}$ and measure again: a merely slow enzyme recovers its original rate, while a denatured one does not.
+    ](
+        title: Your turn
+    )
 
     The two reaction sequences that matter most are built from enzymes end to end: one captures energy from light, the other releases it again. Both are in *Photosynthesis and Respiration*.
 
     internote(ref: photosynthesis-and-respiration.chalk)
-}
+}[
+    canvas.graph{
+        curve(f: 100 * x / (4 + x); domain: [0, 40]; colour: blue; label: the enzyme available)
+        axis.label(y: 100; label: every site occupied; line; colour: grey)
+
+        cue{
+            curve(f: 200 * x / (4 + x); domain: [0, 40]; colour: teal; label: twice as much enzyme)
+            axis.label(y: 200; label: a higher ceiling; line; colour: grey)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: substrate concentration
+        y axis label: rate of reaction
+        x domain: [0, 40]
+        y domain: [0, 220]
+        !show ticks
+    )
+]

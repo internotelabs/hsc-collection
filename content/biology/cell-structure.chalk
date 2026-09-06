@@ -1,22 +1,194 @@
 *(
     title: Cell Structure
     description: What every cell has in common, and the two fundamentally different ways of building one.
-    tags: cells, prokaryote, eukaryote, organelles, module 1, biology, stub
+    tags: cells, prokaryote, eukaryote, organelles, module 1, biology
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Every living thing is made of cells, and every cell comes from a cell before it. Nothing in the rest of the subject makes sense until that is settled, because every process biology studies is either happening inside a cell or between cells.
+    A bacterium and a liver cell share an ancestor so distant that almost nothing about their architecture matches. What they do share is a short list, and the list is short for a reason: each item on it is something no cell could be missing and still function.
 
-    Written out here: the organelles of a eukaryotic cell and the job each one does, the far simpler prokaryotic cell with no nucleus and no membrane-bound compartments, and why that difference is the deepest division in the living world.
+    Read the table as a set of demands rather than a set of parts. A cell has to keep its contents in one place, hold a set of instructions, read those instructions into working molecules, and run the chemistry somewhere. Four requirements, four structures, and nothing on the list can be dropped.
 
-    Three things follow immediately. The instruments and the argument that established cells in the first place are in *Microscopy and Cell Theory*; the boundary deciding what a cell admits is *The Cell Membrane*; and the proteins that make its chemistry possible at all are in *Enzymes*.
+    definition{
+        The smallest unit of living material: a compartment bounded by a membrane, containing genetic material and the machinery to read it, and capable of carrying out the chemistry that keeps itself going.
+    }(
+        term: Cell
+    )
+
+    Everything past that list is optional in the sense that some living cell somewhere manages without it. Chloroplasts, a nucleus, a cytoskeleton and mitochondria are all absent from some cell that is nevertheless alive.
+}[
+    table{
+        Every cell must                                  | and every cell does it with
+        keep its contents together and control what enters | a plasma membrane
+        store a set of instructions for building proteins  | DNA
+        turn those instructions into proteins              | ribosomes
+        hold the enzymes and reactants somewhere            | cytosol, the fluid they are dissolved in
+    }(
+        title: The four things no cell does without
+    )
+]
+
+scene{
+    # Compartments let one cell run incompatible chemistry
+
+    A eukaryotic cell is largely a set of membrane-bound rooms, and the reason it bothers is visible in the canvas. The four compartments plotted there sit at pH values spanning three units, which is a thousandfold difference in hydrogen ion concentration between the inside of a lysosome and the inside of a mitochondrion.
+
+    definition{
+        A structure inside a cell that is enclosed by its own membrane and carries out a particular function — the nucleus, mitochondrion, chloroplast, lysosome, Golgi apparatus and endoplasmic reticulum among them.
+    }(
+        term: Organelle
+    )
+
+    ===
+
+    The lysosome is the clearest case. It holds digestive enzymes that work at about pH 4.8 and would attack the cell's own proteins if they were loose in the cytosol — except that at the cytosol's pH 7.2 those same enzymes barely function. The membrane and the pH difference together make a room in which something dangerous can be done safely.
+
+    A second gain is surface. Almost all of a cell's reactions happen on membranes rather than in open solution, so folding a great deal of membrane into a small volume — the stacked discs of the Golgi, the sheets of the endoplasmic reticulum, the cristae of a mitochondrion — is how a cell increases the area available to work on without growing.
+
+    note{
+        Mitochondria and chloroplasts are the two organelles with their own DNA and their own ribosomes, and those ribosomes are the bacterial kind rather than the kind in the surrounding cytoplasm. The endosymbiotic explanation is that each began as a free-living prokaryote taken up by a larger cell and never digested.
+    }
+}[
+    canvas.graph{
+        histogram(
+            bins: 0, 1, 2, 3, 4
+            values: 4.8, 6.4, 7.2, 7.8
+            colours: orange, blue, blue, blue
+            orientation: horizontal
+            show labels
+        )
+        axis.label(y: 0.5; label: lysosome; colour: grey)
+        axis.label(y: 1.5; label: Golgi apparatus; colour: grey)
+        axis.label(y: 2.5; label: cytosol; colour: grey)
+        axis.label(y: 3.5; label: mitochondrion; colour: grey)
+
+        cue{
+            axis.band(x: [4.8, 7.2]; label: a thousandfold in $[\text{H}^+]$; colour: grey; edges)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: internal pH
+        x domain: [0, 9]
+        y domain: [0, 4]
+    )
+]
+
+scene{
+    # The organelles as a production line
+
+    Naming organelles one at a time makes them look like a list of unrelated facts. Following one protein out of the cell puts them in order, and the order is the reason each exists.
+
+    The gene is in the nucleus and the protein is needed outside the cell, so something has to carry the message out and something has to move the product across every barrier in between. Each organelle on the canvas is one stage of that journey.
+
+    ===
+
+    The ribosomes doing the work sit on the endoplasmic reticulum rather than free in the cytosol, and that is the difference between rough and smooth ER. A ribosome on the rough ER feeds its growing polypeptide straight through the membrane into the ER lumen — so a protein destined for export is inside the compartment system from the moment it is made, and never loose in the cytosol at all.
+
+    ===
+
+    The Golgi apparatus is the sorting office. Proteins arriving from the ER are chemically modified — sugars added or trimmed — and then packaged into vesicles addressed to particular destinations: the plasma membrane, a lysosome, or the outside.
+
+    ===
+
+    The last step is the one that requires no new machinery. A vesicle is a sphere of the same membrane the cell is bounded by, so fusing with the plasma membrane and spilling its contents outside is the only way a cell can release something without ever opening a hole in itself.
+
+    note{
+        None of this runs for free. Vesicle transport, protein folding and the pumping that holds the lysosome at pH 4.8 are all driven by ATP, which is why cells that secrete heavily — pancreatic cells making digestive enzymes, for instance — are unusually crowded with mitochondria.
+    }
+}[
+    canvas.diagram{
+        box#nucleus{
+            Nucleus
+            the gene is transcribed; mRNA leaves through a nuclear pore
+        }
+
+        cue.draw{
+            box#er{
+                Rough endoplasmic reticulum
+                ribosomes on its surface build the polypeptide into the lumen
+            }
+            arrow(from: #nucleus; to: #er)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#golgi{
+                Golgi apparatus
+                the protein is modified, sorted and addressed
+            }
+            arrow(from: #er; to: #golgi)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#vesicle{
+                Secretory vesicle
+                carries it to the plasma membrane
+            }
+            box#out:terminal{Released outside the cell}
+            arrow(from: #golgi; to: #vesicle)
+            arrow(from: #vesicle; to: #out)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: The route of a secreted protein
+    )
+]
+
+scene{
+    # Two ways to build a cell
+
+    The deepest division in the living world is not between plants and animals, or between things that move and things that do not. It is between cells that keep their DNA in a nucleus and cells that do not, and every other structural difference in the table follows from the same underlying split.
+
+    definition{
+        A cell with no nucleus and no membrane-bound organelles, whose DNA is a single circular chromosome lying free in the cytoplasm. Bacteria and archaea are the two domains made of them.
+    }(
+        term: Prokaryote
+    )
+
+    definition{
+        A cell whose DNA is held inside a nuclear membrane and whose interior is divided into membrane-bound organelles. Animals, plants, fungi and protists are all built from them.
+    }(
+        term: Eukaryote
+    )
+
+    The size difference in the first row is the one to hold on to. A eukaryotic cell is typically ten to a hundred times wider than a prokaryotic one, which means something like a thousand to a million times the volume — and a volume that large cannot be served by diffusion from a single outer membrane, which is part of why the compartments in the previous scene exist at all.
+
+    task{
+        A cell is examined and found to contain ribosomes, a plasma membrane, DNA and a cell wall, but no nucleus and no mitochondria. What can be concluded, and what cannot?
+    }[
+        It is a prokaryote: the absence of a nucleus is decisive, and the absence of mitochondria is consistent. The cell wall does not narrow it further — bacteria, plants and fungi all have walls, and they are made of different materials in each case, so the wall would need to be identified chemically before it said anything. Nothing here distinguishes a bacterium from an archaeon.
+    ](
+        title: Your turn
+    )
+
+    Three things follow immediately from the picture in the table. The instruments and the argument that established cells in the first place are in *Microscopy and Cell Theory*; the boundary deciding what a cell admits is *The Cell Membrane*; and the proteins that make its chemistry possible at all are in *Enzymes*.
 
     internote(ref: microscopy-and-cell-theory.chalk)
 
     internote(ref: the-cell-membrane.chalk)
 
     internote(ref: enzymes.chalk)
-}
+}[
+    table{
+        Feature              | Prokaryotic cell                                   | Eukaryotic cell
+        Typical size         | $0.5$–$5\ \mu\text{m}$ across                      | $10$–$100\ \mu\text{m}$ across
+        Genetic material     | one circular chromosome, free in the cytoplasm, often with plasmids | several linear chromosomes, inside a nuclear membrane
+        Membrane organelles  | none                                               | nucleus, mitochondria, ER, Golgi, lysosomes, and chloroplasts in plants
+        Ribosomes            | smaller (70S)                                      | larger (80S) in the cytoplasm; 70S inside mitochondria and chloroplasts
+        Cell wall            | present in almost all bacteria, made of peptidoglycan | absent in animals; cellulose in plants, chitin in fungi
+        Division             | binary fission                                     | mitosis or meiosis
+    }(
+        title: The deepest division in the living world
+        highlight rows: 2
+        highlight colour: orange
+    )
+]

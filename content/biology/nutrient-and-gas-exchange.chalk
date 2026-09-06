@@ -1,14 +1,205 @@
 *(
     title: Nutrient and Gas Exchange
     description: What autotrophs and heterotrophs each need from their surroundings, and the surfaces that obtain it.
-    tags: autotroph, heterotroph, gas exchange, digestion, module 2, biology, stub
+    tags: autotroph, heterotroph, gas exchange, digestion, module 2, biology
     lesson
 )
 
+// Scene 3's figures are the conventional amplification factors for the human
+// small intestine: circular folds multiply the area of a smooth tube by about
+// 3, villi by about 10 more, and microvilli by about 20 more. Taking the
+// smooth tube as 1, the cumulative areas are 1, 3, 30 and 600.
 @include(src: ../preface.part.chalk)
 
 scene{
-    An organism that makes its own food and one that must find food have different problems, and their structures differ accordingly. What they share is the need to exchange gases across a surface, and that surface is under the same geometric pressure a single cell is.
+    Every organism needs the same things dissolved or diffusing into it: a source of carbon, a source of energy, water, and a handful of mineral elements. What divides the living world in two is where the carbon and the energy come from.
 
-    Written out here: the requirements of autotrophs and heterotrophs set against each other, the structures each uses to obtain them — stomata, root hairs, lungs, gills, digestive tracts — and the features every efficient exchange surface turns out to have.
-}
+    An autotroph builds its own organic molecules from carbon dioxide, using light or a chemical reaction as the energy source. A heterotroph cannot, and must obtain organic molecules that some other organism has already built.
+
+    definition{
+        An organism that cannot synthesise its own organic compounds and must obtain them by consuming other organisms or their products. Animals, fungi and most bacteria are heterotrophs.
+    }(
+        term: Heterotroph
+    )
+
+    The table sets the two requirement lists against each other. Note how much shorter the autotroph's is: carbon dioxide, water, light and minerals are all available in the air and soil, which is why a plant can stay in one place and an animal cannot.
+
+    What the two share is the last row. Both respire, so both must take in oxygen and get rid of carbon dioxide, and both do it by diffusion across a surface — which is where the next scene begins.
+}[
+    table{
+        What it needs               | An autotroph obtains it                                     | A heterotroph obtains it
+        Carbon                      | as carbon dioxide, from air or water                        | as organic molecules, by eating other organisms
+        Energy                      | from light (or, in some bacteria, from chemical reactions)  | from the chemical bonds in that food
+        Water                       | from the soil, through roots                                | by drinking, and from food
+        Mineral ions                | dissolved in soil water, absorbed by roots                  | dissolved in food and drink
+        Oxygen, for respiration     | by diffusion across leaf and root surfaces                  | by diffusion across a gas exchange surface
+    }(
+        title: The same needs, met two ways
+    )
+]
+
+scene{
+    # Every gas exchange surface is solving the same equation
+
+    Diffusion across a surface obeys a relationship simple enough to reason from directly: the rate is proportional to the area of the surface and to the concentration difference across it, and inversely proportional to how far the gas has to travel.
+
+    equation{
+        \text{rate of diffusion} \;\propto\; \frac{\text{surface area} \times \text{concentration difference}}{\text{distance}}
+    }
+
+    Three quantities, three things to maximise, and every gas exchange surface in the living world is recognisable as an attempt at all three at once. Make the area large; make the barrier thin; and keep the concentration difference from levelling out by continually replacing the medium on both sides.
+
+    ===
+
+    The human lung is the most-quoted case. Around $300$ million alveoli give a total surface of roughly $70\text{ square metres}$ — some forty times the area of the skin, packed into a couple of litres.
+
+    The canvas follows an oxygen molecule across the barrier that surface presents. Every layer is a single cell thick or less, and the whole distance from the air to the haemoglobin is well under a micrometre.
+
+    ===
+
+    Breathing and the circulation supply the third term. Ventilation keeps the air in the alveolus close to atmospheric composition and the blood flow carries away oxygenated blood, so the concentration difference across the barrier is maintained rather than being allowed to run down — which is what would happen in a sealed sac within seconds.
+
+    note{
+        Fish do the same thing more efficiently. Water is drawn over the gill lamellae in the opposite direction to the blood beneath them, so blood that is already partly oxygenated meets water that is more oxygenated still, and the concentration difference persists along the whole length of the exchange surface instead of levelling out halfway. Countercurrent flow of this kind extracts a far larger share of the available oxygen than flow in the same direction can.
+    }
+}[
+    canvas.diagram{
+        box#air{
+            Air in the alveolus
+            kept near atmospheric composition by ventilation
+        }
+
+        cue.draw{
+            box#wall{
+                Alveolar wall
+                a single flattened epithelial cell
+            }
+            box#base{
+                Fused basement membranes
+                a thin shared layer, no cells at all
+            }
+            box#cap{
+                Capillary wall
+                a single endothelial cell
+            }
+            arrow(from: #air; to: #wall)
+            arrow(from: #wall; to: #base)
+            arrow(from: #base; to: #cap)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#blood:terminal{
+                Haemoglobin in a red blood cell
+                the whole crossing is under a micrometre
+            }
+            arrow(from: #cap; to: #blood)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: What an oxygen molecule crosses
+    )
+]
+
+scene{
+    # A heterotroph's problem is two problems
+
+    Food is not nutrition. A protein in a meal is a polymer far too large to cross any membrane, and it is somebody else's protein besides — assembled to a different specification. It has to be broken into its component amino acids before it is of any use, and only then does the absorption problem begin.
+
+    definition{
+        The breakdown of large insoluble food molecules into small soluble ones that can be absorbed. Mechanical digestion increases the surface available to enzymes; chemical digestion breaks the bonds.
+    }(
+        term: Digestion
+    )
+
+    Mechanical and chemical digestion are not alternatives but stages of one process, and the relationship between them is the surface area argument again: chewing and churning do not break a single chemical bond, but they turn a lump into many small pieces, and enzymes can only work on a surface.
+
+    ===
+
+    Absorption then faces the same constraint as the lung, and answers it the same way. The canvas plots the area of the human small intestine relative to a smooth tube of the same length and width.
+
+    Circular folds in the wall multiply the area about threefold. Villi — finger-like projections a millimetre long, covering those folds — multiply it about ten times more. Microvilli, projections of the membrane of each individual cell, multiply it about twenty times again. Each level is a small factor and the product is around six hundred.
+
+    ===
+
+    That final bar is why the intestine is short enough to fit in an abdomen. A smooth tube offering the same absorptive surface would have to be hundreds of times longer, and the folding is what buys the area without the length.
+
+    note{
+        Every gain in surface is a gain for pathogens too. The gut is the largest interface between the body and the outside world, which is why a large share of the body's immune tissue is stationed along it — a point *Responses to Pathogens* returns to.
+    }
+}[
+    canvas.graph{
+        histogram(
+            bins: 0, 1
+            values: 1
+            colour: grey
+            show labels
+        )
+        axis.label(x: 0.5; label: smooth tube; colour: grey)
+
+        cue{
+            histogram(
+                bins: 1, 2, 3
+                values: 3, 30
+                colours: blue, blue
+                show labels
+            )
+            axis.label(x: 1.5; label: with folds; colour: grey)
+            axis.label(x: 2.5; label: and villi; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            histogram(
+                bins: 3, 4
+                values: 600
+                colour: orange
+                show labels
+            )
+            axis.label(x: 3.5; label: and microvilli; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        y axis label: surface area, relative to a smooth tube
+        x domain: [0, 4]
+        y domain: [0, 660]
+    )
+]
+
+scene{
+    ## Plants have the same problem and no way to move
+
+    A leaf must let carbon dioxide in. The difficulty is that the surface admitting it is wet, the air outside is usually drier, and water leaves through the same opening in the other direction. There is no arrangement that admits the one and not the other, so the plant is left managing a rate rather than avoiding a loss.
+
+    definition{
+        A pore in the epidermis of a leaf, bounded by two guard cells whose turgor opens and closes it. Carbon dioxide enters through it, and water vapour leaves.
+    }(
+        term: Stoma
+    )
+
+    The guard cells are the control. When water is plentiful they take up water, become turgid, bow apart and open the pore; when the plant is short of water they lose turgor and the pore closes. Closing it stops the water loss and stops photosynthesis at the same time, which is the whole of the compromise a land plant lives with.
+
+    The table lists the plant's exchange surfaces. Each one shows the same three features the lung showed — area, thinness, a maintained gradient — arrived at independently, because the physics does not care which kingdom is solving it.
+
+    task{
+        Most land plants carry the great majority of their stomata on the underside of the leaf rather than the upper surface. Give the reason, and predict where the stomata of a water lily, whose leaves float, will be.
+    }[
+        The underside is shaded and cooler, and the still air trapped there is more humid, so the concentration difference driving water out is smaller and less water is lost for the same carbon dioxide admitted. A water lily's leaf has its lower surface in the water, where no gas exchange with air is possible at all, so its stomata are on the upper surface — the exception that confirms the reasoning.
+    ](
+        title: Your turn
+    )
+}[
+    table{
+        Surface                     | What crosses it                                    | How it meets the three requirements
+        Stomata and spongy mesophyll | carbon dioxide in, oxygen and water vapour out     | a large internal air space, cell walls one layer from the air, and a gradient maintained by photosynthesis consuming the carbon dioxide
+        Root hair cells              | water and mineral ions in                          | each hair is a long thin projection of one cell, enormously increasing root surface, with the ions removed from the cytoplasm as fast as they arrive
+        Lenticels in bark            | oxygen in, carbon dioxide out                      | loosely packed cells leaving air channels through an otherwise waterproof layer
+    }(
+        title: The plant's exchange surfaces
+    )
+]

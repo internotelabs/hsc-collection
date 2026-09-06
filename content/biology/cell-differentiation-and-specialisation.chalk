@@ -1,16 +1,173 @@
 *(
     title: Cell Differentiation and Specialisation
     description: How cells with identical genomes become different from one another, and what that buys a multicellular body.
-    tags: differentiation, specialisation, stem cells, tissues, module 2, biology, stub
+    tags: differentiation, specialisation, stem cells, tissues, module 2, biology
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Every cell in a multicellular organism carries the same genome, yet a nerve cell and a root hair cell have almost nothing in common. The difference is not in the genes present but in which of them are switched on.
+    A neuron in your spinal cord and a cell lining your gut carry exactly the same DNA. Every gene present in one is present in the other, unaltered, and yet one is a metre long and conducts electrical signals while the other is a cube that absorbs glucose and is replaced every few days.
 
-    Written out here: differentiation and the stem cells it starts from, the hierarchy of cells into tissues, organs and systems, and the trade the arrangement makes — a specialised cell does one job far better than a generalist and can no longer survive alone.
+    The difference cannot therefore be in which genes a cell has. It is in which genes a cell is reading. A gut cell transcribes the genes for digestive transport proteins and leaves the genes for neurotransmitter synthesis untouched; the neuron does the reverse; and the genome sitting in both nuclei is identical throughout.
+
+    definition{
+        The process by which an unspecialised cell becomes a particular cell type, by switching some genes on and others off. The genome is not changed — only which parts of it are being transcribed.
+    }(
+        term: Differentiation
+    )
+
+    ===
+
+    The switching is not a single decision but a sequence of them, and each one narrows what the cell can still become. A cell in an early embryo has every option; a cell that has committed to becoming blood can still become any kind of blood cell and can no longer become anything else; a cell that has finished differentiating usually cannot change at all.
+
+    ===
+
+    What triggers the switches is position. A cell reads chemical signals from its neighbours and from gradients across the developing embryo, and those signals — not anything internal to the cell — decide which set of genes it turns on. Move a cell to a different part of an early embryo and it develops according to where it now is.
+
+    note{
+        The strongest evidence that nothing is lost from the genome is that the process can be run backwards. Transferring the nucleus of a fully differentiated adult cell into an egg that has had its own nucleus removed can produce a whole organism, which would be impossible if differentiation had discarded the genes the rest of the body needs.
+    }
+}[
+    canvas.diagram{
+        box#genome{
+            One genome
+            the same DNA in every cell of the body
+        }
+
+        cue.draw{
+            box#neuron{
+                Neuron
+                genes for ion channels and neurotransmitters read
+            }
+            arrow(from: #genome; to: #neuron)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#blood{
+                Red blood cell
+                the haemoglobin genes read; the nucleus expelled
+            }
+            box#root{
+                Root hair cell
+                genes for membrane transporters and a long projection read
+            }
+            arrow(from: #genome; to: #blood)
+            arrow(from: #genome; to: #root)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: One genome, read three ways
+    )
+]
+
+scene{
+    # What specialisation costs
+
+    A specialised cell is better at one job than any general-purpose cell could be, and the improvement is usually large enough that the cell has given up something serious to get it. The table sets the gain against the loss in three cases, and the pattern is the same in all of them.
+
+    definition{
+        A cell whose structure has been modified to perform one function particularly well, at the expense of the range of functions it can perform at all.
+    }(
+        term: Specialised cell
+    )
+
+    The red blood cell is the extreme. Losing its nucleus makes room for around $270$ million haemoglobin molecules and turns the cell into a biconcave disc with a large surface for its volume — an excellent oxygen carrier. It also means the cell cannot make new proteins, cannot repair itself and cannot divide, so it wears out and is destroyed after about $120$ days and must be continuously replaced from elsewhere.
+
+    That last clause is the general rule. A specialised cell cannot replace itself, so a body made of specialised cells needs a population of unspecialised ones kept in reserve. It also cannot feed itself, so it needs supplying. Specialisation is what makes a multicellular organism worth being, and it is also the reason a multicellular organism needs transport systems, exchange surfaces and a supply of stem cells — none of which a single-celled organism requires at all.
+}[
+    table{
+        Cell                    | What it gained                                                                 | What it gave up
+        Red blood cell          | room for $270$ million haemoglobin molecules; a biconcave disc with a large surface | its nucleus — so it cannot divide, repair itself, or last beyond about $120$ days
+        Neuron                  | a projection up to a metre long, insulated, carrying signals at high speed        | the ability to divide; most neurons a person is born with are the ones they keep
+        Sieve tube element (plant) | an open tube with almost no contents, so sap flows through it freely           | its nucleus and most organelles; it survives only because an adjacent companion cell keeps it alive
+    }(
+        title: Three trades
+        highlight rows: 2
+        highlight colour: orange
+    )
+]
+
+scene{
+    # Potency: how many futures a cell has left
+
+    Because differentiation narrows a cell's options in stages, cells can be classified by how many options they have remaining. That is what potency measures, and the canvas is the sequence.
+
+    definition{
+        An unspecialised cell that can divide indefinitely and can give rise to one or more specialised cell types. Potency describes how wide that range is.
+    }(
+        term: Stem cell
+    )
+
+    ===
+
+    A zygote and the cells of the first few divisions are totipotent: each can produce every cell type in the body and the placental tissues as well. A few days later the cells of the inner mass of the blastocyst are pluripotent — every cell type in the body, but no longer the placenta.
+
+    ===
+
+    Adult tissues keep stem cells with much narrower ranges. The haematopoietic stem cells in bone marrow are multipotent: they produce every kind of blood cell and nothing else, which is what makes a bone marrow transplant able to rebuild an entire blood system. Skin and gut linings hold unipotent stem cells, which produce one cell type and are the reason those surfaces can be replaced continuously.
+
+    note{
+        The medical interest in pluripotent cells comes from the range, and so does the difficulty. A cell that can become anything can become a tumour, and directing differentiation reliably towards one tissue is the problem that stands between stem cells and most of the treatments proposed for them.
+    }
+}[
+    canvas.diagram{
+        box#zygote{
+            Zygote and the first few divisions
+            totipotent — every cell type, and the placenta
+        }
+
+        cue.draw{
+            box#blast{
+                Inner cell mass of the blastocyst
+                pluripotent — every cell type in the body
+            }
+            arrow(from: #zygote; to: #blast)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#marrow{
+                Haematopoietic stem cell in bone marrow
+                multipotent — every kind of blood cell, and nothing else
+            }
+            box#skin{
+                Basal stem cell in skin or gut lining
+                unipotent — one cell type, replaced continuously
+            }
+            arrow(from: #blast; to: #marrow)
+            arrow(from: #blast; to: #skin)
+        }(
+            in: 2
+        )
+    }(
+        flow: down
+        title: Each step narrows what is still possible
+    )
+]
+
+scene{
+    ## The hierarchy specialisation forces
+
+    Once cells specialise they have to be organised, because a specialised cell only works in the company of the others it depends on. The result is a hierarchy of four levels, and each level is defined by the one below it.
+
+    A tissue is a group of similar cells doing one job together. An organ is several tissues arranged so that they carry out a function none of them performs alone. A system is a set of organs working towards one outcome. Nothing at any level is a new kind of thing — each is an arrangement of the level beneath.
+
+    The table works the ladder twice, once in an animal and once in a plant, because the levels are the same and the examples look nothing alike.
+
+    task{
+        A leaf contains palisade mesophyll cells packed with chloroplasts, spongy mesophyll cells with large air spaces between them, xylem and phloem in the veins, and guard cells in the epidermis. At which level of the hierarchy is a leaf, and what does the answer depend on?
+    }[
+        A leaf is an organ. It is made of several distinct tissues — palisade mesophyll, spongy mesophyll, epidermis, xylem, phloem — arranged so that together they photosynthesise, which no one of those tissues does alone. The answer depends on there being more than one tissue type cooperating: a single sheet of epidermis would be a tissue, not an organ.
+    ](
+        title: Your turn
+    )
 
     A cell that has given up self-sufficiency must be supplied by the organism. Getting the raw materials in is *Nutrient and Gas Exchange*; moving them to every cell is *Transport in Plants* and *Transport in Animals*.
 
@@ -19,4 +176,14 @@ scene{
     internote(ref: transport-in-plants.chalk)
 
     internote(ref: transport-in-animals.chalk)
-}
+}[
+    table{
+        Level    | What it is                                                    | In an animal                         | In a plant
+        Cell     | one specialised unit                                          | a muscle fibre                       | a palisade mesophyll cell
+        Tissue   | similar cells doing one job together                          | cardiac muscle                       | palisade mesophyll
+        Organ    | several tissues carrying out a function none does alone        | the heart                            | a leaf
+        System   | organs working towards one outcome                            | the circulatory system               | the shoot system
+    }(
+        title: The same four levels, twice
+    )
+]

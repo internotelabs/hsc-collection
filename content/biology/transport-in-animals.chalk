@@ -1,18 +1,199 @@
 *(
     title: Transport in Animals
     description: A pump, a network of vessels, and a fluid whose composition changes as it goes around.
-    tags: circulatory system, blood, heart, open closed, module 2, biology, stub
+    tags: circulatory system, blood, heart, open closed, module 2, biology
     lesson
 )
 
+// Scene 1 uses the diffusion time t = x^2 / (2D), with D = 2 x 10^-9 m^2/s for
+// oxygen in water at body temperature, so t = 2.5 x 10^8 x^2 seconds. Both axes
+// are logarithmic, so the plotted line is log t = 2 log x + 8.398. The three
+// marked points are
+//   x = 10 um  -> t = 0.025 s      (log x = -5,  log t = -1.602)
+//   x = 1 mm   -> t = 250 s        (log x = -3,  log t =  2.398)   ~ 4 minutes
+//   x = 1 m    -> t = 2.5 x 10^8 s (log x =  0,  log t =  8.398)   ~ 7.9 years
 @include(src: ../preface.part.chalk)
 
 scene{
-    Diffusion is quick over the width of a cell and hopelessly slow over the length of an animal. Anything larger than a few millimetres therefore needs bulk flow: a fluid driven around a circuit, with diffusion doing only the last short step at either end.
+    Diffusion is not slow. Over the width of a cell it is very fast indeed, which is why a single-celled organism needs no transport system and no heart. What diffusion is, is slow *over distance* — and in a way that gets worse quickly, because the time taken rises with the square of the distance rather than in proportion to it.
 
-    Written out here: open and closed circulatory systems, the structure of arteries, veins and capillaries and how each suits its pressure, the composition of blood, and the way that composition changes between one exchange surface and the next.
+    The canvas plots that, on axes where each step is a factor of ten. The marked point on the left is a typical cell: an oxygen molecule crosses one in about a fortieth of a second, which is why nothing inside a cell has to be transported.
+
+    ===
+
+    The other two marks are what the squaring does. A millimetre is a hundred times further than a cell, so it takes ten thousand times as long — about four minutes. A metre takes nearly eight years.
+
+    That is the argument for a circulatory system, and it is quantitative rather than rhetorical. No animal thicker than about a millimetre can supply its interior by diffusion from its surface, and the flatworms and cnidarians that manage without a circulation are all built to stay inside that limit — flat, or thin-walled, or hollow.
+
+    definition{
+        The movement of a fluid in bulk, driven by a pressure difference, carrying everything dissolved in it along at the same speed. Unlike diffusion, the time it takes rises in proportion to the distance rather than with its square.
+    }(
+        term: Bulk flow
+    )
+
+    Everything larger therefore does the same thing: move the fluid instead of waiting for the molecules. Blood is pumped the metre in a second or so, and diffusion is left to do only the last few micrometres at either end — where, as the left of the graph shows, it is quick enough that nothing better is needed.
+}[
+    canvas.graph{
+        curve(f: 2 * x + 8.398; domain: [-6.2, 0.2]; colour: blue)
+        point(x: -5; y: -1.602; colour: orange; label: across one cell — $0.025\text{ s}$)
+
+        cue{
+            point(x: -3; y: 2.398; colour: orange; label: one millimetre — four minutes)
+            point(x: 0; y: 8.398; colour: orange; label: one metre — eight years)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: distance (m)
+        y axis label: time for oxygen to diffuse it (s)
+        x domain: [-6.5, 0.9]
+        y domain: [-4.5, 10]
+        x format: log
+        y format: log
+    )
+]
+
+scene{
+    # Open, closed, and how many times through the heart
+
+    Not every circulation is a closed loop. In insects and most molluscs the pump drives fluid into a body cavity where it bathes the organs directly, and it returns to the heart through open pores. There is no distinction between blood and the fluid around the cells, because they are the same fluid.
+
+    definition{
+        A circulatory system in which the fluid leaves the vessels and bathes the tissues directly in a body cavity before returning to the heart. Pressure is low and flow is slow, and the animal cannot direct blood to one organ in preference to another.
+    }(
+        term: Open circulatory system
+    )
+
+    definition{
+        A circulatory system in which the fluid stays inside vessels throughout, exchanging with the tissues only across capillary walls. Pressure can be kept high, flow is fast, and the distribution of blood between organs can be controlled by constricting and dilating vessels.
+    }(
+        term: Closed circulatory system
+    )
+
+    An open system is adequate for an insect partly because an insect does not use it to carry oxygen at all — that job is done by air tubes running directly to the tissues. Where blood must carry the oxygen, the pressure and speed a closed system allows become necessary.
+
+    ===
+
+    Closed systems then divide again, by how many times blood passes through the heart per circuit. A fish has one: blood is pumped to the gills, and travels on to the body from there, having already lost most of its pressure crossing the gill capillaries.
+
+    A mammal has two, and the canvas is that arrangement. Blood returns to the heart after the lungs and is repressurised before being sent to the body, so the systemic circuit starts at full pressure instead of at whatever the lungs left.
+
+    ===
+
+    The cost of the arrangement is a heart with four chambers instead of two and a complete separation between the two halves. The gain is that the lungs, which are delicate and would be damaged by systemic pressures, can be supplied at low pressure while the body is supplied at high pressure — two different requirements met by one organ that keeps them apart.
+}[
+    canvas.diagram{
+        box#right{
+            Right side of the heart
+            receives deoxygenated blood returning from the body
+        }
+
+        cue.draw{
+            box#lungs{
+                Lungs
+                oxygen in, carbon dioxide out — at low pressure
+            }
+            box#left{
+                Left side of the heart
+                receives oxygenated blood and repressurises it
+            }
+            arrow(from: #right; to: #lungs; label: pulmonary artery)
+            arrow(from: #lungs; to: #left; label: pulmonary vein)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#body{
+                The body's tissues
+                oxygen and glucose out, carbon dioxide and waste in
+            }
+            arrow(from: #left; to: #body; label: aorta, at high pressure)
+            arrow(from: #body; to: #right; label: vena cava)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: The double circuit of a mammal
+    )
+]
+
+scene{
+    # Each vessel is built for the pressure it carries
+
+    The canvas follows the mean blood pressure of a resting adult from the aorta round to the veins, and the shape of it explains the vessels rather than merely describing them.
+
+    Arteries carry blood that has just left the heart, in surges, at around $95$ millimetres of mercury. They have thick walls with a great deal of elastic tissue and smooth muscle and a narrow lumen. The elastic tissue stretches during the surge and recoils between surges, which is what turns an intermittent push into a continuous flow, and is why a pulse can be felt in an artery and not in a vein.
+
+    ===
+
+    The steep fall in the middle of the graph is the arterioles, and it is deliberate. Their walls are almost all smooth muscle, and contracting or relaxing that muscle changes the resistance of the whole circuit — which is both how blood pressure is regulated and how blood is redirected to the muscles during exercise and to the gut after a meal.
+
+    ===
+
+    By the capillaries the pressure is down to about $20$ millimetres of mercury, and that is the point. A capillary wall is a single flattened cell thick, with no muscle and no elastic tissue at all, and could not survive arterial pressure — but that thinness is exactly what makes it a good exchange surface. The vessels get progressively weaker as the pressure falls, and the weakest is the one where the work is done.
+
+    Veins return blood at pressures too low to drive it anywhere. They have thin walls and a wide lumen, and depend on the contraction of surrounding skeletal muscle to squeeze them, with one-way valves to make sure the squeezing sends blood towards the heart rather than back the way it came.
+
+    note{
+        Blood moves slowest in the capillaries, at well under a millimetre per second, and that is not a failure of the design. The capillary bed has an enormous total cross-sectional area compared with the aorta, and for the same volume per second to pass through a much wider channel it must pass more slowly — which gives the exchange time to happen.
+    }
+}[
+    canvas.graph{
+        line(x: 0, 1, 2, 3, 4; y: 95, 90, 45, 20, 6; interpolate: bezier; colour: blue)
+        axis.label(x: 0; label: aorta; colour: grey)
+        axis.label(x: 1; label: arteries; colour: grey)
+
+        cue{
+            axis.label(x: 2; label: arterioles; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.label(x: 3; label: capillaries; colour: grey)
+            axis.label(x: 4; label: veins; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        y axis label: mean blood pressure (mm Hg)
+        x domain: [0, 4]
+        y domain: [0, 105]
+    )
+]
+
+scene{
+    ## The fluid, and what happens to it on the way round
+
+    Blood is a tissue: a liquid matrix with cells suspended in it. By volume it is a little over half plasma and a little under half cells, and plasma is around ninety per cent water, which is why almost everything the blood carries is carried dissolved.
+
+    The red cells carry oxygen and nothing else. The white cells are the immune system in transit. The platelets are cell fragments that seal damage. Everything else — glucose, amino acids, ions, hormones, antibodies, urea, and most of the carbon dioxide, carried as hydrogencarbonate ions — is in solution in the plasma.
+
+    Because the blood passes through every organ, its composition is different in every vessel, and the differences are the most direct evidence there is of what each organ does. The table names four vessels and what has just happened to the blood in them.
+
+    Reading the table as a set of subtractions and additions is the useful habit. A vessel leaving an organ tells you what the organ took out and what it put in, and a question naming an unfamiliar vessel can usually be answered from the organ alone.
+
+    task{
+        Blood in the hepatic portal vein, sampled shortly after a large meal, has a glucose concentration several times higher than blood in the hepatic vein sampled at the same moment. Both vessels are connected to the liver. Explain the difference.
+    }[
+        The hepatic portal vein carries blood from the small intestine to the liver, so it carries whatever has just been absorbed — and after a meal that is a great deal of glucose. The hepatic vein carries blood away from the liver, after the liver has removed the excess and stored it as glycogen. The difference between the two vessels is the liver's regulation of blood glucose, measured directly.
+    ](
+        title: Your turn
+    )
 
     Keeping that fluid within tolerance is a control problem rather than a plumbing one, and it is the problem *Homeostasis* is about.
 
     internote(ref: homeostasis.chalk)
-}
+}[
+    table{
+        Vessel                | Blood in it has just left | Higher than usual                        | Lower than usual
+        Pulmonary vein        | the lungs                 | oxygen                                    | carbon dioxide
+        Hepatic portal vein   | the small intestine       | glucose, amino acids, and anything else absorbed | —
+        Hepatic vein          | the liver                 | urea, made from surplus amino acids       | glucose, brought back to its normal level
+        Renal vein            | the kidneys               | —                                         | urea, excess water and excess salts
+    }(
+        title: What each organ does, read off the blood leaving it
+    )
+]

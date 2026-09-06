@@ -1,20 +1,230 @@
 *(
     title: Cell Replication
     description: Copying a genome without error, and the two kinds of division that use the copy differently.
-    tags: mitosis, meiosis, DNA replication, cell cycle, module 5, biology, stub
+    tags: mitosis, meiosis, DNA replication, cell cycle, module 5, biology
     lesson
 )
 
+// Scene 2's figures. The human genome is about 3.2 billion base pairs, so the
+// expected number of errors left in one copy is 3.2 x 10^9 times the error rate:
+//   DNA polymerase alone, ~1 in 10^5   ->  32 000 errors      (log10 = 4.51)
+//   with its own proofreading, ~1 in 10^7 -> 320 errors       (log10 = 2.51)
+//   with mismatch repair too, ~1 in 10^9  -> about 3 errors    (log10 = 0.51)
+//
+// Scene 3 uses the conventional durations for a human cell cycle of about a
+// day: G1 roughly 11 hours, S roughly 8, G2 roughly 4, and mitosis about 1.
 @include(src: ../preface.part.chalk)
 
 scene{
-    Growth, repair and reproduction all come down to one cell becoming two. Before that can happen the genome has to be copied exactly, because each daughter needs a complete set and an error made now is inherited by everything descended from this cell.
+    Every cell in your body came from one cell dividing. For that to work, each new cell needs a complete set of instructions, which means the instructions have to be copied first — and copied exactly, because a mistake made now is inherited by every cell descended from this one.
 
-    Written out here: the structure of DNA that makes accurate copying possible, replication and the enzymes that carry it out, mitosis producing two identical cells, and meiosis producing four cells with half the chromosome number and no two alike.
+    The structure of DNA is what makes an exact copy possible. The two strands are held together by base pairs, and the pairing is fixed: A always with T, C always with G. So each strand carries the full information, written twice — once directly and once as its complement.
+
+    definition{
+        The rule that adenine pairs only with thymine and cytosine only with guanine. Because of it, either strand of a DNA molecule is enough to reconstruct the other.
+    }(
+        term: Complementary base pairing
+    )
+
+    ===
+
+    Copying then has an obvious method, and the canvas is it. Unzip the two strands. Each one is now a template, and the pairing rule says exactly which base goes opposite each exposed base. Build a new partner strand against each old one.
+
+    ===
+
+    What you end up with is two double helices where there was one. Each contains one old strand and one new one — which is why the process is called semi-conservative. Half of every new molecule is inherited physically, not just copied.
+
+    definition{
+        DNA replication in which each new double helix consists of one strand from the original molecule and one newly built strand. The alternative — a completely new copy alongside a completely intact original — is called conservative, and it is not what happens.
+    }(
+        term: Semi-conservative replication
+    )
+
+    note{
+        Meselson and Stahl showed this in 1958 by growing bacteria in a heavy isotope of nitrogen, so their DNA was heavier than normal, and then moving them to ordinary nitrogen. After one round of replication every DNA molecule was of intermediate weight — half heavy, half light. Neither of the rival models predicts that, and the conservative one predicts a mixture of heavy and light molecules with nothing in between.
+    }
+}[
+    canvas.diagram{
+        box#parent{
+            One double helix
+            two strands, each the complement of the other
+        }
+
+        cue.draw{
+            box#unzip{
+                The strands are separated
+                each exposed base now specifies its partner
+            }
+            arrow(from: #parent; to: #unzip)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#build{
+                A new strand is built against each old one
+                A opposite T, C opposite G, all the way along
+            }
+            box#two:terminal{
+                Two identical double helices
+                each one half old strand, half new
+            }
+            arrow(from: #unzip; to: #build)
+            arrow(from: #build; to: #two)
+        }(
+            in: 2
+        )
+    }(
+        flow: right
+        title: Why one molecule becomes two identical ones
+    )
+]
+
+scene{
+    # Copying three billion letters and getting almost all of them right
+
+    Several enzymes do the work. Helicase unwinds the double helix and separates the strands. DNA polymerase adds new nucleotides against each template, following the pairing rule. DNA ligase joins up the sections afterwards, because one of the two new strands has to be built in short pieces rather than continuously.
+
+    The scale of the job is the thing to hold on to. A human cell copies about $3.2$ billion base pairs each time it divides, and the canvas turns error rates into the number of mistakes that leaves behind.
+
+    ===
+
+    DNA polymerase on its own gets about one base in $100\,000$ wrong. That sounds accurate until you multiply it out: roughly $32\,000$ errors in every copy of the genome, every division.
+
+    So the polymerase checks its own work. After adding a base it can detect a mispairing and cut it out again, which brings the rate to about one in ten million — around $320$ errors per genome.
+
+    ===
+
+    A separate system then scans the finished strand for mismatches that survived, and removes them. That takes the rate to roughly one in a billion, or about three errors in a whole genome copy.
+
+    Three separate mechanisms, each catching most of what the last one missed, and together they turn $32\,000$ mistakes into three. The errors that do survive are the subject of *Mutation*, and they are not all bad news: they are also the only source of genuinely new genetic material there is.
+}[
+    canvas.graph{
+        point(x: 0; y: 4.505; colour: orange; label: about $32\,000$ errors)
+        axis.label(x: 0; label: polymerase alone; colour: grey)
+
+        cue{
+            point(x: 1; y: 2.505; colour: orange; label: about $320$)
+            axis.label(x: 1; label: with proofreading; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 2; y: 0.505; colour: orange; label: about $3$)
+            axis.label(x: 2; label: and mismatch repair; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        y axis label: errors left in one copy of the genome
+        x domain: [-0.4, 2.4]
+        y domain: [-0.5, 5.5]
+        y format: log
+    )
+]
+
+scene{
+    # The cell cycle, measured in DNA
+
+    Dividing is not the whole of a cell's life; it is a short part at the end of a longer cycle, and most of that cycle is spent doing everything else. The canvas plots how much DNA a cell contains as it goes round once.
+
+    definition{
+        The sequence a cell passes through between one division and the next: a long interphase, in which the cell grows and copies its DNA, followed by a short mitotic phase in which it divides.
+    }(
+        term: Cell cycle
+    )
+
+    A typical human cell takes about a day. It spends roughly eleven hours in the first growth phase, $G_1$, doing its ordinary job and getting larger. The amount of DNA does not change — the flat section on the left.
+
+    ===
+
+    Then comes S phase, about eight hours of replication, and the DNA content doubles. Every chromosome is now two identical sister chromatids joined at a centromere. After that the cell spends about four hours in $G_2$, checking the copy and preparing to divide, with the DNA content staying at its new level.
+
+    Mitosis itself takes about an hour. The chromosomes condense, line up at the middle of the cell, and the sister chromatids are pulled to opposite ends.
+
+    ===
+
+    The line drops back at the very end, when the cytoplasm divides and the two daughter cells separate. Each has exactly the DNA content the parent started with, and exactly the same genes.
+
+    definition{
+        Nuclear division producing two daughter nuclei genetically identical to each other and to the parent. It is what growth, repair and asexual reproduction are made of.
+    }(
+        term: Mitosis
+    )
+
+    note{
+        There are checkpoints between the phases, and they are the reason this matters medically. A cell with damaged DNA is normally stopped at a checkpoint and either repaired or destroyed. Cancer is, at bottom, a cell whose checkpoints no longer stop it — which is why so many cancer-causing mutations turn out to be in the genes that operate them.
+    }
+}[
+    canvas.graph{
+        line(x: 0, 11; y: 2, 2; colour: blue)
+        axis.label(x: 5.5; label: $G_1$; colour: grey)
+
+        cue{
+            line(x: 11, 19, 24; y: 2, 4, 4; colour: blue)
+            axis.label(x: 15; label: S; colour: grey)
+            axis.label(x: 21.5; label: $G_2$ and mitosis; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            line(x: 24, 24.5, 28; y: 4, 2, 2; colour: blue)
+            axis.label(x: 26; label: two daughter cells; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: hours
+        y axis label: DNA content, relative to a new cell
+        x domain: [0, 28]
+        y domain: [0, 5]
+    )
+]
+
+scene{
+    ## Meiosis: two divisions, four cells, half the chromosomes
+
+    Mitosis is the wrong tool for making gametes, and the reason is arithmetic. A human body cell has $46$ chromosomes. If sperm and egg each carried $46$, the fertilised cell would have $92$, and the next generation $184$.
+
+    Something has to halve the number before fertilisation doubles it, and meiosis is that something. It runs the replication once and then divides twice, so one cell with $46$ chromosomes becomes four cells with $23$ each.
+
+    definition{
+        Nuclear division producing four daughter nuclei, each with half the chromosome number of the parent cell and none of them genetically identical to any other. It occurs only in the production of gametes.
+    }(
+        term: Meiosis
+    )
+
+    The first division is the one that halves the number, and it works differently from anything in mitosis. Chromosomes pair up with their partners — the maternal copy of chromosome 7 alongside the paternal copy, and so on for all $23$ pairs — and it is whole chromosomes that are pulled apart, one of each pair to each end. The second division then separates sister chromatids, exactly as mitosis does.
+
+    The table sets the two processes against each other. The last two rows are where the biological consequences live: mitosis produces copies and meiosis produces variety, and neither could do the other's job.
+
+    task{
+        A cell is observed in the middle of a division, with chromosomes lined up at the centre in pairs, each pair consisting of two chromosomes that carry the same genes. Is this mitosis or meiosis, and how do you know?
+    }[
+        Meiosis, and specifically its first division. Chromosomes lining up as pairs of partners carrying the same genes happens only in meiosis I — in mitosis, and in meiosis II, chromosomes line up singly and it is the two identical chromatids of one chromosome that are separated. What is about to be pulled apart here is a pair of whole chromosomes, which is the step that halves the number.
+    ](
+        title: Your turn
+    )
 
     The branch divides here. Following the copied genome into the protein it specifies is *DNA and Polypeptide Synthesis*; following it into the next generation of organisms is *Reproduction*.
 
     internote(ref: reproduction.chalk)
 
     internote(ref: dna-and-polypeptide-synthesis.chalk)
-}
+}[
+    table{
+                                | Mitosis                                   | Meiosis
+        Divisions               | one                                       | two, after a single replication
+        Daughter cells          | two                                       | four
+        Chromosome number       | unchanged — $46$ to $46$ in a human cell  | halved — $46$ to $23$
+        Genetically             | identical to the parent and to each other | all four different, from each other and from the parent
+        Where it happens        | everywhere in the body                    | only in the ovaries and testes, or their equivalents
+        What it is for          | growth, repair, and asexual reproduction  | making gametes, and generating variation while doing so
+    }(
+        title: Two divisions with different jobs
+        highlight rows: 5, 7
+        highlight colour: orange
+    )
+]

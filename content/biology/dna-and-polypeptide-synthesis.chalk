@@ -1,18 +1,268 @@
 *(
     title: DNA and Polypeptide Synthesis
     description: How a sequence of bases becomes a sequence of amino acids, and why that is what a gene does.
-    tags: DNA, transcription, translation, genetic code, module 5, biology, stub
+    tags: DNA, transcription, translation, genetic code, module 5, biology
     lesson
 )
 
+// Scene 2 counts the standard genetic code. Of the 64 codons, 3 are stop
+// signals and 61 specify amino acids. Grouped by how many codons each of the
+// 20 amino acids has:
+//   1 codon:  Met, Trp                                          -> 2 amino acids
+//   2 codons: Phe, Tyr, Cys, His, Gln, Asn, Lys, Asp, Glu       -> 9
+//   3 codons: Ile                                               -> 1
+//   4 codons: Ala, Gly, Pro, Thr, Val                           -> 5
+//   6 codons: Leu, Ser, Arg                                     -> 3
+// Check: 2 + 9 + 1 + 5 + 3 = 20 amino acids, and
+//        2(1) + 9(2) + 1(3) + 5(4) + 3(6) = 2 + 18 + 3 + 20 + 18 = 61 codons.
 @include(src: ../preface.part.chalk)
 
 scene{
-    A gene does not build an eye or set a height. It specifies one polypeptide, and everything else is downstream consequence. Getting that relationship right removes most of the confusion in genetics.
+    A gene does not build an eye. It does not set a height or decide a personality. What a gene does is specify the order of amino acids in one polypeptide, and everything else is what happens downstream of that.
 
-    Written out here: transcription of DNA into messenger RNA, translation at the ribosome with transfer RNA delivering amino acids, the genetic code and its redundancy, and the route from one polypeptide to a phenotype that is usually long and rarely one to one.
+    definition{
+        A chain of amino acids joined in a particular order. One or more polypeptides, folded up, make a protein.
+    }(
+        term: Polypeptide
+    )
+
+    Getting that relationship right removes most of the confusion in genetics. The information in DNA is an order — this base, then this one — and the information in a polypeptide is also an order. The whole of protein synthesis is a translation between two sequences.
+
+    ===
+
+    It happens in two stages, and they happen in different places. Transcription copies one gene out of the DNA into a short, mobile molecule called messenger RNA. This is necessary because DNA does not leave the nucleus, and the machinery that builds proteins is outside it.
+
+    definition{
+        Copying the base sequence of one gene from DNA into a strand of messenger RNA. The pairing rules are the same as in replication, except that RNA uses uracil where DNA uses thymine.
+    }(
+        term: Transcription
+    )
+
+    ===
+
+    Translation is the second stage, at a ribosome in the cytoplasm. The ribosome reads the mRNA three bases at a time. Each group of three is a codon, and each codon calls for one particular amino acid.
+
+    definition{
+        Building a polypeptide by reading messenger RNA three bases at a time at a ribosome, with transfer RNA molecules delivering the amino acid each group of three calls for.
+    }(
+        term: Translation
+    )
+
+    ===
+
+    The delivery is done by transfer RNA. Each tRNA molecule carries one amino acid at one end and a three-base anticodon at the other. The anticodon pairs with a matching codon on the mRNA, which puts the right amino acid in the right place — and that pairing is the only reason the order comes out correct.
+}[
+    canvas.diagram{
+        box#dna{
+            DNA, in the nucleus
+            the gene, as a sequence of bases
+        }
+
+        cue.draw{
+            box#mrna{
+                Messenger RNA
+                a copy of that one gene, able to leave the nucleus
+            }
+            arrow(from: #dna; to: #mrna; label: transcription)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#ribosome{
+                Ribosome, in the cytoplasm
+                reads the mRNA three bases at a time
+            }
+            arrow(from: #mrna; to: #ribosome)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#trna{
+                Transfer RNA
+                each carries one amino acid and one anticodon
+            }
+            box#poly:terminal{
+                A polypeptide
+                amino acids in the order the gene specified
+            }
+            arrow(from: #trna; to: #ribosome; label: delivers)
+            arrow(from: #ribosome; to: #poly; label: translation)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: From gene to polypeptide
+    )
+]
+
+scene{
+    # Sixty-four codons for twenty amino acids
+
+    Why three bases at a time? Because two would not be enough. There are four bases, so pairs give $4^2 = 16$ combinations, and there are $20$ amino acids to specify. Triplets give $4^3 = 64$, which is more than enough — and the surplus turns out to be useful.
+
+    Three of the $64$ are stop signals, marking where a polypeptide ends. That leaves $61$ codons sharing $20$ amino acids between them, so most amino acids have more than one codon.
+
+    ===
+
+    The canvas counts them. Two amino acids — methionine and tryptophan — have a single codon each. Nine have two. Three amino acids, leucine, serine and arginine, have six codons apiece.
+
+    definition{
+        The property of the genetic code that most amino acids are specified by more than one codon. It is also called degeneracy, and it does not mean the code is ambiguous: each codon still specifies exactly one amino acid.
+    }(
+        term: Redundancy
+    )
+
+    ===
+
+    That last distinction is worth being careful about. Redundancy runs one way. Several codons may mean leucine, but no codon means two different things, so reading mRNA is never a guess.
+
+    The redundancy is also not random. Codons for the same amino acid usually differ only in the third base, which means a great many single-base changes in DNA make no difference at all to the protein. The code has a degree of error tolerance built into its structure, and the next internote — *Mutation* — is largely about which errors fall outside it.
+}[
+    canvas.graph{
+        histogram(
+            bins: 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5
+            values: 2, 9, 1, 5, 0, 3
+            colour: blue
+            show labels
+        )
+
+        cue{
+            axis.label(x: 1; label: Met, Trp; colour: grey)
+        }(
+            in: 1
+        )
+
+        cue{
+            axis.label(x: 6; label: Leu, Ser, Arg; colour: grey)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: codons specifying the amino acid
+        y axis label: number of amino acids
+        x domain: [0.5, 6.5]
+        y domain: [0, 10]
+    )
+]
+
+scene{
+    # A worked example, base by base
+
+    The table takes a short stretch of a gene all the way through. Read it downwards, one column at a time.
+
+    The top row is the template strand of the DNA — the strand that is actually copied. Transcription pairs a base against each one, using the same rules as replication except that adenine on the template calls for uracil rather than thymine.
+
+    So the template triplet TAC gives the mRNA codon AUG. That codon is methionine, and it is also the start signal: translation begins here on every mRNA.
+
+    The third row is the anticodon on the tRNA that delivers each amino acid. It is the complement of the codon, which is what makes the pairing specific. The last column is the stop codon UAG, which no tRNA matches — so no amino acid is added, and the finished polypeptide is released.
+
+    note{
+        Notice that the mRNA codon is identical to the *other* DNA strand, with U in place of T. That non-template strand is called the coding strand for exactly that reason, and it is the one written down when a gene sequence is quoted.
+    }
+}[
+    table{
+        DNA template strand | TAC        | GGA     | CTT       | AAG           | ATC
+        mRNA codon          | AUG        | CCU     | GAA       | UUC           | UAG
+        tRNA anticodon      | UAC        | GGA     | CUU       | AAG           | none
+        Amino acid          | methionine | proline | glutamate | phenylalanine | stop
+    }(
+        title: One short gene, transcribed and translated
+        header column
+        !header row
+        highlight columns: 6
+        highlight colour: orange
+    )
+]
+
+scene{
+    ## From polypeptide to phenotype is a long way
+
+    "One gene, one polypeptide" is exact. "One gene, one trait" is almost never true, and the canvas is why.
+
+    ===
+
+    A polypeptide has to fold into a shape before it does anything, and the folding depends on temperature and pH. Once folded it may be an enzyme, in which case it catalyses one step of a pathway with several other steps in it, each run by a different enzyme from a different gene.
+
+    ===
+
+    The product of that pathway is then a molecule — a pigment, a hormone, a structural fibre — and the visible trait depends on how much of it is made, where it is deposited, and what else is happening in the organism.
+
+    definition{
+        The observable characteristics of an organism, produced by its genes acting together with the environment it develops in.
+    }(
+        term: Phenotype
+    )
+
+    ===
+
+    So a single gene almost always affects several traits, and a single trait almost always depends on several genes. Human height involves hundreds of them, plus nutrition. Eye colour involves several, not one.
+
+    The exceptions are the cases where a single step fails completely, and those are the diseases genetics textbooks are full of — not because they are typical, but because they are the ones where a single gene really does determine the outcome.
+
+    task{
+        A mutation changes one base in a gene, and the polypeptide it codes for is unchanged. Give two different explanations, both consistent with what this internote has covered.
+    }[
+        First, redundancy: the change was in the third base of a codon, and the new codon specifies the same amino acid. This is a silent mutation and the mRNA differs while the polypeptide does not.
+
+        Second, the change was outside the coding sequence — in a non-coding region of the gene, or in a part that is removed before translation. In neither case does the sequence being read three bases at a time actually change.
+    ](
+        title: Your turn
+    )
 
     A code copied and read this many times will occasionally be copied or read wrongly. What follows from that is *Mutation*.
 
     internote(ref: mutation.chalk)
-}
+}[
+    canvas.diagram{
+        box#gene{
+            One gene
+            a sequence of bases
+        }
+        box#chain{
+            One polypeptide
+            a sequence of amino acids
+        }
+        arrow(from: #gene; to: #chain; label: exact, and one to one)
+
+        cue.draw{
+            box#fold{
+                A folded protein
+                the shape depends on temperature and pH as well
+            }
+            box#pathway{
+                One step of a pathway
+                other steps need other genes
+            }
+            arrow(from: #chain; to: #fold)
+            arrow(from: #fold; to: #pathway)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            box#product{
+                A product
+                a pigment, a hormone, a fibre
+            }
+            arrow(from: #pathway; to: #product)
+        }(
+            in: 2
+        )
+
+        cue.draw{
+            box#trait:terminal{
+                A visible trait
+                and most traits draw on many genes and the environment
+            }
+            arrow(from: #product; to: #trait)
+        }(
+            in: 3
+        )
+    }(
+        flow: right
+        title: Where "one gene, one trait" stops being true
+    )
+]
