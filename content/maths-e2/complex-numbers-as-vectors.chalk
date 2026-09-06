@@ -100,7 +100,7 @@ scene{
         cue{
             text(label: $|z_2 - z_1| = \sqrt{5}$; x: 2.6; y: 2.1; colour: teal)
         }(
-            in: 3
+            in: 2
         )
     }(
         x axis label: real axis
