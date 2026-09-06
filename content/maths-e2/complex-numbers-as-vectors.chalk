@@ -1,18 +1,212 @@
 *(
     title: Complex Numbers as Vectors
-    description: Reading addition as displacement and multiplication by i as a quarter turn.
-    tags: complex numbers, vectors, argand plane, rotation, geometric proof, extension 2, stub
+    description: Reading addition as displacement, subtraction as the arrow between two points, and multiplication by i as a quarter turn.
+    tags: complex numbers, vectors, argand plane, rotation, geometric proof, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    A complex number has already been drawn as a point in the Argand plane. Drawing it instead as an arrow from the origin costs nothing and buys the whole of vector geometry, because addition of complex numbers and addition of vectors are the same rule.
+    A complex number has already been drawn as a point in the Argand plane. Drawing it instead as an arrow from the origin to that point costs nothing, because the arrow and the point carry the same two numbers — $3 + i$ is three across and one up whichever way it is drawn.
 
-    Written out here: sums as tip-to-tail displacement, the difference of two complex numbers as the arrow joining their points, and multiplication by the imaginary unit as a quarter turn anticlockwise — the one operation vectors in the plane have no equivalent of.
+    definition{
+        The arrow from the origin to the point $(a, b)$, used to stand for $z = a + ib$. Its horizontal component is $\operatorname{Re}(z)$, its vertical component is $\operatorname{Im}(z)$, and its length is $|z|$.
+    }(
+        term: Vector representation
+    )
+
+    What the arrow buys is that it can be moved. An arrow keeps its meaning when it is slid to a new tail, since the components do not change, and that is exactly the freedom addition needs.
+
+    ===
+
+    To add $1 + 2i$ to $3 + i$, slide the second arrow so that its tail sits on the tip of the first. Its components are still $1$ and $2$; only its starting point has moved.
+
+    ===
+
+    The sum $4 + 3i$ is the arrow from the origin to the new tip: three plus one across, one plus two up. Adding in the other order slides $3 + i$ onto the tip of $1 + 2i$ and arrives at the same place, so the two routes close a parallelogram whose diagonal is the sum.
+
+    note{
+        The detour is never shorter than the direct route, so $|z_1 + z_2| \le |z_1| + |z_2|$, with equality only when the two arrows point the same way. This is the triangle inequality, and *Inequalities and Proof* proves it from the algebra.
+    }
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        vector(x: 0; y: 0; dx: 3; dy: 1; colour: orange; label: $z_1 = 3 + i$)
+        vector(x: 0; y: 0; dx: 1; dy: 2; colour: purple; label: $z_2 = 1 + 2i$)
+
+        cue.draw{
+            vector(x: 3; y: 1; dx: 1; dy: 2; colour: purple; dashed)
+        }(
+            in: 1
+            in duration: 1s
+        )
+
+        cue.draw{
+            vector(x: 1; y: 2; dx: 3; dy: 1; colour: orange; dashed)
+            vector(x: 0; y: 0; dx: 4; dy: 3; colour: teal; label: $z_1 + z_2 = 4 + 3i$)
+        }(
+            in: 2
+            in duration: 1.2s
+        )
+    }(
+        x axis label: real axis
+        y axis label: imaginary axis
+        x domain: [-1, 6]
+        y domain: [-1, 5]
+    )
+]
+
+scene{
+    # Subtraction is the arrow between two points
+
+    Subtracting is adding the negative, and the negative of an arrow is the same arrow reversed. So $z_2 - z_1$ is the arrow that starts at the tip of $z_1$ and ends at the tip of $z_2$: from $3 + i$ to $1 + 2i$ is two back and one up, which is $-2 + i$.
+
+    ===
+
+    Slid back to the origin it is the ordinary arrow for $-2 + i$, and nothing about it has changed. What the slid version makes visible is that the *difference* of two complex numbers lives between their points, not at the origin.
+
+    ===
+
+    That gives two of the most-used facts in the whole area a picture. The modulus $|z_2 - z_1|$ is the length of the arrow between the points, so it is the distance from $z_1$ to $z_2$ — here $\sqrt{4 + 1} = \sqrt{5}$. The argument $\arg(z_2 - z_1)$ is the direction from $z_1$ to $z_2$.
+
+    definition{
+        The modulus of their difference, $|z_2 - z_1|$, equal to the length of the segment joining the two points in the Argand plane.
+    }(
+        term: Distance between two complex numbers
+    )
+
+    The midpoint of the segment is $\frac{z_1 + z_2}{2}$, half of the parallelogram's diagonal. And a condition placed on $|z - z_0|$ or $\arg(z - z_0)$ is a condition on the distance or direction from a fixed point $z_0$, which is what turns an equation into a curve.
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        point(x: 3; y: 1; colour: orange; label: $z_1 = 3 + i$)
+        point(x: 1; y: 2; colour: purple; label: $z_2 = 1 + 2i$)
+
+        cue.draw{
+            vector(x: 3; y: 1; dx: -2; dy: 1; colour: teal; label: $z_2 - z_1$)
+        }(
+            in: 1
+            in duration: 1s
+        )
+
+        cue.draw{
+            vector(x: 0; y: 0; dx: -2; dy: 1; colour: teal; dashed; label: $-2 + i$)
+        }(
+            in: 2
+            in duration: 1s
+        )
+
+        cue{
+            text(label: $|z_2 - z_1| = \sqrt{5}$; x: 2.6; y: 2.1; colour: teal)
+        }(
+            in: 3
+        )
+    }(
+        x axis label: real axis
+        y axis label: imaginary axis
+        x domain: [-3, 4]
+        y domain: [-1, 3]
+    )
+]
+
+scene{
+    # Multiplying by $i$ is a quarter turn
+
+    Take $z = 3 + i$ and multiply by $i$: $iz = 3i + i^2 = -1 + 3i$. The components have swapped places and one of them has changed sign, so $(a, b)$ has become $(-b, a)$.
+
+    ===
+
+    That is the rule for turning an arrow through a right angle anticlockwise. The length is unchanged, since $\sqrt{b^2 + a^2} = \sqrt{a^2 + b^2}$, and the two arrows are perpendicular — the square at the origin marks it.
+
+    definition{
+        Multiplying a complex number by $i$ rotates its arrow a quarter turn anticlockwise about the origin, leaving its modulus alone. Multiplying by $-i$ turns it a quarter turn clockwise.
+    }(
+        term: Multiplication by $i$
+    )
+
+    ===
+
+    Multiply again and the turn repeats: $i^2 z = -z$ points the opposite way, $i^3 z = -iz$ is a quarter turn short of a full circle, and $i^4 z = z$ is home. The four powers of $i$ are the four quarter turns, which is a better reason for $i^4 = 1$ than any amount of algebra.
+
+    This is the operation plane vectors have no equivalent of. The dot product of two vectors returns a number and throws the direction away; multiplication of two complex numbers returns a complex number, and the argument of the product is the sum of the arguments. Multiplying by $i$, with argument $\frac{\pi}{2}$, is the cleanest case of that rule, and *Polar Form and de Moivre's Theorem* gives the general one: multiplying by $\operatorname{cis}\theta$ turns the plane through $\theta$.
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        vector(x: 0; y: 0; dx: 3; dy: 1; colour: orange; label: $z = 3 + i$)
+
+        cue.draw{
+            vector(x: 0; y: 0; dx: -1; dy: 3; colour: teal; label: $iz = -1 + 3i$)
+            angle(at: (0, 0); from: (3, 1); to: (-1, 3); colour: teal)
+        }(
+            in: 1
+            in duration: 1s
+        )
+
+        cue.draw{
+            vector(x: 0; y: 0; dx: -3; dy: -1; colour: grey; dashed; label: $i^2 z = -z$)
+            vector(x: 0; y: 0; dx: 1; dy: -3; colour: grey; dashed; label: $i^3 z$)
+        }(
+            in: 2
+            in duration: 1.2s
+        )
+    }(
+        x axis label: real axis
+        y axis label: imaginary axis
+        x domain: [-4, 4]
+        y domain: [-4, 4]
+    )
+]
+
+scene{
+    ## A geometric proof: the diagonals of a rhombus
+
+    Let $z_1$ and $z_2$ have the same modulus $r$, so the parallelogram they span has four equal sides — a rhombus. On the canvas $z_1 = 3 + i$ and $z_2 = 1 + 3i$, both of modulus $\sqrt{10}$. The diagonals are $z_1 + z_2$ from the origin and $z_1 - z_2$ across the middle, and the claim is that they are perpendicular.
+
+    ===
+
+    Two arrows are perpendicular when their quotient has argument $\pm\frac{\pi}{2}$, that is, when the quotient is purely imaginary. So write $w = \frac{z_1 + z_2}{z_1 - z_2}$ and aim to show $w + \bar{w} = 0$.
+
+    The tool is that $z\bar{z} = |z|^2$, so a number of modulus $r$ has conjugate $\bar{z} = \frac{r^2}{z}$. Conjugating $w$ and substituting that in for both $\bar{z}_1$ and $\bar{z}_2$:
+
+    equation{
+        \bar{w} = \frac{\bar{z}_1 + \bar{z}_2}{\bar{z}_1 - \bar{z}_2} = \frac{r^2/z_1 + r^2/z_2}{r^2/z_1 - r^2/z_2} = \frac{z_2 + z_1}{z_2 - z_1} = -w
+    }
+
+    The last step multiplies top and bottom by $\frac{z_1 z_2}{r^2}$. So $\bar{w} = -w$, which forces $\operatorname{Re}(w) = 0$, and the diagonals are perpendicular. With the numbers on the canvas, $w = \frac{4 + 4i}{2 - 2i} = 2i$, exactly as promised.
+
+    The proof never drew a triangle or named an angle. It turned a geometric claim into a statement about a quotient, and the algebra of conjugates did the rest.
+
+    task{
+        $A = 1 + i$ and $B = 4 + 2i$ are adjacent vertices of a square $ABCD$, labelled anticlockwise. Find $C$ and $D$.
+    }[
+        The side $B - A = 3 + i$ turned a quarter turn anticlockwise is $i(3 + i) = -1 + 3i$. Adding it to each end of the side gives $D = A + (-1 + 3i) = 4i$ and $C = B + (-1 + 3i) = 3 + 5i$.
+    ](
+        title: Your turn
+    )
 
     Once a difference is an arrow, its length and direction can be constrained. Conditions of that kind cut out circles, rays and half-planes, which is the subject of *Curves and Regions in the Complex Plane*.
 
     internote(ref: curves-and-regions.chalk)
-}
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        polygon(x: 0, 3, 4, 1; y: 0, 1, 4, 3; colour: teal; !fill)
+        point(x: 3; y: 1; colour: orange; label: $z_1$)
+        point(x: 1; y: 3; colour: purple; label: $z_2$)
+
+        cue.draw{
+            segment(start: (0, 0); end: (4, 4); colour: orange; label: $z_1 + z_2$)
+            segment(start: (1, 3); end: (3, 1); colour: purple; label: $z_1 - z_2$)
+            angle(at: (2, 2); from: (4, 4); to: (3, 1); colour: grey)
+        }(
+            in: 1
+            in duration: 1.2s
+        )
+    }(
+        x axis label: real axis
+        y axis label: imaginary axis
+        x domain: [-1, 5]
+        y domain: [-1, 5]
+    )
+]

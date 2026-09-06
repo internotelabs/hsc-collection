@@ -1,14 +1,198 @@
 *(
     title: Inequalities and Proof
-    description: Proving that an inequality always holds, rather than solving one for the values that satisfy it.
-    tags: proof, inequalities, arithmetic mean geometric mean, triangle inequality, extension 2, stub
+    description: Proving that an inequality always holds rather than solving one — the tactics, the arithmetic and geometric mean inequality, and the triangle inequality.
+    tags: proof, inequalities, arithmetic mean geometric mean, triangle inequality, squares, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Solving an inequality and proving one are opposite tasks. Solving asks which values satisfy it; proving asserts that every value does, and the answer is an argument rather than a set.
+    The claim is that $x^2 + 1 \ge 2x$ for every real number $x$. Solving would ask which $x$ satisfy it, and here the answer is all of them — but *all of them* is not something a table of values can establish, and the canvas can only show a window.
 
-    Written out here: the standard results — the arithmetic and geometric mean inequality for two and three numbers, and the triangle inequality — together with the recurring tactics, which are that a square is never negative, that both sides can be manipulated only in ways that preserve the direction, and that a difference shown to be non-negative proves the inequality it came from.
-}
+    What the canvas does show is the shape of the argument. The line $y = 2x$ touches the parabola $y = x^2 + 1$ at $(1, 2)$ and lies below it everywhere else.
+
+    ===
+
+    Subtract the two sides. The difference $x^2 + 1 - 2x$ is $(x - 1)^2$, a perfect square, and a square of a real number is never negative. So the difference is never negative, and the inequality holds for every $x$. That is the whole proof, in one line.
+
+    definition{
+        To prove $A \ge B$, show that $A - B \ge 0$ — usually by writing the difference as a square, a sum of squares, or a product of factors whose signs are known.
+    }(
+        term: Non-negative difference
+    )
+
+    The teal curve is the difference itself. It touches zero exactly once, at $x = 1$, which is the equality case; a complete proof says when equality holds as well as that the inequality does.
+
+    note{
+        Solving an inequality and proving one are opposite tasks. Solving ends with a set of values; proving ends with an argument that covers every value at once, and no number of checked cases substitutes for it.
+    }
+}[
+    canvas.graph{
+        curve(expression: x^2 + 1; colour: blue; label: $y = x^2 + 1$)
+        curve(expression: 2x; colour: orange; label: $y = 2x$)
+        point(x: 1; y: 2; colour: orange)
+
+        cue.draw{
+            curve(expression: (x - 1)^2; colour: teal; dashed; label: $x^2 + 1 - 2x$)
+        }(
+            in: 1
+            in duration: 1.2s
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-2, 4]
+        y domain: [-2, 8]
+    )
+]
+
+scene{
+    # The arithmetic mean–geometric mean inequality
+
+    Put $x = \sqrt{a} - \sqrt{b}$ into the same idea. For non-negative $a$ and $b$ the square $(\sqrt{a} - \sqrt{b})^2 \ge 0$ expands to $a - 2\sqrt{ab} + b \ge 0$, and rearranging gives the most-used inequality in the course.
+
+    definition{
+        For non-negative real numbers $a$ and $b$, $\frac{a + b}{2} \ge \sqrt{ab}$, with equality if and only if $a = b$. The left side is the arithmetic mean of $a$ and $b$, the right side their geometric mean.
+    }(
+        term: AM–GM inequality
+    )
+
+    The semicircle on the canvas gives it a picture. Its diameter is split into lengths $a$ and $b$, so its radius is $\frac{a + b}{2}$.
+
+    ===
+
+    The perpendicular from the split point to the arc has length $\sqrt{ab}$ — the two right-angled triangles it creates are similar, and the proportion $\frac{a}{h} = \frac{h}{b}$ gives $h^2 = ab$.
+
+    ===
+
+    No perpendicular from the diameter can be longer than the radius, so $\sqrt{ab} \le \frac{a + b}{2}$. The two lengths coincide only when the foot of the perpendicular is the centre, which is $a = b$.
+
+    note{
+        The condition $a, b \ge 0$ is not decoration. Without it $\sqrt{ab}$ need not exist, and with $a$ and $b$ both negative the arithmetic mean is negative while $\sqrt{ab}$ is not, so the inequality fails outright.
+    }
+}[
+    canvas.graph{
+        curve(expression: sqrt(6.25 - (x - 2.5)^2); domain: [0, 5]; colour: grey)
+        segment(start: (0, 0); end: (5, 0); colour: grey)
+        axis.brace(label: $a$; x: [0, 4])
+        axis.brace(label: $b$; x: [4, 5])
+        point(x: 2.5; y: 0; colour: grey)
+
+        cue.draw{
+            segment(start: (2.5, 0); end: (2.5, 2.5); colour: orange; label: $\tfrac{a + b}{2}$)
+        }(
+            in: 1
+            in duration: 1s
+        )
+
+        cue.draw{
+            segment(start: (4, 0); end: (4, 2); colour: teal; label: $\sqrt{ab}$)
+        }(
+            in: 2
+            in duration: 1s
+        )
+    }(
+        x axis label: $a + b$
+        x domain: [-0.5, 5.5]
+        y domain: [-0.5, 3]
+        !show ticks
+    )
+]
+
+scene{
+    # Three numbers, and the tactics
+
+    For three non-negative numbers the inequality is $\frac{a + b + c}{3} \ge \sqrt[3]{abc}$, and the square trick alone does not reach it. What does is a factorisation, applied to the cube roots $x = \sqrt[3]{a}$, $y = \sqrt[3]{b}$ and $z = \sqrt[3]{c}$.
+
+    ===
+
+    The second bracket of the identity is half a sum of three squares, so it is never negative. The first bracket is a sum of non-negative numbers, so neither is it.
+
+    ===
+
+    The product of two non-negative numbers is non-negative, so $x^3 + y^3 + z^3 - 3xyz \ge 0$. Writing the cubes back as $a, b, c$ and dividing by $3$ is the inequality. Equality needs every square in the second bracket to vanish, which is $x = y = z$, that is, $a = b = c$.
+
+    The proof used every manipulation that a proof of an inequality is allowed, and it is worth listing which ones preserve the direction of the sign.
+
+    - Adding or subtracting the same quantity on both sides.
+    - Multiplying or dividing both sides by a *positive* quantity. A negative one reverses the sign.
+    - Squaring, or taking square roots, when both sides are non-negative. For sides of unknown sign, squaring can create an inequality that was not there.
+    - Taking reciprocals of two positive quantities, which reverses the sign: $2 < 3$ but $\frac{1}{2} > \frac{1}{3}$.
+
+    note{
+        A chain of inequalities must point one way throughout. A step that shows $A \ge B$ followed by one that shows $C \ge B$ has established nothing about $A$ and $C$.
+    }
+}[
+    #### The identity
+
+    equation{
+        x^3 + y^3 + z^3 - 3xyz = (x + y + z)\left(x^2 + y^2 + z^2 - xy - yz - zx\right)
+    }
+
+    cue{
+        #### The second bracket is a sum of squares
+
+        equation{
+            x^2 + y^2 + z^2 - xy - yz - zx = \frac{1}{2}\left[(x - y)^2 + (y - z)^2 + (z - x)^2\right] \ge 0
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Both brackets non-negative, so the product is
+
+        equation{
+            x^3 + y^3 + z^3 \ge 3xyz \implies \frac{a + b + c}{3} \ge \sqrt[3]{abc}
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    ## The triangle inequality
+
+    For real numbers, $|a + b| \le |a| + |b|$: the size of a sum never exceeds the sum of the sizes. Both sides are non-negative, so squaring is a permitted move, and it turns the moduli into something the algebra can handle.
+
+    equation{
+        (a + b)^2 = a^2 + 2ab + b^2 \le a^2 + 2|a||b| + b^2 = \left(|a| + |b|\right)^2
+    }
+
+    The one inequality in that line is $ab \le |ab| = |a||b|$, which is true because a number never exceeds its own modulus. Taking square roots, both sides being non-negative, gives the result, with equality exactly when $ab \ge 0$ — when $a$ and $b$ have the same sign.
+
+    ===
+
+    For complex numbers the same statement, $|z_1 + z_2| \le |z_1| + |z_2|$, is a fact about a triangle. On the canvas $z_1$ and $z_2$ are laid tip to tail, and their sum closes the third side. A side of a triangle is never longer than the other two together, and the two routes to the far corner have length $\sqrt{32}$ directly against $\sqrt{10} + \sqrt{10}$ round the detour.
+
+    Equality is the degenerate triangle: $z_1$ and $z_2$ pointing the same way, so that the detour is no detour at all. The arrow reading of complex numbers that makes this obvious is set out in *Complex Numbers as Vectors*.
+
+    task{
+        Prove that $\frac{a}{b} + \frac{b}{a} \ge 2$ for all positive real numbers $a$ and $b$.
+    }[
+        Multiply through by the positive quantity $ab$, which preserves the sign: the claim becomes $a^2 + b^2 \ge 2ab$, that is, $(a - b)^2 \ge 0$, which is true. Equality holds when $a = b$. Alternatively, AM–GM applied to $\frac{a}{b}$ and $\frac{b}{a}$, whose product is $1$, gives the same result at once.
+    ](
+        title: Your turn
+    )
+
+    internote(ref: complex-numbers-as-vectors.chalk)
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        vector(x: 0; y: 0; dx: 3; dy: 1; colour: orange; label: $z_1$)
+        vector(x: 3; y: 1; dx: 1; dy: 3; colour: purple; label: $z_2$)
+
+        cue.draw{
+            vector(x: 0; y: 0; dx: 4; dy: 4; colour: teal; label: $|z_1 + z_2| = \sqrt{32}$)
+        }(
+            in: 1
+            in duration: 1.2s
+        )
+    }(
+        x axis label: real axis
+        y axis label: imaginary axis
+        x domain: [-1, 5]
+        y domain: [-1, 5]
+    )
+]

@@ -1,14 +1,185 @@
 *(
     title: Curves and Regions in the Complex Plane
-    description: What a condition on the modulus or the argument of a complex number picks out in the Argand plane.
-    tags: complex numbers, loci, curves, regions, argand plane, extension 2, stub
+    description: What a condition on the modulus or the argument of a complex number picks out in the Argand plane, and what replacing the equals sign with an inequality does to it.
+    tags: complex numbers, loci, curves, regions, argand plane, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    The modulus of a difference is a distance and the argument of a difference is a direction, so an equation in those two quantities is a geometric condition in disguise. Fixing a distance from a point gives a circle; fixing a direction gives a ray.
+    The expression $|z - (1 + i)|$ is the modulus of a difference, and the modulus of a difference is a distance: the length of the arrow from $1 + i$ to $z$. So the equation $|z - (1 + i)| = 2$ is not asking for a number. It is asking for every point whose distance from $1 + i$ is $2$.
 
-    Written out here: the circle, the perpendicular bisector, the ray and the vertical and horizontal lines that the standard conditions produce, replacing an equals sign with an inequality to get a region rather than a curve, and combining several conditions to cut out an intersection.
-}
+    ===
+
+    Those points form the circle of radius $2$ centred at $1 + i$. Any $z$ on it satisfies the equation, as the orange one does, and any $z$ off it fails, because its distance from the centre is something other than $2$.
+
+    definition{
+        The set of all points $z$ in the Argand plane satisfying a given condition. An equation gives a curve; an inequality gives a region.
+    }(
+        term: Locus
+    )
+
+    The general form is $|z - z_0| = r$: a circle of radius $r$ centred at $z_0$. With $z_0 = 0$ it is $|z| = r$, centred on the origin. Substituting $z = x + iy$ recovers the Cartesian equation, here $(x - 1)^2 + (y - 1)^2 = 4$, but the substitution is a check rather than the method. The geometry is read straight off the condition.
+
+    note{
+        The sign inside the modulus matters. $|z + 2i|$ is $|z - (-2i)|$, a distance from $-2i$, not from $2i$. Rewrite the condition as a difference before reading the centre off it.
+    }
+}[
+    canvas.graph{
+        point(x: 1; y: 1; colour: grey; label: $1 + i$)
+        circle(x: 1; y: 1; size: 2; colour: teal; !fill)
+
+        cue.draw{
+            point(x: 2.7321; y: 2; colour: orange; label: $z$)
+            segment(start: (1, 1); end: (2.7321, 2); colour: orange; label: $2$)
+        }(
+            in: 1
+            in duration: 1s
+        )
+    }(
+        x axis label: real axis
+        y axis label: imaginary axis
+        x domain: [-2, 4]
+        y domain: [-2, 4]
+    )
+]
+
+scene{
+    # Equal distances
+
+    The condition $|z - 2| = |z - 2i|$ has two moduli, so it compares two distances: from $z$ to $2$, and from $z$ to $2i$. A point satisfies it when it is the same distance from both.
+
+    ===
+
+    The points equidistant from two fixed points lie on the perpendicular bisector of the segment joining them. For $2$ and $2i$ that is the line $y = x$, which passes through the midpoint $1 + i$ at right angles to the segment.
+
+    ===
+
+    Every point on the line works, not just the midpoint: $3 + 3i$ is $\sqrt{10}$ from each of $2$ and $2i$. Squaring the Cartesian form confirms it — $(x - 2)^2 + y^2 = x^2 + (y - 2)^2$ collapses to $y = x$ once the squares cancel.
+
+    Two other conditions produce lines directly. $\operatorname{Re}(z) = a$ is the vertical line $x = a$, and $\operatorname{Im}(z) = b$ is the horizontal line $y = b$, since each fixes one coordinate and leaves the other free.
+
+    note{
+        $|z - z_1| = |z - z_2|$ always gives a straight line, never a circle. A circle needs a single centre; two centres held at equal distance give the bisector between them.
+    }
+}[
+    canvas.graph{
+        point(x: 2; y: 0; colour: orange; label: $2$)
+        point(x: 0; y: 2; colour: purple; label: $2i$)
+        segment(start: (2, 0); end: (0, 2); colour: grey; dashed)
+
+        cue.draw{
+            curve(expression: x; colour: teal; label: $y = x$)
+        }(
+            in: 1
+            in duration: 1s
+        )
+
+        cue{
+            point(x: 3; y: 3; colour: teal; label: $3 + 3i$)
+            segment(start: (3, 3); end: (2, 0); colour: teal; dashed; label: $\sqrt{10}$)
+            segment(start: (3, 3); end: (0, 2); colour: teal; dashed; label: $\sqrt{10}$)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: real axis
+        y axis label: imaginary axis
+        x domain: [-2, 5]
+        y domain: [-2, 5]
+    )
+]
+
+scene{
+    # A fixed direction
+
+    The argument of a difference is a direction: $\arg(z - 1)$ is the angle of the arrow from $1$ to $z$. The condition $\arg(z - 1) = \frac{\pi}{4}$ therefore picks out every $z$ that lies at $45^\circ$ from the point $1$.
+
+    ===
+
+    Those points form a ray, starting at $1$ and heading off to the upper right. The point $1$ itself is excluded, since $z - 1 = 0$ there and $0$ has no argument. It is drawn as an open circle to say so.
+
+    ===
+
+    The ray is half of the line $y = x - 1$, not the whole of it. The points on the other half have $z - 1$ pointing the opposite way, with argument $-\frac{3\pi}{4}$, so they fail the condition. A condition on the argument fixes a direction, and a line has two.
+
+    note{
+        Reading the ray in Cartesian form needs the restriction written down: $y = x - 1$ with $x > 1$. Without the inequality the equation describes the line, which is the wrong locus.
+    }
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        circle(x: 1; y: 0; size: 0.08; colour: teal; !fill)
+        text(label: $1$; x: 1; y: -0.4; colour: teal)
+
+        cue.draw{
+            segment(start: (1.06, 0.06); end: (4.5, 3.5); colour: teal; label: $\arg(z - 1) = \tfrac{\pi}{4}$)
+            angle(at: (1, 0); from: 0; to: (4, 3); colour: teal; label: $\tfrac{\pi}{4}$)
+        }(
+            in: 1
+            in duration: 1s
+        )
+
+        cue{
+            segment(start: (0.94, -0.06); end: (-2, -3); colour: grey; dashed; label: $\arg(z - 1) = -\tfrac{3\pi}{4}$)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: real axis
+        y axis label: imaginary axis
+        x domain: [-3, 5]
+        y domain: [-3.5, 4]
+    )
+]
+
+scene{
+    ## Regions
+
+    Replace the equals sign with an inequality and the curve becomes the boundary of a region. $|z| \le 2$ is every point whose distance from the origin is at most $2$: the disc inside the circle $|z| = 2$, boundary included.
+
+    ===
+
+    A double inequality on the argument, $0 \le \arg z \le \frac{\pi}{3}$, is every direction between the positive real axis and $60^\circ$ above it — a wedge with its vertex at the origin, extending outward without limit. The origin itself is not in it, because $\arg 0$ is undefined however the inequality is written.
+
+    ===
+
+    Two conditions imposed together pick out the points that satisfy both, which is the intersection of the two regions. The disc and the wedge overlap in a sector of the circle, shaded on the canvas: radius at most $2$, direction between $0$ and $\frac{\pi}{3}$.
+
+    Whether the boundary belongs to the region is decided by the inequality sign. $\le$ and $\ge$ include it, and it is drawn solid; $<$ and $>$ exclude it, and it is drawn dashed, with an open circle at any excluded endpoint.
+
+    task{
+        Sketch the region $|z - 2| < |z|$.
+    }[
+        The equation $|z - 2| = |z|$ is the perpendicular bisector of the segment from $0$ to $2$, the line $x = 1$. The inequality asks for the points closer to $2$ than to $0$, which is the half-plane $\operatorname{Re}(z) > 1$ to the right of that line. The line itself is excluded, so it is drawn dashed.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        circle(x: 0; y: 0; size: 2; colour: blue; opacity: 0.2)
+        circle(x: 0; y: 0; size: 2; colour: blue; !fill; label: $|z| = 2$)
+
+        cue{
+            angle(at: (0, 0); from: 0; to: 60; sweep: anticlockwise; colour: orange; radius: 60; label: $\tfrac{\pi}{3}$)
+            segment(start: (0, 0); end: (3.5, 0); colour: orange; dashed)
+            segment(start: (0, 0); end: (1.75, 3.031); colour: orange; dashed)
+        }(
+            in: 1
+        )
+
+        cue.draw{
+            polygon(x: 0, 2, 1.9319, 1.7321, 1.4142, 1; y: 0, 0, 0.5176, 1, 1.4142, 1.7321; colour: teal; opacity: 0.6)
+        }(
+            in: 2
+            in duration: 1.2s
+        )
+    }(
+        x axis label: real axis
+        y axis label: imaginary axis
+        x domain: [-3, 4]
+        y domain: [-3, 4]
+    )
+]

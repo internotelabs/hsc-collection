@@ -1,14 +1,190 @@
 *(
     title: de Moivre and Trigonometric Identities
-    description: Expanding one power in two different ways, and reading an identity off the result.
-    tags: complex numbers, de moivre, trigonometric identities, binomial theorem, extension 2, stub
+    description: Expanding one power in two different ways, reading an identity off the result, and using it to integrate a power of cosine.
+    tags: complex numbers, de moivre, trigonometric identities, binomial theorem, integration, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    There are two ways to raise a complex number of modulus one to the power n. de Moivre's theorem multiplies the angle; the binomial theorem expands the bracket. Both are correct, so their real parts are equal and so are their imaginary parts, and each equality is a trigonometric identity that would be tedious to reach any other way.
+    The blue curve is $\cos 3\theta$: three full waves across the width of the canvas.
 
-    Written out here: identities for the cosine and sine of a multiple angle, the reverse direction in which powers of cosine and sine are written as sums of multiple angles, and the use of that second form to make a trigonometric integral straightforward.
-}
+    ===
+
+    Drawn over it, $4\cos^3\theta - 3\cos\theta$ cannot be told apart from it, because the two expressions are equal at every $\theta$. That is not a coincidence of the window — it is an identity, and it holds for every real number.
+
+    definition{
+        An equation between two trigonometric expressions that is true for every value of the variable, as opposed to one that is solved for the particular values that satisfy it.
+    }(
+        term: Trigonometric identity
+    )
+
+    Identities of this kind can be reached by compound-angle formulas, but slowly: $\cos 3\theta$ is $\cos(2\theta + \theta)$, which needs the double-angle results first and then a page of substitution. For $\cos 5\theta$ the same route is a bad afternoon.
+
+    Complex numbers reach them in three lines. The number $\cos\theta + i\sin\theta$ can be raised to the third power two ways — by de Moivre's theorem, which multiplies the angle, and by the binomial theorem, which expands the bracket. Both answers are correct, so they are equal, and equal complex numbers have equal real parts.
+}[
+    canvas.graph{
+        curve(expression: cos(3 * x); colour: blue; label: $\cos 3\theta$)
+
+        cue.draw{
+            curve(expression: 4 * cos(x)^3 - 3 * cos(x); colour: orange; dashed; label: $4\cos^3\theta - 3\cos\theta$)
+        }(
+            in: 1
+            in duration: 1.5s
+        )
+    }(
+        x axis label: $\theta$
+        y axis label: $y$
+        x domain: [-3.2, 3.2]
+        y domain: [-1.5, 1.5]
+    )
+]
+
+scene{
+    # Expanding one power two ways
+
+    de Moivre's theorem says $(\cos\theta + i\sin\theta)^3 = \cos 3\theta + i\sin 3\theta$. That is one expansion, and it is finished before it starts.
+
+    ===
+
+    The binomial theorem expands the same bracket term by term, with coefficients $1, 3, 3, 1$. The powers of $i$ then sort the four terms into two piles: $i^2 = -1$ sends the third term to the real pile with a minus sign, and $i^3 = -i$ sends the fourth to the imaginary pile with a minus sign.
+
+    ===
+
+    Two complex numbers are equal exactly when their real parts agree and their imaginary parts agree. Reading off the real parts gives $\cos 3\theta$ in terms of $\cos\theta$ and $\sin\theta$; reading off the imaginary parts gives $\sin 3\theta$. Replacing $\sin^2\theta$ by $1 - \cos^2\theta$ in the first, and $\cos^2\theta$ by $1 - \sin^2\theta$ in the second, leaves each in a single function.
+
+    Dividing the second identity by the first, and then top and bottom by $\cos^3\theta$, gives $\tan 3\theta$ as well: with $t = \tan\theta$, $\tan 3\theta = \frac{3t - t^3}{1 - 3t^2}$.
+
+    note{
+        The method scales. For $\cos n\theta$ the real part collects the terms with even powers of $\sin\theta$, each of which is a polynomial in $\cos\theta$ once $\sin^2\theta = 1 - \cos^2\theta$ is applied. The only work is the binomial coefficients.
+    }
+}[
+    #### de Moivre's theorem
+
+    equation{
+        (\cos\theta + i\sin\theta)^3 = \cos 3\theta + i\sin 3\theta
+    }
+
+    cue{
+        #### The binomial theorem, sorted by powers of $i$
+
+        equation{
+            (\cos\theta + i\sin\theta)^3 = \cos^3\theta + 3\cos^2\theta\,(i\sin\theta) + 3\cos\theta\,(i\sin\theta)^2 + (i\sin\theta)^3
+        }
+
+        equation{
+            = \left(\cos^3\theta - 3\cos\theta\sin^2\theta\right) + i\left(3\cos^2\theta\sin\theta - \sin^3\theta\right)
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Real parts agree, and so do imaginary parts
+
+        equation{
+            \cos 3\theta = \cos^3\theta - 3\cos\theta\sin^2\theta = 4\cos^3\theta - 3\cos\theta
+        }
+
+        equation{
+            \sin 3\theta = 3\cos^2\theta\sin\theta - \sin^3\theta = 3\sin\theta - 4\sin^3\theta
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Powers of cosine as multiple angles
+
+    The identities so far write a multiple angle as a power. The reverse direction — a power of $\cos\theta$ as a sum of multiple angles — is the one integration wants, and it comes from a different pairing.
+
+    Let $z = \cos\theta + i\sin\theta$. Its reciprocal is $\operatorname{cis}(-\theta) = \cos\theta - i\sin\theta$, so adding the two cancels the imaginary parts: $z + \frac{1}{z} = 2\cos\theta$. The same argument with $z^n$ gives $z^n + \frac{1}{z^n} = 2\cos n\theta$, and subtracting instead gives $z - \frac{1}{z} = 2i\sin\theta$.
+
+    ===
+
+    Now raise $z + \frac{1}{z}$ to the fourth power. The binomial expansion produces $z^4, z^2, 1, z^{-2}, z^{-4}$ with coefficients $1, 4, 6, 4, 1$, and the coefficients are symmetric, so the terms pair off: $z^4$ with $z^{-4}$, $z^2$ with $z^{-2}$, and the $6$ left alone in the middle. Each pair is $2\cos$ of a multiple angle.
+
+    ===
+
+    The left-hand side was $(2\cos\theta)^4 = 16\cos^4\theta$. Dividing through by $16$ leaves $\cos^4\theta$ as a sum of $\cos 4\theta$, $\cos 2\theta$ and a constant, with no powers anywhere. Setting $\theta = 0$ checks it: $1 = \frac{1}{8}(1 + 4 + 3)$.
+
+    note{
+        For powers of sine start from $z - \frac{1}{z} = 2i\sin\theta$ instead. The pairs now alternate in sign, and the $i^4 = 1$ on the left must be tracked — for an odd power it is an $i$ that survives, and the pairs become $2i\sin$ of multiple angles.
+    }
+}[
+    #### A number of modulus one and its reciprocal
+
+    equation{
+        z + \frac{1}{z} = 2\cos\theta, \qquad z^n + \frac{1}{z^n} = 2\cos n\theta
+    }
+
+    cue{
+        #### Expanding the fourth power, and pairing the terms
+
+        equation{
+            \left(z + \frac{1}{z}\right)^4 = z^4 + 4z^2 + 6 + \frac{4}{z^2} + \frac{1}{z^4}
+        }
+
+        equation{
+            = \left(z^4 + \frac{1}{z^4}\right) + 4\left(z^2 + \frac{1}{z^2}\right) + 6 = 2\cos 4\theta + 8\cos 2\theta + 6
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Dividing by $16$
+
+        equation{
+            \cos^4\theta = \frac{1}{8}\left(\cos 4\theta + 4\cos 2\theta + 3\right)
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    ## An integral that becomes straightforward
+
+    The canvas shows $\cos^4\theta$ between $0$ and $\frac{\pi}{2}$. Integrating it as written has no direct route: the power resists substitution, and the usual approach is a reduction formula.
+
+    ===
+
+    In multiple-angle form every term integrates on sight. Each $\cos k\theta$ becomes $\frac{\sin k\theta}{k}$, and every one of those vanishes at both limits, since $\sin 2\pi$, $\sin\pi$ and $\sin 0$ are all zero. Only the constant survives.
+
+    equation{
+        \int_0^{\pi/2}\cos^4\theta\,d\theta = \frac{1}{8}\left[\frac{\sin 4\theta}{4} + 2\sin 2\theta + 3\theta\right]_0^{\pi/2} = \frac{1}{8}\cdot\frac{3\pi}{2} = \frac{3\pi}{16}
+    }
+
+    The shaded region measures !value:#area.value(digits: 4), which is $\frac{3\pi}{16}$ to that precision. Nothing about the shape suggested the answer would involve $\pi$; the multiple angles put it there, one full and one half revolution across the interval.
+
+    task{
+        Express $\sin^3\theta$ in terms of $\sin 3\theta$ and $\sin\theta$, and hence find $\int \sin^3\theta\,d\theta$.
+    }[
+        From the second scene, $\sin 3\theta = 3\sin\theta - 4\sin^3\theta$, so $\sin^3\theta = \frac{1}{4}(3\sin\theta - \sin 3\theta)$. Then $\int \sin^3\theta\,d\theta = -\frac{3}{4}\cos\theta + \frac{1}{12}\cos 3\theta + C$.
+    ](
+        title: Your turn
+    )
+
+    Powers of sine and cosine, and products of them, are a whole family of integrals with their own tactics. *Trigonometric Integrals* collects them, and this identity is one of the tools it draws on.
+
+    internote(ref: trigonometric-integrals.chalk)
+}[
+    canvas.graph{
+        curve#quartic(expression: cos(x)^4; colour: blue; label: $\cos^4\theta$; domain: [-0.5, 3.6])
+        axis.label(x: 1.5708; label: $\tfrac{\pi}{2}$)
+
+        cue{
+            integral#area(of: #quartic; from: 0; to: 1.5708; colour: teal)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $\theta$
+        y axis label: $y$
+        x domain: [-0.5, 3.6]
+        y domain: [-0.2, 1.3]
+    )
+]

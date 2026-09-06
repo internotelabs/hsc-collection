@@ -1,7 +1,7 @@
 *(
     title: Proof by Contradiction
-    description: Assuming a statement is false, deriving an absurdity from it, and concluding that it was true.
-    tags: proof, contradiction, irrationality, prime numbers, extension 2, stub
+    description: Assuming a statement is false, deriving an absurdity from it, and concluding that it was true — with the two classical examples and the care needed in the first line.
+    tags: proof, contradiction, irrationality, prime numbers, negation, extension 2
     lesson
 )
 
@@ -10,5 +10,173 @@
 scene{
     Some statements resist a direct attack because they assert an absence: that no fraction squares to two, that no largest prime exists. There is nothing to construct and nothing to compute, so a direct argument has no purchase.
 
-    Contradiction supplies the purchase. Assume the statement false, and the assumption becomes a concrete object to work with — a fraction in lowest terms, a complete list of primes. Written out here: the structure of the method, the irrationality of the square root of two, Euclid's argument on the primes, and the care needed in negating a statement before assuming it.
-}
+    ===
+
+    Contradiction supplies the purchase. Suppose the statement is false. The supposition is now a concrete object to work with — a fraction that does square to two, a list that does contain every prime — and ordinary reasoning can be applied to it.
+
+    ===
+
+    If that reasoning arrives at something known to be false, the supposition was to blame, since every other step was valid. A supposition that leads to a falsehood is itself false, and the statement it denied is true.
+
+    definition{
+        A proof of a statement $P$ that assumes $\neg P$, derives from it a contradiction — a statement known to be false, or two conclusions that cannot both hold — and concludes that $P$ is true.
+    }(
+        term: Proof by contradiction
+    )
+
+    The method's power is that the assumption can be anything at all, provided it is exactly the negation of what is wanted. Its weakness is the same: get the negation wrong and the proof establishes something other than the claim. *The Nature of Proof* set out how negation works; the last scene here returns to it.
+}[
+    canvas.diagram{
+        box#want(label: To prove: $P$; shape: terminal)
+
+        cue{
+            box#suppose(label: Suppose $P$ is false; sub: the negation, taken as a working assumption)
+            box#deduce(label: Reason from it; sub: every step valid)
+            arrow(from: #want; to: #suppose)
+            arrow(from: #suppose; to: #deduce)
+        }(
+            in: 1
+        )
+
+        cue{
+            box#absurd(label: A contradiction; sub: something known to be false; shape: decision; colour: red)
+            box#done(label: So $P$ is true; shape: terminal; colour: green)
+            arrow(from: #deduce; to: #absurd)
+            arrow(from: #absurd; to: #done; label: the supposition was false)
+        }(
+            in: 2
+        )
+    }(
+        flow: down
+    )
+]
+
+scene{
+    # $\sqrt{2}$ is irrational
+
+    definition{
+        A real number that cannot be written as $\frac{p}{q}$ with $p$ and $q$ integers and $q \ne 0$.
+    }(
+        term: Irrational number
+    )
+
+    The claim is an absence — no fraction has square $2$ — so suppose the opposite: $\sqrt{2} = \frac{p}{q}$ for some integers. Any fraction can be reduced, so $p$ and $q$ may be taken with no common factor. That extra assumption costs nothing, and it is where the contradiction will land.
+
+    ===
+
+    Squaring and clearing the fraction gives $p^2 = 2q^2$, so $p^2$ is even. An even square has an even root — the lemma from *The Nature of Proof*, proved by its contrapositive — so $p$ is even, say $p = 2m$.
+
+    ===
+
+    Substituting back, $4m^2 = 2q^2$, so $q^2 = 2m^2$ is even, and by the same lemma $q$ is even too.
+
+    ===
+
+    Now $p$ and $q$ are both even, so they share the factor $2$. But they were chosen with no common factor. The supposition has contradicted itself, so no such fraction exists and $\sqrt{2}$ is irrational.
+
+    note{
+        The lowest-terms assumption is the whole trick. Without it, $p$ and $q$ both even is not absurd — $\frac{2}{2}$ is a perfectly good fraction — and the argument would only show that the fraction could be reduced, which leads to an infinite descent rather than a clean contradiction.
+    }
+}[
+    #### Suppose not
+
+    equation{
+        \sqrt{2} = \frac{p}{q}, \qquad p, q \text{ integers with no common factor}
+    }
+
+    cue{
+        #### Square, and clear the fraction
+
+        equation{
+            p^2 = 2q^2 \implies p^2 \text{ even} \implies p \text{ even}, \; p = 2m
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Substitute back
+
+        equation{
+            4m^2 = 2q^2 \implies q^2 = 2m^2 \implies q \text{ even}
+        }
+    }(
+        in: 2
+    )
+
+    cue{
+        #### The contradiction
+
+        equation{
+            2 \mid p \text{ and } 2 \mid q, \quad \text{yet } p, q \text{ have no common factor}
+        }
+    }(
+        in: 3
+    )
+]
+
+scene{
+    # There is no largest prime
+
+    Euclid's argument is the same shape. Suppose there are only finitely many primes, so that some list $p_1, p_2, \ldots, p_n$ contains all of them. The list is the concrete object, and the aim is to build a prime it has missed.
+
+    Multiply every prime on the list together and add one: $N = p_1 p_2 \cdots p_n + 1$. Dividing $N$ by any $p_k$ leaves remainder $1$, since $p_k$ divides the product exactly, so no prime on the list divides $N$.
+
+    But $N$ is larger than $1$, and every integer larger than $1$ has at least one prime factor. That prime factor is not on the list, which was supposed to contain every prime. The supposition is false, and the primes go on forever.
+
+    The table runs the construction on the first few primes. Each $N$ is either prime itself or has a prime factor missing from the list it was built from — the last row is the one to notice, because $30031$ is not prime.
+
+    note{
+        The argument does not claim that $N$ is prime, and it is a common misreading to think it does. It claims only that $N$ has some prime factor outside the list, and $30031 = 59 \times 509$ shows that the factor need not be $N$ itself.
+    }
+}[
+    table{
+        Primes on the list        | $N$   | Prime factors of $N$
+        $2$                       | 3     | $3$ — not on the list
+        $2, 3$                    | 7     | $7$ — not on the list
+        $2, 3, 5$                 | 31    | $31$ — not on the list
+        $2, 3, 5, 7$              | 211   | $211$ — not on the list
+        $2, 3, 5, 7, 11$          | 2311  | $2311$ — not on the list
+        $2, 3, 5, 7, 11, 13$      | 30031 | $59 \times 509$ — neither on the list
+    }(
+        title: Euclid's construction on the first six primes
+        highlight rows: 7
+        highlight colour: orange
+    )
+]
+
+scene{
+    ## Negating the statement correctly
+
+    A proof by contradiction stands or falls on its first line, because everything after it reasons from that line. The supposition must be the exact negation of the claim: not a stronger statement, not a weaker one, and not a different one that happens to sound similar.
+
+    The recurring error is negating *all* as *none*. The negation of *every positive rational has a smaller one* is not *no positive rational has a smaller one*; it is *some positive rational $r$ has no smaller one*. That single $r$ is what the proof then works with — and $\frac{r}{2}$ is a smaller positive rational, so the contradiction is immediate.
+
+    The negation of an implication needs the same care. To deny *if $P$ then $Q$* is to assert that $P$ can hold while $Q$ fails: $P$ and $\neg Q$ together. A proof by contradiction of an implication therefore assumes both, and it is finished the moment either $\neg P$ or $Q$ is derived.
+
+    note{
+        Deriving $\neg P$ from $\neg Q$ alone, without using $P$, is a proof of the contrapositive, and it is cleaner to call it that. Both are valid; naming the method correctly makes the argument easier to check.
+    }
+
+    task{
+        Prove that $\log_2 3$ is irrational.
+    }[
+        Suppose $\log_2 3 = \frac{p}{q}$ with $p$ and $q$ positive integers, which is allowed since $\log_2 3 > 0$. Then $2^{p/q} = 3$, so $2^p = 3^q$. The left side is even and the right side is odd, which is impossible. So $\log_2 3$ is irrational.
+    ](
+        title: Your turn
+    )
+
+    internote(ref: the-nature-of-proof.chalk)
+}[
+    table{
+        Statement to prove                          | Supposition that opens the proof
+        $\sqrt{2}$ is irrational                    | $\sqrt{2} = \frac{p}{q}$ for some integers $p$ and $q$
+        There are infinitely many primes            | Some finite list contains every prime
+        Every $x$ has property $P$                  | Some $x$ lacks property $P$
+        Some $x$ has property $P$                   | No $x$ has property $P$
+        If $P$ then $Q$                             | $P$ holds and $Q$ fails
+        No positive rational is the smallest        | Some positive rational $r$ is the smallest
+    }(
+        title: A claim, and the line that begins its proof by contradiction
+    )
+]

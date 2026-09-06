@@ -1,22 +1,203 @@
 *(
     title: The Nature of Proof
-    description: The vocabulary a proof is written in, and the asymmetry between establishing a statement and refuting one.
-    tags: proof, logic, contrapositive, counterexample, quantifiers, extension 2, stub
+    description: The vocabulary a proof is written in — implication, converse, contrapositive, negation and the quantifiers — and the asymmetry between establishing a statement and refuting one.
+    tags: proof, logic, contrapositive, counterexample, quantifiers, equivalence, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    A mathematical statement is either true or false, and a proof settles which. Before any particular proof can be written the sentences themselves have to be readable: what an implication claims, what its converse claims instead, and why the contrapositive says the same thing as the original while the converse says something else entirely.
+    Take the sentence *if $n$ is a multiple of $4$, then $n$ is even*. It is true, and the reason is short: a multiple of $4$ is $4k$, which is $2(2k)$.
 
-    Written out here: implication and equivalence, negation, the universal and existential quantifiers, and the asymmetry that follows from them — a statement about every integer takes a general argument to establish and one counterexample to destroy.
+    The sentence has a shape as well as a content. It names a condition, $P$, and a conclusion, $Q$, and claims that whenever the first holds the second does too. Nearly every theorem has this shape.
 
-    Three methods are built on that vocabulary. Assuming the negation and driving it to an absurdity is *Proof by Contradiction*. The standard inequalities, and the tactics for proving new ones from them, are *Inequalities and Proof*. And induction, met in Extension 1 for sums and divisibility, is pushed onto inequalities and recursive definitions in *Further Proof by Induction*.
+    definition{
+        A statement of the form *if $P$, then $Q$*, written $P \Rightarrow Q$. It claims that $Q$ is true whenever $P$ is, and says nothing at all about what happens when $P$ is false.
+    }(
+        term: Implication
+    )
+
+    ===
+
+    Swap the two halves and the sentence reads *if $n$ is even, then $n$ is a multiple of $4$*. This is a different claim, and it needs its own verdict.
+
+    definition{
+        The implication $Q \Rightarrow P$ formed by exchanging the condition and the conclusion of $P \Rightarrow Q$. The truth of an implication says nothing about the truth of its converse.
+    }(
+        term: Converse
+    )
+
+    ===
+
+    The verdict here is false, and one number is enough to deliver it. $6$ is even and is not a multiple of $4$, so the converse promises something that $n = 6$ does not keep.
+
+    The original implication is untouched by this. It never claimed that only multiples of $4$ are even; it claimed that multiples of $4$ are among the even numbers, and they are. Confusing a statement with its converse is the most common error in the whole subject, and it is an error of reading before it is an error of mathematics.
+}[
+    canvas.diagram{
+        box#p(label: $n$ is a multiple of $4$; sub: the condition $P$)
+        box#q(label: $n$ is even; sub: the conclusion $Q$)
+        arrow(from: #p; to: #q; label: implies — true)
+
+        cue{
+            arrow(from: #q; to: #p; label: the converse; dashed)
+        }(
+            in: 1
+        )
+
+        cue{
+            box#six(label: $n = 6$; sub: even, but not a multiple of $4$; shape: terminal; colour: red)
+            arrow(from: #six; to: #q; label: satisfies $Q$)
+            arrow(from: #six; to: #p; label: fails $P$; dashed)
+        }(
+            in: 2
+        )
+    }(
+        flow: down
+    )
+]
+
+scene{
+    # Negation and the contrapositive
+
+    The negation of a statement is the statement that it is false. The negation of *$n$ is even* is *$n$ is odd*; the negation of *$x > 3$* is *$x \le 3$*, not *$x < 3$*, because the negation has to cover every case the original leaves out.
+
+    definition{
+        The statement *not $P$*, written $\neg P$, which is true exactly when $P$ is false. Negating a negation returns the original.
+    }(
+        term: Negation
+    )
+
+    Negate both halves of an implication and reverse it, and the result is the contrapositive: from *if $n$ is a multiple of $4$ then $n$ is even* to *if $n$ is not even then $n$ is not a multiple of $4$*. Unlike the converse, this says the same thing as the original.
+
+    definition{
+        The implication $\neg Q \Rightarrow \neg P$ formed from $P \Rightarrow Q$. An implication and its contrapositive are logically equivalent: each is true exactly when the other is.
+    }(
+        term: Contrapositive
+    )
+
+    The table on the canvas is the proof. An implication fails in exactly one situation — the condition holds and the conclusion does not, the second row — and it is true in every other. Its contrapositive fails in that same row and nowhere else, so the two columns are identical. The converse's column is different, failing in the third row instead.
+
+    note{
+        An implication with a false condition is counted as true, whatever the conclusion. *If $6$ is a multiple of $4$ then $6$ is odd* is a true sentence: it promised something only in a case that never arises, and a promise never tested is never broken.
+    }
+}[
+    table{
+        $P$ | $Q$ | $P \Rightarrow Q$ | $\neg Q \Rightarrow \neg P$ | $Q \Rightarrow P$
+        T   | T   | T                 | T                           | T
+        T   | F   | F                 | F                           | T
+        F   | T   | T                 | T                           | F
+        F   | F   | T                 | T                           | T
+    }(
+        title: An implication, its contrapositive and its converse
+        highlight columns: 3-4
+    )
+]
+
+scene{
+    # Proving an implication by its contrapositive
+
+    Because the two are equivalent, an implication can be proved by proving its contrapositive instead, and sometimes that is the only comfortable route. Consider *if $n^2$ is even, then $n$ is even*. Attacked directly it is awkward: from $n^2 = 2m$ there is no clean way to reach $n$.
+
+    ===
+
+    The contrapositive is *if $n$ is odd, then $n^2$ is odd*, and that is a two-line calculation. An odd $n$ is $2k + 1$; squaring and regrouping shows $n^2$ is one more than a multiple of $2$. The contrapositive is proved, so the original is proved with it.
+
+    ===
+
+    The converse — *if $n$ is even, then $n^2$ is even* — is also true, by a similar line, and when both an implication and its converse hold the two statements are equivalent.
+
+    definition{
+        The statement that $P \Rightarrow Q$ and $Q \Rightarrow P$ both hold, written $P \Leftrightarrow Q$ and read *$P$ if and only if $Q$*. Proving one requires proving both directions.
+    }(
+        term: Equivalence
+    )
+
+    So $n$ is even if and only if $n^2$ is even. A proof of an *if and only if* that establishes only one direction has proved half a theorem, and it is worth checking which half a question is actually asking for.
+
+    note{
+        The lemma proved here, that an even square has an even root, is the hinge of the proof that $\sqrt{2}$ is irrational. Small results about parity get reused constantly.
+    }
+}[
+    #### The claim, and its contrapositive
+
+    equation{
+        n^2 \text{ even} \implies n \text{ even} \qquad \text{equivalently} \qquad n \text{ odd} \implies n^2 \text{ odd}
+    }
+
+    cue{
+        #### An odd number, squared
+
+        equation{
+            n = 2k + 1 \implies n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### The other direction, for the equivalence
+
+        equation{
+            n = 2k \implies n^2 = 4k^2 = 2(2k^2)
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    ## Quantifiers, and the asymmetry
+
+    Most statements worth proving are about every member of a set, or about at least one. Those two words carry so much weight that they have symbols.
+
+    definition{
+        The universal quantifier $\forall$, read *for all*, asserts that a property holds for every member of a set: $\forall n \in \mathbb{Z}, \; n^2 \ge 0$. The existential quantifier $\exists$, read *there exists*, asserts that at least one member has it: $\exists n \in \mathbb{Z}, \; n^2 = 49$.
+    }(
+        term: Quantifiers
+    )
+
+    Negating swaps them. The negation of *every $n$ has property $P$* is not *no $n$ has it* but *some $n$ fails it*: $\neg(\forall n, P(n))$ is $\exists n, \neg P(n)$. To deny that everyone in a room is tall it is enough to find one person who is not.
+
+    That is the asymmetry the whole of proof rests on. A universal statement takes a general argument to establish, because checking cases only ever checks finitely many of them; but it takes exactly one case to destroy.
+
+    definition{
+        A single member of the set for which the property fails, which by itself proves that a universal statement is false.
+    }(
+        term: Counterexample
+    )
+
+    The table shows the trap in action. The expression $n^2 + n + 41$ is prime at $n = 0$, at $n = 1$, and at every value up to $n = 39$. Forty consecutive successes look like evidence, and they are not: at $n = 40$ it is $1681 = 41 \times 41$, and the claim that it is always prime is dead.
+
+    For an existential statement the asymmetry runs the other way. To prove that a prime lies between $40$ and $50$, exhibit $41$; to refute an existence claim, a general argument is needed to show that nothing qualifies.
+
+    task{
+        Write the negation of *every real number $x$ satisfies $x^2 \ge x$*, and decide which of the two statements is true.
+    }[
+        The negation is *there exists a real $x$ with $x^2 < x$*. It is the negation that is true: $x = \frac{1}{2}$ has $x^2 = \frac{1}{4} < \frac{1}{2}$, so the original statement is false and this one value shows it.
+    ](
+        title: Your turn
+    )
+
+    Three methods are built on this vocabulary. Assuming the negation and driving it to an absurdity is *Proof by Contradiction*. The standard inequalities, and the tactics for proving new ones from them, are *Inequalities and Proof*. And induction, met in Extension 1 for sums and divisibility, is pushed onto inequalities and recursive definitions in *Further Proof by Induction*.
 
     internote(ref: proof-by-contradiction.chalk)
 
     internote(ref: inequalities-and-proof.chalk)
 
     internote(ref: further-proof-by-induction.chalk)
-}
+}[
+    table{
+        $n$ | $n^2 + n + 41$          | Prime?
+        0   | 41                      | !icon(name: tick; colour: green)
+        1   | 43                      | !icon(name: tick; colour: green)
+        2   | 47                      | !icon(name: tick; colour: green)
+        3   | 53                      | !icon(name: tick; colour: green)
+        39  | 1601                    | !icon(name: tick; colour: green)
+        40  | $1681 = 41 \times 41$   | !icon(name: cross; colour: red)
+    }(
+        title: Forty cases are not a proof
+        highlight rows: 7
+        highlight colour: red
+    )
+]

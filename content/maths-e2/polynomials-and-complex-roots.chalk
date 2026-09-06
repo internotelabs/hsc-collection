@@ -1,14 +1,204 @@
 *(
     title: Polynomials and Complex Roots
-    description: Why a polynomial with real coefficients keeps its non-real roots in conjugate pairs, and what that forces about its factors.
-    tags: complex numbers, polynomials, conjugate root theorem, factorisation, extension 2, stub
+    description: Why a polynomial with real coefficients keeps its non-real roots in conjugate pairs, what that forces about its factors, and what changes when the coefficients are complex.
+    tags: complex numbers, polynomials, conjugate root theorem, factorisation, quadratics, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Over the complex numbers every polynomial of degree n has exactly n roots, counted with multiplicity, so factorisation always finishes. What is less obvious is that real coefficients constrain where those roots can sit.
+    The parabola $y = x^2 - 2x + 5$ never meets the horizontal axis, so over the reals the equation $x^2 - 2x + 5 = 0$ has no solution. Completing the square says why: $(x - 1)^2 = -4$, and no real square is negative.
 
-    Written out here: the conjugate root theorem and why conjugation leaves a real polynomial alone, the consequence that a real polynomial of odd degree must have a real root, factorising over the reals into linear and irreducible quadratic factors, and solving quadratics whose own coefficients are complex, where the conjugate pairing no longer applies.
-}
+    Over the complex numbers that last step is no obstacle. $(x - 1)^2 = -4$ gives $x - 1 = \pm 2i$, so the roots are $1 + 2i$ and $1 - 2i$.
+
+    ===
+
+    The graph knew where they were all along. Their common real part, $1$, is the axis of symmetry; their imaginary parts, $\pm 2$, are the square roots of the minimum height $4$. The two roots are a pair, placed symmetrically, and that symmetry is the subject of this internote.
+
+    definition{
+        Every polynomial of degree $n \ge 1$ has at least one root among the complex numbers. It follows that a polynomial of degree $n$ has exactly $n$ roots counted with multiplicity, and factorises completely into $n$ linear factors over $\mathbb{C}$.
+    }(
+        term: Fundamental theorem of algebra
+    )
+
+    Counting with multiplicity means that $(z - 1)^2$ has the root $1$ twice, so a quadratic always has two roots even when they coincide. What the theorem guarantees is that factorisation never gets stuck: over the reals $x^2 - 2x + 5$ is as far as it goes, and over $\mathbb{C}$ it is $(z - 1 - 2i)(z - 1 + 2i)$.
+}[
+    canvas.graph{
+        curve(expression: x^2 - 2x + 5; colour: blue; label: $y = x^2 - 2x + 5$)
+        point(x: 1; y: 4; colour: orange; label: $(1, 4)$)
+
+        cue{
+            axis.label(x: 1; label: $\operatorname{Re}$ of both roots; line)
+            axis.label(y: 4; label: $2^2$; line)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-3, 5]
+        y domain: [-1, 12]
+    )
+]
+
+scene{
+    # The conjugate root theorem
+
+    The pairing at $1 \pm 2i$ is not special to quadratics. It happens for every polynomial whose coefficients are real, and the reason is that conjugation passes through every operation such a polynomial is built from.
+
+    definition{
+        If a polynomial $P(z)$ has real coefficients and $P(\alpha) = 0$, then $P(\bar{\alpha}) = 0$ as well. The non-real roots of a real polynomial occur in conjugate pairs.
+    }(
+        term: Conjugate root theorem
+    )
+
+    The proof needs three facts about conjugates, all checked by writing $z = a + ib$ and expanding: the conjugate of a sum is the sum of the conjugates, the conjugate of a product is the product of the conjugates, and a real number is its own conjugate.
+
+    ===
+
+    Apply them to $P(\alpha)$ term by term. Conjugating the sum conjugates each term; conjugating each term conjugates $\alpha^k$ into $\bar{\alpha}^{\,k}$ and leaves the coefficient $a_k$ alone, because it is real. What remains is $P$ evaluated at $\bar{\alpha}$.
+
+    ===
+
+    So $\overline{P(\alpha)} = P(\bar{\alpha})$ for every $\alpha$. If $P(\alpha) = 0$, then $P(\bar{\alpha})$ is the conjugate of $0$, which is $0$.
+
+    The step that used real coefficients is the only one that can fail. With $a_k$ complex, $\overline{a_k}$ is a different number and the sum does not reassemble into $P(\bar{\alpha})$, which is why the theorem says nothing about polynomials with complex coefficients.
+
+    note{
+        Non-real roots arrive in pairs, so a real polynomial of odd degree cannot have all its roots non-real — an odd number cannot be split into pairs. Every real cubic, quintic and so on has at least one real root, which is the algebraic version of the fact that its graph must cross the axis.
+    }
+}[
+    #### Conjugation respects sums and products
+
+    equation{
+        \overline{z + w} = \bar{z} + \bar{w}, \qquad \overline{zw} = \bar{z}\,\bar{w}, \qquad \bar{a} = a \text{ for real } a
+    }
+
+    cue{
+        #### So it passes through a real polynomial
+
+        equation{
+            \overline{P(\alpha)} = \overline{a_n\alpha^n + \cdots + a_1\alpha + a_0} = a_n\bar{\alpha}^{\,n} + \cdots + a_1\bar{\alpha} + a_0 = P(\bar{\alpha})
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### The conjugate of a root is a root
+
+        equation{
+            P(\alpha) = 0 \implies P(\bar{\alpha}) = \overline{P(\alpha)} = \bar{0} = 0
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Factorising over the reals
+
+    Given that $1 + 2i$ is a root of $P(z) = z^3 - 4z^2 + 9z - 10$, the theorem supplies a second root for free. The coefficients are real, so $1 - 2i$ is a root as well — the reflection of the first in the real axis.
+
+    ===
+
+    That is two of the three roots, and the third has nowhere to hide. The sum of the roots of a cubic is minus the coefficient of $z^2$, here $4$, so the third root is $4 - (1 + 2i) - (1 - 2i) = 2$. The imaginary parts of a conjugate pair always cancel in that sum, which is why the remaining root comes out real.
+
+    ===
+
+    The factors follow the same pairing. Multiplying the two conjugate factors together produces a quadratic with real coefficients, because $(z - \alpha)(z - \bar{\alpha}) = z^2 - (\alpha + \bar{\alpha})z + \alpha\bar{\alpha}$, and both $\alpha + \bar{\alpha} = 2\operatorname{Re}(\alpha)$ and $\alpha\bar{\alpha} = |\alpha|^2$ are real.
+
+    equation{
+        (z - 1 - 2i)(z - 1 + 2i) = (z - 1)^2 + 4 = z^2 - 2z + 5
+    }
+
+    equation{
+        z^3 - 4z^2 + 9z - 10 = (z - 2)(z^2 - 2z + 5)
+    }
+
+    The quadratic factor cannot be split further over the reals, since its discriminant $4 - 20$ is negative. That is the general shape of the answer.
+
+    definition{
+        A quadratic with real coefficients and negative discriminant, which has no real linear factors. Its two roots are a conjugate pair.
+    }(
+        term: Irreducible quadratic
+    )
+
+    Every polynomial with real coefficients factorises over the reals into linear factors, one for each real root, and irreducible quadratics, one for each conjugate pair. Over $\mathbb{C}$ each of those quadratics splits in two, and the count reaches the $n$ linear factors the fundamental theorem promised.
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        point(x: 1; y: 2; colour: teal; label: $1 + 2i$)
+
+        cue{
+            point(x: 1; y: -2; colour: teal; label: $1 - 2i$)
+            segment(start: (1, 2); end: (1, -2); colour: teal; dashed)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 2; y: 0; colour: orange; label: $2$)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: real axis
+        y axis label: imaginary axis
+        x domain: [-1, 4]
+        y domain: [-3, 3]
+    )
+]
+
+scene{
+    ## Quadratics with complex coefficients
+
+    The quadratic formula was derived by completing the square, and completing the square uses only the four operations of arithmetic. Those all work over $\mathbb{C}$, so the formula still solves $z^2 - (3 + i)z + 2 + 2i = 0$. What it needs is the square root of a complex discriminant.
+
+    ===
+
+    Here the discriminant is $-2i$, and its square roots are found by writing $(a + ib)^2 = -2i$ and matching parts: $a^2 - b^2 = 0$ and $2ab = -2$. The first says $b = \pm a$; the second rules out $b = a$ and gives $a^2 = 1$. So the square roots are $\pm(1 - i)$, and checking, $(1 - i)^2 = 1 - 2i + i^2 = -2i$.
+
+    ===
+
+    The roots are $2$ and $1 + i$. They are not conjugates, and nothing said they should be — the coefficients are not real, so the theorem of the second scene does not apply. What survives is the sum and the product: $2 + (1 + i) = 3 + i$ and $2(1 + i) = 2 + 2i$, the coefficients read off with their signs.
+
+    note{
+        There is no principal square root of a complex number the way $\sqrt{4}$ means $2$ rather than $-2$. Both roots of the discriminant are on an equal footing, and the $\pm$ in the formula absorbs the choice.
+    }
+
+    task{
+        Given that $2 - i$ is a root of $z^3 - 3z^2 + z + 5 = 0$, find the other two roots.
+    }[
+        The coefficients are real, so $2 + i$ is also a root. The pair contributes the factor $(z - 2)^2 + 1 = z^2 - 4z + 5$, and dividing, $z^3 - 3z^2 + z + 5 = (z^2 - 4z + 5)(z + 1)$. The third root is $-1$.
+    ](
+        title: Your turn
+    )
+}[
+    #### The discriminant
+
+    equation{
+        \Delta = (3 + i)^2 - 4(2 + 2i) = 8 + 6i - 8 - 8i = -2i
+    }
+
+    cue{
+        #### Its square roots, from $(a + ib)^2 = -2i$
+
+        equation{
+            a^2 - b^2 = 0, \quad 2ab = -2 \implies a + ib = \pm(1 - i)
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### The two roots
+
+        equation{
+            z = \frac{(3 + i) \pm (1 - i)}{2} = 2 \quad \text{or} \quad 1 + i
+        }
+    }(
+        in: 2
+    )
+]

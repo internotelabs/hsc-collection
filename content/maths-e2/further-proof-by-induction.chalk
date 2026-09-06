@@ -1,14 +1,196 @@
 *(
     title: Further Proof by Induction
-    description: Induction carried past sums and divisibility onto inequalities, recursive definitions and results about series.
-    tags: proof, induction, inequalities, recursion, series, extension 2, stub
+    description: Induction carried past sums and divisibility onto inequalities, recursively defined sequences, and steps that reach back more than one case.
+    tags: proof, induction, inequalities, recursion, sequences, series, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Extension 1 uses induction on statements that are equations: a sum has a closed form, an expression has a factor. The two obligations are the same here, but the inductive step stops being algebraic rearrangement.
+    Extension 1 used induction on statements that are equations: a sum has a closed form, an expression has a factor. The two obligations — one case proved outright, one implication proved in general — are unchanged here. What changes is the inductive step, which stops being algebraic rearrangement and starts being an argument.
 
-    Written out here: induction on inequalities, where the step must produce a bound rather than an identity and usually needs the hypothesis plus something extra; induction on recursively defined sequences; and induction where the base case is not one, or where each case depends on more than the one before it.
-}
+    internote(ref: ../maths-e1/proof-by-induction.chalk)
+
+    The canvas compares $2^n$ with $n^2$. The claim to be proved is that $2^n > n^2$, and the first thing the picture says is that the claim is false for small $n$: the two tie at $n = 2$ and $n = 4$, and at $n = 3$ the square wins, $8 < 9$.
+
+    ===
+
+    From $n = 5$ the exponential is ahead, and it stays ahead. So the statement to prove is *$2^n > n^2$ for every integer $n \ge 5$*, and the initial statement is the case $n = 5$, not $n = 1$.
+
+    Induction does not care where the chain starts. It needs one true case and a step that carries each case to the next from there onward, and a claim that only becomes true at $5$ simply starts its chain at $5$.
+}[
+    canvas.graph{
+        scatter(x: 1, 2, 3, 4, 5, 6, 7; y: 2, 4, 8, 16, 32, 64, 128; colour: orange; label: $2^n$)
+        scatter(x: 1, 2, 3, 4, 5, 6, 7; y: 1, 4, 9, 16, 25, 36, 49; colour: teal; label: $n^2$)
+
+        cue{
+            axis.label(x: 5; label: initial statement; line)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $n$
+        y axis label: $y$
+        x domain: [0, 8]
+        y domain: [0, 140]
+    )
+]
+
+scene{
+    # An inductive step that needs more than the hypothesis
+
+    Write $P(n)$ for $2^n > n^2$. The initial statement is $2^5 = 32 > 25$.
+
+    ===
+
+    Fix $k \ge 5$ and grant $P(k)$: $2^k > k^2$. The step needs $2^{k+1} > (k + 1)^2$, and the natural first move is to write $2^{k+1} = 2 \cdot 2^k$ so that the hypothesis can be applied. It gives $2^{k+1} > 2k^2$.
+
+    ===
+
+    That is not yet $(k + 1)^2$, and the hypothesis has nothing more to say. The gap has to be closed by a separate fact: $k^2 \ge 2k + 1$ whenever $k \ge 3$, because $k^2 - 2k - 1 = (k - 1)^2 - 2$ is positive from $k = 3$ onward.
+
+    ===
+
+    With that fact in hand, $2k^2 = k^2 + k^2 \ge k^2 + 2k + 1 = (k + 1)^2$, and the chain is complete: $2^{k+1} > 2k^2 \ge (k + 1)^2$. Every link points the same way, which is what makes the conclusion follow.
+
+    note{
+        The size of the initial statement and the extra fact are connected. The bound $k^2 \ge 2k + 1$ needs $k \ge 3$, and the claim itself needs $n \ge 5$; the induction starts at whichever is larger, and the step is then valid for every $k$ it is asked to handle.
+    }
+
+    An inductive step for an inequality is a chain: the hypothesis, then one or more bounds proved separately, arranged so that the inequality signs all run the same direction. Working backwards from the target is the way to *find* the extra fact, but the proof is written forwards.
+}[
+    #### The claim, for $n \ge 5$
+
+    equation{
+        P(n): \quad 2^n > n^2
+    }
+
+    cue{
+        #### Initial statement, $n = 5$
+
+        equation{
+            2^5 = 32 > 25 = 5^2
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Inductive hypothesis at $n = k$, applied once
+
+        equation{
+            2^{k+1} = 2 \cdot 2^k > 2k^2 = k^2 + k^2
+        }
+    }(
+        in: 2
+    )
+
+    cue{
+        #### The extra fact, $k^2 \ge 2k + 1$ for $k \ge 3$
+
+        equation{
+            k^2 + k^2 \ge k^2 + 2k + 1 = (k + 1)^2
+        }
+    }(
+        in: 3
+    )
+]
+
+scene{
+    # Recursively defined sequences
+
+    definition{
+        A sequence given by its first term or terms and a rule producing each term from the ones before it, rather than by a formula in $n$.
+    }(
+        term: Recursively defined sequence
+    )
+
+    The sequence on the canvas is $a_1 = 1$ and $a_{n+1} = \sqrt{2 + a_n}$. Its terms climb towards $2$ without reaching it: $1$, then $\sqrt{3}$, then $\sqrt{2 + \sqrt{3}}$, and so on. The claim is that $a_n < 2$ for every $n \ge 1$.
+
+    Induction is the natural tool, because the recursion is the only handle on $a_{k+1}$. There is no closed formula to substitute into; the way to learn anything about a term is through the term before it.
+
+    ===
+
+    The initial statement is $a_1 = 1 < 2$. For the step, grant $a_k < 2$. Then $2 + a_k < 4$, and since the square root is an increasing function, $a_{k+1} = \sqrt{2 + a_k} < \sqrt{4} = 2$.
+
+    equation{
+        a_k < 2 \implies a_{k+1} = \sqrt{2 + a_k} < \sqrt{2 + 2} = 2
+    }
+
+    The step used two things: the recursion, and a fact about the function it applies — that the square root preserves the order of its inputs. Recursion proofs almost always have that shape.
+
+    note{
+        The same method shows the sequence is increasing, $a_{n+1} > a_n$: from $a_k > a_{k-1}$, adding $2$ and taking square roots gives $a_{k+1} > a_k$. Bounded above and increasing, the sequence converges, and its limit $L$ satisfies $L = \sqrt{2 + L}$, so $L = 2$.
+    }
+}[
+    canvas.graph{
+        scatter(x: 1, 2, 3, 4, 5, 6; y: 1, 1.7321, 1.9319, 1.9829, 1.9957, 1.9989; colour: teal; label: $a_n$)
+        axis.label(y: 2; label: $2$; line; colour: orange)
+
+        cue.highlight{
+            point(x: 1; y: 1; colour: teal; label: $a_1 = 1$)
+        }(
+            at: 1
+        )
+    }(
+        x axis label: $n$
+        y axis label: $a_n$
+        x domain: [0, 7]
+        y domain: [0, 2.5]
+    )
+]
+
+scene{
+    ## Steps that reach back two cases
+
+    Let $a_1 = 1$, $a_2 = 5$, and $a_{n+2} = 5a_{n+1} - 6a_n$ from there on. The terms run $1, 5, 19, 65, 211$, and the claim is that $a_n = 3^n - 2^n$.
+
+    ===
+
+    The recursion uses two earlier terms, so the inductive step must be allowed to assume two: grant $P(k)$ and $P(k + 1)$ together, and derive $P(k + 2)$. In return the chain needs two starting cases, since a step that reaches back two places can never fire from a single one.
+
+    ===
+
+    Substituting both hypotheses into the recursion and collecting powers finishes it. The $3^k$ terms combine to $9 \cdot 3^k = 3^{k+2}$ and the $2^k$ terms to $4 \cdot 2^k = 2^{k+2}$, which is $P(k + 2)$ exactly.
+
+    The pattern generalises: a step may assume every case from the start up to $k$ if it needs to, provided the initial statements cover enough cases for the first step to run. What never changes is the pair of obligations — some cases proved outright, and an implication proved for arbitrary $k$.
+
+    task{
+        Prove that $\sum_{r=1}^{n} \frac{1}{r^2} \le 2 - \frac{1}{n}$ for every integer $n \ge 1$.
+    }[
+        At $n = 1$ both sides are $1$. Granting the claim at $k$, the sum to $k + 1$ terms is at most $2 - \frac{1}{k} + \frac{1}{(k + 1)^2}$, and this is at most $2 - \frac{1}{k + 1}$ provided $\frac{1}{(k + 1)^2} \le \frac{1}{k} - \frac{1}{k + 1} = \frac{1}{k(k + 1)}$. That holds because $k(k + 1) \le (k + 1)^2$.
+    ](
+        title: Your turn
+    )
+}[
+    #### The claim
+
+    equation{
+        P(n): \quad a_n = 3^n - 2^n
+    }
+
+    cue{
+        #### Two initial statements
+
+        equation{
+            a_1 = 3 - 2 = 1, \qquad a_2 = 9 - 4 = 5
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Assume $P(k)$ and $P(k + 1)$, then compute $a_{k+2}$
+
+        equation{
+            a_{k+2} = 5\left(3^{k+1} - 2^{k+1}\right) - 6\left(3^k - 2^k\right)
+        }
+
+        equation{
+            = (15 - 6)\,3^k - (10 - 6)\,2^k = 9 \cdot 3^k - 4 \cdot 2^k = 3^{k+2} - 2^{k+2}
+        }
+    }(
+        in: 2
+    )
+]
