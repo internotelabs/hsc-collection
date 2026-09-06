@@ -66,11 +66,11 @@ scene{
 scene{
     # The route through it
 
-    Start with !internote(ref: microscopy-and-cell-theory.chalk; !connect), because cell theory is a historical argument as much as a biological one and each claim in it waited on an instrument. Then take the inventory in !internote(ref: cell-structure.chalk; !connect): what is inside a cell, why eukaryotes divide themselves into compartments, and the deepest split in the living world.
+    Start with !internote(ref: microscopy-and-cell-theory.chalk), because cell theory is a historical argument as much as a biological one and each claim in it waited on an instrument. Then take the inventory in !internote(ref: cell-structure.chalk): what is inside a cell, why eukaryotes divide themselves into compartments, and the deepest split in the living world.
 
-    The boundary comes next, and it is worth two internotes rather than one. !internote(ref: the-cell-membrane.chalk; !connect) is what the membrane is made of and why that structure decides what can cross; !internote(ref: transport-across-membranes.chalk; !connect) is what actually crosses, in which direction, and at what cost — ending in the surface-area argument that puts a ceiling on how large any cell can be.
+    The boundary comes next, and it is worth two internotes rather than one. !internote(ref: the-cell-membrane.chalk) is what the membrane is made of and why that structure decides what can cross; !internote(ref: transport-across-membranes.chalk) is what actually crosses, in which direction, and at what cost — ending in the surface-area argument that puts a ceiling on how large any cell can be.
 
-    Then the chemistry. !internote(ref: enzymes.chalk; !connect) is why a cell can run reactions at $37\,^\circ\text{C}$ that would otherwise take years, and its temperature and pH curves reappear in almost every later topic. Finally !internote(ref: photosynthesis-and-respiration.chalk; !connect), the two reaction sequences everything else is paid for out of: one that captures energy from light, one that releases it again.
+    Then the chemistry. !internote(ref: enzymes.chalk) is why a cell can run reactions at $37\,^\circ\text{C}$ that would otherwise take years, and its temperature and pH curves reappear in almost every later topic. Finally !internote(ref: photosynthesis-and-respiration.chalk), the two reaction sequences everything else is paid for out of: one that captures energy from light, one that releases it again.
 }[
     table{
         Internote                       | The question it answers
@@ -98,7 +98,7 @@ scene{
 
     The second recurring idea is the gradient. Diffusion, osmosis, active transport, the electron transport chain and the resting membrane potential are all statements about a difference in concentration across a membrane — either being used, or being maintained at a cost.
 
-    Everything in !internote(ref: organisms.chalk; !connect) is built out of those two ideas applied to bodies rather than to cells.
+    Everything in !internote(ref: organisms.chalk) is built out of those two ideas applied to bodies rather than to cells.
 }[
     canvas.graph{
         curve(f: 6 / x; domain: [1, 40]; colour: blue)
