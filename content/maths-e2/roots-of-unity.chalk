@@ -29,6 +29,7 @@ scene{
         cue{
             point(x: -0.5; y: 0.866; colour: teal; label: $\omega$)
             point(x: -0.5; y: -0.866; colour: teal; label: $\omega^2$)
+            angle(at: (0, 0); from: 0; to: (-0.5, 0.866); label: $120^\circ$; colour: teal)
         }(
             in: 1
         )
@@ -112,6 +113,7 @@ scene{
         point(x: -1; y: 0; colour: teal)
         point(x: -0.5; y: -0.866; colour: teal)
         point(x: 0.5; y: -0.866; colour: teal)
+        angle(at: (0, 0); from: 0; to: (0.5, 0.866); label: $60^\circ$; colour: teal)
 
         cue.draw{
             polygon(x: 1, 0.5, -0.5, -1, -0.5, 0.5; y: 0, 0.866, 0.866, 0, -0.866, -0.866; colour: teal; !fill)

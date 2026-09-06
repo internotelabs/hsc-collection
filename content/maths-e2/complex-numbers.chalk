@@ -167,7 +167,7 @@ scene{
 
     The dashed legs on the canvas are $\operatorname{Re}(z)$ and $\operatorname{Im}(z)$, so the modulus is a hypotenuse: $|3 + 2i| = \sqrt{3^2 + 2^2} = \sqrt{13}$. This is also why $z\bar{z} = a^2 + b^2$ is worth naming — that product is exactly $|z|^2$, here $(3 + 2i)(3 - 2i) = 13$.
 
-    The direction is the angle the teal segment makes with the positive real axis. For $3 + 2i$ that angle is $\arctan\frac{2}{3} \approx 0.588$ radians, or about $33.7^\circ$.
+    The direction is the angle the teal segment makes with the positive real axis. For $3 + 2i$ that angle is $\arctan\frac{2}{3} \approx 0.588$ radians, or about !value:#arg.value(digits: 3; maths)$^\circ$.
 
     definition{
         An angle $\theta$ measured anticlockwise from the positive real axis to the segment joining the origin to $z$, written $\arg z$. Adding any multiple of $2\pi$ gives the same direction, so $\arg z$ names a whole family of angles.
@@ -192,6 +192,7 @@ scene{
         segment(start: (0, 0); end: (3, 0); colour: grey; dashed)
         segment(start: (3, 0); end: (3, 2); colour: grey; dashed)
         segment(start: (0, 0); end: (3, 2); colour: teal; label: $|z| = \sqrt{13}$)
+        angle#arg(at: (0, 0); from: 0; to: (3, 2); label: $\arg z$; show-value: true)
         point(x: 3; y: 2; colour: orange; label: $z$)
     }(
         x axis label: real axis

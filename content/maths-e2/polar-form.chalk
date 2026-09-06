@@ -28,12 +28,13 @@ scene{
         point(x: 0; y: 0; colour: grey; label: $O$)
         segment(start: (0, 0); end: (1, 0); colour: grey; dashed)
         segment(start: (1, 0); end: (1, 1.7321); colour: grey; dashed)
+        angle(at: (1, 0); from: (0, 0); to: (1, 1.7321); colour: grey)
         point(x: 1; y: 1.7321; colour: orange; label: $z = 1 + i\sqrt{3}$)
 
         cue.draw{
             segment(start: (0, 0); end: (1, 1.7321); colour: orange)
             text(label: $r = 2$; x: 0.35; y: 1.05)
-            text(label: $\theta = \tfrac{\pi}{3}$; x: 0.62; y: 0.22)
+            angle(at: (0, 0); from: 0; to: (1, 1.7321); label: $\theta = \tfrac{\pi}{3}$)
         }(
             in: 1
             in duration: 1.2s
@@ -73,9 +74,12 @@ scene{
         point(x: 1; y: 1.7321; colour: orange; label: $z_1$)
         segment(start: (0, 0); end: (2.5981, 1.5); colour: purple)
         point(x: 2.5981; y: 1.5; colour: purple; label: $z_2$)
+        angle(at: (0, 0); from: 0; to: (2.5981, 1.5); label: $\theta_2 = \tfrac{\pi}{6}$; colour: purple)
+        angle(at: (0, 0); from: 0; to: (1, 1.7321); label: $\theta_1 = \tfrac{\pi}{3}$; colour: orange; radius: 52)
 
         cue.draw{
             segment(start: (0, 0); end: (0, 6); colour: teal)
+            angle(at: (0, 0); from: 0; to: (0, 6); label: $\theta_1 + \theta_2 = \tfrac{\pi}{2}$; colour: teal; radius: 76)
 
             cue.highlight{
                 point(x: 0; y: 6; colour: teal; label: $z_1 z_2 = 6i$)
@@ -123,6 +127,7 @@ scene{
     canvas.graph{
         circle(x: 0; y: 0; size: 1; colour: grey; !fill)
         point(x: 0.866; y: 0.5; colour: orange; label: $z$)
+        angle(at: (0, 0); from: 0; to: (0.866, 0.5); label: $30^\circ$; colour: orange)
 
         cue{
             point(x: 0.5; y: 0.866; colour: teal)
@@ -135,6 +140,7 @@ scene{
             point(x: -0.5; y: 0.866; colour: teal)
             point(x: -0.866; y: 0.5; colour: teal)
             point(x: -1; y: 0; colour: teal; label: $z^6 = -1$)
+            angle(at: (0, 0); from: 0; to: 180; sweep: anticlockwise; label: $6 \times 30^\circ$; colour: teal; radius: 52)
         }(
             in: 2
         )
