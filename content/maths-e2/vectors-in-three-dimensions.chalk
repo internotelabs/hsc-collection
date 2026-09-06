@@ -1,18 +1,171 @@
 *(
     title: Vectors in Three Dimensions
-    description: Adding a third component, and what carries over unchanged from two dimensions.
-    tags: vectors, three dimensions, magnitude, unit vector, components, extension 2, stub
+    description: Adding a third component, what carries over unchanged from two dimensions, and the one thing that does not.
+    tags: vectors, three dimensions, magnitude, unit vector, components, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Almost everything Extension 1 established about vectors in the plane survives the move to space untouched. Addition is still tip to tail, scalar multiplication still stretches without turning, and the magnitude is still a Pythagoras calculation with one more term under the root.
+    A vector in the plane is two numbers: how far across, and how far up. The vector $3\mathbf{i} + 2\mathbf{j}$ on the canvas has magnitude $\sqrt{13}$, by Pythagoras on the two components.
 
-    Written out here: component and column notation, the basis vectors, magnitude and distance between two points in space, unit vectors, and the arithmetic of addition and scalar multiplication in three components.
+    ===
 
-    What does not carry over is as important. In the plane, two directions are either parallel or they meet; in space they can do neither. The first tool for telling such cases apart is the one product of two vectors that returns a number, set out in *The Dot Product*.
+    A vector in space is three numbers. Add a third basis vector $\mathbf{k}$, pointing out of the page at right angles to both $\mathbf{i}$ and $\mathbf{j}$, and $3\mathbf{i} + 2\mathbf{j} + 6\mathbf{k}$ is a vector that goes three across, two up and six out. Its magnitude is $7$, by the same rule with one more square under the root.
+
+    definition{
+        A vector written as $a_1\mathbf{i} + a_2\mathbf{j} + a_3\mathbf{k}$, or as the ordered triple $(a_1, a_2, a_3)$, or as a column with the three components stacked. The three forms name the same vector, and $\mathbf{i}$, $\mathbf{j}$, $\mathbf{k}$ are the unit vectors along the three axes.
+    }(
+        term: Component form in three dimensions
+    )
+
+    ===
+
+    The rule is Pythagoras used twice. The first two components give a length $\sqrt{13}$ along the floor; that length and the third component form a second right angle, and $13 + 36 = 49$. Nothing in the argument depends on there being only three components, which is why the formula looks the way it does.
+
+    Almost everything Extension 1 established about vectors in the plane survives the move to space in the same way: addition is still tip to tail, scalar multiplication still stretches without turning, and every formula gains one more term.
+}[
+    #### In the plane
+
+    equation{
+        \mathbf{a} = 3\mathbf{i} + 2\mathbf{j}, \qquad |\mathbf{a}| = \sqrt{3^2 + 2^2} = \sqrt{13}
+    }
+
+    cue{
+        #### In space
+
+        equation{
+            \mathbf{a} = 3\mathbf{i} + 2\mathbf{j} + 6\mathbf{k}, \qquad |\mathbf{a}| = \sqrt{3^2 + 2^2 + 6^2} = \sqrt{49} = 7
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Pythagoras twice
+
+        equation{
+            \left(\sqrt{3^2 + 2^2}\right)^2 + 6^2 = 13 + 36 = 49
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Magnitude, distance and unit vectors
+
+    A point in space has a position vector, the arrow from the origin to it, and the vector from one point to another is the difference of their position vectors: $\overrightarrow{PQ} = \overrightarrow{OQ} - \overrightarrow{OP}$. For $P(1, 2, -1)$ and $Q(4, 0, 5)$ that is $(3, -2, 6)$.
+
+    ===
+
+    The distance between the points is the magnitude of that vector, $\sqrt{9 + 4 + 36} = 7$. There is no separate distance formula to learn: it is the magnitude formula applied to a difference.
+
+    ===
+
+    Dividing a vector by its own magnitude leaves a vector of length $1$ in the same direction, which is the way a direction is named without a length attached.
+
+    definition{
+        A vector of magnitude $1$. The unit vector in the direction of $\mathbf{a}$ is $\hat{\mathbf{a}} = \dfrac{\mathbf{a}}{|\mathbf{a}|}$, and any vector is its magnitude times its unit vector.
+    }(
+        term: Unit vector
+    )
+
+    So a vector of length $14$ in the direction of $\overrightarrow{PQ}$ is $14 \cdot \frac{1}{7}(3, -2, 6) = (6, -4, 12)$. Separating a vector into a length and a direction this way is the habit that makes the rest of the area go smoothly.
+}[
+    #### The vector between two points
+
+    equation{
+        \overrightarrow{PQ} = \begin{pmatrix} 4 \\ 0 \\ 5 \end{pmatrix} - \begin{pmatrix} 1 \\ 2 \\ -1 \end{pmatrix} = \begin{pmatrix} 3 \\ -2 \\ 6 \end{pmatrix}
+    }
+
+    cue{
+        #### Its magnitude is the distance from $P$ to $Q$
+
+        equation{
+            \left|\overrightarrow{PQ}\right| = \sqrt{3^2 + (-2)^2 + 6^2} = 7
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### The unit vector in that direction
+
+        equation{
+            \hat{\mathbf{a}} = \frac{1}{7}\begin{pmatrix} 3 \\ -2 \\ 6 \end{pmatrix}
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Addition and scalar multiplication
+
+    Both operations work one component at a time. Adding two vectors adds their first components, their second components and their third; multiplying by a scalar multiplies each component by it. The table works both out for $\mathbf{a} = (2, -1, 3)$ and $\mathbf{b} = (1, 4, -2)$.
+
+    Scalar multiplication is what makes *parallel* a computable word. Multiplying by a positive number stretches a vector without turning it, and by a negative number reverses it, so two vectors point along the same line exactly when one is a multiple of the other.
+
+    definition{
+        Vectors $\mathbf{a}$ and $\mathbf{b}$ are parallel when $\mathbf{b} = \lambda\mathbf{a}$ for some non-zero scalar $\lambda$. A negative $\lambda$ means they point in opposite directions along the same line.
+    }(
+        term: Parallel vectors
+    )
+
+    Checking is a matter of ratios: $(-4, 2, -6)$ is $-2\mathbf{a}$, so it is parallel to $\mathbf{a}$, while $(-4, 2, 6)$ is not, because no single scalar produces all three components.
+
+    Three points are collinear when the vectors between them are parallel — $\overrightarrow{AB}$ a multiple of $\overrightarrow{AC}$ — and that test replaces any argument about gradients, which do not exist in space.
+}[
+    table{
+        Vector                        | $\mathbf{i}$ | $\mathbf{j}$ | $\mathbf{k}$
+        $\mathbf{a}$                  | 2            | -1           | 3
+        $\mathbf{b}$                  | 1            | 4            | -2
+        $\mathbf{a} + \mathbf{b}$     | 3            | 3            | 1
+        $2\mathbf{a} - \mathbf{b}$    | 3            | -6           | 8
+    }(
+        title: Componentwise arithmetic
+        header column
+    )
+]
+
+scene{
+    ## What does not carry over
+
+    In the plane, two lines have two options. Either their directions are parallel, or they meet. The two lines on the canvas have different directions, so they meet somewhere — here at $(2, 2)$ — and there is no way to draw them so that they do not.
+
+    ===
+
+    In space there is a third option. Picture one line running along the floor and another running across the ceiling in a different direction. They are not parallel, and they never meet: there is a whole dimension of room for them to miss each other in. Lines like that are called skew, and they have no two-dimensional analogue at all.
+
+    The consequence is that *not parallel* no longer means *intersecting*, and a question about two lines in space needs an actual test for whether they share a point. That test, and the vector form of a line it works on, are in *Vector Equations of Lines*.
+
+    Before that comes the tool the test depends on. Everything so far has been about lengths and multiples; nothing yet measures an angle. The one product of two vectors that returns a number does exactly that, and it is set out in *The Dot Product*.
+
+    task{
+        Show that $A(1, 1, 1)$, $B(2, 3, 5)$ and $C(4, 7, 13)$ are collinear.
+    }[
+        $\overrightarrow{AB} = (1, 2, 4)$ and $\overrightarrow{AC} = (3, 6, 12) = 3\overrightarrow{AB}$. The two vectors are parallel and share the point $A$, so the three points lie on one line.
+    ](
+        title: Your turn
+    )
 
     internote(ref: the-dot-product.chalk)
-}
+}[
+    canvas.graph{
+        curve(expression: 0.5 * x + 1; colour: orange; label: $L_1$)
+        curve(expression: 4 - x; colour: purple; label: $L_2$)
+
+        cue{
+            point(x: 2; y: 2; colour: teal; label: $(2, 2)$)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-2, 6]
+        y domain: [-1, 5]
+    )
+]

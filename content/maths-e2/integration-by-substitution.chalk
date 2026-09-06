@@ -1,16 +1,164 @@
 *(
     title: Integration by Substitution
-    description: Changing the variable to turn an unfamiliar integral into one already known.
-    tags: integration, substitution, calculus, extension 2, stub
+    description: Changing the variable to turn an unfamiliar integral into one already known — the chain rule read backwards, and the substitutions worth knowing by heart.
+    tags: integration, substitution, chain rule, trigonometric substitution, calculus, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Differentiation is a procedure and integration is a search: the question is always which function differentiates to the one in front of you. Substitution is the main way of narrowing that search, rewriting the integral in a new variable in which the answer is recognisable.
+    Differentiation is a procedure and integration is a search: the question is always which function differentiates to the one in front of you. The chain rule is the procedure that produces most of the awkward-looking integrands, so reading it backwards is the main way of narrowing the search.
 
-    Written out here: the chain rule read backwards, changing the limits of a definite integral rather than converting back, and choosing a substitution when none is given — including the trigonometric substitutions that clear a square root of a sum or difference of squares.
+    ===
+
+    Differentiating a composite $F(g(x))$ gives $F'(g(x))$ times $g'(x)$. So any integrand that has the shape *a function of something, times the derivative of that something* is the derivative of a composite, and its integral is $F(g(x))$.
+
+    definition{
+        Rewriting an integral in a new variable $u = g(x)$, with $du = g'(x)\,dx$, so that the integrand becomes a function of $u$ alone. It is the chain rule applied in reverse.
+    }(
+        term: Integration by substitution
+    )
+
+    ===
+
+    In $\int 2x\cos(x^2)\,dx$ the something is $x^2$ and its derivative $2x$ is sitting right there. Put $u = x^2$; then $du = 2x\,dx$, the integral is $\int\cos u\,du = \sin u + C$, and returning to $x$ gives $\sin(x^2) + C$. Differentiating the answer confirms it.
+
+    When the derivative is present only up to a constant, the constant is adjusted for: $\int x\cos(x^2)\,dx$ has $x\,dx = \frac{1}{2}du$, and the answer is $\frac{1}{2}\sin(x^2) + C$. What cannot be adjusted for is a missing *function* — $\int\cos(x^2)\,dx$ has no elementary answer at all.
+}[
+    #### The chain rule
+
+    equation{
+        \frac{d}{dx}F(g(x)) = F'(g(x))\,g'(x)
+    }
+
+    cue{
+        #### Read backwards
+
+        equation{
+            \int F'(g(x))\,g'(x)\,dx = F(g(x)) + C
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### With $u = x^2$ and $du = 2x\,dx$
+
+        equation{
+            \int 2x\cos(x^2)\,dx = \int\cos u\,du = \sin u + C = \sin(x^2) + C
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Changing the limits
+
+    For a definite integral there is a choice: convert the answer back to $x$ and use the original limits, or convert the limits to $u$ and never go back. The second is shorter and less error-prone, and it is the one to use.
+
+    The canvas shades $\int_0^1 x(x^2 + 1)^3\,dx$. With $u = x^2 + 1$, $du = 2x\,dx$, and the limits $x = 0$ and $x = 1$ become $u = 1$ and $u = 2$.
+
+    equation{
+        \int_0^1 x(x^2 + 1)^3\,dx = \frac{1}{2}\int_1^2 u^3\,du = \frac{1}{2}\left[\frac{u^4}{4}\right]_1^2 = \frac{1}{2}\cdot\frac{16 - 1}{4} = \frac{15}{8}
+    }
+
+    ===
+
+    The shaded area measures !value:#area.value(digits: 4), which is $\frac{15}{8}$. Nothing about the region changed under the substitution; only its description did, and the new description has limits that belong to it.
+
+    note{
+        A definite integral in $u$ with the old $x$ limits still attached is the commonest error in the method, and it is silent — the working looks right and the number is wrong. Whichever variable the integrand is in, the limits are in that variable too.
+    }
+}[
+    canvas.graph{
+        curve#f(expression: x * (x^2 + 1)^3; colour: blue; label: $y = x(x^2 + 1)^3$; domain: [-0.3, 1.25])
+
+        cue{
+            integral#area(of: #f; from: 0; to: 1; colour: teal)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-0.3, 1.3]
+        y domain: [-1, 10]
+    )
+]
+
+scene{
+    # Choosing a substitution
+
+    A question in the examination usually names the substitution. When it does not, the choice is guided by what the integrand contains, and a short list covers most cases.
+
+    - An expression whose derivative is also present, up to a constant: substitute for the expression.
+    - The inside of a composite function, such as the $x^2$ in $\cos(x^2)$ or the $3x + 1$ in $e^{3x + 1}$.
+    - A root: substitute for the whole root, or for what is under it.
+    - A linear expression inside a power, such as $(x + 1)^{-1/2}$: substitute for the linear expression.
+
+    ===
+
+    The last case is $\int \dfrac{x}{\sqrt{x + 1}}\,dx$. Put $u = x + 1$, so $du = dx$ and $x = u - 1$. The numerator has to be rewritten in $u$ as well — the substitution is not finished until no $x$ remains.
+
+    ===
+
+    Dividing through by $\sqrt{u}$ leaves two powers of $u$, each of which integrates by the power rule. Returning to $x$ at the end is a matter of writing $x + 1$ wherever $u$ appears.
+
+    note{
+        Any $x$ left in a $u$ integral has to be expressed in terms of $u$ by rearranging the substitution. If it cannot be, the substitution was the wrong one, and that is useful information rather than a dead end.
+    }
+}[
+    #### With $u = x + 1$, so $x = u - 1$ and $du = dx$
+
+    equation{
+        \int\frac{x}{\sqrt{x + 1}}\,dx = \int\frac{u - 1}{\sqrt{u}}\,du
+    }
+
+    cue{
+        #### Splitting into two powers of $u$
+
+        equation{
+            = \int\left(u^{1/2} - u^{-1/2}\right)du = \frac{2}{3}u^{3/2} - 2u^{1/2} + C
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Back to $x$
+
+        equation{
+            = \frac{2}{3}(x + 1)^{3/2} - 2(x + 1)^{1/2} + C
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    ## Trigonometric substitutions
+
+    A square root of $a^2 - x^2$ resists every substitution of the previous scene, because nothing in the integrand differentiates to $x$. What clears it is the identity $1 - \sin^2\theta = \cos^2\theta$: put $x = a\sin\theta$, and $\sqrt{a^2 - x^2}$ becomes $a\cos\theta$, a root no longer.
+
+    The canvas shades $\int_0^2\sqrt{4 - x^2}\,dx$. With $x = 2\sin\theta$, $dx = 2\cos\theta\,d\theta$ and the limits become $\theta = 0$ and $\theta = \frac{\pi}{2}$.
+
+    equation{
+        \int_0^2\sqrt{4 - x^2}\,dx = \int_0^{\pi/2} 4\cos^2\theta\,d\theta = 2\int_0^{\pi/2}(1 + \cos 2\theta)\,d\theta = 2\left[\theta + \frac{\sin 2\theta}{2}\right]_0^{\pi/2} = \pi
+    }
+
+    ===
+
+    The area is !value:#quarter.value(digits: 4), which is $\pi$: the region is a quarter of a circle of radius $2$, and the integral has recovered a quarter of $\pi r^2$. The same substitution handles $\sqrt{a^2 - x^2}$ wherever it appears, and $x = a\tan\theta$ does the same for $a^2 + x^2$, using $1 + \tan^2\theta = \sec^2\theta$.
+
+    task{
+        Find $\int x\,e^{x^2}\,dx$.
+    }[
+        With $u = x^2$, $du = 2x\,dx$, so $x\,dx = \frac{1}{2}du$. The integral is $\frac{1}{2}\int e^u\,du = \frac{1}{2}e^{x^2} + C$.
+    ](
+        title: Your turn
+    )
 
     Substitution alone leaves whole classes of integral untouched, and each has its own method. A quadratic under the integral sign is handled in *Integrals with Quadratic Denominators*; a ratio of polynomials in *Partial Fractions*; a product of two unrelated functions in *Integration by Parts*; and powers and products of sine and cosine in *Trigonometric Integrals*.
 
@@ -21,4 +169,19 @@ scene{
     internote(ref: integration-by-parts.chalk)
 
     internote(ref: trigonometric-integrals.chalk)
-}
+}[
+    canvas.graph{
+        curve#semi(expression: sqrt(4 - x^2); domain: [-2, 2]; colour: blue; label: $y = \sqrt{4 - x^2}$)
+
+        cue{
+            integral#quarter(of: #semi; from: 0; to: 2; colour: teal)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-2.5, 2.5]
+        y domain: [-0.5, 2.5]
+    )
+]

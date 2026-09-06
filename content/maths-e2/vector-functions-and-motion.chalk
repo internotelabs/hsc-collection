@@ -1,14 +1,169 @@
 *(
     title: Vector Functions and Motion
-    description: A position vector that depends on time, and the curve it traces.
-    tags: vectors, parametric curves, motion, velocity, acceleration, extension 2, stub
+    description: A position vector that depends on time, the curve it traces, and the velocity and acceleration that come from differentiating it.
+    tags: vectors, parametric curves, motion, velocity, acceleration, sphere, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    A vector whose components are functions of a parameter names a different point for each value of that parameter. Read the parameter as time and the vector describes a particle; read it as a free variable and the same expression describes a curve.
+    A vector whose components are functions of a parameter names a different point for each value of that parameter. The one on the canvas is $\mathbf{r}(t) = 3\cos t\,\mathbf{i} + 3\sin t\,\mathbf{j}$, and for every setting of $t$ its tip sits on the circle of radius $3$ — because $|\mathbf{r}(t)|^2 = 9\cos^2 t + 9\sin^2 t = 9$ whatever $t$ is.
 
-    Written out here: differentiating a vector function component by component to obtain velocity and then acceleration, the vector equations of a circle and a sphere, and reading a curve's shape back off its vector equation.
-}
+    definition{
+        A vector $\mathbf{r}(t)$ each of whose components is a function of a single variable $t$. As $t$ varies the tip of $\mathbf{r}(t)$ traces a curve, and the vector function is a parametric description of that curve.
+    }(
+        term: Vector function
+    )
+
+    Read $t$ as time and the vector describes a particle moving round the circle, completing one lap as $t$ runs from $0$ to $2\pi$. Read it as a free variable and the same expression is simply the circle, with $t$ the angle at the centre. The mathematics is identical; only the story changes.
+
+    The circle can also be written without a parameter, as a condition on $\mathbf{r}$ itself: $|\mathbf{r}| = 3$, or $|\mathbf{r} - \mathbf{c}| = a$ for a circle of radius $a$ centred at $\mathbf{c}$. That is the form that carries into three dimensions unchanged, where it describes a sphere.
+}[
+    canvas.graph#orbit{
+        parameter#t(var: t; name: $t$; range: [0, 6.28]; step: 0.1; default: 1)
+        circle(x: 0; y: 0; size: 3; colour: grey; !fill)
+        vector(x: 0; y: 0; dx: 3 * cos(t); dy: 3 * sin(t); colour: orange; label: $\mathbf{r}(t)$)
+        point(x: 3 * cos(t); y: 3 * sin(t); colour: orange)
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-4, 4]
+        y domain: [-4, 4]
+    )
+]
+
+scene{
+    # Velocity and acceleration, component by component
+
+    A vector function is differentiated one component at a time, and the derivative of a position vector with respect to time is the velocity. For the circle, $\mathbf{v}(t) = -3\sin t\,\mathbf{i} + 3\cos t\,\mathbf{j}$.
+
+    definition{
+        For $\mathbf{r}(t) = x(t)\mathbf{i} + y(t)\mathbf{j} + z(t)\mathbf{k}$, the velocity is $\dot{\mathbf{r}}(t) = \dot{x}\mathbf{i} + \dot{y}\mathbf{j} + \dot{z}\mathbf{k}$ and the acceleration is $\ddot{\mathbf{r}}(t)$, the derivative of the velocity. The speed is $|\dot{\mathbf{r}}|$.
+    }(
+        term: Velocity and acceleration of a vector function
+    )
+
+    The teal arrow on the canvas is $\mathbf{v}$, drawn from the particle's position. Its length is $\sqrt{9\sin^2 t + 9\cos^2 t} = 3$, the same at every $t$, so the particle moves at constant speed. And $\mathbf{r} \cdot \mathbf{v} = -9\cos t\sin t + 9\sin t\cos t = 0$, so the velocity is always perpendicular to the radius — tangent to the circle.
+
+    ===
+
+    Differentiating again gives $\mathbf{a}(t) = -3\cos t\,\mathbf{i} - 3\sin t\,\mathbf{j}$, which is $-\mathbf{r}(t)$. The acceleration points from the particle straight back to the centre, with constant magnitude $3$. Constant speed does not mean zero acceleration: the velocity's direction is changing, and that change has to be caused by something.
+
+    note{
+        Position, velocity and acceleration are three different vectors drawn from the same point, and they are not to scale with one another — a velocity in metres per second cannot be compared in length with a position in metres. The canvas draws them on one set of axes for their directions, not their sizes.
+    }
+}[
+    canvas.graph{
+        parameter#t2(var: t; name: $t$; range: [0, 6.28]; step: 0.1; default: 1)
+        circle(x: 0; y: 0; size: 3; colour: grey; !fill)
+        vector(x: 0; y: 0; dx: 3 * cos(t); dy: 3 * sin(t); colour: orange; label: $\mathbf{r}$)
+        vector(x: 3 * cos(t); y: 3 * sin(t); dx: -3 * sin(t); dy: 3 * cos(t); colour: teal; label: $\mathbf{v}$)
+
+        cue{
+            vector(x: 3 * cos(t); y: 3 * sin(t); dx: -3 * cos(t); dy: -3 * sin(t); colour: purple; label: $\mathbf{a} = -\mathbf{r}$)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-5, 5]
+        y domain: [-5, 5]
+        continue: #orbit
+    )
+]
+
+scene{
+    # Reading a curve off its equation
+
+    The shape a vector function traces is found by eliminating the parameter. Take $\mathbf{r}(t) = 2t\,\mathbf{i} + (4t - t^2)\,\mathbf{j}$: from the first component $t = \frac{x}{2}$, and substituting into the second gives $y = 2x - \frac{x^2}{4}$, a parabola.
+
+    ===
+
+    The velocity is $\mathbf{v} = 2\mathbf{i} + (4 - 2t)\mathbf{j}$ and the acceleration is $\mathbf{a} = -2\mathbf{j}$: constant, and straight down. This is a projectile, launched from the origin with velocity $(2, 4)$ under a downward acceleration of $2$, and the orange point rides its path from launch to landing at $x = 8$.
+
+    equation{
+        \mathbf{r}(t) = \begin{pmatrix} 2t \\ 4t - t^2 \end{pmatrix}, \qquad \dot{\mathbf{r}}(t) = \begin{pmatrix} 2 \\ 4 - 2t \end{pmatrix}, \qquad \ddot{\mathbf{r}}(t) = \begin{pmatrix} 0 \\ -2 \end{pmatrix}
+    }
+
+    The highest point is where the vertical velocity vanishes, $t = 2$, giving $\mathbf{r}(2) = (4, 4)$. The same information can be read off the Cartesian form, but the parametric form carries something the Cartesian one has lost: *when* the particle is at each point.
+
+    Two other cases come up often. A straight line is $\mathbf{r} = \mathbf{a} + t\mathbf{b}$, moving at constant velocity $\mathbf{b}$ from the point $\mathbf{a}$, and eliminating $t$ from it gives the Cartesian form of the line. And in three dimensions $\mathbf{r}(t) = (\cos t, \sin t, t)$ circles in the first two components while climbing steadily in the third: a helix, which no Cartesian equation in $x$, $y$ and $z$ describes as simply.
+}[
+    canvas.graph{
+        curve#flight(expression: 2 * x - x^2 / 4; domain: [0, 8]; colour: grey; label: $y = 2x - \tfrac{x^2}{4}$)
+        point(x: 4; y: 4; colour: teal; label: $(4, 4)$)
+
+        cue.trace{
+            point(x: 0; y: 0; colour: orange; size: 8)
+        }(
+            path: #flight
+            at: 1
+            duration: 3s
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-1, 9]
+        y domain: [-1, 5]
+    )
+]
+
+scene{
+    ## The sphere
+
+    The condition $|\mathbf{r} - \mathbf{c}| = a$ names every point at distance $a$ from $\mathbf{c}$. In the plane that is a circle; in space it is a sphere, and the vector equation is the same in both.
+
+    ===
+
+    Writing $\mathbf{r} = (x, y, z)$ and $\mathbf{c} = (1, -2, 3)$, squaring both sides turns the condition into a Cartesian equation with three squared brackets. Expanded, the squares become $x^2 + y^2 + z^2$ plus linear terms and a constant.
+
+    ===
+
+    Reading the equation backwards is completing the square three times. An equation of the form $x^2 + y^2 + z^2 + \text{linear terms} + \text{constant} = 0$ is a sphere whenever the completed squares leave a positive number on the right, and the centre and radius are read off the completed form.
+
+    definition{
+        The set of points $\mathbf{r}$ with $|\mathbf{r} - \mathbf{c}| = a$: centre $\mathbf{c}$, radius $a$. In Cartesian form, $(x - c_1)^2 + (y - c_2)^2 + (z - c_3)^2 = a^2$.
+    }(
+        term: Vector equation of a sphere
+    )
+
+    task{
+        A particle has position $\mathbf{r}(t) = 2t\,\mathbf{i} + 3t^2\,\mathbf{j} + t^3\,\mathbf{k}$. Find its velocity and its speed when $t = 1$.
+    }[
+        $\dot{\mathbf{r}}(t) = 2\mathbf{i} + 6t\,\mathbf{j} + 3t^2\,\mathbf{k}$, so at $t = 1$ the velocity is $(2, 6, 3)$ and the speed is $\sqrt{4 + 36 + 9} = 7$.
+    ](
+        title: Your turn
+    )
+}[
+    #### The vector equation
+
+    equation{
+        |\mathbf{r} - \mathbf{c}| = 4, \qquad \mathbf{c} = (1, -2, 3)
+    }
+
+    cue{
+        #### Squared, and in coordinates
+
+        equation{
+            (x - 1)^2 + (y + 2)^2 + (z - 3)^2 = 16
+        }
+
+        equation{
+            x^2 + y^2 + z^2 - 2x + 4y - 6z - 2 = 0
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Completing the square recovers the centre and radius
+
+        equation{
+            (x - 1)^2 + (y + 2)^2 + (z - 3)^2 = 2 + 1 + 4 + 9 = 16
+        }
+    }(
+        in: 2
+    )
+]

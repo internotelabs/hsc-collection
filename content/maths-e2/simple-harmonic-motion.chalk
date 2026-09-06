@@ -1,14 +1,177 @@
 *(
     title: Simple Harmonic Motion
-    description: Motion whose acceleration points back towards a centre and grows in proportion to the distance from it.
-    tags: mechanics, simple harmonic motion, oscillation, amplitude, period, extension 2, stub
+    description: Motion whose acceleration points back towards a centre and grows in proportion to the distance from it — its solutions, its constants, and its velocity as a function of displacement.
+    tags: mechanics, simple harmonic motion, oscillation, amplitude, period, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    One condition on the acceleration — proportional to the displacement from a fixed point, and directed back towards it — is enough to determine the motion completely. Everything oscillates the same way under it, whatever the physical cause.
+    One condition on the acceleration is enough to determine a motion completely: that it is proportional to the displacement from a fixed point, and directed back towards that point. Everything oscillates the same way under it, whatever the physical cause.
 
-    Written out here: the defining equation, its sine and cosine solutions and why either can be written as the other with a phase shift, amplitude, period and frequency read off the constants, the velocity as a function of displacement, and identifying the centre of motion when the equation arrives shifted away from the origin.
-}
+    definition{
+        Motion along a line satisfying $\ddot{x} = -n^2 x$ for some positive constant $n$, where $x$ is the displacement from the centre of motion. The minus sign is what makes the acceleration point back towards $x = 0$.
+    }(
+        term: Simple harmonic motion
+    )
+
+    The canvas shows $x = 4\cos 2t$, which satisfies the equation with $n = 2$. The particle swings between $x = 4$ and $x = -4$ and back, taking $\pi$ units of time for a full cycle.
+
+    ===
+
+    The constant $4$ is the furthest the particle gets from the centre, and the constant $2$ decides how quickly it cycles: the period is $\frac{2\pi}{2} = \pi$, the width of the brace.
+
+    definition{
+        The amplitude $a$ is the maximum displacement from the centre. The period $T = \dfrac{2\pi}{n}$ is the time for one complete oscillation, and the frequency $\dfrac{n}{2\pi}$ is the number of oscillations per unit time.
+    }(
+        term: Amplitude, period and frequency
+    )
+
+    The equation $\ddot{x} = -n^2 x$ says nothing about $a$. The amplitude comes from the initial conditions — where the particle started and how fast — and the same equation with the same $n$ describes a large swing and a small one, in the same period.
+}[
+    canvas.graph{
+        curve(expression: 4 * cos(2 * x); domain: [0, 6.5]; colour: blue; label: $x = 4\cos 2t$)
+
+        cue{
+            axis.label(y: 4; label: $a = 4$; line)
+            axis.label(y: -4; label: $-a$; line)
+            axis.brace(label: $T = \pi$; x: [0, 3.1416])
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $t$
+        y axis label: $x$
+        x domain: [0, 6.5]
+        y domain: [-5.5, 5.5]
+    )
+]
+
+scene{
+    # The solutions, and the constants in them
+
+    The general solution of $\ddot{x} = -n^2 x$ is $x = a\cos(nt + \alpha)$. Differentiating once gives $\dot{x} = -an\sin(nt + \alpha)$; differentiating again gives $\ddot{x} = -an^2\cos(nt + \alpha)$, which is $-n^2 x$. Any function of that form satisfies the equation.
+
+    ===
+
+    The same solution can be written as $a\sin(nt + \beta)$, since a cosine is a sine shifted by a quarter period. And expanding the compound angle gives a third form, $A\cos nt + B\sin nt$, with no phase constant but two amplitudes. All three describe the same family of motions, and which one is used is a matter of which initial conditions are given.
+
+    ===
+
+    Reading the constants off is direct. In $x = 3\sin\left(\frac{t}{2} + \frac{\pi}{6}\right)$ the amplitude is $3$, $n = \frac{1}{2}$, so the period is $4\pi$, and the phase $\frac{\pi}{6}$ records where in the cycle the motion is at $t = 0$.
+
+    note{
+        The phase $\alpha$ shifts the graph along the time axis and nothing else. Two motions with the same $a$ and $n$ but different $\alpha$ are the same oscillation started at different moments, which is why $a$ and $n$ are the physical constants and $\alpha$ is bookkeeping.
+    }
+}[
+    #### The general solution
+
+    equation{
+        x = a\cos(nt + \alpha)
+    }
+
+    cue{
+        #### Differentiated twice, it satisfies the equation
+
+        equation{
+            \dot{x} = -an\sin(nt + \alpha), \qquad \ddot{x} = -an^2\cos(nt + \alpha) = -n^2 x
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### The same family, written three ways
+
+        equation{
+            a\cos(nt + \alpha) = a\sin(nt + \beta) = A\cos nt + B\sin nt
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Velocity as a function of displacement
+
+    The acceleration is given as a function of $x$, so the $\frac{1}{2}v^2$ form of acceleration applies and time never has to enter. Integrating $\frac{d}{dx}\left(\frac{1}{2}v^2\right) = -n^2 x$ gives $\frac{1}{2}v^2 = -\frac{1}{2}n^2 x^2 + C$.
+
+    ===
+
+    The constant is fixed by the ends of the motion: at $x = \pm a$ the particle is momentarily at rest, so $v = 0$ there and $C = \frac{1}{2}n^2 a^2$.
+
+    equation{
+        v^2 = n^2\left(a^2 - x^2\right)
+    }
+
+    The canvas plots this for $n = 2$ and $a = 4$, and the graph of $v$ against $x$ is an ellipse. The particle goes round it once per period: fastest through the centre, where $v = \pm na = \pm 8$, and stationary at the two ends, where $x = \pm a$.
+
+    ===
+
+    The relation is also the test for whether a motion is simple harmonic when only $v^2$ is known. An expression for $v^2$ that is a negative multiple of a perfect square in $x$ plus a constant is of this form, and differentiating it with respect to $x$ and halving returns $\ddot{x} = -n^2 x$.
+
+    note{
+        The two signs of $v$ at each $x$ are the two directions of travel through that point, one on the way out and one on the way back. The upper half of the ellipse is the outward journey and the lower half the return.
+    }
+}[
+    canvas.graph{
+        curve(expression: 2 * sqrt(16 - x^2); domain: [-4, 4]; colour: blue)
+        curve(expression: -2 * sqrt(16 - x^2); domain: [-4, 4]; colour: blue)
+
+        cue{
+            point(x: 4; y: 0; colour: orange; label: $x = a$)
+            point(x: -4; y: 0; colour: orange; label: $x = -a$)
+        }(
+            in: 1
+        )
+
+        cue{
+            point(x: 0; y: 8; colour: teal; label: $v = na$)
+            point(x: 0; y: -8; colour: teal; label: $v = -na$)
+        }(
+            in: 2
+        )
+    }(
+        x axis label: $x$
+        y axis label: $v$
+        x domain: [-5, 5]
+        y domain: [-9.5, 9.5]
+    )
+]
+
+scene{
+    ## A shifted centre
+
+    The equation often arrives with the centre away from the origin: $\ddot{x} = -4x + 8$, say. Factorising, $\ddot{x} = -4(x - 2)$, which is simple harmonic motion about $x = 2$ with $n = 2$.
+
+    ===
+
+    Writing $X = x - 2$ makes it literal, since $\ddot{X} = \ddot{x}$ and the equation becomes $\ddot{X} = -4X$. The solution is $X = a\cos(2t + \alpha)$, and so $x = 2 + a\cos(2t + \alpha)$: the same oscillation, lifted by $2$. The canvas shows it with $a = 3$, swinging between $-1$ and $5$ about the centre line.
+
+    The centre of motion is where the acceleration is zero, and that is the general way to find it: set $\ddot{x} = 0$ and solve for $x$. Everything about the motion — amplitude, period, the velocity relation — is then measured from that point rather than from the origin.
+
+    task{
+        A particle moves so that $v^2 = 24 - 6x - 3x^2$. Show that the motion is simple harmonic, and find its centre, amplitude and period.
+    }[
+        Completing the square, $v^2 = 27 - 3(x + 1)^2 = 3\left(9 - (x + 1)^2\right)$. Differentiating $\frac{1}{2}v^2$ with respect to $x$ gives $\ddot{x} = -3(x + 1)$, which is simple harmonic with $n^2 = 3$ about the centre $x = -1$. Comparing with $v^2 = n^2(a^2 - X^2)$, the amplitude is $3$, and the period is $\frac{2\pi}{\sqrt{3}}$.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.graph{
+        curve(expression: 2 + 3 * cos(2 * x); domain: [0, 6.5]; colour: blue; label: $x = 2 + 3\cos 2t$)
+        axis.label(y: 2; label: centre $x = 2$; line; colour: orange)
+
+        cue{
+            axis.band(y: [-1, 5]; colour: teal; edges: true)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $t$
+        y axis label: $x$
+        x domain: [0, 6.5]
+        y domain: [-2.5, 6.5]
+    )
+]

@@ -1,18 +1,180 @@
 *(
     title: Integration by Parts
-    description: Reversing the product rule to trade one integral for an easier one.
-    tags: integration, by parts, product rule, calculus, extension 2, stub
+    description: Reversing the product rule to trade one integral for an easier one, choosing which factor to differentiate, and solving for an integral that comes back.
+    tags: integration, by parts, product rule, calculus, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Substitution handles a function of a function. A product of two unrelated functions needs something else, and the product rule supplies it: rearranged and integrated, it exchanges the integral you have for a different one.
+    Substitution handles a function of a function. A product of two unrelated functions, such as $x$ times $e^x$, needs something else, and the product rule supplies it.
 
-    Written out here: the formula and its derivation, choosing which factor to differentiate and which to integrate, the integrals that need the method applied twice, and the case where the original integral reappears on the right and the equation can be solved for it.
+    ===
+
+    Differentiating $uv$ gives $u'v + uv'$. Integrate both sides and rearrange, and the result is an exchange: the integral of $uv'$ for the integral of $u'v$. Nothing has been evaluated. One integral has been traded for another, and the trade is worth making only when the new integral is easier.
+
+    definition{
+        The rule $\displaystyle\int u\,\frac{dv}{dx}\,dx = uv - \int v\,\frac{du}{dx}\,dx$, obtained by integrating the product rule. One factor of the integrand is differentiated and the other integrated.
+    }(
+        term: Integration by parts
+    )
+
+    ===
+
+    For $\int x e^x\,dx$, let $u = x$ and $v' = e^x$. Then $u' = 1$ and $v = e^x$, and the new integral is $\int e^x\,dx$, which is immediate. The $x$ has been differentiated away, which is exactly what the trade was for.
+
+    note{
+        The constant of integration is added once, at the end. Adding one when $v$ is found from $v'$ changes nothing — it cancels between the $uv$ term and the integral — so $v$ is taken as the simplest antiderivative.
+    }
+}[
+    #### The product rule
+
+    equation{
+        \frac{d}{dx}(uv) = u'v + uv'
+    }
+
+    cue{
+        #### Integrated and rearranged
+
+        equation{
+            \int uv'\,dx = uv - \int u'v\,dx
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### With $u = x$, $v' = e^x$
+
+        equation{
+            \int x e^x\,dx = x e^x - \int e^x\,dx = x e^x - e^x + C
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Choosing which factor to differentiate
+
+    The method offers a choice, and the wrong one makes things worse. In $\int x e^x\,dx$, taking $u = e^x$ and $v' = x$ produces $\frac{1}{2}x^2 e^x - \int \frac{1}{2}x^2 e^x\,dx$ — a harder integral than the one started with.
+
+    The rule of thumb is to differentiate the factor that simplifies and integrate the factor that stays manageable. Polynomials simplify under differentiation, since each derivative lowers the degree; exponentials and sines and cosines stay the same shape under either operation; logarithms and inverse trigonometric functions simplify dramatically when differentiated and are awkward to integrate at all.
+
+    ===
+
+    So in $\int x\cos x\,dx$ the polynomial is $u$. One application removes it, and the answer is $x\sin x + \cos x + C$.
+
+    ===
+
+    A logarithm on its own looks like it has no second factor. It does: $\ln x$ is $\ln x \times 1$, and $1$ integrates to $x$. Taking $u = \ln x$ and $v' = 1$ turns $\int\ln x\,dx$ into $x\ln x - \int 1\,dx$, which is why $\int\ln x\,dx = x\ln x - x + C$. The same trick integrates $\arctan x$ and $\arcsin x$.
+}[
+    #### A polynomial times a trigonometric function
+
+    equation{
+        \int x\cos x\,dx \qquad u = x, \quad v' = \cos x
+    }
+
+    cue{
+        equation{
+            = x\sin x - \int\sin x\,dx = x\sin x + \cos x + C
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### A logarithm, with $v' = 1$
+
+        equation{
+            \int\ln x\,dx = x\ln x - \int x\cdot\frac{1}{x}\,dx = x\ln x - x + C
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Applying the method twice
+
+    A polynomial of degree two needs two differentiations to disappear, so $\int x^2 e^x\,dx$ needs the method twice. The first application lowers $x^2$ to $2x$ and leaves $\int x e^x\,dx$ behind.
+
+    ===
+
+    That leftover was the first scene's example, so its value is known: $x e^x - e^x$. Substituting it in and tidying gives the answer in factored form.
+
+    Each application makes the same choice — the polynomial is $u$ every time — and the sign alternates, since each step subtracts. Keeping the working in one line, with the leftover integral written out before it is attacked, is what stops the signs from going astray.
+
+    note{
+        For $\int x^n e^x\,dx$ the pattern continues for $n$ steps, and writing out the general step rather than repeating it is the idea behind reduction formulae.
+    }
+}[
+    #### First application, $u = x^2$
+
+    equation{
+        \int x^2 e^x\,dx = x^2 e^x - 2\int x e^x\,dx
+    }
+
+    cue{
+        #### Second application, on the leftover
+
+        equation{
+            = x^2 e^x - 2\left(x e^x - e^x\right) + C = e^x\left(x^2 - 2x + 2\right) + C
+        }
+    }(
+        in: 1
+    )
+]
+
+scene{
+    ## When the integral comes back
+
+    In $\int e^x\sin x\,dx$ neither factor simplifies: the exponential stays an exponential and the sine becomes a cosine. Applying the method once trades $\sin x$ for $\cos x$, and applying it again trades $\cos x$ back for $\sin x$.
+
+    ===
+
+    After the second application the original integral has reappeared on the right, with a minus sign. That is not a circle. Call the integral $I$; the working is then an equation in $I$, and it can be solved.
+
+    ===
+
+    Bringing $I$ across and halving gives the answer. The method has not evaluated the integral directly — it has produced an equation that the integral satisfies, and algebra has done the rest.
+
+    task{
+        Find $\int x\ln x\,dx$.
+    }[
+        Take $u = \ln x$ and $v' = x$, so $u' = \frac{1}{x}$ and $v = \frac{x^2}{2}$. Then $\int x\ln x\,dx = \frac{x^2}{2}\ln x - \int\frac{x}{2}\,dx = \frac{x^2}{2}\ln x - \frac{x^2}{4} + C$.
+    ](
+        title: Your turn
+    )
 
     Applying the method to a family of integrals indexed by an exponent produces not a value but an equation relating one member to a smaller one, which is what *Reduction Formulae* is about.
 
     internote(ref: reduction-formulae.chalk)
-}
+}[
+    #### Let $I = \int e^x\sin x\,dx$, with $u = \sin x$, $v' = e^x$
+
+    equation{
+        I = e^x\sin x - \int e^x\cos x\,dx
+    }
+
+    cue{
+        #### Again, on the leftover, with $u = \cos x$
+
+        equation{
+            I = e^x\sin x - \left(e^x\cos x + \int e^x\sin x\,dx\right) = e^x\sin x - e^x\cos x - I
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Solve for $I$
+
+        equation{
+            2I = e^x(\sin x - \cos x) \implies I = \frac{1}{2}e^x(\sin x - \cos x) + C
+        }
+    }(
+        in: 2
+    )
+]

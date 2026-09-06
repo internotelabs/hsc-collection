@@ -1,7 +1,7 @@
 *(
     title: The Dot Product
-    description: The one product of two vectors that returns a number, and the angle it measures.
-    tags: vectors, dot product, angle, projection, perpendicular, extension 2, stub
+    description: The one product of two vectors that returns a number, why its two formulas agree, and the angle and projection it measures.
+    tags: vectors, dot product, angle, projection, perpendicular, extension 2
     lesson
 )
 
@@ -10,11 +10,178 @@
 scene{
     Two vectors can be added, and either can be scaled, but multiplying them is not obvious: the answer could reasonably be a vector, a number, or nothing at all. The dot product takes the second option, and pays for the loss of direction by measuring the angle between them.
 
-    Written out here: the component formula and the geometric one, why they agree, perpendicularity as a dot product of zero, the angle between two vectors, and the projection of one vector onto another.
+    definition{
+        For $\mathbf{a} = (a_1, a_2, a_3)$ and $\mathbf{b} = (b_1, b_2, b_3)$, the number $\mathbf{a} \cdot \mathbf{b} = a_1 b_1 + a_2 b_2 + a_3 b_3$. Equivalently, $\mathbf{a} \cdot \mathbf{b} = |\mathbf{a}||\mathbf{b}|\cos\theta$, where $\theta$ is the angle between the two vectors when they are placed tail to tail.
+    }(
+        term: Dot product
+    )
+
+    The two vectors on the canvas are $\mathbf{a} = (4, 1)$ and $\mathbf{b} = (2, 3)$. Multiplying matching components and adding gives $8 + 3 = 11$.
+
+    ===
+
+    The same number, read the other way, is $\sqrt{17}\sqrt{13}\cos\theta$. So $\cos\theta = \frac{11}{\sqrt{221}}$, and the angle between the arrows is !value:#th.value(digits: 3; maths)$^\circ$ — the reading on the arc.
+
+    That is the whole use of the definition. The component formula is arithmetic on numbers already known; the geometric formula contains the angle. Computing one and equating it to the other extracts the angle from the components.
+
+    note{
+        The angle is measured between the vectors tail to tail, and lies between $0^\circ$ and $180^\circ$. A negative dot product means an obtuse angle, since $\cos\theta < 0$ there; a dot product of zero means a right angle.
+    }
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        vector(x: 0; y: 0; dx: 4; dy: 1; colour: orange; label: $\mathbf{a} = (4, 1)$)
+        vector(x: 0; y: 0; dx: 2; dy: 3; colour: purple; label: $\mathbf{b} = (2, 3)$)
+
+        cue{
+            angle#th(at: (0, 0); from: (4, 1); to: (2, 3); label: $\theta$; show-value: true; colour: teal)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-1, 5]
+        y domain: [-1, 4]
+    )
+]
+
+scene{
+    # Why the two formulas agree
+
+    Place $\mathbf{a}$ and $\mathbf{b}$ tail to tail and join their tips. The third side of the triangle is $\mathbf{b} - \mathbf{a}$, and the angle between the first two sides is $\theta$, so the cosine rule applies to it.
+
+    ===
+
+    The length of $\mathbf{b} - \mathbf{a}$ can also be computed from components, by expanding each squared difference. The squares collect into $|\mathbf{a}|^2 + |\mathbf{b}|^2$ and the cross terms into $-2(a_1 b_1 + a_2 b_2 + a_3 b_3)$.
+
+    ===
+
+    Both expressions are the same length, so the leftover terms match: $a_1 b_1 + a_2 b_2 + a_3 b_3 = |\mathbf{a}||\mathbf{b}|\cos\theta$. The component formula and the geometric one are two descriptions of one quantity, which is what licenses switching between them.
+
+    Three properties follow directly from the component form and are used constantly.
+
+    - $\mathbf{a} \cdot \mathbf{b} = \mathbf{b} \cdot \mathbf{a}$, since each product $a_k b_k$ is symmetric.
+    - $\mathbf{a} \cdot (\mathbf{b} + \mathbf{c}) = \mathbf{a} \cdot \mathbf{b} + \mathbf{a} \cdot \mathbf{c}$, so brackets expand as in ordinary algebra.
+    - $\mathbf{a} \cdot \mathbf{a} = |\mathbf{a}|^2$, since $\cos 0 = 1$ — a vector dotted with itself is its own length squared.
+}[
+    #### The cosine rule on the triangle $\mathbf{a}$, $\mathbf{b}$, $\mathbf{b} - \mathbf{a}$
+
+    equation{
+        |\mathbf{b} - \mathbf{a}|^2 = |\mathbf{a}|^2 + |\mathbf{b}|^2 - 2|\mathbf{a}||\mathbf{b}|\cos\theta
+    }
+
+    cue{
+        #### The same length from components
+
+        equation{
+            |\mathbf{b} - \mathbf{a}|^2 = (b_1 - a_1)^2 + (b_2 - a_2)^2 + (b_3 - a_3)^2 = |\mathbf{a}|^2 + |\mathbf{b}|^2 - 2(a_1 b_1 + a_2 b_2 + a_3 b_3)
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Comparing the two
+
+        equation{
+            a_1 b_1 + a_2 b_2 + a_3 b_3 = |\mathbf{a}||\mathbf{b}|\cos\theta
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Perpendicular vectors
+
+    The case $\theta = 90^\circ$ is the one the dot product handles best, because $\cos 90^\circ = 0$ and the formula collapses.
+
+    definition{
+        Two non-zero vectors are perpendicular exactly when $\mathbf{a} \cdot \mathbf{b} = 0$. No angle needs to be found: the test is a single sum of products.
+    }(
+        term: Perpendicular vectors
+    )
+
+    On the canvas $\mathbf{a} = (3, 1)$ and $\mathbf{b} = (-1, 3)$, and $-3 + 3 = 0$. The right angle is marked, but the mark is a consequence of the arithmetic, not a substitute for it.
+
+    ===
+
+    The test is no harder in space, where a right angle is hard to see. $(1, 2, -2) \cdot (2, 1, 2) = 2 + 2 - 4 = 0$, so those two vectors are perpendicular whatever a sketch of them looks like.
+
+    The basis vectors are the standard example: $\mathbf{i} \cdot \mathbf{j} = 0$, $\mathbf{j} \cdot \mathbf{k} = 0$ and $\mathbf{k} \cdot \mathbf{i} = 0$, while each dotted with itself is $1$. Expanding $\mathbf{a} \cdot \mathbf{b}$ in terms of the basis vectors and applying those nine products is another route to the component formula.
+
+    note{
+        The zero vector is perpendicular to everything by the formula and to nothing by the picture, which is why the definition says non-zero. A dot product of zero with $\mathbf{a} \ne \mathbf{0}$ and $\mathbf{b} \ne \mathbf{0}$ is the meaningful case.
+    }
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        vector(x: 0; y: 0; dx: 3; dy: 1; colour: orange; label: $\mathbf{a} = (3, 1)$)
+        vector(x: 0; y: 0; dx: -1; dy: 3; colour: purple; label: $\mathbf{b} = (-1, 3)$)
+        angle(at: (0, 0); from: (3, 1); to: (-1, 3); colour: teal)
+
+        cue{
+            text(label: $\mathbf{a} \cdot \mathbf{b} = -3 + 3 = 0$; x: 1.8; y: 3.2; colour: teal)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-2, 4]
+        y domain: [-1, 4]
+    )
+]
+
+scene{
+    ## Projection
+
+    The dot product also answers how much of one vector lies along another. Drop a perpendicular from the tip of $\mathbf{a}$ onto the line of $\mathbf{b}$; the foot of that perpendicular marks the projection of $\mathbf{a}$ onto $\mathbf{b}$.
+
+    definition{
+        The vector along $\mathbf{b}$ whose tip is the foot of the perpendicular from the tip of $\mathbf{a}$: $\operatorname{proj}_{\mathbf{b}}\mathbf{a} = \dfrac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{b}|^2}\,\mathbf{b}$. Its length, $\dfrac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{b}|} = |\mathbf{a}|\cos\theta$, is the scalar projection.
+    }(
+        term: Projection
+    )
+
+    ===
+
+    On the canvas $\mathbf{a} = (1, 3)$ and $\mathbf{b} = (4, 2)$. Then $\mathbf{a} \cdot \mathbf{b} = 10$ and $|\mathbf{b}|^2 = 20$, so the projection is $\frac{1}{2}\mathbf{b} = (2, 1)$, the teal arrow.
+
+    The formula is the geometric definition read backwards. The length along $\mathbf{b}$ is $|\mathbf{a}|\cos\theta$, which is $\frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{b}|}$; multiplying by the unit vector $\frac{\mathbf{b}}{|\mathbf{b}|}$ gives it a direction. Checking that the remainder $\mathbf{a} - (2, 1) = (-1, 2)$ is perpendicular to $\mathbf{b}$ is one dot product: $-4 + 4 = 0$.
+
+    task{
+        Find the angle between $(1, 2, 2)$ and $(2, -1, 2)$.
+    }[
+        The dot product is $2 - 2 + 4 = 4$, and both vectors have magnitude $3$. So $\cos\theta = \frac{4}{9}$, and $\theta = \arccos\frac{4}{9} \approx 63.6^\circ$.
+    ](
+        title: Your turn
+    )
 
     With an angle available, geometry becomes computable. Two directions plus a point fix a line in space, which is *Vector Equations of Lines*; and a diagram's claims about midpoints, diagonals and right angles become vector identities in *Geometric Proof with Vectors*.
 
     internote(ref: vector-equations-of-lines.chalk)
 
     internote(ref: geometric-proof-with-vectors.chalk)
-}
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        vector(x: 0; y: 0; dx: 1; dy: 3; colour: orange; label: $\mathbf{a}$)
+        vector(x: 0; y: 0; dx: 4; dy: 2; colour: purple; label: $\mathbf{b}$)
+
+        cue.draw{
+            segment(start: (1, 3); end: (2, 1); colour: grey; dashed)
+            angle(at: (2, 1); from: (1, 3); to: (0, 0); colour: grey; radius: 18)
+            vector(x: 0; y: 0; dx: 2; dy: 1; colour: teal; label: $\operatorname{proj}_{\mathbf{b}}\mathbf{a} = (2, 1)$)
+        }(
+            in: 1
+            in duration: 1.2s
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-1, 5]
+        y domain: [-1, 4]
+    )
+]

@@ -1,14 +1,151 @@
 *(
     title: Projectiles with Resistance
-    description: A projectile meeting air resistance, where the horizontal and vertical motions stop being independent.
-    tags: mechanics, projectiles, air resistance, extension 2, stub
+    description: A projectile meeting air resistance, where the horizontal motion is no longer free, the path is no longer a parabola, and there is a line the body can never cross.
+    tags: mechanics, projectiles, air resistance, trajectory, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Extension 1 treats a projectile as two separate problems: constant velocity across, constant acceleration down. That separation is a consequence of the only force being gravity, which acts vertically and leaves the horizontal motion alone.
+    Extension 1 treats a projectile as two separate problems: constant velocity across, constant acceleration down. That separation is a consequence of the only force being gravity, which acts vertically and leaves the horizontal motion alone. The grey parabola is the result, for a launch at $20$ metres per second and $45^\circ$ with $g = 10$: it lands $40$ metres away, symmetrically.
 
-    Written out here: why resistance destroys the separation, since it acts along the velocity and therefore has a component in each direction; the horizontal and vertical equations that result; the horizontal limit the body approaches but never reaches; and how the trajectory differs from the parabola of the unresisted case.
-}
+    ===
+
+    Add a resistance proportional to the velocity and the teal path is what happens instead. The resistance acts *along the velocity*, against it, so it has a horizontal component whenever the body is moving horizontally. The across motion is no longer free, the body lands short, and the path is steeper coming down than going up.
+
+    definition{
+        A projectile subject to gravity and to a resistance force of magnitude $k$ times its speed, directed against its velocity. Each component of the resistance is $k$ times the matching component of velocity.
+    }(
+        term: Projectile with linear resistance
+    )
+
+    The picture is the whole story of this internote, and the rest is the calculation behind it: the two equations of motion, their solutions, and what those solutions say about the shape.
+}[
+    canvas.graph{
+        curve(expression: x - x^2 / 40; domain: [0, 40]; colour: grey; dashed; label: no resistance)
+
+        cue.draw{
+            line(x: 0, 3.45, 6.73, 9.85, 12.82, 15.64, 18.33, 20.88, 23.31, 25.62, 27.82, 28.7; y: 0, 3.14, 5.52, 7.17, 8.13, 8.44, 8.12, 7.21, 5.73, 3.72, 1.19, 0; colour: teal; label: $k = 0.2$)
+        }(
+            in: 1
+            in duration: 1.5s
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [0, 42]
+        y domain: [0, 12]
+    )
+]
+
+scene{
+    # The equations of motion
+
+    Resolve the resistance into components. Its horizontal component is $k\dot{x}$, opposing $\dot{x}$, and its vertical component is $k\dot{y}$, opposing $\dot{y}$. Gravity contributes $-g$ vertically and nothing horizontally.
+
+    ===
+
+    The horizontal equation is the one Extension 1 never had: $\ddot{x} = -k\dot{x}$. It is the horizontal resisted motion of *Resisted Motion*, and it solves the same way — the horizontal velocity decays exponentially from its launch value $u\cos\theta$.
+
+    ===
+
+    Integrating once more gives $x$ itself, and it approaches $\dfrac{u\cos\theta}{k}$ without reaching it. That is the first thing the resistance changes: there is now a vertical line the projectile cannot cross, however long it stays in the air.
+
+    The vertical equation is $\ddot{y} = -g - k\dot{y}$, the upward resisted motion with the sign of $\dot{y}$ deciding which way the resistance acts. With linear resistance each equation involves only its own component, so the two are still solved separately — the coupling is that they share $t$, and that each component of the resistance is tied to the motion in that direction.
+
+    note{
+        With resistance proportional to $v^2$ each component of the force involves the full speed $\sqrt{\dot{x}^2 + \dot{y}^2}$, so the two equations genuinely depend on each other and cannot be solved in closed form. That is why the course stops at linear resistance.
+    }
+}[
+    #### Two equations, one per component
+
+    equation{
+        \ddot{x} = -k\dot{x}, \qquad \ddot{y} = -g - k\dot{y}
+    }
+
+    cue{
+        #### Horizontal velocity decays
+
+        equation{
+            \dot{x} = u\cos\theta\,e^{-kt}
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Horizontal position approaches a limit
+
+        equation{
+            x = \frac{u\cos\theta}{k}\left(1 - e^{-kt}\right) \to \frac{u\cos\theta}{k}
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # The vertical motion, and the line that is never crossed
+
+    The vertical equation separates in the same way as the upward motion of *Resisted Motion*. Writing it as $\dfrac{d\dot{y}}{dt} = -(g + k\dot{y})$ and integrating from $\dot{y} = u\sin\theta$ at $t = 0$ gives the vertical velocity, and one more integration gives the height.
+
+    equation{
+        \dot{y} = \left(u\sin\theta + \frac{g}{k}\right)e^{-kt} - \frac{g}{k}, \qquad y = \frac{1}{k}\left(u\sin\theta + \frac{g}{k}\right)\left(1 - e^{-kt}\right) - \frac{g}{k}\,t
+    }
+
+    Two features of $\dot{y}$ are worth reading off. It is zero when $e^{-kt} = \dfrac{g/k}{u\sin\theta + g/k}$, which gives the time to the top; and as $t$ grows it tends to $-\dfrac{g}{k}$, the terminal velocity of the fall.
+
+    ===
+
+    The canvas plots $x$ against $t$ for the example of the first scene, with $u\cos\theta = 10\sqrt{2}$ and $k = 0.2$. The curve climbs towards $\dfrac{u\cos\theta}{k} \approx 70.7$ metres and flattens out beneath it. The projectile lands long before that, at about $28.7$ metres, but even a projectile that never landed would never get there.
+
+    That limit has no counterpart in unresisted motion, where $x$ grows without bound. It is the resistance eating the horizontal velocity: the total horizontal distance is $\int_0^\infty u\cos\theta\,e^{-kt}\,dt$, a convergent integral.
+}[
+    canvas.graph{
+        curve(expression: 70.71 * (1 - exp(-0.2 * x)); domain: [0, 20]; colour: blue; label: $x(t)$)
+        point(x: 2.6; y: 28.7; colour: teal; label: landing)
+
+        cue{
+            axis.label(y: 70.71; label: $\tfrac{u\cos\theta}{k}$; line; colour: orange)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $t$
+        y axis label: $x$
+        x domain: [0, 20]
+        y domain: [0, 80]
+    )
+]
+
+scene{
+    ## The shape of the path
+
+    The table compares the two flights of the first scene number by number. Every quantity is smaller with resistance: the body reaches the top sooner and lower, comes down sooner, and lands well short.
+
+    The asymmetry is the feature a sketch has to get right. Going up, the resistance and gravity act together and the body loses speed quickly; coming down, they oppose each other and the fall is gentler, but by then the horizontal velocity has decayed, so the descent is steep. The highest point is reached before the midpoint of the range, not at it.
+
+    Eliminating $t$ between $x$ and $y$ gives a Cartesian equation for the path that contains a logarithm of $1 - \dfrac{kx}{u\cos\theta}$. The logarithm goes to $-\infty$ as $x$ approaches $\dfrac{u\cos\theta}{k}$, which is the same vertical line seen from the other side: the path bends down towards it and never crosses.
+
+    task{
+        Show that with resistance the time to reach the greatest height is less than the unresisted time $\dfrac{u\sin\theta}{g}$.
+    }[
+        The time to the top is $T = \dfrac{1}{k}\ln\left(1 + \dfrac{k u\sin\theta}{g}\right)$. For any positive $\varepsilon$, $\ln(1 + \varepsilon) < \varepsilon$, since the difference $\varepsilon - \ln(1 + \varepsilon)$ is zero at $\varepsilon = 0$ and increasing. With $\varepsilon = \dfrac{ku\sin\theta}{g}$ this gives $T < \dfrac{u\sin\theta}{g}$.
+    ](
+        title: Your turn
+    )
+}[
+    table{
+        Quantity                    | No resistance | $k = 0.2$
+        Time to greatest height     | $1.41$ s      | $1.25$ s
+        Greatest height             | $10$ m        | $8.4$ m
+        Time of flight              | $2.83$ s      | $2.60$ s
+        Range                       | $40$ m        | $28.7$ m
+        Horizontal limit            | none          | $70.7$ m
+    }(
+        title: The two flights of the first scene
+        header column
+        highlight rows: 6
+    )
+]

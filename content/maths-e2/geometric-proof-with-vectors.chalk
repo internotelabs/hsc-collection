@@ -1,14 +1,198 @@
 *(
     title: Geometric Proof with Vectors
     description: Turning claims about a diagram into claims about vectors, where they can be computed instead of seen.
-    tags: vectors, geometric proof, midpoints, extension 2, stub
+    tags: vectors, geometric proof, midpoints, parallelogram, centroid, dot product, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    A classical geometric proof depends on the diagram being drawn correctly and on the reader seeing the relevant configuration. A vector proof depends on neither. Choosing an origin and naming each point by its position vector turns a statement about a figure into an identity to be verified.
+    A classical geometric proof depends on the diagram being drawn correctly and on the reader seeing the relevant configuration. A vector proof depends on neither. Choose an origin, name each point by its position vector, and a statement about the figure becomes an identity to be verified.
 
-    Written out here: setting up a diagram in vectors, the results that come out most cleanly this way — the midpoint of a segment, the diagonals of a parallelogram, the concurrence of medians — and using a dot product of zero to establish a right angle without measuring one.
-}
+    definition{
+        The vector from a chosen origin $O$ to the point $A$, written $\mathbf{a}$ or $\overrightarrow{OA}$. Once every point has one, the vector between any two points is a difference: $\overrightarrow{AB} = \mathbf{b} - \mathbf{a}$.
+    }(
+        term: Position vector
+    )
+
+    ===
+
+    The first result is the one everything else leans on. The midpoint $M$ of $AB$ is reached by going to $A$ and then half way along $\overrightarrow{AB}$, so $\mathbf{m} = \mathbf{a} + \frac{1}{2}(\mathbf{b} - \mathbf{a}) = \frac{1}{2}(\mathbf{a} + \mathbf{b})$.
+
+    equation{
+        \mathbf{m} = \frac{\mathbf{a} + \mathbf{b}}{2}
+    }
+
+    On the canvas $\mathbf{a} = (4, 1)$ and $\mathbf{b} = (1, 3)$, and the midpoint is $(2.5, 2)$. The formula is symmetric in $\mathbf{a}$ and $\mathbf{b}$, which it must be, since going from $B$ half way to $A$ arrives at the same place.
+
+    A point dividing $AB$ in some other ratio is handled the same way: $\mathbf{a} + t(\mathbf{b} - \mathbf{a})$ is the point $t$ of the way from $A$ to $B$, and $t = \frac{1}{2}$ is the midpoint.
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        vector(x: 0; y: 0; dx: 4; dy: 1; colour: orange; label: $\mathbf{a}$)
+        vector(x: 0; y: 0; dx: 1; dy: 3; colour: purple; label: $\mathbf{b}$)
+        segment(start: (4, 1); end: (1, 3); colour: grey; dashed)
+
+        cue.draw{
+            vector(x: 0; y: 0; dx: 2.5; dy: 2; colour: teal; label: $\mathbf{m} = \tfrac{1}{2}(\mathbf{a} + \mathbf{b})$)
+            point(x: 2.5; y: 2; colour: teal; label: $M$)
+        }(
+            in: 1
+            in duration: 1.2s
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-1, 5]
+        y domain: [-1, 4]
+    )
+]
+
+scene{
+    # The diagonals of a parallelogram bisect each other
+
+    Take the origin at one vertex $O$, with $\overrightarrow{OA} = \mathbf{a}$ and $\overrightarrow{OB} = \mathbf{b}$. The fourth vertex $C$ of the parallelogram $OACB$ is reached by going along $\mathbf{a}$ and then along $\mathbf{b}$, so $\mathbf{c} = \mathbf{a} + \mathbf{b}$.
+
+    ===
+
+    The diagonal $OC$ has midpoint $\frac{1}{2}\mathbf{c} = \frac{1}{2}(\mathbf{a} + \mathbf{b})$. The other diagonal $AB$ has midpoint $\frac{1}{2}(\mathbf{a} + \mathbf{b})$ by the formula of the first scene. The two midpoints are the same vector, so they are the same point, and each diagonal passes through the middle of the other.
+
+    equation{
+        \text{midpoint of } OC = \frac{\mathbf{a} + \mathbf{b}}{2} = \text{midpoint of } AB
+    }
+
+    The proof is two lines, and neither of them is about the picture. It never used that the sides were parallel except through the single fact $\mathbf{c} = \mathbf{a} + \mathbf{b}$, which is what makes $OACB$ a parallelogram in the first place.
+
+    note{
+        The converse holds too. If the diagonals of a quadrilateral bisect each other, the shared midpoint gives $\frac{1}{2}\mathbf{c} = \frac{1}{2}(\mathbf{a} + \mathbf{b})$, so $\mathbf{c} = \mathbf{a} + \mathbf{b}$ and the figure is a parallelogram. Vector arguments often run in both directions with no extra work.
+    }
+}[
+    canvas.graph{
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        polygon(x: 0, 4, 5, 1; y: 0, 1, 4, 3; colour: teal; !fill)
+        point(x: 4; y: 1; colour: orange; label: $A$)
+        point(x: 1; y: 3; colour: purple; label: $B$)
+        point(x: 5; y: 4; colour: grey; label: $C$)
+
+        cue.draw{
+            segment(start: (0, 0); end: (5, 4); colour: orange; label: $\mathbf{a} + \mathbf{b}$)
+            segment(start: (4, 1); end: (1, 3); colour: purple)
+            point(x: 2.5; y: 2; colour: teal; label: $\tfrac{1}{2}(\mathbf{a} + \mathbf{b})$)
+        }(
+            in: 1
+            in duration: 1.2s
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-1, 6]
+        y domain: [-1, 5]
+    )
+]
+
+scene{
+    # The medians of a triangle are concurrent
+
+    A median joins a vertex to the midpoint of the opposite side. A triangle has three of them, and the claim is that all three pass through one point.
+
+    The vector proof names the point first and then checks it. Let the vertices have position vectors $\mathbf{a}$, $\mathbf{b}$ and $\mathbf{c}$, and consider $\mathbf{g} = \frac{1}{3}(\mathbf{a} + \mathbf{b} + \mathbf{c})$.
+
+    ===
+
+    The median from $A$ runs to the midpoint $\frac{1}{2}(\mathbf{b} + \mathbf{c})$ of $BC$. Two thirds of the way along it is $\mathbf{a} + \frac{2}{3}\left(\frac{\mathbf{b} + \mathbf{c}}{2} - \mathbf{a}\right)$, which simplifies to $\mathbf{g}$.
+
+    equation{
+        \mathbf{a} + \frac{2}{3}\left(\frac{\mathbf{b} + \mathbf{c}}{2} - \mathbf{a}\right) = \frac{\mathbf{a}}{3} + \frac{\mathbf{b} + \mathbf{c}}{3} = \frac{\mathbf{a} + \mathbf{b} + \mathbf{c}}{3}
+    }
+
+    ===
+
+    The expression for $\mathbf{g}$ is symmetric in the three vertices, so the same calculation starting from $B$ or from $C$ lands on the same point. All three medians pass through $\mathbf{g}$, each at two thirds of its length from the vertex.
+
+    definition{
+        The point $\frac{1}{3}(\mathbf{a} + \mathbf{b} + \mathbf{c})$ at which the three medians of a triangle meet, two thirds of the way along each from its vertex.
+    }(
+        term: Centroid
+    )
+
+    The symmetry did the work that a classical proof does with similar triangles. Once the candidate point is written down in a form that treats the vertices identically, checking one median checks them all.
+}[
+    canvas.graph{
+        polygon(x: 0, 6, 2; y: 0, 0, 5; colour: grey; !fill)
+        point(x: 0; y: 0; colour: orange; label: $A$)
+        point(x: 6; y: 0; colour: orange; label: $B$)
+        point(x: 2; y: 5; colour: orange; label: $C$)
+
+        cue.draw{
+            segment(start: (0, 0); end: (4, 2.5); colour: teal)
+        }(
+            in: 1
+            in duration: 1s
+        )
+
+        cue.draw{
+            segment(start: (6, 0); end: (1, 2.5); colour: teal)
+            segment(start: (2, 5); end: (3, 0); colour: teal)
+            point(x: 2.667; y: 1.667; colour: purple; label: $G$)
+        }(
+            in: 2
+            in duration: 1.2s
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-1, 7]
+        y domain: [-1, 6]
+    )
+]
+
+scene{
+    ## A right angle from a dot product of zero
+
+    The angle in a semicircle is a right angle: join the ends of a diameter to any point on the circle, and the two chords meet at $90^\circ$. The classical proof draws in the radius to the point and chases angles in two isosceles triangles. The vector proof computes one dot product.
+
+    Put the origin at the centre, with radius $r$. The ends of the diameter are $\mathbf{a}$ and $-\mathbf{a}$, and the point $P$ on the circle is $\mathbf{p}$, so $|\mathbf{a}| = |\mathbf{p}| = r$.
+
+    ===
+
+    The two chords from $P$ are $\overrightarrow{PA} = \mathbf{a} - \mathbf{p}$ and $\overrightarrow{PB} = -\mathbf{a} - \mathbf{p}$. Their dot product expands like a difference of two squares.
+
+    equation{
+        (\mathbf{a} - \mathbf{p}) \cdot (-\mathbf{a} - \mathbf{p}) = -\left(\mathbf{a} \cdot \mathbf{a} - \mathbf{p} \cdot \mathbf{p}\right) = -\left(r^2 - r^2\right) = 0
+    }
+
+    The chords are perpendicular, and the argument never looked at where $P$ was. That is the strength of the method: a single calculation covers every position of $P$ at once, where a diagram covers one.
+
+    task{
+        Prove that the segment joining the midpoints of two sides of a triangle is parallel to the third side and half its length.
+    }[
+        With vertices $\mathbf{a}$, $\mathbf{b}$, $\mathbf{c}$, the midpoints of $AB$ and $AC$ are $\mathbf{m} = \frac{1}{2}(\mathbf{a} + \mathbf{b})$ and $\mathbf{n} = \frac{1}{2}(\mathbf{a} + \mathbf{c})$. Then $\overrightarrow{MN} = \mathbf{n} - \mathbf{m} = \frac{1}{2}(\mathbf{c} - \mathbf{b}) = \frac{1}{2}\overrightarrow{BC}$, which is parallel to $\overrightarrow{BC}$ and half its length.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.graph{
+        circle(x: 0; y: 0; size: 2; colour: grey; !fill)
+        point(x: 0; y: 0; colour: grey; label: $O$)
+        segment(start: (-2, 0); end: (2, 0); colour: grey)
+        point(x: 2; y: 0; colour: orange; label: $A$)
+        point(x: -2; y: 0; colour: orange; label: $B$)
+        point(x: 1.2; y: 1.6; colour: purple; label: $P$)
+
+        cue.draw{
+            segment(start: (1.2, 1.6); end: (2, 0); colour: teal)
+            segment(start: (1.2, 1.6); end: (-2, 0); colour: teal)
+            angle(at: (1.2, 1.6); from: (2, 0); to: (-2, 0); colour: teal; radius: 22)
+        }(
+            in: 1
+            in duration: 1.2s
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-3, 3]
+        y domain: [-2.5, 2.5]
+        !show ticks
+    )
+]

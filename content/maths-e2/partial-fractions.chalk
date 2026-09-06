@@ -1,14 +1,171 @@
 *(
     title: Partial Fractions
-    description: Splitting a rational function into pieces each of which integrates on sight.
-    tags: integration, partial fractions, rational functions, calculus, extension 2, stub
+    description: Splitting a rational function into pieces each of which integrates on sight, and recovering the pieces from the whole.
+    tags: integration, partial fractions, rational functions, calculus, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    A ratio of polynomials has no integration rule of its own, but a sum of simple fractions does, and every proper rational function is such a sum. The work is in recovering the pieces from the whole.
+    A ratio of polynomials has no integration rule of its own. The blue curve is $y = \dfrac{1}{(x - 1)(x + 2)}$, and nothing in the toolkit so far integrates it directly.
 
-    Written out here: dividing first when the numerator's degree is not smaller, the form of the decomposition for distinct linear factors, repeated factors and irreducible quadratic factors, finding the unknown constants by substitution or by equating coefficients, and integrating the resulting pieces.
-}
+    ===
+
+    A sum of simple fractions does integrate, and the blue curve *is* such a sum. The two dashed curves are $\dfrac{1/3}{x - 1}$ and $\dfrac{-1/3}{x + 2}$, and at every $x$ their heights add to the height of the blue curve. Each dashed piece integrates to a logarithm.
+
+    definition{
+        Writing a rational function as a sum of fractions whose denominators are the factors of the original denominator. A fraction with a linear factor $(x - a)$ in the denominator contributes a term $\dfrac{A}{x - a}$.
+    }(
+        term: Partial fraction decomposition
+    )
+
+    With the decomposition in hand the integral is immediate: $\int\dfrac{dx}{(x - 1)(x + 2)} = \frac{1}{3}\ln|x - 1| - \frac{1}{3}\ln|x + 2| + C$. The whole of the work is in recovering the pieces from the whole, which the next scene takes up.
+
+    note{
+        The decomposition applies to *proper* fractions, where the numerator's degree is less than the denominator's. When it is not, divide first: $\dfrac{x^2 + 1}{x - 1} = x + 1 + \dfrac{2}{x - 1}$, and only the remainder term needs partial fractions.
+    }
+}[
+    canvas.graph{
+        curve(expression: 1 / ((x - 1) * (x + 2)); colour: blue; label: $y = \frac{1}{(x - 1)(x + 2)}$)
+
+        cue{
+            curve(expression: (1 / 3) / (x - 1); colour: teal; dashed; label: $\frac{1/3}{x - 1}$)
+            curve(expression: (-1 / 3) / (x + 2); colour: orange; dashed; label: $\frac{-1/3}{x + 2}$)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-5, 4]
+        y domain: [-3, 3]
+    )
+]
+
+scene{
+    # Finding the constants
+
+    Write the decomposition with unknown constants and multiply through by the original denominator. What remains is an identity between polynomials, true for every $x$, and there are two ways to extract the constants from it.
+
+    ===
+
+    Substitution picks values of $x$ that kill all but one term. At $x = 1$ the $B$ term vanishes and $A$ is read off; at $x = -2$ the $A$ term vanishes and $B$ is read off. The values chosen are the roots of the denominator, which is why they are so effective.
+
+    ===
+
+    Equating coefficients compares the two sides power by power: the coefficients of $x$ must agree, and so must the constants. That gives simultaneous equations, here $A + B = 0$ and $2A - B = 1$, with the same solution.
+
+    Substitution is faster when the factors are linear and distinct. Equating coefficients is the fallback when substitution runs out of useful values, which happens with repeated and quadratic factors, and mixing the two — substituting for what substitution can reach and equating coefficients for the rest — is common.
+
+    note{
+        Substituting a root of the denominator into an identity that was obtained by multiplying through by that denominator is legitimate because the identity is between polynomials, which agree everywhere if they agree on enough points. The original fraction is undefined there, but the identity is not.
+    }
+}[
+    #### The decomposition, with unknowns
+
+    equation{
+        \frac{1}{(x - 1)(x + 2)} = \frac{A}{x - 1} + \frac{B}{x + 2} \implies 1 = A(x + 2) + B(x - 1)
+    }
+
+    cue{
+        #### Substitution: the roots of the denominator
+
+        equation{
+            x = 1: \; 1 = 3A \implies A = \tfrac{1}{3} \qquad x = -2: \; 1 = -3B \implies B = -\tfrac{1}{3}
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Equating coefficients: the same answer
+
+        equation{
+            x^1: \; A + B = 0 \qquad x^0: \; 2A - B = 1
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Repeated and quadratic factors
+
+    The form of the decomposition follows the factors of the denominator, and the table gives the three cases. A repeated linear factor needs one term for each power up to the repeat; an irreducible quadratic needs a linear numerator, since a constant alone is not general enough to absorb everything.
+
+    For a repeated factor: $\dfrac{3x + 1}{(x + 1)^2} = \dfrac{A}{x + 1} + \dfrac{B}{(x + 1)^2}$. Multiplying out, $3x + 1 = A(x + 1) + B$; substituting $x = -1$ gives $B = -2$, and the coefficient of $x$ gives $A = 3$.
+
+    equation{
+        \frac{3x + 1}{(x + 1)^2} = \frac{3}{x + 1} - \frac{2}{(x + 1)^2}
+    }
+
+    For a quadratic factor: $\dfrac{x + 3}{(x - 1)(x^2 + 1)} = \dfrac{A}{x - 1} + \dfrac{Bx + C}{x^2 + 1}$. Multiplying out, $x + 3 = A(x^2 + 1) + (Bx + C)(x - 1)$. Substituting $x = 1$ gives $A = 2$; the $x^2$ coefficients give $A + B = 0$, so $B = -2$; the constants give $A - C = 3$, so $C = -1$.
+
+    equation{
+        \frac{x + 3}{(x - 1)(x^2 + 1)} = \frac{2}{x - 1} - \frac{2x + 1}{x^2 + 1}
+    }
+
+    A quick check at $x = 0$ catches most slips: the left side is $-3$, and the right side is $-2 - 1 = -3$.
+}[
+    table{
+        Factor in the denominator       | Terms in the decomposition
+        $(x - a)$                       | $\dfrac{A}{x - a}$
+        $(x - a)^2$                     | $\dfrac{A}{x - a} + \dfrac{B}{(x - a)^2}$
+        $x^2 + bx + c$, irreducible     | $\dfrac{Bx + C}{x^2 + bx + c}$
+    }(
+        title: The shape of each piece
+    )
+]
+
+scene{
+    ## Integrating the pieces
+
+    Each kind of term has its own integral, and once the decomposition is written the integration is mechanical. A term $\dfrac{A}{x - a}$ gives $A\ln|x - a|$; a term $\dfrac{B}{(x - a)^2}$ is a power, giving $-\dfrac{B}{x - a}$.
+
+    ===
+
+    The quadratic term is the one needing care. Its numerator is split into the part that is the derivative of the denominator, which integrates to a logarithm, and the constant left over, which integrates to an inverse tangent. For $\dfrac{2x + 1}{x^2 + 1}$ the derivative part is $2x$ and the leftover is $1$.
+
+    ===
+
+    Assembling the pieces gives the whole integral. The three functions that appear — logarithm, power and inverse tangent — are the only ones partial fractions ever produce, which is what makes the method complete: every proper rational function integrates in terms of them.
+
+    task{
+        Find $\displaystyle\int\frac{5x - 1}{(x - 2)(x + 3)}\,dx$.
+    }[
+        Write $\dfrac{5x - 1}{(x - 2)(x + 3)} = \dfrac{A}{x - 2} + \dfrac{B}{x + 3}$, so $5x - 1 = A(x + 3) + B(x - 2)$. At $x = 2$, $9 = 5A$; at $x = -3$, $-16 = -5B$. So $A = \frac{9}{5}$, $B = \frac{16}{5}$, and the integral is $\frac{9}{5}\ln|x - 2| + \frac{16}{5}\ln|x + 3| + C$.
+    ](
+        title: Your turn
+    )
+
+    Splitting a numerator against a quadratic denominator, and completing the square when the quadratic does not factorise, is its own topic. *Integrals with Quadratic Denominators* sets it out in full.
+
+    internote(ref: quadratic-denominators.chalk)
+}[
+    #### The linear term
+
+    equation{
+        \int\frac{2}{x - 1}\,dx = 2\ln|x - 1|
+    }
+
+    cue{
+        #### The quadratic term, numerator split
+
+        equation{
+            \int\frac{2x + 1}{x^2 + 1}\,dx = \int\frac{2x}{x^2 + 1}\,dx + \int\frac{1}{x^2 + 1}\,dx = \ln(x^2 + 1) + \arctan x
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Assembled
+
+        equation{
+            \int\frac{x + 3}{(x - 1)(x^2 + 1)}\,dx = 2\ln|x - 1| - \ln(x^2 + 1) - \arctan x + C
+        }
+    }(
+        in: 2
+    )
+]

@@ -1,14 +1,181 @@
 *(
     title: Integrals with Quadratic Denominators
-    description: Completing the square to reach the inverse tangent and inverse sine forms.
-    tags: integration, completing the square, inverse trigonometric functions, calculus, extension 2, stub
+    description: Completing the square to reach the inverse tangent and inverse sine forms, and splitting a numerator so that the logarithm falls out first.
+    tags: integration, completing the square, inverse trigonometric functions, calculus, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Two standard integrals produce inverse trigonometric functions, and both need their quadratic in a particular shape: a constant plus or minus a square. Any quadratic can be put into that shape by completing the square, so the work is algebraic rather than integral.
+    Two standard integrals produce inverse trigonometric functions, and both are checked by differentiating the answer. The derivative of $\arctan x$ is $\dfrac{1}{1 + x^2}$, so the area under the blue curve from $-1$ to $1$ is $\arctan 1 - \arctan(-1) = \frac{\pi}{2}$.
 
-    Written out here: completing the square under and beside a root sign, splitting a numerator into the part that is the derivative of the denominator and the constant left over, and recognising which of the logarithm, inverse tangent and inverse sine forms a given integral resolves into.
-}
+    ===
+
+    The shaded region measures !value:#band.value(digits: 4), which is $\frac{\pi}{2}$. A rational function with no root anywhere has produced $\pi$, and the reason is that $\arctan$ is an angle.
+
+    definition{
+        $\displaystyle\int\frac{dx}{a^2 + x^2} = \frac{1}{a}\arctan\frac{x}{a} + C$ and $\displaystyle\int\frac{dx}{\sqrt{a^2 - x^2}} = \arcsin\frac{x}{a} + C$. The first has a sum of squares below the line; the second has a difference of squares below the line and under a root.
+    }(
+        term: The inverse tangent and inverse sine integrals
+    )
+
+    Both come from substitution. Putting $x = a\tan\theta$ into the first turns $a^2 + x^2$ into $a^2\sec^2\theta$, and $dx = a\sec^2\theta\,d\theta$ cancels it down to $\frac{1}{a}\int d\theta$. Putting $x = a\sin\theta$ into the second does the same with $\cos\theta$.
+
+    What both need is their quadratic in a particular shape: a constant plus or minus a single square. Any quadratic can be put into that shape by completing the square, so the work of this internote is algebraic rather than integral.
+}[
+    canvas.graph{
+        curve#lorentz(expression: 1 / (1 + x^2); colour: blue; label: $y = \frac{1}{1 + x^2}$)
+
+        cue{
+            integral#band(of: #lorentz; from: -1; to: 1; colour: teal)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-4, 4]
+        y domain: [-0.3, 1.3]
+    )
+]
+
+scene{
+    # Completing the square
+
+    The denominator $x^2 + 4x + 13$ has no real roots, so partial fractions cannot touch it. Completing the square rewrites it as $(x + 2)^2 + 9$: a square plus a constant, which is the inverse tangent shape with $a = 3$ and $x + 2$ in place of $x$.
+
+    ===
+
+    The substitution $u = x + 2$ has $du = dx$, so it changes nothing except the name of the variable, and the standard form applies directly.
+
+    ===
+
+    Under a root sign the same manoeuvre reaches the inverse sine. $5 - 4x - x^2$ is $9 - (x + 2)^2$, a constant minus a square, and with $u = x + 2$ the integral is $\arcsin\frac{u}{3}$.
+
+    note{
+        The sign of the $x^2$ term decides which form is in play. A positive square plus a constant is $\arctan$; a constant minus a square, under a root, is $\arcsin$. Completing the square on $-x^2 - 4x + 5$ begins by factoring out the minus sign, so that the square is subtracted rather than added.
+    }
+}[
+    #### A sum of squares
+
+    equation{
+        x^2 + 4x + 13 = (x + 2)^2 + 9
+    }
+
+    cue{
+        #### The inverse tangent, with $u = x + 2$
+
+        equation{
+            \int\frac{dx}{x^2 + 4x + 13} = \int\frac{du}{u^2 + 3^2} = \frac{1}{3}\arctan\frac{x + 2}{3} + C
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### A difference of squares under a root
+
+        equation{
+            \int\frac{dx}{\sqrt{5 - 4x - x^2}} = \int\frac{du}{\sqrt{3^2 - u^2}} = \arcsin\frac{x + 2}{3} + C
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Splitting the numerator
+
+    A numerator that is not a constant is handled by splitting it into two parts: a multiple of the derivative of the denominator, and whatever constant is left over. For $\dfrac{2x + 7}{x^2 + 4x + 13}$ the derivative of the denominator is $2x + 4$, so the numerator is $(2x + 4) + 3$.
+
+    ===
+
+    The first part is of the form $\dfrac{f'(x)}{f(x)}$, which integrates to $\ln|f(x)|$ — here $\ln(x^2 + 4x + 13)$, with no modulus needed because the quadratic is always positive.
+
+    ===
+
+    The second part is a constant over the same quadratic, which is the previous scene's integral, and the $3$ cancels the $\frac{1}{3}$ in front of the inverse tangent.
+
+    The split is always available, since any linear numerator $px + q$ can be written as $\frac{p}{2}(2x + b) + \left(q - \frac{pb}{2}\right)$ against a denominator $x^2 + bx + c$. The logarithm collects the $x$ in the numerator, and the inverse tangent collects the constant.
+}[
+    #### The numerator, split against the derivative $2x + 4$
+
+    equation{
+        \int\frac{2x + 7}{x^2 + 4x + 13}\,dx = \int\frac{2x + 4}{x^2 + 4x + 13}\,dx + \int\frac{3}{x^2 + 4x + 13}\,dx
+    }
+
+    cue{
+        #### The first part is a logarithm
+
+        equation{
+            \int\frac{2x + 4}{x^2 + 4x + 13}\,dx = \ln(x^2 + 4x + 13)
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### The second is the inverse tangent
+
+        equation{
+            \int\frac{3}{(x + 2)^2 + 9}\,dx = \arctan\frac{x + 2}{3}
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    ## Which form
+
+    A quadratic in the denominator resolves into one of three functions, and the flowchart decides which. The first question is whether the quadratic factorises over the reals; if it does, partial fractions split it and every piece is a logarithm.
+
+    ===
+
+    If it does not, the numerator is split. The part matching the derivative gives a logarithm, whatever the quadratic is.
+
+    ===
+
+    The leftover constant is where the square is completed. Over a sum of squares it gives an inverse tangent; under a root, over a constant minus a square, it gives an inverse sine.
+
+    The three answers look different but come from one procedure, and recognising which branch a given integral is on is most of the skill. The rest is completing the square without dropping a sign.
+
+    task{
+        Find $\displaystyle\int\frac{dx}{\sqrt{3 - 2x - x^2}}$.
+    }[
+        Completing the square, $3 - 2x - x^2 = 4 - (x + 1)^2$. With $u = x + 1$ the integral is $\int\frac{du}{\sqrt{2^2 - u^2}} = \arcsin\frac{x + 1}{2} + C$.
+    ](
+        title: Your turn
+    )
+}[
+    canvas.diagram{
+        box#start(label: A quadratic in the denominator; shape: terminal)
+        box#factor(label: Does it factorise over the reals?; shape: decision)
+        box#pf(label: Partial fractions; sub: every piece is a logarithm; colour: purple)
+        arrow(from: #start; to: #factor)
+        arrow(from: #factor; to: #pf; label: yes)
+
+        cue{
+            box#split(label: Split the numerator; sub: derivative part, plus a constant)
+            box#log(label: Logarithm; sub: from the derivative part; colour: teal)
+            arrow(from: #factor; to: #split; label: no)
+            arrow(from: #split; to: #log)
+        }(
+            in: 1
+        )
+
+        cue{
+            box#square(label: Complete the square; sub: on the constant part)
+            box#atan(label: Inverse tangent; sub: a square plus a constant; colour: orange)
+            box#asin(label: Inverse sine; sub: a constant minus a square, under a root; colour: orange)
+            arrow(from: #split; to: #square)
+            arrow(from: #square; to: #atan)
+            arrow(from: #square; to: #asin)
+        }(
+            in: 2
+        )
+    }(
+        flow: down
+    )
+]

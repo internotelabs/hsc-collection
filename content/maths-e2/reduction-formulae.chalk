@@ -1,14 +1,168 @@
 *(
     title: Reduction Formulae
     description: An integral defined in terms of a smaller copy of itself, evaluated by descending to a base case.
-    tags: integration, reduction formulae, recurrence, calculus, extension 2, stub
+    tags: integration, reduction formulae, recurrence, integration by parts, calculus, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Integrating the fourth power of sine by parts does not finish the job; it leaves the second power behind. That looks like a failure until the same calculation is done with a general exponent, at which point the leftover is the point: it relates one integral to its smaller neighbour.
+    Integrating $\sin^4 x$ by parts does not finish the job. Split off one factor of $\sin x$ to integrate, differentiate the $\sin^3 x$ left behind, and after the dust settles the working contains $\int\sin^2 x\,dx$ — a smaller version of the same problem.
 
-    Written out here: deriving a reduction formula by parts, the base case that terminates the descent, applying the formula repeatedly to evaluate a definite integral, and the definite-integral versions in which the boundary term vanishes and the formula simplifies.
-}
+    That looks like a failure until the same calculation is done with a general exponent $n$, at which point the leftover is the point: it relates $I_n$ to $I_{n-2}$, and one relation covers every $n$ at once.
+
+    ===
+
+    Write $I_n = \int\sin^n x\,dx$ and split $\sin^n x$ as $\sin^{n-1}x \cdot \sin x$. Taking $u = \sin^{n-1}x$ and $v' = \sin x$, the parts formula produces a boundary term and an integral containing $\cos^2 x$.
+
+    ===
+
+    Replace $\cos^2 x$ by $1 - \sin^2 x$ and the integral splits into $I_{n-2}$ and $I_n$. The $I_n$ on the right is brought across to join the one on the left, and dividing by $n$ gives the formula.
+
+    definition{
+        An equation expressing $I_n$, a member of a family of integrals indexed by $n$, in terms of a member with a smaller index, such as $I_{n-1}$ or $I_{n-2}$. Applied repeatedly it reduces any $I_n$ to a base case that can be integrated directly.
+    }(
+        term: Reduction formula
+    )
+}[
+    #### Split, and integrate by parts
+
+    equation{
+        I_n = \int\sin^{n-1}x\,\sin x\,dx = -\sin^{n-1}x\cos x + (n - 1)\int\sin^{n-2}x\cos^2 x\,dx
+    }
+
+    cue{
+        #### Replace $\cos^2 x$ by $1 - \sin^2 x$
+
+        equation{
+            I_n = -\sin^{n-1}x\cos x + (n - 1)\left(I_{n-2} - I_n\right)
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Collect the $I_n$ terms
+
+        equation{
+            n I_n = -\sin^{n-1}x\cos x + (n - 1)I_{n-2}
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # The definite version
+
+    With limits $0$ and $\frac{\pi}{2}$ the boundary term $-\sin^{n-1}x\cos x$ vanishes at both ends, since $\cos\frac{\pi}{2} = 0$ and $\sin 0 = 0$. What remains is clean: $I_n = \frac{n - 1}{n}I_{n-2}$.
+
+    The descent needs somewhere to stop. Two base cases cover it: $I_0 = \int_0^{\pi/2} 1\,dx = \frac{\pi}{2}$ for the even indices, and $I_1 = \int_0^{\pi/2}\sin x\,dx = 1$ for the odd ones.
+
+    ===
+
+    So $I_4 = \frac{3}{4}I_2 = \frac{3}{4}\cdot\frac{1}{2}I_0 = \frac{3}{4}\cdot\frac{1}{2}\cdot\frac{\pi}{2} = \frac{3\pi}{16}$. The shaded area under $\sin^4 x$ measures !value:#quartic.value(digits: 4), which is that value.
+
+    equation{
+        I_4 = \frac{3}{4}\cdot\frac{1}{2}\cdot\frac{\pi}{2} = \frac{3\pi}{16}
+    }
+
+    The three curves show what the formula is tracking. Each higher power hugs the axis more closely near $0$ and reaches $1$ only at the right-hand end, so the areas shrink, and the factor $\frac{n - 1}{n}$ is the exact rate at which they do.
+
+    note{
+        The same area was reached in *de Moivre and Trigonometric Identities* by writing $\cos^4\theta$ in multiple angles. The two methods agree, and $\cos^4$ over $[0, \frac{\pi}{2}]$ has the same integral as $\sin^4$ by the symmetry of the interval.
+    }
+}[
+    canvas.graph{
+        curve(expression: sin(x); domain: [0, 1.5708]; colour: grey; label: $\sin x$)
+        curve(expression: sin(x)^2; domain: [0, 1.5708]; colour: grey; dashed; label: $\sin^2 x$)
+        curve#s4(expression: sin(x)^4; domain: [0, 1.5708]; colour: blue; label: $\sin^4 x$)
+        axis.label(x: 1.5708; label: $\tfrac{\pi}{2}$)
+
+        cue{
+            integral#quartic(of: #s4; from: 0; to: 1.5708; colour: teal)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-0.2, 1.8]
+        y domain: [-0.1, 1.2]
+    )
+]
+
+scene{
+    # A formula that needs no parts
+
+    Not every reduction formula comes from integrating by parts. For $I_n = \int_0^{\pi/4}\tan^n x\,dx$ the tool is an identity: $\tan^2 x = \sec^2 x - 1$.
+
+    ===
+
+    Split off $\tan^2 x$ and replace it. The $\sec^2 x$ term is the derivative of $\tan x$ times a power of $\tan x$, which integrates by the power rule, and the $-1$ term is $I_{n-2}$.
+
+    ===
+
+    At the upper limit $\tan\frac{\pi}{4} = 1$ and at the lower $\tan 0 = 0$, so the boundary term is $\frac{1}{n - 1}$. The formula is $I_n = \frac{1}{n - 1} - I_{n-2}$, with $I_0 = \frac{\pi}{4}$ and $I_1 = \ln\sqrt{2}$ as the base cases.
+
+    Descending from $n = 4$: $I_4 = \frac{1}{3} - I_2$, and $I_2 = 1 - I_0 = 1 - \frac{\pi}{4}$, so $I_4 = \frac{\pi}{4} - \frac{2}{3}$. The alternating sign is characteristic of this family, and it is why the answer is a difference rather than a product.
+}[
+    #### Split off $\tan^2 x$ and use $\tan^2 x = \sec^2 x - 1$
+
+    equation{
+        I_n = \int_0^{\pi/4}\tan^{n-2}x\left(\sec^2 x - 1\right)dx
+    }
+
+    cue{
+        #### The first term is a power rule
+
+        equation{
+            \int_0^{\pi/4}\tan^{n-2}x\sec^2 x\,dx = \left[\frac{\tan^{n-1}x}{n - 1}\right]_0^{\pi/4} = \frac{1}{n - 1}
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### The formula
+
+        equation{
+            I_n = \frac{1}{n - 1} - I_{n-2}, \qquad I_0 = \frac{\pi}{4}, \quad I_1 = \ln\sqrt{2}
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    ## Evaluating by descent
+
+    A reduction formula is a recurrence, and evaluating a particular $I_n$ is a matter of running it downward until a base case is reached. The table lists $\int_0^{\pi/2}\sin^n x\,dx$ for the first few $n$, and each row is the row two above it times $\frac{n - 1}{n}$.
+
+    Even indices descend to $I_0 = \frac{\pi}{2}$ and carry a factor of $\pi$; odd indices descend to $I_1 = 1$ and are rational. The parity of $n$ decides which base case is reached, so the two base cases are both needed and neither is redundant.
+
+    A general formula for the even case can be read off the pattern: $I_{2m} = \dfrac{(2m - 1)(2m - 3)\cdots 1}{2m(2m - 2)\cdots 2}\cdot\dfrac{\pi}{2}$. Proving that such a formula holds for every $m$ is a proof by induction, with the reduction formula supplying the inductive step.
+
+    task{
+        Derive a reduction formula for $I_n = \int x^n e^x\,dx$ and use it to find $\int x^2 e^x\,dx$.
+    }[
+        By parts with $u = x^n$ and $v' = e^x$: $I_n = x^n e^x - n I_{n-1}$, with $I_0 = e^x$. Then $I_1 = x e^x - e^x$ and $I_2 = x^2 e^x - 2I_1 = e^x(x^2 - 2x + 2) + C$.
+    ](
+        title: Your turn
+    )
+}[
+    table{
+        $n$ | $I_n = \int_0^{\pi/2}\sin^n x\,dx$ | Reached from
+        0   | $\frac{\pi}{2}$                     | base case
+        1   | $1$                                 | base case
+        2   | $\frac{\pi}{4}$                     | $\frac{1}{2}I_0$
+        3   | $\frac{2}{3}$                       | $\frac{2}{3}I_1$
+        4   | $\frac{3\pi}{16}$                   | $\frac{3}{4}I_2$
+        5   | $\frac{8}{15}$                      | $\frac{4}{5}I_3$
+        6   | $\frac{5\pi}{32}$                   | $\frac{5}{6}I_4$
+    }(
+        title: Descending to the base cases
+        highlight rows: 2-3
+    )
+]

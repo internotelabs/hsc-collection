@@ -1,18 +1,161 @@
 *(
     title: Resisted Motion
-    description: What a medium that pushes back in proportion to speed does to a body moving through it.
-    tags: mechanics, resisted motion, terminal velocity, differential equations, extension 2, stub
+    description: What a medium that pushes back in proportion to speed does to a body moving through it — horizontally, falling, and thrown upward — and the terminal velocity that results.
+    tags: mechanics, resisted motion, terminal velocity, differential equations, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    Once resistance enters, the force on a body depends on how fast it is already going, so acceleration is a function of velocity and the equation of motion becomes a differential equation rather than a formula.
+    Once resistance enters, the force on a body depends on how fast it is already going, so the acceleration is a function of velocity and the equation of motion is a differential equation rather than a formula.
 
-    Written out here: resistance proportional to speed and to the square of the speed, motion under gravity with resistance both upwards and downwards, terminal velocity as the speed at which the resistance balances the weight, and choosing between the time and displacement forms of acceleration according to what the question asks for.
+    definition{
+        Motion in which the medium exerts a force opposing the velocity, of magnitude proportional to the speed ($kv$) or to its square ($kv^2$). In the absence of other forces the equation of motion is $\ddot{x} = -kv$ or $\ddot{x} = -kv^2$, with $k$ a positive constant depending on the body and the medium.
+    }(
+        term: Resisted motion
+    )
+
+    The simplest case is a body sliding along a horizontal line with $\ddot{x} = -kv$. Taking the time form, $\dfrac{dv}{dt} = -kv$ separates and integrates to $v = u e^{-kt}$: the speed decays exponentially from its initial value $u$, and the blue curve shows it for $u = 10$ and $k = \frac{1}{2}$.
+
+    ===
+
+    Integrating once more gives the position, $x = \dfrac{u}{k}\left(1 - e^{-kt}\right)$, the orange curve. It rises towards $\dfrac{u}{k}$ and never crosses it: the body slows for ever and covers a finite distance in doing so.
+
+    The same limit falls out of the displacement form without any exponentials. $v\dfrac{dv}{dx} = -kv$ cancels to $\dfrac{dv}{dx} = -k$, so $v = u - kx$, and $v$ reaches zero at $x = \dfrac{u}{k}$ exactly.
+}[
+    canvas.graph{
+        curve(expression: 10 * exp(-0.5 * x); domain: [0, 12]; colour: blue; label: $v = 10e^{-t/2}$)
+
+        cue.draw{
+            curve(expression: 20 * (1 - exp(-0.5 * x)); domain: [0, 12]; colour: orange; label: $x = 20\left(1 - e^{-t/2}\right)$)
+            axis.label(y: 20; label: $\tfrac{u}{k}$; line)
+        }(
+            in: 1
+            in duration: 1.5s
+        )
+    }(
+        x axis label: $t$
+        y axis label: $v$, or $x$
+        x domain: [0, 12]
+        y domain: [0, 23]
+    )
+]
+
+scene{
+    # Falling with resistance
+
+    A body falling under gravity meets two forces: its weight, pulling down, and the resistance, pushing up against the motion. Taking downward as positive, the equation of motion is $\ddot{x} = g - kv$ for resistance proportional to speed.
+
+    ===
+
+    The two forces balance when $kv = g$, and at that speed the acceleration is zero. A body already at $v = \dfrac{g}{k}$ stays there; a body released from rest accelerates towards it and never quite arrives.
+
+    definition{
+        The speed at which the resistance exactly balances the weight, so that $\ddot{x} = 0$ and the velocity stops changing. It is found by setting the acceleration to zero: $v_T = \dfrac{g}{k}$ for resistance $kv$, and $v_T = \sqrt{\dfrac{g}{k}}$ for resistance $kv^2$.
+    }(
+        term: Terminal velocity
+    )
+
+    Solving the equation confirms the picture. Separating $\dfrac{dv}{g - kv} = dt$ and integrating from rest gives $v = \dfrac{g}{k}\left(1 - e^{-kt}\right)$, which approaches $\dfrac{g}{k}$ from below as $t$ grows. The canvas draws it for $g = 10$ and $k = \frac{1}{2}$, with the terminal velocity $20$ as the line the curve leans on.
+
+    equation{
+        \frac{dv}{dt} = g - kv \implies -\frac{1}{k}\ln(g - kv) = t + C \implies v = \frac{g}{k}\left(1 - e^{-kt}\right)
+    }
+
+    note{
+        With resistance $kv^2$ the same separation gives $\displaystyle\int\frac{dv}{g - kv^2}$, which needs partial fractions. The terminal velocity is still read off directly from $\ddot{x} = 0$, without solving anything.
+    }
+}[
+    canvas.graph{
+        curve(expression: 20 * (1 - exp(-0.5 * x)); domain: [0, 12]; colour: blue; label: $v = 20\left(1 - e^{-t/2}\right)$)
+
+        cue{
+            axis.label(y: 20; label: $v_T = \tfrac{g}{k}$; line; colour: orange)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $t$
+        y axis label: $v$
+        x domain: [0, 12]
+        y domain: [0, 23]
+    )
+]
+
+scene{
+    # Thrown upward
+
+    Going up, both forces point the same way. With upward positive, gravity pulls down and the resistance, opposing the upward velocity, pushes down as well: $\ddot{x} = -g - kv$. The body decelerates faster than it would in a vacuum.
+
+    ===
+
+    The time to the top is a question about $t$, so the time form is used. Separating $\dfrac{dv}{g + kv} = -dt$ and integrating from $v = u$ at $t = 0$ to $v = 0$ gives $T = \dfrac{1}{k}\ln\left(1 + \dfrac{ku}{g}\right)$.
+
+    ===
+
+    The greatest height is a question about $x$, so the displacement form is used instead. $v\dfrac{dv}{dx} = -(g + kv)$ separates to $dx = -\dfrac{v\,dv}{g + kv}$, and the fraction is split by writing $v = \dfrac{1}{k}(g + kv) - \dfrac{g}{k}$ before integrating.
+
+    Both answers reduce to the unresisted ones as $k \to 0$: using $\ln(1 + \varepsilon) \approx \varepsilon - \frac{1}{2}\varepsilon^2$, the height tends to $\dfrac{u^2}{2g}$ and the time to $\dfrac{u}{g}$. The resistance only ever lowers them.
+
+    note{
+        The descent is a different equation from the ascent, since the resistance switches direction when the velocity does. Coming down, the body starts from rest at the top and obeys the falling equation of the previous scene, and it lands more slowly than it was thrown.
+    }
+}[
+    #### Upward, both forces against the motion
+
+    equation{
+        \ddot{x} = -g - kv
+    }
+
+    cue{
+        #### Time to the top, from the time form
+
+        equation{
+            \int_u^0\frac{dv}{g + kv} = -\int_0^T dt \implies T = \frac{1}{k}\ln\left(1 + \frac{ku}{g}\right)
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Greatest height, from the displacement form
+
+        equation{
+            H = -\int_u^0\frac{v\,dv}{g + kv} = \frac{u}{k} - \frac{g}{k^2}\ln\left(1 + \frac{ku}{g}\right)
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    ## Which form of acceleration
+
+    The three scenes used both displacement forms and the time form, and the choice was never arbitrary. The table sets out what decided it: the quantity the question asks for.
+
+    A question about *when* — time to the top, time to reach a given speed — uses $\dfrac{dv}{dt}$. A question about *where* — greatest height, distance to stop — uses $v\dfrac{dv}{dx}$. Terminal velocity uses neither, since it is the speed at which the acceleration vanishes and is read straight off the equation of motion.
+
+    task{
+        A body falls from rest with resistance proportional to the square of its speed, so that $\ddot{x} = g - kv^2$. Find its terminal velocity, and evaluate it for $g = 10$ and $k = 0.1$.
+    }[
+        At terminal velocity the acceleration is zero, so $kv^2 = g$ and $v_T = \sqrt{\dfrac{g}{k}}$. With $g = 10$ and $k = 0.1$ that is $\sqrt{100} = 10$.
+    ](
+        title: Your turn
+    )
 
     Applying the same resistance to a body launched at an angle couples the horizontal and vertical motions that Extension 1 was able to treat separately, which is *Projectiles with Resistance*.
 
     internote(ref: projectiles-with-resistance.chalk)
-}
+}[
+    table{
+        Asked for                            | Form of acceleration                | Why
+        Time to reach a speed, or the top    | $\dfrac{dv}{dt}$                    | the answer is a $t$
+        Distance to stop, or greatest height | $v\dfrac{dv}{dx}$                   | the answer is an $x$
+        Speed as a function of position      | $\dfrac{d}{dx}\left(\tfrac{1}{2}v^2\right)$ | $v$ in terms of $x$, no $t$ needed
+        Terminal velocity                    | none — set $\ddot{x} = 0$           | the speed at which forces balance
+    }(
+        title: Matching the form to the question
+        header column
+    )
+]

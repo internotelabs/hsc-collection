@@ -1,7 +1,7 @@
 *(
     title: Vector Equations of Lines
-    description: Naming a line in space by one point on it and one direction along it.
-    tags: vectors, lines, parametric equations, intersection, skew lines, extension 2, stub
+    description: Naming a line in space by one point on it and one direction along it, and deciding whether two such lines are parallel, intersecting or skew.
+    tags: vectors, lines, parametric equations, intersection, skew lines, extension 2
     lesson
 )
 
@@ -10,9 +10,179 @@
 scene{
     A line in the plane is fixed by a gradient and an intercept, but in space there is no single gradient to quote. What does fix a line, in any number of dimensions, is a point it passes through and a direction it runs in.
 
-    Written out here: the form in which a position vector plus a multiple of a direction vector sweeps out a line, the parametric equations that follow from it, and deciding whether two lines are parallel, intersecting, or skew — the case with no two-dimensional analogue, where the lines neither meet nor run parallel.
+    definition{
+        The line through the point with position vector $\mathbf{a}$ in the direction of the vector $\mathbf{b}$ is $\mathbf{r} = \mathbf{a} + \lambda\mathbf{b}$, where $\lambda$ runs over all real numbers. Each value of $\lambda$ names one point of the line.
+    }(
+        term: Vector equation of a line
+    )
+
+    The canvas draws the plane case with $\mathbf{a} = (1, 1)$ and $\mathbf{b} = (2, 1)$. Every value of $\lambda$ in the slider's range lands the orange point on the grey line: positive values step along $\mathbf{b}$ from $A$, negative values step back the other way, and $\lambda = 0$ is $A$ itself.
+
+    The same equation with three components describes a line in space. $\mathbf{r} = (1, 2, 3) + \lambda(2, -1, 4)$ passes through $(1, 2, 3)$ and, for each unit of $\lambda$, moves two along, one back and four up.
+
+    note{
+        Neither vector is unique. Any point on the line will serve as $\mathbf{a}$, and any non-zero multiple of $\mathbf{b}$ will serve as the direction. Two equations that look different can describe the same line, and the test is whether one's point lies on the other and their directions are parallel.
+    }
+}[
+    canvas.graph{
+        parameter#l(var: l; name: $\lambda$; range: [-2, 3]; step: 0.5; default: 1)
+        curve(expression: 0.5 * x + 0.5; colour: grey; label: $\mathbf{r} = \mathbf{a} + \lambda\mathbf{b}$)
+        point(x: 1; y: 1; colour: purple; label: $A$)
+        vector(x: 1; y: 1; dx: 2; dy: 1; colour: purple; label: $\mathbf{b}$)
+        point(x: 1 + 2 * l; y: 1 + l; colour: orange; label: $\mathbf{r}(\lambda)$)
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-4, 8]
+        y domain: [-2, 5]
+    )
+]
+
+scene{
+    # Parametric and Cartesian forms
+
+    Reading the vector equation one component at a time gives three ordinary equations, each expressing one coordinate in terms of $\lambda$. These are the parametric equations of the line, and they are the form to use when a specific point is wanted.
+
+    ===
+
+    Eliminating $\lambda$ from all three gives the Cartesian form: solve each for $\lambda$ and set the three expressions equal. The result is a double equation, since a line in space needs two conditions to pin it down, where a line in the plane needs one.
+
+    ===
+
+    Going back the other way is a matter of reading the numbers off. The values subtracted in the numerators are the coordinates of a point on the line, and the denominators are the components of its direction. A denominator of $1$ is usually left unwritten, and a zero component has to be handled separately, since it cannot be a denominator at all.
+
+    definition{
+        The equations $x = a_1 + \lambda b_1$, $y = a_2 + \lambda b_2$, $z = a_3 + \lambda b_3$ obtained by reading the vector equation componentwise. The Cartesian form $\dfrac{x - a_1}{b_1} = \dfrac{y - a_2}{b_2} = \dfrac{z - a_3}{b_3}$ is what remains once $\lambda$ has been eliminated.
+    }(
+        term: Parametric equations of a line
+    )
+}[
+    #### The vector equation
+
+    equation{
+        \mathbf{r} = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix} + \lambda\begin{pmatrix} 2 \\ -1 \\ 4 \end{pmatrix}
+    }
+
+    cue{
+        #### One equation per component
+
+        equation{
+            x = 1 + 2\lambda, \qquad y = 2 - \lambda, \qquad z = 3 + 4\lambda
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Eliminating $\lambda$
+
+        equation{
+            \frac{x - 1}{2} = \frac{y - 2}{-1} = \frac{z - 3}{4}
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Parallel, intersecting or skew
+
+    Two lines in space have three possible relationships, and the flowchart decides between them in two questions. The first is about directions alone: if the direction vectors are parallel, so are the lines, and they are the same line if one's point lies on the other.
+
+    ===
+
+    If the directions are not parallel, the lines either meet or they do not, and the only way to find out is to look for a common point. Set the two vector equations equal, using different parameters for the two lines, and read off three equations in $\lambda$ and $\mu$. Two of them determine the parameters; the third is the test.
+
+    Take $L_1: \mathbf{r} = (1, 0, 2) + \lambda(1, 1, 1)$ and $L_2: \mathbf{r} = (3, 3, 1) + \mu(1, 2, -1)$. The directions are not multiples of each other, so the lines are not parallel.
+
+    equation{
+        1 + \lambda = 3 + \mu, \qquad \lambda = 3 + 2\mu, \qquad 2 + \lambda = 1 - \mu
+    }
+
+    The first two give $\mu = -1$ and $\lambda = 1$. Substituting into the third, $2 + 1 = 1 + 1$, which holds, so the lines meet — at $\lambda = 1$ on $L_1$, the point $(2, 1, 3)$.
+
+    ===
+
+    Had the third equation failed, the two lines would share no point and yet not be parallel. That is the case with no plane analogue.
+
+    definition{
+        Two lines in space that are not parallel and do not intersect. They lie in different planes, and the distance between them is never zero.
+    }(
+        term: Skew lines
+    )
+
+    note{
+        The two parameters must be different letters. Writing $\lambda$ for both forces the same step along each line, which is a different and much stronger condition than sharing a point.
+    }
+}[
+    canvas.diagram{
+        box#start(label: Two lines in space; shape: terminal)
+        box#dir(label: Are the directions parallel?; shape: decision)
+        box#par(label: Parallel; sub: or the same line, if a point is shared)
+        arrow(from: #start; to: #dir)
+        arrow(from: #dir; to: #par; label: yes)
+
+        cue{
+            box#solve(label: Do the equations share a solution?; sub: solve two, test the third; shape: decision)
+            box#meet(label: Intersecting; sub: at the point the solution names; colour: teal)
+            arrow(from: #dir; to: #solve; label: no)
+            arrow(from: #solve; to: #meet; label: yes)
+        }(
+            in: 1
+        )
+
+        cue{
+            box#skew(label: Skew; sub: neither parallel nor meeting; colour: orange)
+            arrow(from: #solve; to: #skew; label: no)
+        }(
+            in: 2
+        )
+    }(
+        flow: down
+    )
+]
+
+scene{
+    ## The angle between two lines
+
+    Two lines that meet make an angle, and it is the angle between their direction vectors. Because a direction vector can be reversed without changing the line, the dot product may come out negative; the angle between the *lines* is taken as the acute one, so the modulus of the dot product is used.
+
+    equation{
+        \cos\theta = \frac{|\mathbf{b}_1 \cdot \mathbf{b}_2|}{|\mathbf{b}_1||\mathbf{b}_2|}
+    }
+
+    For the two lines that met in the previous scene, $\mathbf{b}_1 \cdot \mathbf{b}_2 = 1 + 2 - 1 = 2$, $|\mathbf{b}_1| = \sqrt{3}$ and $|\mathbf{b}_2| = \sqrt{6}$, so $\cos\theta = \frac{2}{\sqrt{18}}$ and $\theta \approx 61.9^\circ$.
+
+    ===
+
+    The canvas shows the plane version, two lines through $(2, 1)$ with directions $(1, 1)$ and $(2, -1)$. Their dot product is $1$, their magnitudes $\sqrt{2}$ and $\sqrt{5}$, and the acute angle between them reads !value:#between.value(digits: 3; maths)$^\circ$ on the arc. Skew lines have an angle too, defined the same way from their directions, even though they never meet.
+
+    task{
+        Decide whether $L_1: \mathbf{r} = (1, 0, 2) + \lambda(1, 1, 1)$ and $L_3: \mathbf{r} = (0, 3, 1) + \mu(2, -1, 1)$ are parallel, intersecting or skew.
+    }[
+        The directions are not multiples, so not parallel. Equating components: $1 + \lambda = 2\mu$, $\lambda = 3 - \mu$, $2 + \lambda = 1 + \mu$. The last two give $\mu = 2$ and $\lambda = 1$; the first then reads $2 = 4$, which fails. The lines are skew.
+    ](
+        title: Your turn
+    )
 
     Letting the parameter be time rather than an abstract scalar turns the same equation into a description of a moving point, which is where *Vector Functions and Motion* begins.
 
     internote(ref: vector-functions-and-motion.chalk)
-}
+}[
+    canvas.graph{
+        curve(expression: x - 1; colour: orange; label: direction $(1, 1)$)
+        curve(expression: 2 - 0.5 * x; colour: purple; label: direction $(2, -1)$)
+        point(x: 2; y: 1; colour: grey)
+
+        cue{
+            angle#between(at: (2, 1); from: (3, 2); to: (4, 0); show-value: true; colour: teal)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-2, 6]
+        y domain: [-2, 4]
+    )
+]

@@ -1,14 +1,180 @@
 *(
     title: Trigonometric Integrals
-    description: Powers and products of sine and cosine, and the substitution that clears the rest.
-    tags: integration, trigonometric integrals, t-formula, calculus, extension 2, stub
+    description: Powers and products of sine and cosine, the odd and even cases, and the half-angle substitution that clears the rest.
+    tags: integration, trigonometric integrals, double angle, t-formula, calculus, extension 2
     lesson
 )
 
 @include(src: ../preface.part.chalk)
 
 scene{
-    A power of sine or cosine cannot be integrated directly, but it can always be rewritten until it can. Which rewriting works depends on whether the powers are odd or even, and that is the whole of the case analysis.
+    A power of sine or cosine cannot be integrated directly, but it can always be rewritten until it can. Which rewriting works depends on whether the power is odd or even, and that is the whole of the case analysis.
 
-    Written out here: peeling off one factor when a power is odd so the rest becomes a substitution, using the double angle identities when every power is even, products of sines and cosines of different angles, and the half-angle substitution that converts any rational function of sine and cosine into a rational function of a single variable.
-}
+    The canvas shows $\sin^3 x$, an odd power. Peel off one factor of $\sin x$ and the remaining $\sin^2 x$ can be written as $1 - \cos^2 x$, so the integrand is a polynomial in $\cos x$ times the derivative of $\cos x$ — a substitution waiting to happen.
+
+    equation{
+        \int\sin^3 x\,dx = \int\left(1 - \cos^2 x\right)\sin x\,dx = -\cos x + \frac{\cos^3 x}{3} + C
+    }
+
+    ===
+
+    Between $0$ and $\pi$ the antiderivative gives $\left(1 - \frac{1}{3}\right) - \left(-1 + \frac{1}{3}\right) = \frac{4}{3}$, and the shaded area measures !value:#hump.value(digits: 4).
+
+    definition{
+        For an odd power of $\sin x$, keep one factor of $\sin x$ and convert the rest to $\cos x$ using $\sin^2 x = 1 - \cos^2 x$; then substitute $u = \cos x$. For an odd power of $\cos x$, keep one $\cos x$ and substitute $u = \sin x$.
+    }(
+        term: Peeling off a factor
+    )
+
+    The same move handles a product $\sin^m x\cos^n x$ whenever either exponent is odd: peel a factor from the odd one and convert its remaining even power to the other function. Only when both exponents are even does the method fail, and that case is next.
+}[
+    canvas.graph{
+        curve#cube(expression: sin(x)^3; domain: [-0.5, 3.6]; colour: blue; label: $y = \sin^3 x$)
+        axis.label(x: 3.1416; label: $\pi$)
+
+        cue{
+            integral#hump(of: #cube; from: 0; to: 3.1416; colour: teal)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: $x$
+        y axis label: $y$
+        x domain: [-0.5, 3.6]
+        y domain: [-0.3, 1.3]
+    )
+]
+
+scene{
+    # Even powers
+
+    With $\sin^2 x$ there is nothing to peel: removing one factor leaves an odd power, and converting it produces a root. The tool instead is the double-angle formula run backwards, which trades a square for a cosine of twice the angle.
+
+    ===
+
+    $\cos 2x = 1 - 2\sin^2 x$ rearranges to $\sin^2 x = \frac{1}{2}(1 - \cos 2x)$, and the right-hand side integrates term by term. Between $0$ and $\pi$ the $\sin 2x$ term vanishes at both ends and the answer is $\frac{\pi}{2}$ — half the width of the interval, since $\sin^2 x$ averages $\frac{1}{2}$ over a full half-period.
+
+    ===
+
+    Higher even powers use the same identity more than once. $\cos^4 x$ is $\left(\frac{1}{2}(1 + \cos 2x)\right)^2$; expanding produces a $\cos^2 2x$, which is reduced with the identity again at the angle $4x$.
+
+    note{
+        The same expansion of $\cos^4 x$ comes out of de Moivre's theorem in a single line, and for high even powers that route is faster. Either way the target is the same: a sum of cosines of multiple angles, each of which integrates on sight.
+    }
+}[
+    #### The double-angle formula, rearranged
+
+    equation{
+        \sin^2 x = \frac{1}{2}\left(1 - \cos 2x\right), \qquad \cos^2 x = \frac{1}{2}\left(1 + \cos 2x\right)
+    }
+
+    cue{
+        #### One even power
+
+        equation{
+            \int_0^{\pi}\sin^2 x\,dx = \frac{1}{2}\left[x - \frac{\sin 2x}{2}\right]_0^{\pi} = \frac{\pi}{2}
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### A fourth power, reduced twice
+
+        equation{
+            \cos^4 x = \frac{1}{4}\left(1 + 2\cos 2x + \cos^2 2x\right) = \frac{1}{8}\left(3 + 4\cos 2x + \cos 4x\right)
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    # Products of different angles
+
+    A product such as $\sin 3x\cos x$ is neither a power nor a substitution. What converts it is the compound-angle formulas added or subtracted in pairs, which turn a product into a sum of sines or cosines of the combined angles.
+
+    ===
+
+    For $\sin 3x\cos x$ the relevant identity is $\sin A\cos B = \frac{1}{2}\left[\sin(A + B) + \sin(A - B)\right]$, giving $\frac{1}{2}(\sin 4x + \sin 2x)$.
+
+    ===
+
+    Each term then integrates on its own, and the answer is a sum of cosines with the angle's coefficient appearing as a divisor. The other two product formulas handle $\cos A\cos B$ and $\sin A\sin B$ in the same way, the only difference being which trigonometric function the sum is made of.
+
+    These integrals are the reason the product formulas are worth remembering. They are derived in a line from the compound-angle expansions of $\sin(A \pm B)$ and $\cos(A \pm B)$, by adding one expansion to the other.
+}[
+    #### The three product formulas
+
+    equation{
+        \sin A\cos B = \tfrac{1}{2}\left[\sin(A + B) + \sin(A - B)\right]
+    }
+
+    equation{
+        \cos A\cos B = \tfrac{1}{2}\left[\cos(A - B) + \cos(A + B)\right], \qquad \sin A\sin B = \tfrac{1}{2}\left[\cos(A - B) - \cos(A + B)\right]
+    }
+
+    cue{
+        #### Applied to $\sin 3x\cos x$
+
+        equation{
+            \sin 3x\cos x = \tfrac{1}{2}\left(\sin 4x + \sin 2x\right)
+        }
+    }(
+        in: 1
+    )
+
+    cue{
+        #### Integrated term by term
+
+        equation{
+            \int\sin 3x\cos x\,dx = -\frac{\cos 4x}{8} - \frac{\cos 2x}{4} + C
+        }
+    }(
+        in: 2
+    )
+]
+
+scene{
+    ## The half-angle substitution
+
+    A rational function of $\sin x$ and $\cos x$ — one divided by another, say — fits none of the cases above. The substitution $t = \tan\frac{x}{2}$ converts every such integrand into a rational function of $t$, which partial fractions can then handle.
+
+    definition{
+        With $t = \tan\dfrac{x}{2}$: $\sin x = \dfrac{2t}{1 + t^2}$, $\cos x = \dfrac{1 - t^2}{1 + t^2}$ and $dx = \dfrac{2\,dt}{1 + t^2}$. Any rational expression in $\sin x$ and $\cos x$ becomes a rational expression in $t$.
+    }(
+        term: The $t$-formulae
+    )
+
+    ===
+
+    In $\int\dfrac{dx}{1 + \cos x}$ the denominator becomes $\dfrac{2}{1 + t^2}$, which cancels exactly against the $dx$. The integral collapses to $\int dt$, and the answer is $\tan\frac{x}{2} + C$. Differentiating confirms it, since $\frac{d}{dx}\tan\frac{x}{2} = \frac{1}{2}\sec^2\frac{x}{2} = \frac{1}{1 + \cos x}$.
+
+    ===
+
+    With $\sin x$ instead, the denominator becomes $\dfrac{(1 + t)^2}{1 + t^2}$, and the limits convert with the substitution: $x = 0$ is $t = 0$ and $x = \frac{\pi}{2}$ is $t = 1$. The result is a definite integral of a power, evaluated without ever returning to $x$.
+
+    task{
+        Find $\int\cos^3 x\,dx$.
+    }[
+        Peel off one $\cos x$: $\int\left(1 - \sin^2 x\right)\cos x\,dx$. With $u = \sin x$ this is $\int(1 - u^2)\,du = \sin x - \dfrac{\sin^3 x}{3} + C$.
+    ](
+        title: Your turn
+    )
+}[
+    #### A cosine in the denominator
+
+    equation{
+        \int\frac{dx}{1 + \cos x} = \int\frac{1 + t^2}{2}\cdot\frac{2\,dt}{1 + t^2} = \int dt = \tan\frac{x}{2} + C
+    }
+
+    cue{
+        #### A sine in the denominator, with limits converted
+
+        equation{
+            \int_0^{\pi/2}\frac{dx}{1 + \sin x} = \int_0^1\frac{2\,dt}{(1 + t)^2} = \left[-\frac{2}{1 + t}\right]_0^1 = 1
+        }
+    }(
+        in: 1
+    )
+]
