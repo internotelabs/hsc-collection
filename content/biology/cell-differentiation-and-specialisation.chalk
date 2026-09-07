@@ -169,7 +169,7 @@ scene{
         title: Your turn
     )
 
-    A cell that has given up self-sufficiency must be supplied by the organism. Getting the raw materials in is !internote(ref: nutrient-and-gas-exchange.chalk; !connect); moving them to every cell is !internote(ref: transport-in-plants.chalk; !connect) and !internote(ref: transport-in-animals.chalk; !connect).
+    A cell that has given up self-sufficiency must be supplied by the organism. Getting the raw materials in is !internote(ref: nutrient-and-gas-exchange.chalk); moving them to every cell is !internote(ref: transport-in-plants.chalk) and !internote(ref: transport-in-animals.chalk).
 }[
     table{
         Level    | What it is                                                    | In an animal                         | In a plant

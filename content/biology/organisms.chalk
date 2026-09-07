@@ -72,9 +72,9 @@ scene{
 
     Start with the trade itself in !internote(ref: cell-differentiation-and-specialisation.chalk): how cells with identical genomes become different, what each gains and gives up, and the hierarchy of tissues, organs and systems that results.
 
-    Then supply, in two halves. Getting materials into the organism at all is !internote(ref: nutrient-and-gas-exchange.chalk) — what autotrophs and heterotrophs each need, and the exchange surfaces that obtain it. Moving them to every cell is the second half, and plants and animals solve it differently enough to be worth an internote each: !internote(ref: transport-in-plants.chalk) and !internote(ref: transport-in-animals.chalk).
+    Then supply, in two halves. Getting materials into the organism at all is !internote(ref: nutrient-and-gas-exchange.chalk; !connect) — what autotrophs and heterotrophs each need, and the exchange surfaces that obtain it. Moving them to every cell is the second half, and plants and animals solve it differently enough to be worth an internote each: !internote(ref: transport-in-plants.chalk; !connect) and !internote(ref: transport-in-animals.chalk; !connect).
 
-    Then control. The general mechanism comes first in !internote(ref: homeostasis.chalk) — receptor, control centre, effector, and the feedback that makes the arrangement stabilise rather than run away. !internote(ref: thermoregulation-and-osmoregulation.chalk) then works two cases in full, one thermal and one chemical, in both animals and plants.
+    Then control. The general mechanism comes first in !internote(ref: homeostasis.chalk; !connect) — receptor, control centre, effector, and the feedback that makes the arrangement stabilise rather than run away. !internote(ref: thermoregulation-and-osmoregulation.chalk; !connect) then works two cases in full, one thermal and one chemical, in both animals and plants.
 }[
     table{
         Internote                                | The question it answers

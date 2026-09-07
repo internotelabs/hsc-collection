@@ -188,7 +188,7 @@ scene{
         title: Your turn
     )
 
-    The variation sexual reproduction generates is not incidental — it is the point, and where it comes from mechanically is !internote(ref: genetic-variation.chalk; !connect).
+    The variation sexual reproduction generates is not incidental — it is the point, and where it comes from mechanically is !internote(ref: genetic-variation.chalk).
 }[
     canvas.graph{
         curve(f: 60 * exp(-((x - 12)/2.5)^2) + 35 * exp(-((x - 21)/4)^2); domain: [0, 28]; colour: teal; label: oestrogen)

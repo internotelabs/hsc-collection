@@ -201,7 +201,7 @@ scene{
         title: Your turn
     )
 
-    Hosts are not passive. What a plant or an animal does when invaded is !internote(ref: responses-to-pathogens.chalk; !connect). Disease that no pathogen causes at all is !internote(ref: non-infectious-disease.chalk; !connect).
+    Hosts are not passive. What a plant or an animal does when invaded is !internote(ref: responses-to-pathogens.chalk). Disease that no pathogen causes at all is !internote(ref: non-infectious-disease.chalk).
 }[
     table{
         The postulate                              | Where it fails                                                     | What is used instead

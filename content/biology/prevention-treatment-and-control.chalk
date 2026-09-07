@@ -206,7 +206,7 @@ scene{
         title: Your turn
     )
 
-    Measuring whether any of it works means studying populations rather than patients, which is !internote(ref: epidemiology.chalk; !connect).
+    Measuring whether any of it works means studying populations rather than patients, which is !internote(ref: epidemiology.chalk).
 }[
     canvas.graph{
         curve(f: 0.02; domain: [0, 10]; colour: blue)

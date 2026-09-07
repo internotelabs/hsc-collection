@@ -212,7 +212,7 @@ scene{
         title: Your turn
     )
 
-    A code copied and read this many times will occasionally be copied or read wrongly. What follows from that is !internote(ref: mutation.chalk; !connect).
+    A code copied and read this many times will occasionally be copied or read wrongly. What follows from that is !internote(ref: mutation.chalk).
 }[
     canvas.diagram{
         box#gene{

@@ -204,7 +204,7 @@ scene{
         title: Your turn
     )
 
-    The two reaction sequences that matter most are built from enzymes end to end: one captures energy from light, the other releases it again. Both are in !internote(ref: photosynthesis-and-respiration.chalk; !connect).
+    The two reaction sequences that matter most are built from enzymes end to end: one captures energy from light, the other releases it again. Both are in !internote(ref: photosynthesis-and-respiration.chalk).
 }[
     canvas.graph{
         curve(f: 100 * x / (4 + x); domain: [0, 40]; colour: blue; label: the enzyme available)

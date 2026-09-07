@@ -208,7 +208,7 @@ scene{
         title: Your turn
     )
 
-    The branch divides here. Following the copied genome into the protein it specifies is !internote(ref: dna-and-polypeptide-synthesis.chalk; !connect); following it into the next generation of organisms is !internote(ref: reproduction.chalk; !connect).
+    The branch divides here. Following the copied genome into the protein it specifies is !internote(ref: dna-and-polypeptide-synthesis.chalk); following it into the next generation of organisms is !internote(ref: reproduction.chalk).
 }[
     table{
                                 | Mitosis                                   | Meiosis
