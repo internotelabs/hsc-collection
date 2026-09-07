@@ -160,31 +160,21 @@ scene{
     Embryology adds a third strand. Vertebrate embryos are far more alike than the adults are: fish, chickens, pigs and humans all develop pharyngeal arches and a tail early on, structures that become gills in a fish and parts of the jaw and ear in a mammal. The similarity is in the shared starting point rather than in the finished animal.
 }[
     canvas.graph{
-        histogram(
-            bins: -0.5, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5
-            values: 0, 1, 12, 13, 21, 44
-            colour: blue
-            show labels
-        )
-        axis.label(x: 0; label: chimpanzee; colour: grey)
-        axis.label(x: 1; label: rhesus; colour: grey)
+        bar(x: chimpanzee, rhesus; y: 0, 1; colour: blue; show labels)
 
         cue{
-            axis.label(x: 2; label: horse; colour: grey)
-            axis.label(x: 3; label: chicken; colour: grey)
+            bar(x: horse, chicken; y: 12, 13; colour: blue; show labels)
         }(
             in: 1
         )
 
         cue{
-            axis.label(x: 4; label: tuna; colour: grey)
-            axis.label(x: 5; label: yeast; colour: grey)
+            bar(x: tuna, yeast; y: 21, 44; colour: blue; show labels)
         }(
             in: 2
         )
     }(
         y axis label: amino acids differing from human cytochrome c
-        x domain: [-0.5, 5.5]
         y domain: [0, 48]
     )
 ]

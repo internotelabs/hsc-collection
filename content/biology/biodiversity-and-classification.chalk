@@ -232,6 +232,7 @@ scene{
     )
 }[
     canvas.graph{
+        // migration: a bar chart of four species, but the note never names them, and 'bar' needs names on the categorical axis
         histogram(
             bins: 0, 1, 2, 3, 4
             values: 25, 25, 25, 25
@@ -248,6 +249,7 @@ scene{
     )
 
     canvas.graph{
+        // migration: a bar chart of four species, but the note never names them, and 'bar' needs names on the categorical axis
         histogram(
             bins: 0, 1, 2, 3, 4
             values: 97, 1, 1, 1

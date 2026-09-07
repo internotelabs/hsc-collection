@@ -67,24 +67,15 @@ scene{
     }
 }[
     canvas.graph{
-        histogram(
-            bins: 0, 1, 2, 3
-            values: 1, 5, 10
+        bar(
+            x: neither, asbestos, smoking
+            y: 1, 5, 10
             colours: grey, blue, blue
             show labels
         )
-        axis.label(x: 0.5; label: neither; colour: grey)
-        axis.label(x: 1.5; label: asbestos; colour: grey)
-        axis.label(x: 2.5; label: smoking; colour: grey)
 
         cue{
-            histogram(
-                bins: 3, 4
-                values: 50
-                colour: orange
-                show labels
-            )
-            axis.label(x: 3.5; label: both; colour: grey)
+            bar(x: both; y: 50; colour: orange; show labels)
         }(
             in: 1
         )
@@ -96,7 +87,6 @@ scene{
         )
     }(
         y axis label: lung cancer death rate, relative to neither
-        x domain: [0, 4]
         y domain: [0, 56]
     )
 ]

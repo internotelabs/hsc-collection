@@ -243,40 +243,21 @@ scene{
     )
 }[
     canvas.graph{
-        histogram(
-            bins: 0, 1
-            values: 315
-            colour: orange
-            show labels
-        )
-        axis.label(x: 0.5; label: Southwark and Vauxhall; colour: grey)
+        bar(x: Southwark and Vauxhall; y: 315; colour: orange; show labels)
 
         cue{
-            histogram(
-                bins: 1, 2
-                values: 37
-                colour: blue
-                show labels
-            )
-            axis.label(x: 1.5; label: Lambeth; colour: grey)
+            bar(x: Lambeth; y: 37; colour: blue; show labels)
         }(
             in: 1
         )
 
         cue{
-            histogram(
-                bins: 2, 3
-                values: 59
-                colour: grey
-                show labels
-            )
-            axis.label(x: 2.5; label: the rest of London; colour: grey)
+            bar(x: the rest of London; y: 59; colour: grey; show labels)
         }(
             in: 2
         )
     }(
         y axis label: cholera deaths per $10\,000$ houses, 1854
-        x domain: [0, 3]
         y domain: [0, 350]
     )
 ]

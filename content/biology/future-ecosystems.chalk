@@ -113,22 +113,10 @@ scene{
     }
 }[
     canvas.graph{
-        histogram(
-            bins: 0, 1
-            values: 10
-            colour: blue
-            show labels
-        )
-        axis.label(x: 0.5; label: 1940s to 1960s; colour: grey)
+        bar(x: 1940s to 1960s; y: 10; colour: blue; show labels)
 
         cue{
-            histogram(
-                bins: 1, 2
-                values: 55
-                colour: orange
-                show labels
-            )
-            axis.label(x: 1.5; label: 2000s; colour: grey)
+            bar(x: 2000s; y: 55; colour: orange; show labels)
         }(
             in: 1
         )
@@ -140,7 +128,6 @@ scene{
         )
     }(
         y axis label: advance of the invasion front (km per year)
-        x domain: [0, 2]
         y domain: [0, 62]
     )
 ]

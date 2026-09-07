@@ -53,17 +53,12 @@ scene{
     }
 }[
     canvas.graph{
-        histogram(
-            bins: 0, 1, 2, 3, 4
-            values: 4.8, 6.4, 7.2, 7.8
+        bar(
+            y: lysosome, Golgi apparatus, cytosol, mitochondrion
+            x: 4.8, 6.4, 7.2, 7.8
             colours: orange, blue, blue, blue
-            orientation: horizontal
             show labels
         )
-        axis.label(y: 0.5; label: lysosome; colour: grey)
-        axis.label(y: 1.5; label: Golgi apparatus; colour: grey)
-        axis.label(y: 2.5; label: cytosol; colour: grey)
-        axis.label(y: 3.5; label: mitochondrion; colour: grey)
 
         cue{
             axis.band(x: [4.8, 7.2]; label: a thousandfold in $[\text{H}^+]$; colour: grey; edges)
@@ -73,7 +68,6 @@ scene{
     }(
         x axis label: internal pH
         x domain: [0, 9]
-        y domain: [0, 4]
     )
 ]
 

@@ -132,41 +132,21 @@ scene{
     }
 }[
     canvas.graph{
-        histogram(
-            bins: 0, 1
-            values: 1
-            colour: grey
-            show labels
-        )
-        axis.label(x: 0.5; label: smooth tube; colour: grey)
+        bar(x: smooth tube; y: 1; colour: grey; show labels)
 
         cue{
-            histogram(
-                bins: 1, 2, 3
-                values: 3, 30
-                colours: blue, blue
-                show labels
-            )
-            axis.label(x: 1.5; label: with folds; colour: grey)
-            axis.label(x: 2.5; label: and villi; colour: grey)
+            bar(x: with folds, and villi; y: 3, 30; colour: blue; show labels)
         }(
             in: 1
         )
 
         cue{
-            histogram(
-                bins: 3, 4
-                values: 600
-                colour: orange
-                show labels
-            )
-            axis.label(x: 3.5; label: and microvilli; colour: grey)
+            bar(x: and microvilli; y: 600; colour: orange; show labels)
         }(
             in: 2
         )
     }(
         y axis label: surface area, relative to a smooth tube
-        x domain: [0, 4]
         y domain: [0, 660]
     )
 ]
