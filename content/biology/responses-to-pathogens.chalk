@@ -190,13 +190,13 @@ scene{
 
     Fever is the third, and it is the one worth thinking about carefully, because it is easy to mistake for a symptom of the pathogen rather than a deliberate response.
 
-    Raising the body's temperature is a homeostatic act. The hypothalamus resets its own set point in response to signals released during infection, and the body then works towards the new target — which is why the person shivers on the way up, as !internote(ref: homeostasis.chalk) explains.
+    Raising the body's temperature is a homeostatic act. The hypothalamus resets its own set point in response to signals released during infection, and the body then works towards the new target — which is why the person shivers on the way up, as !internote(ref: homeostasis.chalk; !connect) explains.
 
     ===
 
     The canvas is why it helps. Most human pathogens are adapted to grow best at around $37\,^\circ\text{C}$, and their replication slows at higher temperatures, while several immune processes speed up. A few degrees moves the balance in the host's favour.
 
-    It is not a free move. Above about $40\,^\circ\text{C}$ the host's own enzymes are at risk, which is the !internote(ref: enzymes.chalk) denaturation curve applied to the whole body, and a fever that runs too high is dangerous for exactly that reason. The response is a trade, and the body holds it in a narrow band.
+    It is not a free move. Above about $40\,^\circ\text{C}$ the host's own enzymes are at risk, which is the !internote(ref: enzymes.chalk; !connect) denaturation curve applied to the whole body, and a fever that runs too high is dangerous for exactly that reason. The response is a trade, and the body holds it in a narrow band.
 
     task{
         A person with a bacterial infection takes a drug that reduces their fever, and their temperature returns to $37\,^\circ\text{C}$. Explain what has and has not been done to the infection.

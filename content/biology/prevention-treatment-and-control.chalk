@@ -174,7 +174,7 @@ scene{
 scene{
     ## Resistance is natural selection, run at speed
 
-    Antibiotic resistance is not a new kind of biological process. It is the four conditions from !internote(ref: natural-selection.chalk) operating on a bacterial population, with the antibiotic as the selection pressure.
+    Antibiotic resistance is not a new kind of biological process. It is the four conditions from !internote(ref: natural-selection.chalk; !connect) operating on a bacterial population, with the antibiotic as the selection pressure.
 
     Variation exists: in any large bacterial population, some cells carry mutations that happen to reduce the drug's effect. The variation is heritable, because bacteria pass their genes to their descendants. Bacteria overproduce spectacularly, dividing every twenty minutes or so in good conditions. And survival is not random with respect to the variation — the antibiotic sees to that.
 

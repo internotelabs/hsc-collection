@@ -203,7 +203,7 @@ scene{
         term: Biodiversity
     )
 
-    Genetic diversity within a species is what !internote(ref: biotechnology.chalk) was concerned with: a crop reduced to a few varieties has lost it, even though the number of species has not changed. Ecosystem diversity is the variety of habitats in a region, and a region can lose an entire ecosystem type while keeping most of its species elsewhere.
+    Genetic diversity within a species is what !internote(ref: biotechnology.chalk; !connect) was concerned with: a crop reduced to a few varieties has lost it, even though the number of species has not changed. Ecosystem diversity is the variety of habitats in a region, and a region can lose an entire ecosystem type while keeping most of its species elsewhere.
 
     Species diversity is the level most often measured, and counting species is not enough on its own. The canvas shows two communities with exactly four species and exactly one hundred individuals each.
 
