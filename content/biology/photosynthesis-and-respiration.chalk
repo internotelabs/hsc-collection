@@ -131,12 +131,11 @@ scene{
     The reason anything bothers with the anaerobic route is speed and availability rather than yield. Glycolysis is fast and needs no mitochondria, so a muscle working harder than its oxygen supply allows can keep contracting on anaerobic respiration for a short time — at the cost of accumulating lactic acid, and of consuming glucose eighteen times faster for the same work.
 }[
     canvas.graph{
-        bar(x: without oxygen; y: 2; colour: orange; show labels)
-
-        cue{
-            bar(x: with oxygen; y: 36; colour: blue; show labels)
-        }(
-            in: 1
+        bar(
+            x: without oxygen, with oxygen
+            y: 2, 0 !cue.to{2, 36}(at: 1)
+            colours: orange, blue
+            show labels
         )
 
         cue{

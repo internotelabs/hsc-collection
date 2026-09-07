@@ -113,12 +113,11 @@ scene{
     }
 }[
     canvas.graph{
-        bar(x: 1940s to 1960s; y: 10; colour: blue; show labels)
-
-        cue{
-            bar(x: 2000s; y: 55; colour: orange; show labels)
-        }(
-            in: 1
+        bar(
+            x: 1940s to 1960s, 2000s
+            y: 10, 0 !cue.to{10, 55}(at: 1)
+            colours: blue, orange
+            show labels
         )
 
         cue{

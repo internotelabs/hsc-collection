@@ -243,18 +243,11 @@ scene{
     )
 }[
     canvas.graph{
-        bar(x: Southwark and Vauxhall; y: 315; colour: orange; show labels)
-
-        cue{
-            bar(x: Lambeth; y: 37; colour: blue; show labels)
-        }(
-            in: 1
-        )
-
-        cue{
-            bar(x: the rest of London; y: 59; colour: grey; show labels)
-        }(
-            in: 2
+        bar(
+            x: Southwark and Vauxhall, Lambeth, the rest of London
+            y: 315, 0, 0 !cue.to{315, 37, 0}(at: 1) !cue.to{315, 37, 59}(at: 2)
+            colours: orange, blue, grey
+            show labels
         )
     }(
         y axis label: cholera deaths per $10\,000$ houses, 1854

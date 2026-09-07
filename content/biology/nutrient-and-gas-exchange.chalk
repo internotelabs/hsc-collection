@@ -132,18 +132,11 @@ scene{
     }
 }[
     canvas.graph{
-        bar(x: smooth tube; y: 1; colour: grey; show labels)
-
-        cue{
-            bar(x: with folds, and villi; y: 3, 30; colour: blue; show labels)
-        }(
-            in: 1
-        )
-
-        cue{
-            bar(x: and microvilli; y: 600; colour: orange; show labels)
-        }(
-            in: 2
+        bar(
+            x: smooth tube, with folds, and villi, and microvilli
+            y: 1, 0, 0, 0 !cue.to{1, 3, 30, 0}(at: 1) !cue.to{1, 3, 30, 600}(at: 2)
+            colours: grey, blue, blue, orange
+            show labels
         )
     }(
         y axis label: surface area, relative to a smooth tube
