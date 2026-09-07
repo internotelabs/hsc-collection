@@ -53,12 +53,8 @@ scene{
     }
 }[
     canvas.graph{
-        bar(
-            y: lysosome, Golgi apparatus, cytosol, mitochondrion
-            x: 4.8, 6.4, 7.2, 7.8
-            colours: orange, blue, blue, blue
-            show labels
-        )
+        bar(y: lysosome; x: 4.8; colour: orange; show labels)
+        bar(y: Golgi apparatus, cytosol, mitochondrion; x: 6.4, 7.2, 7.8; colour: blue; show labels)
 
         cue{
             axis.band(x: [4.8, 7.2]; label: a thousandfold in $[\text{H}^+]$; colour: grey; edges)

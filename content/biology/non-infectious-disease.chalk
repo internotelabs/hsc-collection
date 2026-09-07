@@ -67,12 +67,8 @@ scene{
     }
 }[
     canvas.graph{
-        bar(
-            x: neither, asbestos, smoking
-            y: 1, 5, 10
-            colours: grey, blue, blue
-            show labels
-        )
+        bar(x: neither; y: 1; colour: grey; show labels)
+        bar(x: asbestos, smoking; y: 5, 10; colour: blue; show labels)
 
         cue{
             bar(x: both; y: 50; colour: orange; show labels)
