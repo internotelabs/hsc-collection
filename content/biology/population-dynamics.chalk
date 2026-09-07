@@ -201,7 +201,7 @@ scene{
         title: Your turn
     )
 
-    The same reasoning runs backwards and forwards in time. Communities that no longer exist are !internote(ref: past-ecosystems.chalk); the ones being altered now are !internote(ref: future-ecosystems.chalk).
+    The same reasoning runs backwards and forwards in time. Communities that no longer exist are !internote(ref: past-ecosystems.chalk; !connect); the ones being altered now are !internote(ref: future-ecosystems.chalk; !connect).
 }[
     table{
         The method assumes                                   | If it is false                                        | What goes wrong

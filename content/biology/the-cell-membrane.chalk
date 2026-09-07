@@ -164,7 +164,7 @@ scene{
         title: Your turn
     )
 
-    What the structure permits is the next question: which substances cross, in which direction, and at what cost to the cell. That is !internote(ref: transport-across-membranes.chalk).
+    What the structure permits is the next question: which substances cross, in which direction, and at what cost to the cell. That is !internote(ref: transport-across-membranes.chalk; !connect).
 }[
     canvas.graph{
         scatter(x: 1, 3, 5, 7, 9, 11, 13, 15; y: 2, 2, 2, 2, 2, 2, 2, 2; colour: blue)

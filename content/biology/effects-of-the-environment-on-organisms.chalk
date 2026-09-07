@@ -36,7 +36,7 @@ scene{
 
     ===
 
-    Real distributions are set by several conditions at once, and the narrowest one wins. A plant may tolerate the temperature, the soil pH and the light at a site and still be absent because the site floods — which is the limiting factor idea from *Photosynthesis and Respiration*, applied to a whole organism instead of one reaction.
+    Real distributions are set by several conditions at once, and the narrowest one wins. A plant may tolerate the temperature, the soil pH and the light at a site and still be absent because the site floods — which is the limiting factor idea from !internote(ref: photosynthesis-and-respiration.chalk), applied to a whole organism instead of one reaction.
 
     note{
         A tolerance curve measured in a laboratory and a species' actual distribution are often quite different, and the gap is informative rather than a measurement error. What the laboratory measures is where the species *could* live; where it is actually found is narrower, because other species are already there. The difference between the two is the size of the biotic pressure.

@@ -218,7 +218,7 @@ scene{
         title: Your turn
     )
 
-    Those lines together produce a tree, and reading one is a skill of its own — !internote(ref: biodiversity-and-classification.chalk).
+    Those lines together produce a tree, and reading one is a skill of its own — !internote(ref: biodiversity-and-classification.chalk; !connect).
 }[
     table{
         Line of evidence      | What it is good at                                        | Where it is weak

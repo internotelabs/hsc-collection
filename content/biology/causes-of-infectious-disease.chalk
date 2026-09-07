@@ -192,7 +192,7 @@ scene{
     task{
         A newly recognised illness is strongly associated with a particular virus. The virus cannot be grown in pure culture, and infecting volunteers is out of the question. Describe how the case for causation could still be made.
     }[
-        Not by Koch's postulates, and not by any single line. The case would be built from several independent kinds of evidence agreeing, which is the same argument structure as *Evidence for Evolution*.
+        Not by Koch's postulates, and not by any single line. The case would be built from several independent kinds of evidence agreeing, which is the same argument structure as !internote(ref: evidence-for-evolution.chalk).
 
         Epidemiology first: does the virus appear before the illness rather than after it, in a large cohort followed over time? Is there a dose–response relationship? Do outbreaks of illness follow outbreaks of the virus?
 
@@ -201,7 +201,7 @@ scene{
         title: Your turn
     )
 
-    Hosts are not passive. What a plant or an animal does when invaded is !internote(ref: responses-to-pathogens.chalk). Disease that no pathogen causes at all is !internote(ref: non-infectious-disease.chalk).
+    Hosts are not passive. What a plant or an animal does when invaded is !internote(ref: responses-to-pathogens.chalk; !connect). Disease that no pathogen causes at all is !internote(ref: non-infectious-disease.chalk; !connect).
 }[
     table{
         The postulate                              | Where it fails                                                     | What is used instead

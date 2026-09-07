@@ -183,7 +183,7 @@ scene{
         title: Your turn
     )
 
-    Keeping that fluid within tolerance is a control problem rather than a plumbing one, and it is the problem !internote(ref: homeostasis.chalk) is about.
+    Keeping that fluid within tolerance is a control problem rather than a plumbing one, and it is the problem !internote(ref: homeostasis.chalk; !connect) is about.
 }[
     table{
         Vessel                | Blood in it has just left | Higher than usual                        | Lower than usual

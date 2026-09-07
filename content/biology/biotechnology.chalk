@@ -62,7 +62,7 @@ scene{
 
     The environmental gain is real, specific and measured. An $85$ per cent reduction in insecticide is not a projection; it is a figure from an industry that has been recording its spraying for decades.
 
-    And the technology's own success is what threatens it. A caterpillar population exposed to the same toxin in every plant in the district is under intense selection to become resistant to it — which is natural selection operating exactly as *Natural Selection* describes, with the crop as the environment. Growers are required to plant refuges of non-Bt crop precisely so that some susceptible moths survive to breed.
+    And the technology's own success is what threatens it. A caterpillar population exposed to the same toxin in every plant in the district is under intense selection to become resistant to it — which is natural selection operating exactly as !internote(ref: natural-selection.chalk) describes, with the crop as the environment. Growers are required to plant refuges of non-Bt crop precisely so that some susceptible moths survive to breed.
 }[
     canvas.diagram{
         box#before{

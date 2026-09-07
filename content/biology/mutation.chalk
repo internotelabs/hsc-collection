@@ -172,7 +172,7 @@ scene{
         title: Your turn
     )
 
-    Once mutation is understood as editing of the sequence, doing it deliberately becomes conceivable — which is !internote(ref: genetic-technologies.chalk).
+    Once mutation is understood as editing of the sequence, doing it deliberately becomes conceivable — which is !internote(ref: genetic-technologies.chalk; !connect).
 }[
     canvas.diagram{
         box#mut{

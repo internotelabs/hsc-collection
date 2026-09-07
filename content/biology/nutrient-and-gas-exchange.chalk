@@ -128,7 +128,7 @@ scene{
     That final bar is why the intestine is short enough to fit in an abdomen. A smooth tube offering the same absorptive surface would have to be hundreds of times longer, and the folding is what buys the area without the length.
 
     note{
-        Every gain in surface is a gain for pathogens too. The gut is the largest interface between the body and the outside world, which is why a large share of the body's immune tissue is stationed along it — a point *Responses to Pathogens* returns to.
+        Every gain in surface is a gain for pathogens too. The gut is the largest interface between the body and the outside world, which is why a large share of the body's immune tissue is stationed along it — a point !internote(ref: responses-to-pathogens.chalk) returns to.
     }
 }[
     canvas.graph{

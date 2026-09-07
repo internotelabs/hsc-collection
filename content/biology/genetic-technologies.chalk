@@ -88,7 +88,7 @@ scene{
         term: Reproductive cloning
     )
 
-    Dolly the sheep, born in 1996, was the first mammal produced this way from an adult cell, and the reason it mattered was not the sheep. It showed that a fully differentiated cell still contains a complete and usable genome — the point made in *Cell Differentiation and Specialisation* — because a mammary gland cell's nucleus was able to direct the building of an entire animal.
+    Dolly the sheep, born in 1996, was the first mammal produced this way from an adult cell, and the reason it mattered was not the sheep. It showed that a fully differentiated cell still contains a complete and usable genome — the point made in !internote(ref: cell-differentiation-and-specialisation.chalk) — because a mammary gland cell's nucleus was able to direct the building of an entire animal.
 
     The table sets the three out with what each controls and what each does not.
 }[
@@ -208,7 +208,7 @@ scene{
         title: Your turn
     )
 
-    What those techniques are actually used for, and what their spread does to biodiversity, is !internote(ref: biotechnology.chalk).
+    What those techniques are actually used for, and what their spread does to biodiversity, is !internote(ref: biotechnology.chalk; !connect).
 }[
     table{
         Technology              | How precise it is                                   | Where the risk sits

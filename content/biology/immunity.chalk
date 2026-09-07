@@ -193,7 +193,7 @@ scene{
         title: Your turn
     )
 
-    Exploiting that memory deliberately, and attacking pathogens directly when it is not available, is !internote(ref: prevention-treatment-and-control.chalk).
+    Exploiting that memory deliberately, and attacking pathogens directly when it is not available, is !internote(ref: prevention-treatment-and-control.chalk; !connect).
 }[
     table{
         Route                  | What happened                                                | Memory cells? | How long it lasts

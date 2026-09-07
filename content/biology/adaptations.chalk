@@ -165,7 +165,7 @@ scene{
         title: Your turn
     )
 
-    Three lines run from here. The pressures an environment applies are in !internote(ref: effects-of-the-environment-on-organisms.chalk); the mechanism producing adaptations is !internote(ref: natural-selection.chalk); and the same reasoning applied to whole communities begins in !internote(ref: population-dynamics.chalk).
+    Three lines run from here. The pressures an environment applies are in !internote(ref: effects-of-the-environment-on-organisms.chalk; !connect); the mechanism producing adaptations is !internote(ref: natural-selection.chalk; !connect); and the same reasoning applied to whole communities begins in !internote(ref: population-dynamics.chalk; !connect).
 }[
     canvas.diagram{
         box#split{
