@@ -16,6 +16,21 @@
 // every year from 2002 to 2022.
 @include(src: ../preface.part.chalk)
 
+cite#hss1979(
+    authors: E. C. Hammond, I. J. Selikoff, H. Seidman
+    year: 1979
+    title: Asbestos exposure, cigarette smoking and death rates
+    container: Annals of the New York Academy of Sciences
+    pages: 330, 473–490
+)
+cite#aihw2024(
+    authors: Australian Institute of Health and Welfare
+    year: 2024
+    title: Chronic conditions and multimorbidity
+    publisher: Australian Institute of Health and Welfare
+    url: https://www.aihw.gov.au/reports/chronic-disease/chronic-conditions-and-multimorbidity
+)
+
 scene{
     Nobody catches heart disease. Nobody can be quarantined from diabetes, and there is no vaccine against melanoma. Non-infectious diseases have no pathogen to find, so everything that works against infection is useless against them.
 
@@ -44,7 +59,7 @@ scene{
 
     Asbestos causes lung cancer. So does smoking. The obvious guess is that someone doing both has the risk from one plus the risk from the other — and that guess is badly wrong.
 
-    The canvas shows real death rates from a study of American insulation workers published in 1979. Take a man who neither smoked nor worked with asbestos as the baseline of $1$. Asbestos alone raised his risk of dying from lung cancer about five times. Smoking alone raised it about ten times.
+    The canvas shows real death rates from a study of American insulation workers published in 1979 !cite:#hss1979(). Take a man who neither smoked nor worked with asbestos as the baseline of $1$. Asbestos alone raised his risk of dying from lung cancer about five times. Smoking alone raised it about ten times.
 
     ===
 
@@ -88,7 +103,7 @@ scene{
 scene{
     # Why these diseases now cause most of the deaths
 
-    A century ago, most Australians who died young died of an infection. Today most Australians die of something they were not given by anybody. The Australian Institute of Health and Welfare puts it plainly: chronic conditions contributed to about nine in every ten deaths in Australia in 2022, and that figure has stayed between $89$ and $92$ per cent every year since 2002.
+    A century ago, most Australians who died young died of an infection. Today most Australians die of something they were not given by anybody. The Australian Institute of Health and Welfare puts it plainly !cite:#aihw2024(): chronic conditions contributed to about nine in every ten deaths in Australia in 2022, and that figure has stayed between $89$ and $92$ per cent every year since 2002.
 
     That shift is not a mystery, and it is not mainly a sign that non-infectious disease became more common. The canvas is the chain of causes.
 

@@ -7,6 +7,20 @@
 
 @include(src: ../preface.part.chalk)
 
+cite#demoivre1722(
+    authors: A. de Moivre
+    year: 1722
+    title: De sectione anguli
+    container: Philosophical Transactions of the Royal Society of London
+    pages: 32, 228–230
+)
+cite#euler1748(
+    authors: L. Euler
+    year: 1748
+    title: Introductio in analysin infinitorum
+    publisher: Marcus-Michael Bousquet
+)
+
 scene{
     Cartesian form is built for addition. Adding $a + ib$ to $c + id$ means adding $a$ to $c$ and $b$ to $d$, and nothing could be more direct.
 
@@ -24,25 +38,22 @@ scene{
 
     Converting is trigonometry on the right-angled triangle. Going out, $r = \sqrt{a^2 + b^2}$ and $\tan\theta = \frac{b}{a}$ with the quadrant taken from the sketch; coming back, $a = r\cos\theta$ and $b = r\sin\theta$. Here $2\cos\frac{\pi}{3} = 1$ and $2\sin\frac{\pi}{3} = \sqrt{3}$, which returns the Cartesian form it started from.
 }[
-    canvas.graph{
-        point(x: 0; y: 0; colour: grey; label: $O$)
+    canvas.graph:argand{
+        point(z: 0; colour: grey; label: $O$)
         segment(start: (0, 0); end: (1, 0); colour: grey; dashed)
-        segment(start: (1, 0); end: (1, 1.7321); colour: grey; dashed)
-        angle(at: (1, 0); from: (0, 0); to: (1, 1.7321); colour: grey)
-        point(x: 1; y: 1.7321; colour: orange; label: $z = 1 + i\sqrt{3}$)
+        segment(start: (1, 0); end: (1, sqrt(3)); colour: grey; dashed)
+        angle(at: (1, 0); from: (0, 0); to: (1, sqrt(3)); colour: grey)
+        point(z: 1 + i * sqrt(3); colour: orange; label: $z = 1 + i\sqrt{3}$)
 
         cue.draw{
-            segment(start: (0, 0); end: (1, 1.7321); colour: orange)
-            text(label: $r = 2$; x: 0.35; y: 1.05)
-            angle(at: (0, 0); from: 0; to: (1, 1.7321); label: $\theta = \tfrac{\pi}{3}$)
+            segment(start: (0, 0); end: (1, sqrt(3)); colour: orange)
+            text(label: $r = 2$; z: 0.35 + 1.05i)
+            angle(at: (0, 0); from: 0; to: (1, sqrt(3)); label: $\theta = \tfrac{\pi}{3}$)
         }(
             in: 1
             in duration: 1.2s
         )
-    }(
-        x axis label: real axis
-        y axis label: imaginary axis
-    )
+    }
 ]
 
 scene{
@@ -68,21 +79,21 @@ scene{
         Adding arguments can push the total outside $-\pi < \theta \le \pi$, so a product written in principal form may need $2\pi$ added or subtracted. The direction is unchanged; only the name of the angle is.
     }
 }[
-    canvas.graph{
-        point(x: 0; y: 0; colour: grey; label: $O$)
-        segment(start: (0, 0); end: (1, 1.7321); colour: orange)
-        point(x: 1; y: 1.7321; colour: orange; label: $z_1$)
-        segment(start: (0, 0); end: (2.5981, 1.5); colour: purple)
-        point(x: 2.5981; y: 1.5; colour: purple; label: $z_2$)
-        angle(at: (0, 0); from: 0; to: (2.5981, 1.5); label: $\theta_2 = \tfrac{\pi}{6}$; colour: purple)
-        angle(at: (0, 0); from: 0; to: (1, 1.7321); label: $\theta_1 = \tfrac{\pi}{3}$; colour: orange; radius: 52)
+    canvas.graph:argand{
+        point(z: 0; colour: grey; label: $O$)
+        segment(start: (0, 0); end: (1, sqrt(3)); colour: orange)
+        point(z: 2 * e^(i * pi/3); colour: orange; label: $z_1$)
+        segment(start: (0, 0); end: (3 * sqrt(3)/2, 1.5); colour: purple)
+        point(z: 3 * e^(i * pi/6); colour: purple; label: $z_2$)
+        angle(at: (0, 0); from: 0; to: (3 * sqrt(3)/2, 1.5); label: $\theta_2 = \tfrac{\pi}{6}$; colour: purple)
+        angle(at: (0, 0); from: 0; to: (1, sqrt(3)); label: $\theta_1 = \tfrac{\pi}{3}$; colour: orange; radius: 52)
 
         cue.draw{
             segment(start: (0, 0); end: (0, 6); colour: teal)
             angle(at: (0, 0); from: 0; to: (0, 6); label: $\theta_1 + \theta_2 = \tfrac{\pi}{2}$; colour: teal; radius: 76)
 
             cue.highlight{
-                point(x: 0; y: 6; colour: teal; label: $z_1 z_2 = 6i$)
+                point(z: (2 * e^(i * pi/3)) * (3 * e^(i * pi/6)); colour: teal; label: $z_1 z_2 = 6i$)
             }(
                 at: 2
                 duration: 2s
@@ -91,10 +102,7 @@ scene{
             in: 1
             in duration: 1.2s
         )
-    }(
-        x axis label: real axis
-        y axis label: imaginary axis
-    )
+    }
 ]
 
 scene{
@@ -107,6 +115,8 @@ scene{
     }(
         term: de Moivre's theorem
     )
+
+    The relation was in print more than a century before the plane it is drawn on !cite:#demoivre1722().
 
     For positive $n$ this follows from the product rule by induction: it holds at $n = 1$, and multiplying $\operatorname{cis}(k\theta)$ by $\operatorname{cis}\theta$ adds one more $\theta$ to give $\operatorname{cis}((k + 1)\theta)$. Negative exponents follow from the division rule, and $n = 0$ is $\operatorname{cis}0 = 1$.
 
@@ -124,29 +134,27 @@ scene{
 
     internote(ref: de-moivre-and-trigonometric-identities.chalk)
 }[
-    canvas.graph{
-        circle(x: 0; y: 0; size: 1; colour: grey; !fill)
-        point(x: 0.866; y: 0.5; colour: orange; label: $z$)
-        angle(at: (0, 0); from: 0; to: (0.866, 0.5); label: $30^\circ$; colour: orange)
+    canvas.graph:argand{
+        circle(z: 0; size: 1; colour: grey; !fill)
+        point(z: e^(i * pi/6); colour: orange; label: $z$)
+        angle(at: (0, 0); from: 0; to: 30; label: $30^\circ$; colour: orange)
 
         cue{
-            point(x: 0.5; y: 0.866; colour: teal)
-            point(x: 0; y: 1; colour: teal; label: $z^3$)
+            point(z: (e^(i * pi/6))^2; colour: teal)
+            point(z: (e^(i * pi/6))^3; colour: teal; label: $z^3$)
         }(
             in: 1
         )
 
         cue{
-            point(x: -0.5; y: 0.866; colour: teal)
-            point(x: -0.866; y: 0.5; colour: teal)
-            point(x: -1; y: 0; colour: teal; label: $z^6 = -1$)
+            point(z: (e^(i * pi/6))^4; colour: teal)
+            point(z: (e^(i * pi/6))^5; colour: teal)
+            point(z: (e^(i * pi/6))^6; colour: teal; label: $z^6 = -1$)
             angle(at: (0, 0); from: 0; to: 180; sweep: anticlockwise; label: $6 \times 30^\circ$; colour: teal; radius: 52)
         }(
             in: 2
         )
     }(
-        x axis label: real axis
-        y axis label: imaginary axis
         !show ticks
     )
 ]
@@ -161,6 +169,8 @@ scene{
     }(
         term: Euler's formula
     )
+
+    Euler set it out in 1748 !cite:#euler1748(), and it is the reason the marks on this canvas can be written as powers of $e^{i\theta}$ rather than as pairs of decimals.
 
     ===
 

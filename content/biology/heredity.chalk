@@ -120,16 +120,16 @@ scene{
     The third is that a ratio is a probability. Mendel's own counts came out at $2.98$ to one rather than exactly three to one, across nearly twenty thousand plants, and a cross producing four offspring will very often give something that looks nothing like $3:1$. A prediction in genetics is a statement about expectation, and a small sample is not evidence against it.
 }[
     canvas.graph{
-        curve(f: 0.30103 * x; domain: [1, 46]; colour: blue)
+        curve(f: 2^x; domain: [1, 46]; colour: blue)
 
         cue{
-            point(x: 23; y: 6.92; colour: orange; label: gametes one person can make)
+            point(x: 23; y: 8388608; colour: orange; label: gametes one person can make)
         }(
             in: 1
         )
 
         cue{
-            point(x: 46; y: 13.85; colour: orange; label: children two people could have)
+            point(x: 46; y: 70368744177664; colour: orange; label: children two people could have)
         }(
             in: 2
         )
@@ -137,7 +137,7 @@ scene{
         x axis label: chromosome pairs assorting independently
         y axis label: combinations possible
         x domain: [0, 52]
-        y domain: [0, 15]
-        y format: log
+        y domain: [1, 1000000000000000]
+        y scale: log
     )
 ]

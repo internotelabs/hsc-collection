@@ -7,6 +7,14 @@
 
 @include(src: ../preface.part.chalk)
 
+cite#fe1970(
+    authors: L. D. Frye, M. Edidin
+    year: 1970
+    title: The rapid intermixing of cell surface antigens after formation of mouse-human heterokaryons
+    container: Journal of Cell Science
+    pages: 7(2), 319–335
+)
+
 scene{
     A cell has to be separated from its surroundings, because a bag of enzymes that leaks its contents into the pond is not a cell for long. It also has to take in glucose and oxygen and get rid of carbon dioxide. A perfect seal solves the first problem and guarantees starvation; an open boundary solves the second and is not a boundary.
 
@@ -98,7 +106,7 @@ scene{
 
     Calling the membrane fluid is a specific claim, and one that was not obvious. A phospholipid can drift sideways within its own leaflet, and so can a protein set into it; the sheet holds together while its components rearrange, in the way a soap film does.
 
-    The evidence usually given is a cell fusion experiment done by Frye and Edidin in 1970, and it is worth following because the design is so direct.
+    The evidence usually given is a cell fusion experiment done by Frye and Edidin in 1970 !cite:#fe1970(), and it is worth following because the design is so direct.
 
     ===
 

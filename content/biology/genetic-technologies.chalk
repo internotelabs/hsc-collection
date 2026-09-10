@@ -7,6 +7,15 @@
 
 @include(src: ../preface.part.chalk)
 
+cite#wilmut1997(
+    authors: I. Wilmut, A. E. Schnieke, J. McWhir, A. J. Kind, K. H. S. Campbell
+    year: 1997
+    title: Viable offspring derived from fetal and adult mammalian cells
+    container: Nature
+    pages: 385(6619), 810–813
+    doi: 10.1038/385810a0
+)
+
 scene{
     Every domesticated plant and animal is a genetically modified organism. Wheat, maize, cattle, dogs and apples have all had their genomes changed enormously by humans, over thousands of years, by the simple method of deciding which individuals were allowed to breed.
 
@@ -88,7 +97,7 @@ scene{
         term: Reproductive cloning
     )
 
-    Dolly the sheep, born in 1996, was the first mammal produced this way from an adult cell, and the reason it mattered was not the sheep. It showed that a fully differentiated cell still contains a complete and usable genome — the point made in !internote(ref: cell-differentiation-and-specialisation.chalk; !connect) — because a mammary gland cell's nucleus was able to direct the building of an entire animal.
+    Dolly the sheep, born in 1996 !cite:#wilmut1997(), was the first mammal produced this way from an adult cell, and the reason it mattered was not the sheep. It showed that a fully differentiated cell still contains a complete and usable genome — the point made in !internote(ref: cell-differentiation-and-specialisation.chalk; !connect) — because a mammary gland cell's nucleus was able to direct the building of an entire animal.
 
     The table sets the three out with what each controls and what each does not.
 }[

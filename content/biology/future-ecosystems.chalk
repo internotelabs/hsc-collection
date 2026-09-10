@@ -18,6 +18,30 @@
 // toads at the front.
 @include(src: ../preface.part.chalk)
 
+cite#etheridge1996(
+    authors: D. M. Etheridge, L. P. Steele, R. L. Langenfelds, R. J. Francey, J.-M. Barnola, V. I. Morgan
+    year: 1996
+    title: Natural and anthropogenic changes in atmospheric CO2 over the last 1000 years from air in Antarctic ice and firn
+    container: Journal of Geophysical Research: Atmospheres
+    pages: 101(D2), 4115–4128
+    doi: 10.1029/95JD03410
+)
+cite#noaa-maunaloa(
+    authors: NOAA Global Monitoring Laboratory
+    year: n.d.
+    title: Trends in atmospheric carbon dioxide: Mauna Loa CO2 annual mean data
+    publisher: National Oceanic and Atmospheric Administration
+    url: https://gml.noaa.gov/ccgg/trends/
+)
+cite#phillips2006(
+    authors: B. L. Phillips, G. P. Brown, J. K. Webb, R. Shine
+    year: 2006
+    title: Invasion and the evolution of speed in toads
+    container: Nature
+    pages: 439(7078), 803
+    doi: 10.1038/439803a
+)
+
 scene{
     Ecosystems have always changed. *Past Ecosystems* is a record of continental drift, ocean circulation and glacial cycles rearranging Australia over tens of millions of years, and nothing about change itself is new.
 
@@ -25,11 +49,11 @@ scene{
 
     ===
 
-    The first three points come from air trapped in Antarctic ice, which gives a direct sample of the atmosphere at the time the ice formed. Between $1750$ and $1900$ the carbon dioxide concentration moved from about $277$ to about $296$ parts per million — roughly $19$ parts per million in $150$ years.
+    The first three points come from air trapped in Antarctic ice !cite:#etheridge1996(), which gives a direct sample of the atmosphere at the time the ice formed. Between $1750$ and $1900$ the carbon dioxide concentration moved from about $277$ to about $296$ parts per million — roughly $19$ parts per million in $150$ years.
 
     ===
 
-    The remaining points are measured directly. Between $1960$ and $2020$ the concentration went from $317$ to $414$ parts per million: $97$ parts per million in $60$ years.
+    The remaining points are measured directly, at Mauna Loa !cite:#noaa-maunaloa(). Between $1960$ and $2020$ the concentration went from $317$ to $414$ parts per million: $97$ parts per million in $60$ years.
 
     That is a rate about thirteen times the earlier one, and the earlier one was itself the beginning of the industrial rise rather than a natural background.
 
@@ -106,7 +130,7 @@ scene{
 
     The explanation is natural selection acting on the invasion itself. The toads that arrive at the front each year are, by definition, the ones that travelled furthest, and they breed with each other. Their offspring inherit whatever made them fast.
 
-    Toads at the front were found to have measurably longer legs than toads from long-established populations, and to travel further per night. The front is a filter that selects for dispersal ability, generation after generation, and the result is an invasion that accelerates.
+    Toads at the front were found to have measurably longer legs than toads from long-established populations, and to travel further per night !cite:#phillips2006(). The front is a filter that selects for dispersal ability, generation after generation, and the result is an invasion that accelerates.
 
     note{
         This is a case where the four conditions from *Natural Selection* can all be checked directly and within a human lifetime. There was variation in leg length and dispersal ability; it is heritable; the front selected on it; and the frequency of the fast phenotype rose. The prediction that the front would accelerate was made from the mechanism, and it did.

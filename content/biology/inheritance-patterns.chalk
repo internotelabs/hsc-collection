@@ -15,15 +15,30 @@
 // the 3:1 prediction drawn as a straight line through the origin.
 @include(src: ../preface.part.chalk)
 
+cite#mendel1866(
+    authors: G. Mendel
+    year: 1866
+    title: Versuche über Pflanzen-Hybriden
+    container: Verhandlungen des naturforschenden Vereines in Brünn
+    pages: 4, 3–47
+)
+cite#fisher1936(
+    authors: R. A. Fisher
+    year: 1936
+    title: Has Mendel's work been rediscovered?
+    container: Annals of Science
+    pages: 1(2), 115–137
+)
+
 @data#mendel{
-    dominant | recessive
-    5474     | 1850
-    6022     | 2001
-    705      | 224
-    787      | 277
-    882      | 299
-    428      | 152
-    651      | 207
+    dominant | recessive | ratio
+    5474     | 1850      | 2.959
+    6022     | 2001      | 3.010
+    705      | 224       | 3.147
+    787      | 277       | 2.841
+    882      | 299       | 2.950
+    428      | 152       | 2.816
+    651      | 207       | 3.145
 }
 
 scene{
@@ -39,16 +54,16 @@ scene{
 
     ===
 
-    The canvas is Mendel's own counts for the seven characters he studied, dominant plants plotted against recessive ones. The line is the prediction: three dominant for every one recessive, drawn as a straight line of slope $3$ through the origin.
+    The canvas is Mendel's own counts !cite:#mendel1866() for the seven characters he studied, dominant plants plotted against recessive ones. The line is the prediction: three dominant for every one recessive, drawn as a straight line of slope $3$ through the origin.
 
     ===
 
-    The points sit close to it and not on it. The individual ratios run from $2.82$ to $3.15$, and across all seven characters together — nearly twenty thousand plants — the ratio is $2.98$.
+    The points sit close to it and not on it. The number line beneath is the seven ratios on their own: they run from !value:#ratios.min(digits: 3; maths) to !value:#ratios.max(digits: 3; maths), with a median of !value:#ratios.median(digits: 3; maths) and a box — the middle half of them — only !value:#ratios.iqr(digits: 2; maths) wide. Across all seven characters together, nearly twenty thousand plants, the ratio is $2.98$.
 
-    That scatter is the most important thing on the canvas. A $3:1$ ratio is a statement about probabilities, not a rule about outcomes, and it is approached more closely the more offspring are counted. A cross producing four offspring will very often give something other than three and one, and nothing has gone wrong when it does.
+    That spread is the most important thing on either canvas. A $3:1$ ratio is a statement about probabilities, not a rule about outcomes, and it is approached more closely the more offspring are counted. A cross producing four offspring will very often give something other than three and one, and nothing has gone wrong when it does.
 
     note{
-        Mendel's figures have been argued about for a century, since the statistician R. A. Fisher pointed out in 1936 that they fit the predictions rather better than chance alone would usually allow. Nobody has produced a settled explanation, and the ratios themselves have been confirmed many times over by other people since — so the argument is about how these particular numbers were arrived at, not about whether the model is right.
+        Mendel's figures have been argued about for a century, since the statistician R. A. Fisher pointed out in 1936 !cite:#fisher1936() that they fit the predictions rather better than chance alone would usually allow. Nobody has produced a settled explanation, and the ratios themselves have been confirmed many times over by other people since — so the argument is about how these particular numbers were arrived at, not about whether the model is right.
     }
 }[
     canvas.graph{
@@ -71,7 +86,24 @@ scene{
         x domain: [0, 2300]
         y domain: [0, 6800]
     )
-]
+
+    canvas.graph:x{
+        scatter(x: #mendel.ratio; colour: blue)
+        boxplot#ratios(x: #mendel.ratio; colour: blue)
+
+        cue{
+            axis.label(x: 3; label: the $3:1$ prediction; line; colour: grey)
+        }(
+            in: 1
+        )
+    }(
+        x axis label: dominant plants per recessive plant, one reading per character
+        x domain: [2.75, 3.2]
+    )
+](
+    direction: vertical
+    ratio: 5/2
+)
 
 scene{
     # Predicting a cross

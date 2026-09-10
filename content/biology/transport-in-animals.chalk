@@ -34,22 +34,22 @@ scene{
     Everything larger therefore does the same thing: move the fluid instead of waiting for the molecules. Blood is pumped the metre in a second or so, and diffusion is left to do only the last few micrometres at either end — where, as the left of the graph shows, it is quick enough that nothing better is needed.
 }[
     canvas.graph{
-        curve(f: 2 * x + 8.398; domain: [-6.2, 0.2]; colour: blue)
-        point(x: -5; y: -1.602; colour: orange; label: across one cell — $0.025\text{ s}$)
+        curve(f: 250000000 * x^2; domain: [0.0000001, 1.5]; colour: blue)
+        point(x: 0.00001; y: 0.025; colour: orange; label: across one cell — $0.025\text{ s}$)
 
         cue{
-            point(x: -3; y: 2.398; colour: orange; label: one millimetre — four minutes)
-            point(x: 0; y: 8.398; colour: orange; label: one metre — eight years)
+            point(x: 0.001; y: 250; colour: orange; label: one millimetre — four minutes)
+            point(x: 1; y: 250000000; colour: orange; label: one metre — eight years)
         }(
             in: 1
         )
     }(
         x axis label: distance (m)
         y axis label: time for oxygen to diffuse it (s)
-        x domain: [-6.5, 0.9]
-        y domain: [-4.5, 10]
-        x format: log
-        y format: log
+        x domain: [0.0000001, 10]
+        y domain: [0.00001, 10000000000]
+        x scale: log
+        y scale: log
     )
 ]
 
@@ -141,25 +141,22 @@ scene{
     }
 }[
     canvas.graph{
-        line(x: 0, 1, 2, 3, 4; y: 95, 90, 45, 20, 6; interpolate: bezier; colour: blue)
-        axis.label(x: 0; label: aorta; colour: grey)
-        axis.label(x: 1; label: arteries; colour: grey)
+        line(x: aorta, arteries, arterioles, capillaries, veins; y: 95, 90, 45, 20, 6; interpolate: bezier; colour: blue)
 
         cue{
-            axis.label(x: 2; label: arterioles; colour: grey)
+            axis.band(x: [arteries, capillaries]; label: where the resistance is set; colour: grey)
         }(
             in: 1
         )
 
         cue{
-            axis.label(x: 3; label: capillaries; colour: grey)
-            axis.label(x: 4; label: veins; colour: grey)
+            axis.label(y: 20; label: a single flattened cell thick; line; colour: grey)
         }(
             in: 2
         )
     }(
         y axis label: mean blood pressure (mm Hg)
-        x domain: [0, 4]
+        x format: aorta, arteries, arterioles, capillaries, veins
         y domain: [0, 105]
     )
 ]

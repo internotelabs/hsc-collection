@@ -205,7 +205,7 @@ scene{
 
     Genetic diversity within a species is what !internote(ref: biotechnology.chalk; !connect) was concerned with: a crop reduced to a few varieties has lost it, even though the number of species has not changed. Ecosystem diversity is the variety of habitats in a region, and a region can lose an entire ecosystem type while keeping most of its species elsewhere.
 
-    Species diversity is the level most often measured, and counting species is not enough on its own. The canvas shows two communities with exactly four species and exactly one hundred individuals each.
+    Species diversity is the level most often measured, and counting species is not enough on its own. The canvas shows two communities with the same four species, $A$ to $D$, and exactly one hundred individuals each.
 
     The first is even: twenty-five of each. The second has ninety-seven individuals of one species and one each of the other three.
 
@@ -232,10 +232,9 @@ scene{
     )
 }[
     canvas.graph{
-        // migration: a bar chart of four species, but the note never names them, and 'bar' needs names on the categorical axis
-        histogram(
-            bins: 0, 1, 2, 3, 4
-            values: 25, 25, 25, 25
+        bar(
+            x: A, B, C, D
+            y: 25, 25, 25, 25
             colour: blue
             show labels
         )
@@ -243,16 +242,14 @@ scene{
         title: An even community
         x axis label: species
         y axis label: individuals
-        x domain: [0, 4]
+        x format: A, B, C, D
         y domain: [0, 100]
-        !show ticks
     )
 
     canvas.graph{
-        // migration: a bar chart of four species, but the note never names them, and 'bar' needs names on the categorical axis
-        histogram(
-            bins: 0, 1, 2, 3, 4
-            values: 97, 1, 1, 1
+        bar(
+            x: A, B, C, D
+            y: 97, 1, 1, 1
             colour: orange
             show labels
         )
@@ -260,9 +257,8 @@ scene{
         title: An uneven one, with the same four species
         x axis label: species
         y axis label: individuals
-        x domain: [0, 4]
+        x format: A, B, C, D
         y domain: [0, 100]
-        !show ticks
     )
 ](
     direction: horizontal

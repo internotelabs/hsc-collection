@@ -15,6 +15,21 @@
 // the first three generations, 0.083 at generation 10 and 0.0099 at 100.
 @include(src: ../preface.part.chalk)
 
+cite#hardy1908(
+    authors: G. H. Hardy
+    year: 1908
+    title: Mendelian proportions in a mixed population
+    container: Science
+    pages: 28(706), 49–50
+)
+cite#weinberg1908(
+    authors: W. Weinberg
+    year: 1908
+    title: Über den Nachweis der Vererbung beim Menschen
+    container: Jahreshefte des Vereins für vaterländische Naturkunde in Württemberg
+    pages: 64, 369–382
+)
+
 scene{
     A pedigree follows a handful of people. A population carries something a family does not: a frequency — the proportion of all the copies of a gene in the population that are one particular allele.
 
@@ -47,7 +62,7 @@ scene{
 scene{
     # Hardy–Weinberg: what the frequencies do when nothing acts on them
 
-    Before you can say that something changed a population, you need to know what the population would have done if nothing had. Hardy–Weinberg is that baseline.
+    Before you can say that something changed a population, you need to know what the population would have done if nothing had. Hardy–Weinberg — arrived at independently by a mathematician !cite:#hardy1908() and a physician !cite:#weinberg1908() in the same year — is that baseline.
 
     It says that in a large population with random mating, no selection, no mutation and no migration, allele frequencies do not change from generation to generation — and the genotype frequencies settle at values fixed by the allele frequencies alone.
 

@@ -14,6 +14,39 @@
 
 @include(src: ../preface.part.chalk)
 
+cite#hooke1665(
+    authors: R. Hooke
+    year: 1665
+    title: Micrographia: or some physiological descriptions of minute bodies made by magnifying glasses
+    publisher: John Martyn and James Allestry
+)
+cite#schleiden1838(
+    authors: M. J. Schleiden
+    year: 1838
+    title: Beiträge zur Phytogenesis
+    container: Archiv für Anatomie, Physiologie und wissenschaftliche Medicin
+    pages: 1838, 137–176
+)
+cite#schwann1839(
+    authors: T. Schwann
+    year: 1839
+    title: Mikroskopische Untersuchungen über die Übereinstimmung in der Struktur und dem Wachsthum der Thiere und Pflanzen
+    publisher: Sander
+)
+cite#virchow1858(
+    authors: R. Virchow
+    year: 1858
+    title: Die Cellularpathologie in ihrer Begründung auf physiologische und pathologische Gewebelehre
+    publisher: August Hirschwald
+)
+cite#pasteur1861(
+    authors: L. Pasteur
+    year: 1861
+    title: Mémoire sur les corpuscules organisés qui existent dans l'atmosphère: examen de la doctrine des générations spontanées
+    container: Annales des Sciences Naturelles (Zoologie)
+    pages: 16, 5–98
+)
+
 scene{
     The unaided eye separates two things about a tenth of a millimetre apart. Almost nothing that biology calls a cell is that large, which is why the claim that living material is made of cells could not be made — let alone tested — until someone had ground a lens good enough.
 
@@ -92,7 +125,7 @@ scene{
         term: Cell theory
     )
 
-    The third statement is the one that does real work. The first two describe what is there; the third forbids something — it says that no cell has ever appeared in any way except from another cell, which is a claim strong enough to be wrong and therefore worth testing.
+    The three statements were not arrived at together: the first two were assembled from a century and a half of looking !cite:#hooke1665() !cite:#schleiden1838() !cite:#schwann1839(), and the third was added later !cite:#virchow1858(). The third is the one that does real work. The first two describe what is there; the third forbids something — it says that no cell has ever appeared in any way except from another cell, which is a claim strong enough to be wrong and therefore worth testing.
 
     note{
         The theory is stated for cells, and viruses are the standing awkwardness. A virus has genetic material and a protein coat, replicates, and evolves, but carries no machinery to do any of it and so does nothing at all outside a host cell. The usual resolution is to say that the theory is about living things and that a virus is not one — which is a decision about the word rather than a discovery about the virus.
@@ -113,7 +146,7 @@ scene{
 
     If cells only ever come from cells, then a sterile broth sealed away from existing cells must stay sterile forever. The rival position — that life arises spontaneously from non-living material given air and nutrients — makes the opposite prediction, and it had been the majority view for a very long time.
 
-    Louis Pasteur's flasks settled it in a way that is worth following closely, because the design does one difficult thing. Boiling the broth kills whatever is in it, but sealing the flask afterwards also excludes air, and a defender of spontaneous generation could always say that the air was what the process needed.
+    Louis Pasteur's flasks settled it !cite:#pasteur1861() in a way that is worth following closely, because the design does one difficult thing. Boiling the broth kills whatever is in it, but sealing the flask afterwards also excludes air, and a defender of spontaneous generation could always say that the air was what the process needed.
 
     ===
 

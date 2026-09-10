@@ -7,6 +7,13 @@
 
 @include(src: ../preface.part.chalk)
 
+cite#argand1806(
+    authors: J.-R. Argand
+    year: 1806
+    title: Essai sur une manière de représenter les quantités imaginaires dans les constructions géométriques
+    publisher: Duminil-Lesueur
+)
+
 scene{
     Squaring a real number never produces a negative one. A positive number squares to a positive number, a negative number squares to a positive number, and zero squares to zero — so the parabola on the canvas sits on or above the horizontal axis at every point of its domain.
 
@@ -118,7 +125,7 @@ scene{
 scene{
     # The Argand plane
 
-    A complex number carries two independent real numbers, so one axis cannot hold it and two can. Plot $\operatorname{Re}(z)$ horizontally and $\operatorname{Im}(z)$ vertically and every complex number has a point, every point a complex number.
+    A complex number carries two independent real numbers, so one axis cannot hold it and two can !cite:#argand1806(). Plot $\operatorname{Re}(z)$ horizontally and $\operatorname{Im}(z)$ vertically and every complex number has a point, every point a complex number.
 
     definition{
         The Cartesian plane used to represent complex numbers, with the real part plotted on the horizontal axis — the real axis — and the imaginary part on the vertical axis, the imaginary axis.
@@ -136,21 +143,21 @@ scene{
 
     internote(ref: complex-numbers-as-vectors.chalk)
 }[
-    canvas.graph{
-        point(x: 0; y: 0; colour: grey; label: $O$)
-        point(x: 3; y: 2; colour: orange; label: $z = 3 + 2i$)
-        axis.label(x: 3; label: $\operatorname{Re}(z)$; line)
-        axis.label(y: 2; label: $\operatorname{Im}(z)$; line)
+    canvas.graph:argand{
+        point(z: 0; colour: grey; label: $O$)
+        point(z: 3 + 2i; colour: orange; label: $z = 3 + 2i$)
+        axis.label(re: 3; label: $\operatorname{Re}(z)$; line)
+        axis.label(im: 2; label: $\operatorname{Im}(z)$; line)
 
         cue{
-            point(x: 3; y: -2; colour: purple; label: $\bar{z} = 3 - 2i$)
-            axis.label(y: -2; label: $\operatorname{Im}(\bar{z})$; line)
+            point(z: 3 - 2i; colour: purple; label: $\bar{z} = 3 - 2i$)
+            axis.label(im: -2; label: $\operatorname{Im}(\bar{z})$; line)
         }(
             in: 1
         )
     }(
-        x axis label: real axis
-        y axis label: imaginary axis
+        re axis label: real axis
+        im axis label: imaginary axis
     )
 ]
 
@@ -187,15 +194,12 @@ scene{
 
     internote(ref: polar-form.chalk)
 }[
-    canvas.graph{
-        point(x: 0; y: 0; colour: grey; label: $O$)
+    canvas.graph:argand{
+        point(z: 0; colour: grey; label: $O$)
         segment(start: (0, 0); end: (3, 0); colour: grey; dashed)
         segment(start: (3, 0); end: (3, 2); colour: grey; dashed)
         segment(start: (0, 0); end: (3, 2); colour: teal; label: $|z| = \sqrt{13}$)
         angle#arg(at: (0, 0); from: 0; to: (3, 2); label: $\arg z$; show-value: true)
-        point(x: 3; y: 2; colour: orange; label: $z$)
-    }(
-        x axis label: real axis
-        y axis label: imaginary axis
-    )
+        point(z: 3 + 2i; colour: orange; label: $z$)
+    }
 ]

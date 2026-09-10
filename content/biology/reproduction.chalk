@@ -44,16 +44,16 @@ scene{
     The answer is variation. Asexual offspring are copies, so a population of them is only as good as the environment staying the same. Sexual offspring are all different, so when the environment changes — a new disease, a colder decade, a new predator — a sexual population is likely to contain individuals that cope, and an asexual one is likely to contain none.
 }[
     canvas.graph{
-        curve(f: 0.301 * x; domain: [0, 10]; colour: blue; label: asexual)
+        curve(f: 2^x; domain: [0, 10]; colour: blue; label: asexual)
 
         cue{
-            curve(f: 0; domain: [0, 10]; colour: orange; label: sexual)
+            curve(f: 1; domain: [0, 10]; colour: orange; label: sexual)
         }(
             in: 1
         )
 
         cue{
-            point(x: 10; y: 3.01; colour: blue; label: $1024$ times the starting size)
+            point(x: 10; y: 1024; colour: blue; label: $1024$ times the starting size)
         }(
             in: 2
         )
@@ -61,8 +61,8 @@ scene{
         x axis label: generations
         y axis label: population size, relative to the start
         x domain: [0, 12]
-        y domain: [-0.3, 3.6]
-        y format: log
+        y domain: [0.5, 4000]
+        y scale: log
     )
 ]
 
@@ -127,37 +127,30 @@ scene{
     }
 }[
     canvas.graph{
-        point(x: 0; y: 8.48; colour: blue)
-        point(x: 1; y: 6.7; colour: blue)
-        axis.label(x: 0; label: sunfish; colour: grey)
-        axis.label(x: 1; label: cod; colour: grey)
+        scatter(x: sunfish, cod; y: 300000000, 5000000; colour: blue)
 
         cue{
-            point(x: 2; y: 3.3; colour: blue)
-            axis.label(x: 2; label: frog; colour: grey)
+            scatter(x: frog; y: 2000; colour: blue)
         }(
             in: 1
         )
 
         cue{
-            point(x: 3; y: 0.6; colour: orange)
-            point(x: 4; y: 0; colour: orange)
-            axis.label(x: 3; label: magpie; colour: grey)
-            axis.label(x: 4; label: human; colour: grey)
+            scatter(x: magpie, human; y: 4, 1; colour: orange)
         }(
             in: 2
         )
 
         cue{
-            axis.band(y: [-0.6, 3.3]; label: where parental care begins; colour: grey)
+            axis.band(y: [0.5, 2000]; label: where parental care begins; colour: grey)
         }(
             in: 3
         )
     }(
         y axis label: eggs or offspring per breeding attempt
-        x domain: [-0.5, 4.5]
-        y domain: [-0.6, 9.2]
-        y format: log
+        x format: sunfish, cod, frog, magpie, human
+        y domain: [0.5, 1000000000]
+        y scale: log
     )
 ]
 

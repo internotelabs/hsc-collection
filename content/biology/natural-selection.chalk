@@ -12,6 +12,34 @@
 //   p = 0.99 at t = 92 generations
 @include(src: ../preface.part.chalk)
 
+cite#dw1858(
+    authors: C. Darwin, A. R. Wallace
+    year: 1858
+    title: On the tendency of species to form varieties, and on the perpetuation of varieties and species by natural means of selection
+    container: Journal of the Proceedings of the Linnean Society of London. Zoology
+    pages: 3(9), 45–62
+)
+cite#darwin1859(
+    authors: C. Darwin
+    year: 1859
+    title: On the origin of species by means of natural selection
+    publisher: John Murray
+)
+cite#kettlewell1955(
+    authors: H. B. D. Kettlewell
+    year: 1955
+    title: Selection experiments on industrial melanism in the Lepidoptera
+    container: Heredity
+    pages: 9(3), 323–342
+)
+cite#cook2012(
+    authors: L. M. Cook, B. S. Grant, I. J. Saccheri, J. Mallet
+    year: 2012
+    title: Selective bird predation on the peppered moth: the last experiment of Michael Majerus
+    container: Biology Letters
+    pages: 8(4), 609–612
+)
+
 scene{
     Natural selection is often described as though organisms were striving to improve, and that description is wrong in a way that makes the whole idea harder than it is. Nothing strives. Nothing is trying.
 
@@ -143,17 +171,17 @@ scene{
 scene{
     # Darwin, Wallace, and a case anyone can check
 
-    Charles Darwin worked out the argument in the late 1830s and did not publish it for twenty years. Alfred Russel Wallace, working in the Malay Archipelago, arrived at essentially the same argument independently and sent it to Darwin in 1858. Their work was presented jointly to the Linnean Society that year, and Darwin's *On the Origin of Species* followed in 1859.
+    Charles Darwin worked out the argument in the late 1830s and did not publish it for twenty years. Alfred Russel Wallace, working in the Malay Archipelago, arrived at essentially the same argument independently and sent it to Darwin in 1858. Their work was presented jointly to the Linnean Society that year !cite:#dw1858(), and Darwin's *On the Origin of Species* followed in 1859 !cite:#darwin1859().
 
     Two people reaching the same conclusion separately, from different evidence on opposite sides of the world, is worth noting. It suggests the argument was there to be found in the evidence rather than invented.
 
     The peppered moth is the case most often used to check the four conditions against a real population, because all four can be observed rather than assumed.
 
-    The moth occurs in a pale speckled form and a dark form. Before industrialisation the pale form was overwhelmingly the commoner, resting on lichen-covered tree trunks where it was very hard to see. Industrial soot killed the lichens and blackened the bark around English cities, and over a few decades the dark form became the commoner one in those areas — while remaining rare in unpolluted regions.
+    The moth occurs in a pale speckled form and a dark form !cite:#kettlewell1955(). Before industrialisation the pale form was overwhelmingly the commoner, resting on lichen-covered tree trunks where it was very hard to see. Industrial soot killed the lichens and blackened the bark around English cities, and over a few decades the dark form became the commoner one in those areas — while remaining rare in unpolluted regions.
 
     The table runs the four conditions against the moth. Every row is an observation rather than an inference, which is what makes this a demonstration and not an illustration.
 
-    Then the argument was run in reverse. Clean air legislation from the 1950s onwards reduced the soot, the lichens returned, and the dark form declined again in the same areas. A prediction was made, the environment changed in the direction predicted, and the frequencies followed.
+    Then the argument was run in reverse. Clean air legislation from the 1950s onwards reduced the soot, the lichens returned, and the dark form declined again in the same areas. A prediction was made, the environment changed in the direction predicted, and the frequencies followed. The bird predation the whole account rests on was itself measured directly, most carefully in an experiment published half a century after Kettlewell's !cite:#cook2012().
 }[
     table{
         The condition                 | What was observed in the moths

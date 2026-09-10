@@ -15,6 +15,15 @@
 // day: G1 roughly 11 hours, S roughly 8, G2 roughly 4, and mitosis about 1.
 @include(src: ../preface.part.chalk)
 
+cite#ms1958(
+    authors: M. Meselson, F. W. Stahl
+    year: 1958
+    title: The replication of DNA in Escherichia coli
+    container: Proceedings of the National Academy of Sciences
+    pages: 44(7), 671–682
+    doi: 10.1073/pnas.44.7.671
+)
+
 scene{
     Every cell in your body came from one cell dividing. For that to work, each new cell needs a complete set of instructions, which means the instructions have to be copied first — and copied exactly, because a mistake made now is inherited by every cell descended from this one.
 
@@ -41,7 +50,7 @@ scene{
     )
 
     note{
-        Meselson and Stahl showed this in 1958 by growing bacteria in a heavy isotope of nitrogen, so their DNA was heavier than normal, and then moving them to ordinary nitrogen. After one round of replication every DNA molecule was of intermediate weight — half heavy, half light. Neither of the rival models predicts that, and the conservative one predicts a mixture of heavy and light molecules with nothing in between.
+        Meselson and Stahl showed this in 1958 !cite:#ms1958() by growing bacteria in a heavy isotope of nitrogen, so their DNA was heavier than normal, and then moving them to ordinary nitrogen. After one round of replication every DNA molecule was of intermediate weight — half heavy, half light. Neither of the rival models predicts that, and the conservative one predicts a mixture of heavy and light molecules with nothing in between.
     }
 }[
     canvas.diagram{
@@ -100,27 +109,24 @@ scene{
     Three separate mechanisms, each catching most of what the last one missed, and together they turn $32\,000$ mistakes into three. The errors that do survive are the subject of *Mutation*, and they are not all bad news: they are also the only source of genuinely new genetic material there is.
 }[
     canvas.graph{
-        point(x: 0; y: 4.505; colour: orange; label: about $32\,000$ errors)
-        axis.label(x: 0; label: polymerase alone; colour: grey)
+        scatter(x: polymerase alone; y: 32000; colour: orange; label: about $32\,000$ errors)
 
         cue{
-            point(x: 1; y: 2.505; colour: orange; label: about $320$)
-            axis.label(x: 1; label: with proofreading; colour: grey)
+            scatter(x: with proofreading; y: 320; colour: orange; label: about $320$)
         }(
             in: 1
         )
 
         cue{
-            point(x: 2; y: 0.505; colour: orange; label: about $3$)
-            axis.label(x: 2; label: and mismatch repair; colour: grey)
+            scatter(x: and mismatch repair; y: 3.2; colour: orange; label: about $3$)
         }(
             in: 2
         )
     }(
         y axis label: errors left in one copy of the genome
-        x domain: [-0.4, 2.4]
-        y domain: [-0.5, 5.5]
-        y format: log
+        x format: polymerase alone, with proofreading, and mismatch repair
+        y domain: [0.3, 300000]
+        y scale: log
     )
 ]
 

@@ -19,6 +19,13 @@
 // houses and 1422 deaths, or 59 per 10 000.
 @include(src: ../preface.part.chalk)
 
+cite#snow1855(
+    authors: J. Snow
+    year: 1855
+    title: On the mode of communication of cholera
+    publisher: John Churchill
+)
+
 scene{
     Two people differ in thousands of ways, so a single case tells you almost nothing about what caused a disease. A person who smoked and developed lung cancer also ate particular food, lived in a particular place and inherited a particular set of alleles, and nothing about that one case separates the candidates.
 
@@ -216,7 +223,7 @@ scene{
 
     ===
 
-    Snow counted deaths against houses supplied. The canvas is his figures.
+    Snow counted deaths against houses supplied !cite:#snow1855(locator: table IX). The canvas is his figures.
 
     Among the $40\,046$ houses supplied by Southwark and Vauxhall there were $1263$ cholera deaths, or $315$ per ten thousand houses. Among the $26\,107$ houses supplied by Lambeth there were $98$ deaths, or $37$ per ten thousand — about one ninth the rate. The rest of London sat between the two at $59$ per ten thousand.
 

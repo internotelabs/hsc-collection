@@ -22,20 +22,18 @@ scene{
 
     Checking the middle one is a cube in polar form: $\omega = \operatorname{cis}\frac{2\pi}{3}$, so $\omega^3 = \operatorname{cis}2\pi = 1$. The real solution had not hidden the other two so much as failed to have anywhere to put them — one axis has no room for a point at $120^\circ$.
 }[
-    canvas.graph{
-        circle(x: 0; y: 0; size: 1; colour: grey; !fill)
-        point(x: 1; y: 0; colour: orange; label: $1$)
+    canvas.graph:argand{
+        circle(z: 0; size: 1; colour: grey; !fill)
+        point(z: 1; colour: orange; label: $1$)
 
         cue{
-            point(x: -0.5; y: 0.866; colour: teal; label: $\omega$)
-            point(x: -0.5; y: -0.866; colour: teal; label: $\omega^2$)
-            angle(at: (0, 0); from: 0; to: (-0.5, 0.866); label: $120^\circ$; colour: teal)
+            point(z: e^(2 * pi * i / 3); colour: teal; label: $\omega$)
+            point(z: (e^(2 * pi * i / 3))^2; colour: teal; label: $\omega^2$)
+            angle(at: (0, 0); from: 0; to: 120; label: $120^\circ$; colour: teal)
         }(
             in: 1
         )
     }(
-        x axis label: real axis
-        y axis label: imaginary axis
         !show ticks
     )
 ]
@@ -105,25 +103,19 @@ scene{
         The same construction solves $z^n = w$ for any non-zero $w$. Its solutions are one $n$th root of $w$ multiplied by each root of unity in turn, so they too are $n$ equally spaced points — on the circle of radius $|w|^{1/n}$, rotated to start at $\frac{\arg w}{n}$.
     }
 }[
-    canvas.graph{
-        circle(x: 0; y: 0; size: 1; colour: grey; !fill)
-        point(x: 1; y: 0; colour: orange; label: $1$)
-        point(x: 0.5; y: 0.866; colour: teal)
-        point(x: -0.5; y: 0.866; colour: teal)
-        point(x: -1; y: 0; colour: teal)
-        point(x: -0.5; y: -0.866; colour: teal)
-        point(x: 0.5; y: -0.866; colour: teal)
-        angle(at: (0, 0); from: 0; to: (0.5, 0.866); label: $60^\circ$; colour: teal)
+    canvas.graph:argand{
+        circle(z: 0; size: 1; colour: grey; !fill)
+        point(z: 1; colour: orange; label: $1$)
+        scatter(z: e^(pi * i / 3), e^(2 * pi * i / 3), -1, e^(4 * pi * i / 3), e^(5 * pi * i / 3); colour: teal)
+        angle(at: (0, 0); from: 0; to: 60; label: $60^\circ$; colour: teal)
 
         cue.draw{
-            polygon(x: 1, 0.5, -0.5, -1, -0.5, 0.5; y: 0, 0.866, 0.866, 0, -0.866, -0.866; colour: teal; !fill)
+            polygon(z: 1, e^(pi * i / 3), e^(2 * pi * i / 3), -1, e^(4 * pi * i / 3), e^(5 * pi * i / 3); colour: teal; !fill)
         }(
             in: 1
             in duration: 1.4s
         )
     }(
-        x axis label: real axis
-        y axis label: imaginary axis
         !show ticks
     )
 ]

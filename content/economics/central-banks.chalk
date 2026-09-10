@@ -6,56 +6,70 @@
 )
 
 // Every RBA cash rate target change from June 2019 to the August 2026 meeting.
-// Source: RBA, Cash Rate Target (rba.gov.au/statistics/cash-rate).
-// Dates are decimal years so the axis reads in calendar years; the effective
-// column carries the real date of each decision. The final row is the
-// 12 Aug 2026 meeting, a hold, so the staircase runs to the present.
+// The date is the day each decision took effect, written ISO so the axis places
+// it at its fractional year. The final row is the 12 Aug 2026 meeting, a hold,
+// so the staircase runs to the present.
 @data#cash{
-    year     | target | effective
-    2019.425 | 1.25   | 5 Jun 2019
-    2019.501 | 1.00   | 3 Jul 2019
-    2019.751 | 0.75   | 2 Oct 2019
-    2020.172 | 0.50   | 4 Mar 2020
-    2020.216 | 0.25   | 20 Mar 2020
-    2020.842 | 0.10   | 4 Nov 2020
-    2022.337 | 0.35   | 4 May 2022
-    2022.433 | 0.85   | 8 Jun 2022
-    2022.510 | 1.35   | 6 Jul 2022
-    2022.586 | 1.85   | 3 Aug 2022
-    2022.682 | 2.35   | 7 Sep 2022
-    2022.759 | 2.60   | 5 Oct 2022
-    2022.836 | 2.85   | 2 Nov 2022
-    2022.932 | 3.10   | 7 Dec 2022
-    2023.104 | 3.35   | 8 Feb 2023
-    2023.181 | 3.60   | 8 Mar 2023
-    2023.334 | 3.85   | 3 May 2023
-    2023.430 | 4.10   | 7 Jun 2023
-    2023.852 | 4.35   | 8 Nov 2023
-    2025.134 | 4.10   | 19 Feb 2025
-    2025.384 | 3.85   | 21 May 2025
-    2025.614 | 3.60   | 13 Aug 2025
-    2026.093 | 3.85   | 4 Feb 2026
-    2026.208 | 4.10   | 18 Mar 2026
-    2026.342 | 4.35   | 6 May 2026
-    2026.611 | 4.35   | 12 Aug 2026 (held)
+    date       | target
+    2019-06-05 | 1.25
+    2019-07-03 | 1.00
+    2019-10-02 | 0.75
+    2020-03-04 | 0.50
+    2020-03-20 | 0.25
+    2020-11-04 | 0.10
+    2022-05-04 | 0.35
+    2022-06-08 | 0.85
+    2022-07-06 | 1.35
+    2022-08-03 | 1.85
+    2022-09-07 | 2.35
+    2022-10-05 | 2.60
+    2022-11-02 | 2.85
+    2022-12-07 | 3.10
+    2023-02-08 | 3.35
+    2023-03-08 | 3.60
+    2023-05-03 | 3.85
+    2023-06-07 | 4.10
+    2023-11-08 | 4.35
+    2025-02-19 | 4.10
+    2025-05-21 | 3.85
+    2025-08-13 | 3.60
+    2026-02-04 | 3.85
+    2026-03-18 | 4.10
+    2026-05-06 | 4.35
+    2026-08-12 | 4.35
 }
 
-// Annual CPI inflation, all groups, Australia. Source: ABS. Readings to the
-// September 2025 quarter are quarterly; the ABS moved to a complete monthly
-// CPI from November 2025, so later readings are monthly.
+// Annual CPI inflation, all groups, Australia. Readings to the September 2025
+// quarter are quarterly and are dated at the end of their quarter; the ABS moved
+// to a complete monthly CPI from November 2025, so later readings are monthly.
 @data#cpi{
-    year    | rate | period
-    2025.00 | 2.4  | Dec 2024 quarter
-    2025.25 | 2.4  | Mar 2025 quarter
-    2025.50 | 2.1  | Jun 2025 quarter
-    2025.75 | 3.2  | Sep 2025 quarter
-    2025.83 | 3.8  | Oct 2025
-    2026.25 | 4.6  | Mar 2026
-    2026.50 | 3.8  | Jun 2026
-    2026.58 | 3.5  | Jul 2026
+    date       | rate
+    2024-12-31 | 2.4
+    2025-03-31 | 2.4
+    2025-06-30 | 2.1
+    2025-09-30 | 3.2
+    2025-10-31 | 3.8
+    2026-03-31 | 4.6
+    2026-06-30 | 3.8
+    2026-07-31 | 3.5
 }
 
 @include(src: ../preface.part.chalk)
+
+cite#rba-cash-rate(
+    authors: Reserve Bank of Australia
+    year: n.d.
+    title: Cash rate target
+    publisher: Reserve Bank of Australia
+    url: https://www.rba.gov.au/statistics/cash-rate/
+)
+cite#abs-cpi(
+    authors: Australian Bureau of Statistics
+    year: n.d.
+    title: Consumer Price Index, Australia
+    publisher: Australian Bureau of Statistics
+    url: https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia
+)
 
 scene{
     A commercial bank ends each day either short of cash or holding more than it needs, and settles the difference by borrowing from another bank overnight. The interest rate on those loans is the shortest, dullest rate in the economy, and it is the one the Reserve Bank of Australia controls.
@@ -74,7 +88,7 @@ scene{
 
     ===
 
-    The staircase on the canvas is every change to that target since mid-2019. Two features of its shape matter more than any single level.
+    The staircase on the canvas is every change to that target since mid-2019 !cite:#rba-cash-rate(). Two features of its shape matter more than any single level.
 
     The first is that it moves in steps and holds flat between them. The Monetary Policy Board meets eight times a year and the target is unchanged until the next decision, so the series is a step function by construction rather than a smooth curve sampled coarsely.
 
@@ -86,13 +100,14 @@ scene{
 }[
     canvas.graph{
         cue{
-            line(x: #cash.year; y: #cash.target; colour: blue; interpolate: step)
+            line(x: #cash.date; y: #cash.target; colour: blue; interpolate: step)
         }(
             in: 1
         )
     }(
         x axis label: year
         y axis label: cash rate target (per cent)
+        x format: dates
         x domain: [2019.3, 2026.8]
         y domain: [0, 4.75]
     )
@@ -194,12 +209,12 @@ scene{
     Inflation has come off that peak to $3.8$ per cent in June 2026 and $3.5$ in July, and is still above the band. That is why the rate is being held rather than cut: the Board is waiting for the readings to reach the shaded region, not merely to point at it.
 
     note{
-        The readings change frequency partway along. The ABS published a full CPI quarterly until the September 2025 quarter and moved to a complete monthly CPI from November 2025, so the later points are monthly figures rather than quarterly ones.
+        The readings change frequency partway along !cite:#abs-cpi(). The ABS published a full CPI quarterly until the September 2025 quarter and moved to a complete monthly CPI from November 2025, so the later points are monthly figures rather than quarterly ones.
     }
 }[
     canvas.graph{
         axis.band(y: [2, 3]; colour: teal; label: target band)
-        scatter(x: #cpi.year; y: #cpi.rate; colour: orange)
+        scatter(x: #cpi.date; y: #cpi.rate; colour: orange)
 
         cue{
             axis.label(y: 2.5; label: midpoint; line)
@@ -209,6 +224,7 @@ scene{
     }(
         x axis label: year
         y axis label: annual CPI inflation (per cent)
+        x format: dates
         x domain: [2024.9, 2026.8]
         y domain: [0, 5]
     )

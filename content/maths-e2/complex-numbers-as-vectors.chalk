@@ -30,30 +30,28 @@ scene{
         The detour is never shorter than the direct route, so $|z_1 + z_2| \le |z_1| + |z_2|$, with equality only when the two arrows point the same way. This is the triangle inequality, and *Inequalities and Proof* proves it from the algebra.
     }
 }[
-    canvas.graph{
-        point(x: 0; y: 0; colour: grey; label: $O$)
-        vector(x: 0; y: 0; dx: 3; dy: 1; colour: orange; label: $z_1 = 3 + i$)
-        vector(x: 0; y: 0; dx: 1; dy: 2; colour: purple; label: $z_2 = 1 + 2i$)
+    canvas.graph:argand{
+        point(z: 0; colour: grey; label: $O$)
+        vector(z: 3 + i; colour: orange; label: $z_1 = 3 + i$)
+        vector(z: 1 + 2i; colour: purple; label: $z_2 = 1 + 2i$)
 
         cue.draw{
-            vector(x: 3; y: 1; dx: 1; dy: 2; colour: purple; dashed)
+            vector(re: 3; im: 1; z: 1 + 2i; colour: purple; dashed)
         }(
             in: 1
             in duration: 1s
         )
 
         cue.draw{
-            vector(x: 1; y: 2; dx: 3; dy: 1; colour: orange; dashed)
-            vector(x: 0; y: 0; dx: 4; dy: 3; colour: teal; label: $z_1 + z_2 = 4 + 3i$)
+            vector(re: 1; im: 2; z: 3 + i; colour: orange; dashed)
+            vector(z: (3 + i) + (1 + 2i); colour: teal; label: $z_1 + z_2 = 4 + 3i$)
         }(
             in: 2
             in duration: 1.2s
         )
     }(
-        x axis label: real axis
-        y axis label: imaginary axis
-        x domain: [-1, 6]
-        y domain: [-1, 5]
+        re domain: [-1, 6]
+        im domain: [-1, 5]
     )
 ]
 
@@ -78,35 +76,33 @@ scene{
 
     The midpoint of the segment is $\frac{z_1 + z_2}{2}$, half of the parallelogram's diagonal. And a condition placed on $|z - z_0|$ or $\arg(z - z_0)$ is a condition on the distance or direction from a fixed point $z_0$, which is what turns an equation into a curve.
 }[
-    canvas.graph{
-        point(x: 0; y: 0; colour: grey; label: $O$)
-        point(x: 3; y: 1; colour: orange; label: $z_1 = 3 + i$)
-        point(x: 1; y: 2; colour: purple; label: $z_2 = 1 + 2i$)
+    canvas.graph:argand{
+        point(z: 0; colour: grey; label: $O$)
+        point(z: 3 + i; colour: orange; label: $z_1 = 3 + i$)
+        point(z: 1 + 2i; colour: purple; label: $z_2 = 1 + 2i$)
 
         cue.draw{
-            vector(x: 3; y: 1; dx: -2; dy: 1; colour: teal; label: $z_2 - z_1$)
+            vector(re: 3; im: 1; z: (1 + 2i) - (3 + i); colour: teal; label: $z_2 - z_1$)
         }(
             in: 1
             in duration: 1s
         )
 
         cue.draw{
-            vector(x: 0; y: 0; dx: -2; dy: 1; colour: teal; dashed; label: $-2 + i$)
+            vector(z: (1 + 2i) - (3 + i); colour: teal; dashed; label: $-2 + i$)
         }(
             in: 2
             in duration: 1s
         )
 
         cue{
-            text(label: $|z_2 - z_1| = \sqrt{5}$; x: 2.6; y: 2.1; colour: teal)
+            text(label: $|z_2 - z_1| = \sqrt{5}$; z: 2.6 + 2.1i; colour: teal)
         }(
             in: 2
         )
     }(
-        x axis label: real axis
-        y axis label: imaginary axis
-        x domain: [-3, 4]
-        y domain: [-1, 3]
+        re domain: [-3, 4]
+        im domain: [-1, 3]
     )
 ]
 
@@ -131,12 +127,12 @@ scene{
 
     This is the operation plane vectors have no equivalent of. The dot product of two vectors returns a number and throws the direction away; multiplication of two complex numbers returns a complex number, and the argument of the product is the sum of the arguments. Multiplying by $i$, with argument $\frac{\pi}{2}$, is the cleanest case of that rule, and *Polar Form and de Moivre's Theorem* gives the general one: multiplying by $\operatorname{cis}\theta$ turns the plane through $\theta$.
 }[
-    canvas.graph{
-        point(x: 0; y: 0; colour: grey; label: $O$)
-        vector(x: 0; y: 0; dx: 3; dy: 1; colour: orange; label: $z = 3 + i$)
+    canvas.graph:argand{
+        point(z: 0; colour: grey; label: $O$)
+        vector(z: 3 + i; colour: orange; label: $z = 3 + i$)
 
         cue.draw{
-            vector(x: 0; y: 0; dx: -1; dy: 3; colour: teal; label: $iz = -1 + 3i$)
+            vector(z: i * (3 + i); colour: teal; label: $iz = -1 + 3i$)
             angle(at: (0, 0); from: (3, 1); to: (-1, 3); colour: teal)
         }(
             in: 1
@@ -144,17 +140,15 @@ scene{
         )
 
         cue.draw{
-            vector(x: 0; y: 0; dx: -3; dy: -1; colour: grey; dashed; label: $i^2 z = -z$)
-            vector(x: 0; y: 0; dx: 1; dy: -3; colour: grey; dashed; label: $i^3 z$)
+            vector(z: i^2 * (3 + i); colour: grey; dashed; label: $i^2 z = -z$)
+            vector(z: i^3 * (3 + i); colour: grey; dashed; label: $i^3 z$)
         }(
             in: 2
             in duration: 1.2s
         )
     }(
-        x axis label: real axis
-        y axis label: imaginary axis
-        x domain: [-4, 4]
-        y domain: [-4, 4]
+        re domain: [-4, 4]
+        im domain: [-4, 4]
     )
 ]
 
@@ -189,11 +183,11 @@ scene{
 
     internote(ref: curves-and-regions.chalk)
 }[
-    canvas.graph{
-        point(x: 0; y: 0; colour: grey; label: $O$)
-        polygon(x: 0, 3, 4, 1; y: 0, 1, 4, 3; colour: teal; !fill)
-        point(x: 3; y: 1; colour: orange; label: $z_1$)
-        point(x: 1; y: 3; colour: purple; label: $z_2$)
+    canvas.graph:argand{
+        point(z: 0; colour: grey; label: $O$)
+        polygon(z: 0, 3 + i, 4 + 4i, 1 + 3i; colour: teal; !fill)
+        point(z: 3 + i; colour: orange; label: $z_1$)
+        point(z: 1 + 3i; colour: purple; label: $z_2$)
 
         cue.draw{
             segment(start: (0, 0); end: (4, 4); colour: orange; label: $z_1 + z_2$)
@@ -204,9 +198,7 @@ scene{
             in duration: 1.2s
         )
     }(
-        x axis label: real axis
-        y axis label: imaginary axis
-        x domain: [-1, 5]
-        y domain: [-1, 5]
+        re domain: [-1, 5]
+        im domain: [-1, 5]
     )
 ]

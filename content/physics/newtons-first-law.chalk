@@ -17,10 +17,23 @@
 
 @include(src: ../preface.part.chalk)
 
+cite#newton1687(
+    authors: I. Newton
+    year: 1687
+    title: Philosophiae naturalis principia mathematica
+    publisher: Josephi Streater
+)
+cite#galileo1638(
+    authors: G. Galilei
+    year: 1638
+    title: Discorsi e dimostrazioni matematiche, intorno à due nuove scienze
+    publisher: Elzevir
+)
+
 scene{
     A hockey puck sliding across the ice does not need anything to keep it going. It slows, eventually, but the slowing is the thing that needs explaining — the sliding does not.
 
-    That is the reversal Newton's First Law asks for. Motion at a steady speed in a straight line is not a state that has to be maintained; it is what a body does when nothing interferes.
+    That is the reversal Newton's First Law asks for !cite:#newton1687(). Motion at a steady speed in a straight line is not a state that has to be maintained; it is what a body does when nothing interferes.
 
     definition{
         A law of motion stating that a body remains at rest, or continues to move at constant velocity in a straight line, unless a non-zero net force acts on it.
@@ -87,7 +100,7 @@ scene{
     This is the argument for the law rather than a demonstration of it, since a frictionless surface cannot be built. What kills everyday motion is not the absence of a driving force but the presence of a resisting one, and the law describes what is left when the resisting force is taken away.
 
     note{
-        Galileo reached the same conclusion from balls rolling down one ramp and up another: the smoother the ramps, the closer the ball came to its starting height. A ball on a ramp that levelled out would then roll forever.
+        Galileo reached the same conclusion from balls rolling down one ramp and up another !cite:#galileo1638(): the smoother the ramps, the closer the ball came to its starting height. A ball on a ramp that levelled out would then roll forever.
     }
 }[
     canvas.graph{

@@ -127,27 +127,25 @@ scene{
 
     Every polynomial with real coefficients factorises over the reals into linear factors, one for each real root, and irreducible quadratics, one for each conjugate pair. Over $\mathbb{C}$ each of those quadratics splits in two, and the count reaches the $n$ linear factors the fundamental theorem promised.
 }[
-    canvas.graph{
-        point(x: 0; y: 0; colour: grey; label: $O$)
-        point(x: 1; y: 2; colour: teal; label: $1 + 2i$)
+    canvas.graph:argand{
+        point(z: 0; colour: grey; label: $O$)
+        point(z: 1 + 2i; colour: teal; label: $1 + 2i$)
 
         cue{
-            point(x: 1; y: -2; colour: teal; label: $1 - 2i$)
+            point(z: 1 - 2i; colour: teal; label: $1 - 2i$)
             segment(start: (1, 2); end: (1, -2); colour: teal; dashed)
         }(
             in: 1
         )
 
         cue{
-            point(x: 2; y: 0; colour: orange; label: $2$)
+            point(z: 2; colour: orange; label: $2$)
         }(
             in: 2
         )
     }(
-        x axis label: real axis
-        y axis label: imaginary axis
-        x domain: [-1, 4]
-        y domain: [-3, 3]
+        re domain: [-1, 4]
+        im domain: [-3, 3]
     )
 ]
 

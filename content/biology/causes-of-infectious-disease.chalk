@@ -7,6 +7,14 @@
 
 @include(src: ../preface.part.chalk)
 
+cite#koch1884(
+    authors: R. Koch
+    year: 1884
+    title: Die Aetiologie der Tuberkulose
+    container: Mitteilungen aus dem Kaiserlichen Gesundheitsamte
+    pages: 2, 1–88
+)
+
 scene{
     An infectious disease is one organism making a living inside another. That framing is worth holding onto, because it explains most of what follows: the pathogen needs to get in, to obtain resources, to reproduce, and to reach the next host — and every one of those requirements is something that can be interfered with.
 
@@ -113,7 +121,7 @@ scene{
 
     Finding a microbe in a sick person proves nothing on its own. Sick people are full of microbes, most of which are harmless, and some of which are there because the person is ill rather than the other way round.
 
-    Robert Koch set out a standard for establishing causation in the 1880s, and the canvas is its four steps. The first is that the microbe must be present in every case of the disease and absent from healthy individuals. This rules out an organism that merely happens to be common.
+    Robert Koch set out a standard for establishing causation in the 1880s !cite:#koch1884(), and the canvas is its four steps. The first is that the microbe must be present in every case of the disease and absent from healthy individuals. This rules out an organism that merely happens to be common.
 
     ===
 
